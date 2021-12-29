@@ -12,6 +12,7 @@ int main(int argc, char* argv[])
 		image.convertTo(image, CV_8UC3, 1.0f);
 		cv::cvtColor(image, image, cv::COLOR_RGB2BGR);
 		cv::imshow("image", image);
+		int key = cv::waitKey(10);
 	}
 
 	return 0;
