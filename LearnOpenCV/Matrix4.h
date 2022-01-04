@@ -1,0 +1,470 @@
+#pragma once
+
+#include "Math.h"
+#include "Vector3.h"
+#include "Vector4.h"
+
+namespace Math
+{
+	class Matrix4
+	{
+		union
+		{
+			struct {
+				float m00, m01, m02, m03;
+				float m10, m11, m12, m13;
+				float m20, m21, m22, m23;
+				float m30, m31, m32, m33;
+			};
+
+			float m[16];
+		};
+
+	public:
+		inline Matrix4()
+		{
+			Matrix4(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		}
+
+		inline Matrix4(float base)
+		{
+			Matrix4(base, 0, 0, 0,
+					0, base, 0, 0,
+					0, 0, base, 0,
+					0, 0, 0, base);
+		}
+
+		inline Matrix4(float f00, float f01, float f02, float f03,
+			float f10, float f11, float f12, float f13,
+			float f20, float f21, float f22, float f23,
+			float f30, float f31, float f32, float f33)
+		{
+			m00 = f00; m01 = f01; m02 = f02; m03 = f03;
+			m10 = f10; m11 = f11; m12 = f12; m13 = f13;
+			m20 = f20; m21 = f21; m22 = f22; m23 = f23;
+			m30 = f30; m31 = f31; m32 = f32; m33 = f33;
+		}
+
+		inline Matrix4& operator= (const Matrix4& rhs)
+		{
+			memcpy(m, rhs.m, sizeof(float) * 16);
+			return *this;
+		}
+
+		inline Matrix4& operator+= (const float f)
+		{
+			m00 += f; m01 += f; m02 += f; m03 += f;
+			m10 += f; m11 += f; m12 += f; m13 += f;
+			m20 += f; m21 += f; m22 += f; m23 += f;
+			m30 += f; m31 += f; m32 += f; m33 += f;
+
+			return *this;
+		}
+
+		inline Matrix4& operator+= (const Matrix4& rhs)
+		{
+			m00 += rhs.m00; m01 += rhs.m01; m02 += rhs.m02; m03 += rhs.m03;
+			m10 += rhs.m10; m11 += rhs.m11; m12 += rhs.m12; m13 += rhs.m13;
+			m20 += rhs.m20; m21 += rhs.m21; m22 += rhs.m22; m23 += rhs.m23;
+			m30 += rhs.m30; m31 += rhs.m31; m32 += rhs.m32; m33 += rhs.m33;
+
+			return *this;
+		}
+
+		inline Matrix4& operator-= (const float f)
+		{
+			m00 -= f; m01 -= f; m02 -= f; m03 -= f;
+			m10 -= f; m11 -= f; m12 -= f; m13 -= f;
+			m20 -= f; m21 -= f; m22 -= f; m23 -= f;
+			m30 -= f; m31 -= f; m32 -= f; m33 -= f;
+
+			return *this;
+		}
+
+		inline Matrix4& operator-= (const Matrix4& rhs)
+		{
+			m00 -= rhs.m00; m01 -= rhs.m01; m02 -= rhs.m02; m03 -= rhs.m03;
+			m10 -= rhs.m10; m11 -= rhs.m11; m12 -= rhs.m12; m13 -= rhs.m13;
+			m20 -= rhs.m20; m21 -= rhs.m21; m22 -= rhs.m22; m23 -= rhs.m23;
+			m30 -= rhs.m30; m31 -= rhs.m31; m32 -= rhs.m32; m33 -= rhs.m33;
+
+			return *this;
+		}
+
+		inline Matrix4& operator*= (const float f)
+		{
+			m00 *= f; m01 *= f; m02 *= f; m03 *= f;
+			m10 *= f; m11 *= f; m12 *= f; m13 *= f;
+			m20 *= f; m21 *= f; m22 *= f; m23 *= f;
+			m30 *= f; m31 *= f; m32 *= f; m33 *= f;
+
+			return *this;
+		}
+
+		inline Matrix4& operator *= (const Matrix4& rhs)
+		{
+			Matrix4 result;
+
+			result.m00 = m00 * rhs.m00 + m01 * rhs.m10 + m02 * rhs.m20 + m03 * rhs.m30;
+			result.m01 = m00 * rhs.m01 + m01 * rhs.m11 + m02 * rhs.m21 + m03 * rhs.m31;
+			result.m02 = m00 * rhs.m02 + m01 * rhs.m12 + m02 * rhs.m22 + m03 * rhs.m32;
+			result.m03 = m00 * rhs.m03 + m01 * rhs.m13 + m02 * rhs.m23 + m03 * rhs.m33;
+
+			result.m10 = m10 * rhs.m00 + m11 * rhs.m10 + m12 * rhs.m20 + m13 * rhs.m30;
+			result.m11 = m10 * rhs.m01 + m11 * rhs.m11 + m12 * rhs.m21 + m13 * rhs.m31;
+			result.m12 = m10 * rhs.m02 + m11 * rhs.m12 + m12 * rhs.m22 + m13 * rhs.m32;
+			result.m13 = m10 * rhs.m03 + m11 * rhs.m13 + m12 * rhs.m23 + m13 * rhs.m33;
+
+			result.m20 = m20 * rhs.m00 + m21 * rhs.m10 + m22 * rhs.m20 + m23 * rhs.m30;
+			result.m21 = m20 * rhs.m01 + m21 * rhs.m11 + m22 * rhs.m21 + m23 * rhs.m31;
+			result.m22 = m20 * rhs.m02 + m21 * rhs.m12 + m22 * rhs.m22 + m23 * rhs.m32;
+			result.m23 = m20 * rhs.m03 + m21 * rhs.m13 + m22 * rhs.m23 + m23 * rhs.m33;
+
+			result.m30 = m30 * rhs.m00 + m31 * rhs.m10 + m32 * rhs.m20 + m33 * rhs.m30;
+			result.m31 = m30 * rhs.m01 + m31 * rhs.m11 + m32 * rhs.m21 + m33 * rhs.m31;
+			result.m32 = m30 * rhs.m02 + m31 * rhs.m12 + m32 * rhs.m22 + m33 * rhs.m32;
+			result.m33 = m30 * rhs.m03 + m31 * rhs.m13 + m32 * rhs.m23 + m33 * rhs.m33;
+
+			*this = result;
+
+			return *this;
+		}
+
+		inline Matrix4& operator/= (const float f)
+		{
+			m00 /= f; m01 /= f; m02 /= f; m03 /= f;
+			m10 /= f; m11 /= f; m12 /= f; m13 /= f;
+			m20 /= f; m21 /= f; m22 /= f; m23 /= f;
+			m30 /= f; m31 /= f; m32 /= f; m33 /= f;
+
+			return *this;
+		}
+
+		inline bool operator== (const Matrix4& b) const
+		{
+			// true if all vectors equal to each other
+			bool result = m00 == b.m00 && m01 == b.m01 && m02 == b.m02 && m03 == b.m03 &&
+			m10 == b.m10 && m11 == b.m11 && m12 == b.m12 && m13 == b.m13 &&
+			m20 == b.m20 && m21 == b.m21 && m22 == b.m22 && m23 == b.m23 &&
+			m30 == b.m30 && m31 == b.m31 && m32 == b.m32 && m33 == b.m33;
+			return result;
+		}
+
+		inline bool operator!= (const Matrix4& b) const
+		{
+			// true if any one vector not-equal
+			bool result = m00 != b.m00 || m01 != b.m01 || m02 != b.m02 || m03 != b.m03 ||
+			m10 != b.m10 || m11 != b.m11 || m12 != b.m12 || m13 != b.m13 ||
+			m20 != b.m20 || m21 != b.m21 || m22 != b.m22 || m23 != b.m23 ||
+			m30 != b.m30 || m31 != b.m31 || m32 != b.m32 || m33 != b.m33;
+			return result;
+		}
+
+		inline const Matrix4 operator+ (const float f) const
+		{
+			Matrix4 result = *this;
+			result += f;
+			return result;
+		}
+
+		inline friend Matrix4 operator+ (const float f, const Matrix4& a)
+		{
+			Matrix4 result = a;
+			result += f;
+			return result;
+		}
+
+		inline Matrix4 operator + (const Matrix4& b) const
+		{
+			Matrix4 result;
+
+			result.m00 = m00 + b.m00;
+			result.m01 = m01 + b.m01;
+			result.m02 = m02 + b.m02;
+			result.m03 = m03 + b.m03;
+
+			result.m10 = m10 + b.m10;
+			result.m11 = m11 + b.m11;
+			result.m12 = m12 + b.m12;
+			result.m13 = m13 + b.m13;
+
+			result.m20 = m20 + b.m20;
+			result.m21 = m21 + b.m21;
+			result.m22 = m22 + b.m22;
+			result.m23 = m23 + b.m23;
+
+			result.m30 = m30 + b.m30;
+			result.m31 = m31 + b.m31;
+			result.m32 = m32 + b.m32;
+			result.m33 = m33 + b.m33;
+
+			return result;
+		}
+
+		inline Matrix4 operator- (const float f) const
+		{
+			Matrix4 result = *this;
+			result -= f;
+			return result;
+		}
+
+		inline friend Matrix4 operator- (const float f, const Matrix4& a)
+		{
+			Matrix4 result = a;
+			result -= f;
+			return result;
+		}
+
+		inline Matrix4 operator - (const Matrix4& b) const
+		{
+			Matrix4 result;
+
+			result.m00 = m00 - b.m00;
+			result.m01 = m01 - b.m01;
+			result.m02 = m02 - b.m02;
+			result.m03 = m03 - b.m03;
+
+			result.m10 = m10 - b.m10;
+			result.m11 = m11 - b.m11;
+			result.m12 = m12 - b.m12;
+			result.m13 = m13 - b.m13;
+
+			result.m20 = m20 - b.m20;
+			result.m21 = m21 - b.m21;
+			result.m22 = m22 - b.m22;
+			result.m23 = m23 - b.m23;
+
+			result.m30 = m30 - b.m30;
+			result.m31 = m31 - b.m31;
+			result.m32 = m32 - b.m32;
+			result.m33 = m33 - b.m33;
+
+			return result;
+		}
+
+		inline friend const Vector4 operator * (const Vector4& v, const Matrix4& m)
+		{
+			Vector4 result;
+
+			result.x = v.x * m.m00 + v.y * m.m10 + v.z * m.m20 + v.w * m.m30;
+			result.y = v.x * m.m01 + v.y * m.m11 + v.z * m.m21 + v.w * m.m31;
+			result.z = v.x * m.m02 + v.y * m.m12 + v.z * m.m22 + v.w * m.m32;
+			result.w = v.x * m.m03 + v.y * m.m13 + v.z * m.m23 + v.w * m.m33;
+
+			return result;
+		}
+
+		inline friend Vector3 operator* (const Vector3& v, const Matrix4& m)
+		{
+			Vector3 result;
+
+			result.x = v.x * m.m00 + v.y * m.m10 + v.z * m.m20 + m.m30;
+			result.y = v.x * m.m01 + v.y * m.m11 + v.z * m.m21 + m.m31;
+			result.z = v.x * m.m02 + v.y * m.m12 + v.z * m.m22 + m.m32;
+
+			return result;
+		}
+
+		inline Matrix4 operator* (const Matrix4& b) const
+		{
+			Matrix4 result;
+
+			result.m00 = m00 * b.m00 + m01 * b.m10 + m02 * b.m20 + m03 * b.m30;
+			result.m01 = m00 * b.m01 + m01 * b.m11 + m02 * b.m21 + m03 * b.m31;
+			result.m02 = m00 * b.m02 + m01 * b.m12 + m02 * b.m22 + m03 * b.m32;
+			result.m03 = m00 * b.m03 + m01 * b.m13 + m02 * b.m23 + m03 * b.m33;
+
+			result.m10 = m10 * b.m00 + m11 * b.m10 + m12 * b.m20 + m13 * b.m30;
+			result.m11 = m10 * b.m01 + m11 * b.m11 + m12 * b.m21 + m13 * b.m31;
+			result.m12 = m10 * b.m02 + m11 * b.m12 + m12 * b.m22 + m13 * b.m32;
+			result.m13 = m10 * b.m03 + m11 * b.m13 + m12 * b.m23 + m13 * b.m33;
+
+			result.m20 = m20 * b.m00 + m21 * b.m10 + m22 * b.m20 + m23 * b.m30;
+			result.m21 = m20 * b.m01 + m21 * b.m11 + m22 * b.m21 + m23 * b.m31;
+			result.m22 = m20 * b.m02 + m21 * b.m12 + m22 * b.m22 + m23 * b.m32;
+			result.m23 = m20 * b.m03 + m21 * b.m13 + m22 * b.m23 + m23 * b.m33;
+
+			result.m30 = m30 * b.m00 + m31 * b.m10 + m32 * b.m20 + m33 * b.m30;
+			result.m31 = m30 * b.m01 + m31 * b.m11 + m32 * b.m21 + m33 * b.m31;
+			result.m32 = m30 * b.m02 + m31 * b.m12 + m32 * b.m22 + m33 * b.m32;
+			result.m33 = m30 * b.m03 + m31 * b.m13 + m32 * b.m23 + m33 * b.m33;
+
+			return result;
+		}
+
+		inline Matrix4 operator * (const float f) const
+		{
+			Matrix4 result;
+
+			result.m00 = m00 * f;
+			result.m01 = m01 * f;
+			result.m02 = m02 * f;
+			result.m03 = m03 * f;
+
+			result.m10 = m10 * f;
+			result.m11 = m11 * f;
+			result.m12 = m12 * f;
+			result.m13 = m13 * f;
+
+			result.m20 = m20 * f;
+			result.m21 = m21 * f;
+			result.m22 = m22 * f;
+			result.m23 = m23 * f;
+
+			result.m30 = m30 * f;
+			result.m31 = m31 * f;
+			result.m32 = m32 * f;
+			result.m33 = m33 * f;
+
+			return result;
+		}
+
+		inline friend const Matrix4 operator* (const float f, const Matrix4& a)
+		{
+			Matrix4 result;
+
+			result.m00 = f * a.m00;
+			result.m01 = f * a.m01;
+			result.m02 = f * a.m02;
+			result.m03 = f * a.m03;
+
+			result.m10 = f * a.m10;
+			result.m11 = f * a.m11;
+			result.m12 = f * a.m12;
+			result.m13 = f * a.m13;
+
+			result.m20 = f * a.m20;
+			result.m21 = f * a.m21;
+			result.m22 = f * a.m22;
+			result.m23 = f * a.m23;
+
+			result.m30 = f * a.m30;
+			result.m31 = f * a.m31;
+			result.m32 = f * a.m32;
+			result.m33 = f * a.m33;
+
+			return result;
+		}
+
+		inline Matrix4 operator / (const float f) const
+		{
+			Matrix4 result;
+
+			result.m00 = m00 / f;
+			result.m01 = m01 / f;
+			result.m02 = m02 / f;
+			result.m03 = m03 / f;
+
+			result.m10 = m10 / f;
+			result.m11 = m11 / f;
+			result.m12 = m12 / f;
+			result.m13 = m13 / f;
+
+			result.m20 = m20 / f;
+			result.m21 = m21 / f;
+			result.m22 = m22 / f;
+			result.m23 = m23 / f;
+
+			result.m30 = m30 / f;
+			result.m31 = m31 / f;
+			result.m32 = m32 / f;
+			result.m33 = m33 / f;
+
+			return result;
+		}
+
+		inline void zero()
+		{
+			memset(m, 0, sizeof(float) * 16);
+		}
+
+		static Matrix4 rotate(float radian, Vector3 axis)
+		{
+			Matrix4 result;
+
+			float x = axis.x;
+			float y = axis.y;
+			float z = axis.z;
+
+			float fSin, fCos;
+			fSin = Math::Sin(radian);
+			fCos = Math::Cos(radian);
+
+			result.m00 = (x * x) * (1.0f - fCos) + fCos;
+			result.m01 = (x * y) * (1.0f - fCos) + (z * fSin);
+			result.m02 = (x * z) * (1.0f - fCos) - (y * fSin);
+			result.m03 = 0.0f;
+
+			result.m10 = (y * x) * (1.0f - fCos) - (z * fSin);
+			result.m11 = (y * y) * (1.0f - fCos) + fCos;
+			result.m12 = (y * z) * (1.0f - fCos) + (x * fSin);
+			result.m13 = 0.0f;
+
+			result.m20 = (z * x) * (1.0f - fCos) + (y * fSin);
+			result.m21 = (z * y) * (1.0f - fCos) - (x * fSin);
+			result.m22 = (z * z) * (1.0f - fCos) + fCos;
+			result.m23 = 0.0f;
+
+			result.m30 = 0.0f;
+			result.m31 = 0.0f;
+			result.m32 = 0.0f;
+			result.m33 = 1.0f;
+
+			return result;
+		}
+
+		static Matrix4 scale(Vector3 scale)
+		{
+			Matrix4 result;
+
+			result.m00 = scale.x;
+			result.m01 = 0.0f;
+			result.m02 = 0.0f;
+			result.m03 = 0.0f;
+
+			result.m10 = 0.0f;
+			result.m11 = scale.y;
+			result.m12 = 0.0f;
+			result.m13 = 0.0f;
+
+			result.m20 = 0.0f;
+			result.m21 = 0.0f;
+			result.m22 = scale.z;
+			result.m23 = 0.0f;
+
+			result.m30 = 0.0f;
+			result.m31 = 0.0f;
+			result.m32 = 0.0f;
+			result.m33 = 1.0f;
+
+			return result;
+		}
+
+		static Matrix4 translation(Vector3 pos)
+		{
+			Matrix4 result;
+
+			result.m00 = 0.0f;
+			result.m01 = 0.0f;
+			result.m02 = 0.0f;
+			result.m03 = pos.x;
+
+			result.m10 = 0.0f;
+			result.m11 = 0.0f;
+			result.m12 = 0.0f;
+			result.m13 = pos.y;
+
+			result.m20 = 0.0f;
+			result.m21 = 0.0f;
+			result.m22 = 0.0f;
+			result.m23 = pos.z;
+
+			result.m30 = 0.0f;
+			result.m31 = 0.0f;
+			result.m32 = 0.0f;
+			result.m33 = 1.0f;
+
+			return result;
+		}
+	};
+}

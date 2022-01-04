@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{ac8fa5be-58d6-4400-9c99-acacbcb264af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{ff9be8cb-c535-4657-a2ab-4002f5e0d5cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LearnOpenCV.h">
@@ -21,6 +27,39 @@
     <ClInclude Include="Main.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Component.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Object.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ObjectManager.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Transform.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Core.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CoreDef.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\TypeDef.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -28,6 +67,33 @@
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector4.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix4.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Component.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Object.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ObjectManager.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Transform.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Core.cpp">
+      <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
