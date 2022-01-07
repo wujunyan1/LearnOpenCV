@@ -43,9 +43,9 @@ namespace Core
 		// https://baike.baidu.com/item/%E6%AC%A7%E6%8B%89%E8%A7%92/1626212
 		void SetRotate(Vector3 rotate) {
 			rotateMat = Mat4(1.0f);
-			rotateMat = glm::rotate(rotateMat, rotate.y, glm::vec3(0.0f, 1.0f, 0.0f));
-			rotateMat = glm::rotate(rotateMat, rotate.x, glm::vec3(1.0f, 0.0f, 0.0f));
-			rotateMat = glm::rotate(rotateMat, rotate.z, glm::vec3(0.0f, 0.0f, 1.0f));
+			rotateMat = rotateMat * Mat4::rotate(rotate.y, Vector3(0.0f, 1.0f, 0.0f));
+			rotateMat = rotateMat * Mat4::rotate(rotate.x, Vector3(1.0f, 0.0f, 0.0f));
+			rotateMat = rotateMat * Mat4::rotate(rotate.z, Vector3(0.0f, 0.0f, 1.0f));
 
 			this->rotate = rotate;
 			matChanged = true;
@@ -59,21 +59,21 @@ namespace Core
 
 		}
 
-		glm::mat4 GetLocalToWorldMat4() {
+		Mat4 GetLocalToWorldMat4() {
 			if (matChanged) {
 				UpdateLocalMat4();
 			}
 			return localToWorldMat4;
 		}
 
-		glm::mat4 GetLocalToWorldInverseMat4() {
+		Mat4 GetLocalToWorldInverseMat4() {
 			if (matChanged) {
 				UpdateLocalMat4();
 			}
 			return localToWorldInverseMat4;
 		}
 
-		glm::mat4 GetWorldMat4() {
+		Mat4 GetWorldMat4() {
 			if (matChanged) {
 				UpdateLocalMat4();
 			}
@@ -159,16 +159,16 @@ namespace Core
 
 		void UpdateLocalMat4() {
 			localToWorldMat4 = Mat4(1.0f);
-			localToWorldMat4 = glm::translate(localToWorldMat4, position);
+			localToWorldMat4 = localToWorldMat4 * Mat4::translate(position);
 			localToWorldMat4 = localToWorldMat4 * rotateMat;
 
-			localToWorldMat4 = glm::scale(localToWorldMat4, glm::vec3(scale.x, scale.y, scale.z));
+			localToWorldMat4 = localToWorldMat4 * Mat4::scale(Vector3(scale.x, scale.y, scale.z));
 
 			forword = localToWorldMat4 * Vector4(0, 0, 1, 0);
 			right = localToWorldMat4 * Vector4(1, 0, 0, 0);
 			up = localToWorldMat4 * Vector4(0, 1, 0, 0);
 
-			localToWorldInverseMat4 = glm::inverse(localToWorldMat4);
+			localToWorldInverseMat4 = localToWorldMat4.inverse();
 
 			matChanged = false;
 		}

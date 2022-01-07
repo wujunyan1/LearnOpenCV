@@ -11,10 +11,10 @@
 
 #include "TypeDef.h"
 
-#include "../Math.h"
-#include "../Vector3.h"
-#include "../Vector4.h"
-#include "../Matrix4.h"
+#include "../math/Math.h"
+#include "../math/Vector3.h"
+#include "../math/Vector4.h"
+#include "../math/Matrix4.h"
 
 namespace Core 
 {

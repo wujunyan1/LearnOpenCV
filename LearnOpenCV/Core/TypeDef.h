@@ -1,18 +1,9 @@
-/********************************************************************
-filename: 	TypeDef.h
-file path:	dev\engine\Src\Core\Common\
-
-version:	1
-author:		ajohn
-company:	supernano
-*********************************************************************/
-
-#ifndef __LORD_TYPEDEF_H__
-#define __LORD_TYPEDEF_H__
+#ifndef __KOLA_TYPEDEF_H__
+#define __KOLA_TYPEDEF_H__
 #include <cstdint>
 #include "CoreDef.h"
 
-namespace KOLA
+namespace Core
 {
 	typedef std::int8_t			i8;			//!< ¨C128 to 127
 	typedef std::int16_t		i16;		//!< ¨C32,768 to 32,767

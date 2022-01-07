@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <cmath>
 #include <cstring>
+#include <algorithm>
 
 namespace Math {
 	template <typename T>
@@ -17,5 +18,23 @@ namespace Math {
 	inline float Cos(float r) {
 		return std::cos(r);
 	}
+
+	template <typename T>
+	inline void Swap(T& x, T& y)
+	{
+		/*
+		T temp;
+		temp = x;
+		x = y;
+		y = temp;
+		*/
+
+		std::swap(x, y);
+	}
+
+
+	class Vector3;
+	class Vector4;
+	class Matrix4;
 }
 

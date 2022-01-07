@@ -21,6 +21,8 @@ namespace Math
 
 		}
 
+		Vector3(Vector4 v4);
+
 		Vector3& operator = (const Vector3& rhs)
 		{
 			x = rhs.x;

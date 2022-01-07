@@ -19,6 +19,9 @@
     <Filter Include="core">
       <UniqueIdentifier>{ff9be8cb-c535-4657-a2ab-4002f5e0d5cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="render">
+      <UniqueIdentifier>{b35c5ed8-e75f-43e5-8b2d-f095af605cc1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LearnOpenCV.h">
@@ -26,18 +29,6 @@
     </ClInclude>
     <ClInclude Include="Main.h">
       <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math.h">
-      <Filter>math</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector4.h">
-      <Filter>math</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix4.h">
-      <Filter>math</Filter>
     </ClInclude>
     <ClInclude Include="Core\Component.h">
       <Filter>core</Filter>
@@ -60,6 +51,21 @@
     <ClInclude Include="Core\TypeDef.h">
       <Filter>core</Filter>
     </ClInclude>
+    <ClInclude Include="math\Math.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Matrix4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Vector3.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Vector4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="render\RenderBuffer.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -67,18 +73,6 @@
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector3.cpp">
-      <Filter>math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math.cpp">
-      <Filter>math</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector4.cpp">
-      <Filter>math</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix4.cpp">
-      <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="Core\Component.cpp">
       <Filter>core</Filter>
@@ -94,6 +88,21 @@
     </ClCompile>
     <ClCompile Include="Core\Core.cpp">
       <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Math.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Matrix4.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Vector3.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Vector4.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="render\RenderBuffer.cpp">
+      <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

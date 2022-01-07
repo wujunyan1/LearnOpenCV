@@ -242,7 +242,7 @@ namespace Math
 			return result;
 		}
 
-		inline friend const Vector4 operator * (const Vector4& v, const Matrix4& m)
+		inline friend const Vector4 operator * (const Matrix4& m, const Vector4& v)
 		{
 			Vector4 result;
 
@@ -373,6 +373,79 @@ namespace Math
 			return result;
 		}
 
+		// ×ªÖÃ¾ØÕó
+		inline Matrix4& transpose ()
+		{
+			Math::Swap(m01, m10);
+			Math::Swap(m02, m20);
+			Math::Swap(m03, m30);
+			Math::Swap(m12, m21);
+			Math::Swap(m13, m31);
+			Math::Swap(m23, m32);
+
+			return *this;
+		}
+
+		inline Matrix4 inverse() const
+		{
+			Matrix4 result;
+
+			float _m00 = m00, _m01 = m01, _m02 = m02, _m03 = m03;
+			float _m10 = m10, _m11 = m11, _m12 = m12, _m13 = m13;
+			float _m20 = m20, _m21 = m21, _m22 = m22, _m23 = m23;
+			float _m30 = m30, _m31 = m31, _m32 = m32, _m33 = m33;
+
+			float v0 = _m20 * _m31 - _m21 * _m30;
+			float v1 = _m20 * _m32 - _m22 * _m30;
+			float v2 = _m20 * _m33 - _m23 * _m30;
+			float v3 = _m21 * _m32 - _m22 * _m31;
+			float v4 = _m21 * _m33 - _m23 * _m31;
+			float v5 = _m22 * _m33 - _m23 * _m32;
+
+			float t00 = +(v5 * _m11 - v4 * _m12 + v3 * _m13);
+			float t10 = -(v5 * _m10 - v2 * _m12 + v1 * _m13);
+			float t20 = +(v4 * _m10 - v2 * _m11 + v0 * _m13);
+			float t30 = -(v3 * _m10 - v1 * _m11 + v0 * _m12);
+
+			float detInv = 1.0f / (t00 * _m00 + t10 * _m01 + t20 * m02 + t30 * m03);
+
+			result.m00 = t00 * detInv;
+			result.m10 = t10 * detInv;
+			result.m20 = t20 * detInv;
+			result.m30 = t30 * detInv;
+
+			result.m01 = -(v5 * _m01 - v4 * _m02 + v3 * _m03) * detInv;
+			result.m11 = +(v5 * _m00 - v2 * _m02 + v1 * _m03) * detInv;
+			result.m21 = -(v4 * _m00 - v2 * _m01 + v0 * _m03) * detInv;
+			result.m31 = +(v3 * _m00 - v1 * _m01 + v0 * _m02) * detInv;
+
+			v0 = _m10 * _m31 - _m11 * _m30;
+			v1 = _m10 * _m32 - _m12 * _m30;
+			v2 = _m10 * _m33 - _m13 * _m30;
+			v3 = _m11 * _m32 - _m12 * _m31;
+			v4 = _m11 * _m33 - _m13 * _m31;
+			v5 = _m12 * _m33 - _m13 * _m32;
+
+			result.m02 = +(v5 * _m01 - v4 * _m02 + v3 * _m03) * detInv;
+			result.m12 = -(v5 * _m00 - v2 * _m02 + v1 * _m03) * detInv;
+			result.m22 = +(v4 * _m00 - v2 * _m01 + v0 * _m03) * detInv;
+			result.m32 = -(v3 * _m00 - v1 * _m01 + v0 * _m02) * detInv;
+
+			v0 = _m21 * _m10 - _m20 * _m11;
+			v1 = _m22 * _m10 - _m20 * _m12;
+			v2 = _m23 * _m10 - _m20 * _m13;
+			v3 = _m22 * _m11 - _m21 * _m12;
+			v4 = _m23 * _m11 - _m21 * _m13;
+			v5 = _m23 * _m12 - _m22 * _m13;
+
+			result.m03 = -(v5 * _m01 - v4 * _m02 + v3 * _m03) * detInv;
+			result.m13 = +(v5 * _m00 - v2 * _m02 + v1 * _m03) * detInv;
+			result.m23 = -(v4 * _m00 - v2 * _m01 + v0 * _m03) * detInv;
+			result.m33 = +(v3 * _m00 - v1 * _m01 + v0 * _m02) * detInv;
+
+			return *this;
+		}
+
 		inline void zero()
 		{
 			memset(m, 0, sizeof(float) * 16);
@@ -440,7 +513,7 @@ namespace Math
 			return result;
 		}
 
-		static Matrix4 translation(Vector3 pos)
+		static Matrix4 translate(Vector3 pos)
 		{
 			Matrix4 result;
 
