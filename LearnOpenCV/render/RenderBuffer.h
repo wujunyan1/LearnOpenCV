@@ -1,6 +1,9 @@
 #pragma once
 
 #include "../math/Math.h"
+#include <opencv2/opencv.hpp>
+
+using namespace cv;
 
 namespace Render
 {
@@ -8,15 +11,24 @@ namespace Render
 	{
 
 	public:
-		RenderBuffer(int w, int h);
+		static RenderBuffer* init(int _w, int _h);
+		static RenderBuffer getInstance() { return *instance; };
 
-		Math::Vector3* getRenderBuffer();
-		Math::Vector3* getNextBuffer();
+		Mat getRenderBuffer();
+		Mat getNextBuffer();
 
 		void changeNext();
 
+		void setBackgroundColor(Math::Vector3 color);
+
 	private:
-		Math::Vector3* renderBuff;
-		Math::Vector3* nextBuff;
+		RenderBuffer(int _w, int _h);
+
+		Mat renderBuff;
+		Mat nextBuff;
+
+		unsigned int w, h;
+
+		static RenderBuffer* instance;
 	};
 }
