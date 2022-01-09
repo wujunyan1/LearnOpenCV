@@ -1,11 +1,5 @@
-#pragma once
-
-#include "Base.h"
+#include "Math.h"
 #include "Vector3.h"
 #include "Vector4.h"
 #include "Matrix4.h"
 #include "Triangle.h"
-
-namespace Math {
-}
-

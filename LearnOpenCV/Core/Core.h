@@ -2,6 +2,7 @@
 
 // C 运行时头文件
 #include <stdlib.h>
+#include <stdarg.h>
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>

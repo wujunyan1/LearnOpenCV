@@ -21,6 +21,11 @@ namespace Render
 
 		void setBackgroundColor(Math::Vector3 color);
 
+		void renderTriangle(Math::Triangle triangle, Math::Vector3 color);
+		void renderTriangle(Math::Triangle triangle, Math::Triangle color);
+
+		void setColor(int col, int row, Math::Vector3 color);
+
 	private:
 		RenderBuffer(int _w, int _h);
 

@@ -4,6 +4,7 @@
 #include "Component.h"
 #include "Core.h"
 
+
 namespace Core {
 	class Object
 	{

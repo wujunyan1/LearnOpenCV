@@ -16,7 +16,7 @@ Object* ObjectManager::createNewObject() {
 Object* ObjectManager::createRootObject() {
 	Object* obj = new Object(_oid++);
 
-	GetInstance()->AddObject(obj);
+	GetInstance()->AddRootObject(obj);
 
 	return obj;
 }

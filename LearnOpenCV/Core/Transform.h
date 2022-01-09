@@ -11,18 +11,20 @@ namespace Core
 	public:
 
 		Transform() {
+			printf("Transform");
 			position = Vector3();
 			scale = Vector3(1.0f, 1.0f, 1.0f);
 			rotate = Vector3(1.0f, 1.0f, 1.0f);
 
 			localToWorldMat4 = Mat4(1.0f);
-			worldMat4 = Mat4(1.0f);
+			localMat4 = Mat4(1.0f);
 			rotateMat = Mat4(1.0f);
 
 
 			matChanged = false;
 
 			children = NULL;
+			parent = NULL;
 		}
 
 		Vector3 GetPosition() {
@@ -66,25 +68,47 @@ namespace Core
 			return localToWorldMat4;
 		}
 
-		Mat4 GetLocalToWorldInverseMat4() {
+		Mat4 GetWorldToLocalMat4() {
 			if (matChanged) {
 				UpdateLocalMat4();
 			}
-			return localToWorldInverseMat4;
+			return worldToLocalMat4;
 		}
 
-		Mat4 GetWorldMat4() {
+		Mat4 GetLocalMat4() {
 			if (matChanged) {
 				UpdateLocalMat4();
 			}
-			return worldMat4;
+			return localMat4;
 		}
 
 		void AddChild(Transform* child) {
 			if (children == NULL) {
 				children = new std::vector<Transform*>();
 			}
+			if (child->parent) {
+				child->parent->removeChild(child);
+			}
+
 			children->push_back(child);
+		}
+
+		void removeChild(Transform* child) {
+			if (children == NULL) {
+				return;
+			}
+			
+			int objId = child->getObject()->GetId();
+			std::vector<Transform*>::iterator itor = children->begin();
+			while (itor != children->end())
+			{
+				Transform* c = *itor;
+				int id = c->getObject()->GetId();
+				if (objId == id) {
+					itor = children->erase(itor);
+					break;
+				}
+			}
 		}
 
 		Transform* GetChildByIndex(int index) {
@@ -155,22 +179,54 @@ namespace Core
 			}
 		}
 
+
 	private:
 
 		void UpdateLocalMat4() {
-			localToWorldMat4 = Mat4(1.0f);
-			localToWorldMat4 = localToWorldMat4 * Mat4::translate(position);
-			localToWorldMat4 = localToWorldMat4 * rotateMat;
+			// 旋转缩放平移
+			localMat4 = Mat4::translate(position) * rotateMat * Mat4::scale(Vector3(scale.x, scale.y, scale.z));
 
-			localToWorldMat4 = localToWorldMat4 * Mat4::scale(Vector3(scale.x, scale.y, scale.z));
+			forword = localMat4 * Vector4(0, 0, 1, 0);
+			right = localMat4 * Vector4(1, 0, 0, 0);
+			up = localMat4 * Vector4(0, 1, 0, 0);
 
-			forword = localToWorldMat4 * Vector4(0, 0, 1, 0);
-			right = localToWorldMat4 * Vector4(1, 0, 0, 0);
-			up = localToWorldMat4 * Vector4(0, 1, 0, 0);
-
-			localToWorldInverseMat4 = localToWorldMat4.inverse();
+			updateLocalToWorldMat4();
+			updateWorldToLocalMat4();
 
 			matChanged = false;
+		}
+
+		void updateLocalToWorldMat4()
+		{
+			localToWorldMat4 = localMat4;
+
+			if (parent) {
+				localToWorldMat4 = parent->localToWorldMat4 * localMat4;
+			}
+
+			if (children) {
+				for (auto i : *children)
+				{
+					i->updateLocalToWorldMat4();
+				}
+			}
+		}
+
+		void updateWorldToLocalMat4()
+		{
+			worldToLocalMat4 = rotateMat.clone().transpose();
+			worldToLocalMat4 = Mat4::translate(-position) * worldToLocalMat4;
+
+			if (parent) {
+				worldToLocalMat4 = worldToLocalMat4 * parent->worldToLocalMat4;
+			}
+
+			if (children) {
+				for (auto i : *children)
+				{
+					i->updateWorldToLocalMat4();
+				}
+			}
 		}
 
 	private:
@@ -182,16 +238,18 @@ namespace Core
 		Vector3 right = Vector3();
 		Vector3 up = Vector3();
 
+		// 本地转世界
 		Mat4 localToWorldMat4 = Mat4();
-		Mat4 worldMat4 = Mat4();
+		Mat4 localMat4 = Mat4();
 
-		Mat4 localToWorldInverseMat4 = Mat4();
+		Mat4 worldToLocalMat4 = Mat4();
 
 		Mat4 rotateMat = Mat4();
 
 		bool matChanged = false;
 
 		std::vector<Transform*>* children;
+		Transform* parent;
 	};
 
 

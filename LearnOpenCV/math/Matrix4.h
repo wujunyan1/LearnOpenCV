@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Math.h"
+#include "Base.h"
 #include "Vector3.h"
 #include "Vector4.h"
 
@@ -449,6 +449,16 @@ namespace Math
 		inline void zero()
 		{
 			memset(m, 0, sizeof(float) * 16);
+		}
+
+		inline Matrix4 clone() const
+		{
+			return Matrix4(
+				m00, m01, m02, m03,
+				m10, m11, m12, m13,
+				m20, m21, m22, m23,
+				m30, m31, m32, m33
+			);
 		}
 
 		static Matrix4 rotate(float radian, Vector3 axis)

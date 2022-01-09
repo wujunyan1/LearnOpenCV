@@ -66,6 +66,21 @@
     <ClInclude Include="render\RenderBuffer.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Scene.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Camera.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Triangle.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Mesh.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Base.h">
+      <Filter>math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -103,6 +118,21 @@
     </ClCompile>
     <ClCompile Include="render\RenderBuffer.cpp">
       <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Scene.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Camera.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Triangle.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Mesh.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Base.cpp">
+      <Filter>math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

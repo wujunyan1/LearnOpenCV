@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Math.h"
+#include "Base.h"
 
 namespace Math 
 {
@@ -71,6 +71,11 @@ namespace Math
 		Vector3 operator - (const Vector3& rhs)
 		{
 			return Vector3(x - rhs.x, y - rhs.y, z - rhs.z);
+		}
+
+		Vector3 operator - ()
+		{
+			return Vector3(-x, -y, -z);
 		}
 
 		Vector3 operator * (const Vector3& rhs)
