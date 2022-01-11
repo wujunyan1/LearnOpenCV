@@ -14,6 +14,8 @@ namespace Math {
 
 		}
 
+		Vector4(Vector3 v, float _w);
+
 		Vector4(float _x, float _y, float _z, float _w)
 			: x(_x)
 			, y(_y)

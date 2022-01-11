@@ -12,10 +12,12 @@ RenderBuffer* RenderBuffer::init(int _w, int _h)
 	return instance;
 }
 
-RenderBuffer::RenderBuffer(int _w, int _h): w(_w),h(_h)
+RenderBuffer::RenderBuffer(int _w, int _h)
 {
-	renderBuff = Mat(w, h, CV_8UC3);
-	nextBuff = Mat(w, h, CV_8UC3);
+	w = _w;
+	h = _h;
+	renderBuff = Mat(h, w, CV_8UC3);
+	nextBuff = Mat(h, w, CV_8UC3);
 }
 
 Mat RenderBuffer::getRenderBuffer()
@@ -54,10 +56,25 @@ void RenderBuffer::setColor(int col, int row, Math::Vector3 color)
 
 void RenderBuffer::renderTriangle(Math::Triangle triangle, Math::Triangle color)
 {
+	triangle.points[0].y = 1 - triangle.points[0].y;
+	triangle.points[1].y = 1 - triangle.points[1].y;
+	triangle.points[2].y = 1 - triangle.points[2].y;
+
 	Math::Triangle renderTriangle = triangle * Math::Vector3(w, h, 0);
 
 	int maxX = 0, maxY = 0;
 	int minX = w, minY = h;
+
+	printf("============renderTriangle===============\n");
+	printf("v0  == %f %f %f \n", triangle.points[0].x, triangle.points[0].y, triangle.points[0].z);
+	printf("v1  == %f %f %f \n", triangle.points[1].x, triangle.points[1].y, triangle.points[1].z);
+	printf("v2  == %f %f %f \n", triangle.points[2].x, triangle.points[2].y, triangle.points[2].z);
+
+
+	printf("============renderPosTriangle===============\n");
+	printf("v0  == %f %f %f \n", renderTriangle.points[0].x, renderTriangle.points[0].y, renderTriangle.points[0].z);
+	printf("v1  == %f %f %f \n", renderTriangle.points[1].x, renderTriangle.points[1].y, renderTriangle.points[1].z);
+	printf("v2  == %f %f %f \n", renderTriangle.points[2].x, renderTriangle.points[2].y, renderTriangle.points[2].z);
 
 	for (size_t i = 0; i < 3; i++)
 	{
@@ -72,9 +89,9 @@ void RenderBuffer::renderTriangle(Math::Triangle triangle, Math::Triangle color)
 
 	float area = renderTriangle.getArea();
 
-	for (size_t col = minX; col <= maxX; col++)
+	for (size_t col = minX; col <= maxX && col < w; col++)
 	{
-		for (size_t row = minY; row <= maxY; row++)
+		for (size_t row = minY; row <= maxY && row < h; row++)
 		{
 			Math::Vector3 p = Math::Vector3(col, row, 0);
 			if (renderTriangle.isIn(p)) {
@@ -89,6 +106,10 @@ void RenderBuffer::renderTriangle(Math::Triangle triangle, Math::Triangle color)
 
 void RenderBuffer::renderTriangle(Math::Triangle triangle, Math::Vector3 color)
 {
+	triangle.points[0].y = 1.0f - triangle.points[0].y;
+	triangle.points[1].y = 1.0f - triangle.points[1].y;
+	triangle.points[2].y = 1.0f - triangle.points[2].y;
+
 	Math::Triangle renderTriangle = triangle * Math::Vector3(w, h, 0);
 
 	int maxX = 0,maxY = 0;

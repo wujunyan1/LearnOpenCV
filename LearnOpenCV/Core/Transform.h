@@ -11,17 +11,17 @@ namespace Core
 	public:
 
 		Transform() {
-			printf("Transform");
 			position = Vector3();
 			scale = Vector3(1.0f, 1.0f, 1.0f);
-			rotate = Vector3(1.0f, 1.0f, 1.0f);
+			rotate = Vector3(0.0f, 0.0f, 0.0f);
 
 			localToWorldMat4 = Mat4(1.0f);
 			localMat4 = Mat4(1.0f);
 			rotateMat = Mat4(1.0f);
+			worldToLocalMat4 = Mat4(1.0f);
 
 
-			matChanged = false;
+			matChanged = true;
 
 			children = NULL;
 			parent = NULL;
@@ -44,10 +44,13 @@ namespace Core
 		// https://zhuanlan.zhihu.com/p/45404840
 		// https://baike.baidu.com/item/%E6%AC%A7%E6%8B%89%E8%A7%92/1626212
 		void SetRotate(Vector3 rotate) {
-			rotateMat = Mat4(1.0f);
-			rotateMat = rotateMat * Mat4::rotate(rotate.y, Vector3(0.0f, 1.0f, 0.0f));
-			rotateMat = rotateMat * Mat4::rotate(rotate.x, Vector3(1.0f, 0.0f, 0.0f));
-			rotateMat = rotateMat * Mat4::rotate(rotate.z, Vector3(0.0f, 0.0f, 1.0f));
+			rotateMat = Mat4::rotate(rotate.y, Vector3(0.0f, 1.0f, 0.0f));
+			rotateMat.printMat4();
+			rotateMat = Mat4::rotate(rotate.x, Vector3(1.0f, 0.0f, 0.0f)) * rotateMat;
+			rotateMat.printMat4();
+			rotateMat = Mat4::rotate(rotate.z, Vector3(0.0f, 0.0f, 1.0f)) * rotateMat;
+
+			rotateMat.printMat4();
 
 			this->rotate = rotate;
 			matChanged = true;
@@ -184,7 +187,17 @@ namespace Core
 
 		void UpdateLocalMat4() {
 			// Ðý×ªËõ·ÅÆ½ÒÆ
-			localMat4 = Mat4::translate(position) * rotateMat * Mat4::scale(Vector3(scale.x, scale.y, scale.z));
+			localMat4 = Mat4::scale(Vector3(scale.x, scale.y, scale.z));
+			printf("-------1111111111-----------\n");
+			localMat4.printMat4();
+			localMat4 = rotateMat * localMat4;
+			printf("--------22222222222222----------\n");
+			localMat4.printMat4();
+			rotateMat.printMat4();
+			localMat4 =	Mat4::translate(position) * localMat4;
+
+			printf("------------------\n");
+			localMat4.printMat4();
 
 			forword = localMat4 * Vector4(0, 0, 1, 0);
 			right = localMat4 * Vector4(1, 0, 0, 0);
@@ -215,7 +228,7 @@ namespace Core
 		void updateWorldToLocalMat4()
 		{
 			worldToLocalMat4 = rotateMat.clone().transpose();
-			worldToLocalMat4 = Mat4::translate(-position) * worldToLocalMat4;
+			worldToLocalMat4 = worldToLocalMat4 * Mat4::translate(-position);
 
 			if (parent) {
 				worldToLocalMat4 = worldToLocalMat4 * parent->worldToLocalMat4;

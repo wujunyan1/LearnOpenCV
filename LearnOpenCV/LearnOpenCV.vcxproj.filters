@@ -81,6 +81,9 @@
     <ClInclude Include="math\Base.h">
       <Filter>math</Filter>
     </ClInclude>
+    <ClInclude Include="Core\TestComponent.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -133,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="math\Base.cpp">
       <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\TestComponent.cpp">
+      <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

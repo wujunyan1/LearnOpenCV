@@ -17,8 +17,8 @@ int main(int argc, char* argv[])
 {
 	bool isClose = true;
 
-	int w = 700;
-	int h = 700;
+	int w = 1280;
+	int h = 720;
 	RenderBuffer* buffer = RenderBuffer::init(w, h);
 	buffer->setBackgroundColor(Math::Vector3(0.0f, 0.0f, 0.6f));
 
@@ -29,8 +29,12 @@ int main(int argc, char* argv[])
 	while (isClose) {
 		buffer->setBackgroundColor(Math::Vector3(0.0f, 0.0f, 0.0f));
 
+		transform->PreUpdate();
+		transform->Update();
+		transform->LaterUpdate();
 		transform->Render();
-		buffer->renderTriangle(
+
+		/*buffer->renderTriangle(
 			Math::Triangle(
 				Math::Vector3(0, 0.2, 0),
 				Math::Vector3(0.6, 0, 0),
@@ -50,7 +54,7 @@ int main(int argc, char* argv[])
 				Math::Vector3(0, 1, 0),
 				Math::Vector3(0, 0, 1)
 			)
-		);
+		);*/
 
 
 		cv::Mat image = buffer->getRenderBuffer();

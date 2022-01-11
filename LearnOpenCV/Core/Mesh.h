@@ -10,13 +10,15 @@ namespace Core
 	public:
 		Mesh();
 
-		void addTriangle(Math::Triangle t) {
+		void addTriangle(Math::Triangle t, Math::Triangle color) {
 			triangles.push_back(t);
+			colors.push_back(color);
 		}
 
 		void Render();
 
 	private:
 		std::vector<Math::Triangle> triangles;
+		std::vector<Math::Triangle> colors;
 	};
 }

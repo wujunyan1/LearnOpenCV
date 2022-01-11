@@ -10,10 +10,16 @@ namespace Core
 	public:
 		Camera();
 
+		void Bind();
+		void init(float fov, float aspect, float near, float far);
+
 		Mat4 getViewMat4();
 		Mat4 getPerspectiveMat4();
+		Mat4 getOrthogonalMat4();
 
 	private:
 		Transform* transform;
+
+		float eye_fov, aspect_ratio, near, far;
 	};
 }

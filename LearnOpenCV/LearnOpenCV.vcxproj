@@ -154,6 +154,7 @@
     <ClInclude Include="Core\Object.h" />
     <ClInclude Include="Core\ObjectManager.h" />
     <ClInclude Include="Core\Scene.h" />
+    <ClInclude Include="Core\TestComponent.h" />
     <ClInclude Include="Core\Transform.h" />
     <ClInclude Include="Core\TypeDef.h" />
     <ClInclude Include="LearnOpenCV.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="Core\Object.cpp" />
     <ClCompile Include="Core\ObjectManager.cpp" />
     <ClCompile Include="Core\Scene.cpp" />
+    <ClCompile Include="Core\TestComponent.cpp" />
     <ClCompile Include="Core\Transform.cpp" />
     <ClCompile Include="LearnOpenCV.cpp" />
     <ClCompile Include="Main.cpp" />

@@ -8,33 +8,22 @@ namespace Math
 {
 	class Matrix4
 	{
-		union
-		{
-			struct {
-				float m00, m01, m02, m03;
-				float m10, m11, m12, m13;
-				float m20, m21, m22, m23;
-				float m30, m31, m32, m33;
-			};
-
-			float m[16];
-		};
-
+	
 	public:
-		inline Matrix4()
+		Matrix4() : Matrix4(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f)
 		{
-			Matrix4(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+			
 		}
 
-		inline Matrix4(float base)
+		Matrix4(float base) : Matrix4(base, 0.0f, 0.0f, 0.0f,
+			0.0f, base, 0.0f, 0.0f,
+			0.0f, 0.0f, base, 0.0f,
+			0.0f, 0.0f, 0.0f, base)
 		{
-			Matrix4(base, 0, 0, 0,
-					0, base, 0, 0,
-					0, 0, base, 0,
-					0, 0, 0, base);
 		}
 
-		inline Matrix4(float f00, float f01, float f02, float f03,
+		 Matrix4(
+			float f00, float f01, float f02, float f03,
 			float f10, float f11, float f12, float f13,
 			float f20, float f21, float f22, float f23,
 			float f30, float f31, float f32, float f33)
@@ -45,13 +34,16 @@ namespace Math
 			m30 = f30; m31 = f31; m32 = f32; m33 = f33;
 		}
 
-		inline Matrix4& operator= (const Matrix4& rhs)
+		 Matrix4& operator= (const Matrix4& rhs)
 		{
-			memcpy(m, rhs.m, sizeof(float) * 16);
+			m00 = rhs.m00; m01 = rhs.m01; m02 = rhs.m02; m03 = rhs.m03;
+			m10 = rhs.m10; m11 = rhs.m11; m12 = rhs.m12; m13 = rhs.m13;
+			m20 = rhs.m20; m21 = rhs.m21; m22 = rhs.m22; m23 = rhs.m23;
+			m30 = rhs.m30; m31 = rhs.m31; m32 = rhs.m32; m33 = rhs.m33;
 			return *this;
 		}
 
-		inline Matrix4& operator+= (const float f)
+		 Matrix4& operator+= (const float f)
 		{
 			m00 += f; m01 += f; m02 += f; m03 += f;
 			m10 += f; m11 += f; m12 += f; m13 += f;
@@ -61,7 +53,7 @@ namespace Math
 			return *this;
 		}
 
-		inline Matrix4& operator+= (const Matrix4& rhs)
+		 Matrix4& operator+= (const Matrix4& rhs)
 		{
 			m00 += rhs.m00; m01 += rhs.m01; m02 += rhs.m02; m03 += rhs.m03;
 			m10 += rhs.m10; m11 += rhs.m11; m12 += rhs.m12; m13 += rhs.m13;
@@ -71,7 +63,7 @@ namespace Math
 			return *this;
 		}
 
-		inline Matrix4& operator-= (const float f)
+		 Matrix4& operator-= (const float f)
 		{
 			m00 -= f; m01 -= f; m02 -= f; m03 -= f;
 			m10 -= f; m11 -= f; m12 -= f; m13 -= f;
@@ -81,7 +73,7 @@ namespace Math
 			return *this;
 		}
 
-		inline Matrix4& operator-= (const Matrix4& rhs)
+		 Matrix4& operator-= (const Matrix4& rhs)
 		{
 			m00 -= rhs.m00; m01 -= rhs.m01; m02 -= rhs.m02; m03 -= rhs.m03;
 			m10 -= rhs.m10; m11 -= rhs.m11; m12 -= rhs.m12; m13 -= rhs.m13;
@@ -91,7 +83,7 @@ namespace Math
 			return *this;
 		}
 
-		inline Matrix4& operator*= (const float f)
+		 Matrix4& operator*= (const float f)
 		{
 			m00 *= f; m01 *= f; m02 *= f; m03 *= f;
 			m10 *= f; m11 *= f; m12 *= f; m13 *= f;
@@ -101,7 +93,7 @@ namespace Math
 			return *this;
 		}
 
-		inline Matrix4& operator *= (const Matrix4& rhs)
+		 Matrix4& operator *= (const Matrix4& rhs)
 		{
 			Matrix4 result;
 
@@ -130,7 +122,7 @@ namespace Math
 			return *this;
 		}
 
-		inline Matrix4& operator/= (const float f)
+		Matrix4& operator/= (const float f)
 		{
 			m00 /= f; m01 /= f; m02 /= f; m03 /= f;
 			m10 /= f; m11 /= f; m12 /= f; m13 /= f;
@@ -140,7 +132,7 @@ namespace Math
 			return *this;
 		}
 
-		inline bool operator== (const Matrix4& b) const
+		bool operator== (const Matrix4& b) const
 		{
 			// true if all vectors equal to each other
 			bool result = m00 == b.m00 && m01 == b.m01 && m02 == b.m02 && m03 == b.m03 &&
@@ -150,7 +142,7 @@ namespace Math
 			return result;
 		}
 
-		inline bool operator!= (const Matrix4& b) const
+		bool operator!= (const Matrix4& b) const
 		{
 			// true if any one vector not-equal
 			bool result = m00 != b.m00 || m01 != b.m01 || m02 != b.m02 || m03 != b.m03 ||
@@ -160,21 +152,21 @@ namespace Math
 			return result;
 		}
 
-		inline const Matrix4 operator+ (const float f) const
+		const Matrix4 operator+ (const float f) const
 		{
 			Matrix4 result = *this;
 			result += f;
 			return result;
 		}
 
-		inline friend Matrix4 operator+ (const float f, const Matrix4& a)
+		friend Matrix4 operator+ (const float f, const Matrix4& a)
 		{
 			Matrix4 result = a;
 			result += f;
 			return result;
 		}
 
-		inline Matrix4 operator + (const Matrix4& b) const
+		Matrix4 operator + (const Matrix4& b) const
 		{
 			Matrix4 result;
 
@@ -201,21 +193,21 @@ namespace Math
 			return result;
 		}
 
-		inline Matrix4 operator- (const float f) const
+		Matrix4 operator- (const float f) const
 		{
 			Matrix4 result = *this;
 			result -= f;
 			return result;
 		}
 
-		inline friend Matrix4 operator- (const float f, const Matrix4& a)
+		friend Matrix4 operator- (const float f, const Matrix4& a)
 		{
 			Matrix4 result = a;
 			result -= f;
 			return result;
 		}
 
-		inline Matrix4 operator - (const Matrix4& b) const
+		Matrix4 operator - (const Matrix4& b) const
 		{
 			Matrix4 result;
 
@@ -242,19 +234,19 @@ namespace Math
 			return result;
 		}
 
-		inline friend const Vector4 operator * (const Matrix4& m, const Vector4& v)
+		friend const Vector4 operator * (const Matrix4& m, const Vector4& v)
 		{
 			Vector4 result;
 
-			result.x = v.x * m.m00 + v.y * m.m10 + v.z * m.m20 + v.w * m.m30;
-			result.y = v.x * m.m01 + v.y * m.m11 + v.z * m.m21 + v.w * m.m31;
-			result.z = v.x * m.m02 + v.y * m.m12 + v.z * m.m22 + v.w * m.m32;
-			result.w = v.x * m.m03 + v.y * m.m13 + v.z * m.m23 + v.w * m.m33;
+			result.x = v.x * m.m00 + v.y * m.m01 + v.z * m.m02 + v.w * m.m03;
+			result.y = v.x * m.m10 + v.y * m.m11 + v.z * m.m12 + v.w * m.m13;
+			result.z = v.x * m.m20 + v.y * m.m21 + v.z * m.m22 + v.w * m.m23;
+			result.w = v.x * m.m30 + v.y * m.m31 + v.z * m.m32 + v.w * m.m33;
 
 			return result;
 		}
 
-		inline friend Vector3 operator* (const Vector3& v, const Matrix4& m)
+		friend Vector3 operator* (const Vector3& v, const Matrix4& m)
 		{
 			Vector3 result;
 
@@ -265,7 +257,7 @@ namespace Math
 			return result;
 		}
 
-		inline Matrix4 operator* (const Matrix4& b) const
+		Matrix4 operator* (const Matrix4& b) const
 		{
 			Matrix4 result;
 
@@ -292,7 +284,7 @@ namespace Math
 			return result;
 		}
 
-		inline Matrix4 operator * (const float f) const
+		Matrix4 operator * (const float f) const
 		{
 			Matrix4 result;
 
@@ -319,7 +311,7 @@ namespace Math
 			return result;
 		}
 
-		inline friend const Matrix4 operator* (const float f, const Matrix4& a)
+		friend const Matrix4 operator* (const float f, const Matrix4& a)
 		{
 			Matrix4 result;
 
@@ -346,7 +338,7 @@ namespace Math
 			return result;
 		}
 
-		inline Matrix4 operator / (const float f) const
+		Matrix4 operator / (const float f) const
 		{
 			Matrix4 result;
 
@@ -374,7 +366,7 @@ namespace Math
 		}
 
 		// ×ªÖÃ¾ØÕó
-		inline Matrix4& transpose ()
+		Matrix4& transpose ()
 		{
 			Math::Swap(m01, m10);
 			Math::Swap(m02, m20);
@@ -386,7 +378,7 @@ namespace Math
 			return *this;
 		}
 
-		inline Matrix4 inverse() const
+		Matrix4 inverse() const
 		{
 			Matrix4 result;
 
@@ -446,12 +438,12 @@ namespace Math
 			return *this;
 		}
 
-		inline void zero()
+		void zero()
 		{
-			memset(m, 0, sizeof(float) * 16);
+			m00 = m01 = m02 = m03 = m10 = m11 = m12 = m13 = m20 = m21 = m22 = m23 = m30 = m31 = m32 = m33 = 0;
 		}
 
-		inline Matrix4 clone() const
+		Matrix4 clone() const
 		{
 			return Matrix4(
 				m00, m01, m02, m03,
@@ -459,6 +451,16 @@ namespace Math
 				m20, m21, m22, m23,
 				m30, m31, m32, m33
 			);
+		}
+
+		void printMat4()
+		{
+			printf("|-------------|\n");
+			printf("| %f %f %f %f |\n", m00, m01, m02, m03);
+			printf("| %f %f %f %f |\n", m10, m11, m12, m13);
+			printf("| %f %f %f %f |\n", m20, m21, m22, m23);
+			printf("| %f %f %f %f |\n", m30, m31, m32, m33);
+			printf("|-------------|\n");
 		}
 
 		static Matrix4 rotate(float radian, Vector3 axis)
@@ -474,17 +476,17 @@ namespace Math
 			fCos = Math::Cos(radian);
 
 			result.m00 = (x * x) * (1.0f - fCos) + fCos;
-			result.m01 = (x * y) * (1.0f - fCos) + (z * fSin);
-			result.m02 = (x * z) * (1.0f - fCos) - (y * fSin);
+			result.m01 = (x * y) * (1.0f - fCos) - (z * fSin);
+			result.m02 = (x * z) * (1.0f - fCos) + (y * fSin);
 			result.m03 = 0.0f;
 
-			result.m10 = (y * x) * (1.0f - fCos) - (z * fSin);
+			result.m10 = (y * x) * (1.0f - fCos) + (z * fSin);
 			result.m11 = (y * y) * (1.0f - fCos) + fCos;
-			result.m12 = (y * z) * (1.0f - fCos) + (x * fSin);
+			result.m12 = (y * z) * (1.0f - fCos) - (x * fSin);
 			result.m13 = 0.0f;
 
-			result.m20 = (z * x) * (1.0f - fCos) + (y * fSin);
-			result.m21 = (z * y) * (1.0f - fCos) - (x * fSin);
+			result.m20 = (z * x) * (1.0f - fCos) - (y * fSin);
+			result.m21 = (z * y) * (1.0f - fCos) + (x * fSin);
 			result.m22 = (z * z) * (1.0f - fCos) + fCos;
 			result.m23 = 0.0f;
 
@@ -527,19 +529,19 @@ namespace Math
 		{
 			Matrix4 result;
 
-			result.m00 = 0.0f;
+			result.m00 = 1.0f;
 			result.m01 = 0.0f;
 			result.m02 = 0.0f;
 			result.m03 = pos.x;
 
 			result.m10 = 0.0f;
-			result.m11 = 0.0f;
+			result.m11 = 1.0f;
 			result.m12 = 0.0f;
 			result.m13 = pos.y;
 
 			result.m20 = 0.0f;
 			result.m21 = 0.0f;
-			result.m22 = 0.0f;
+			result.m22 = 1.0f;
 			result.m23 = pos.z;
 
 			result.m30 = 0.0f;
@@ -549,5 +551,13 @@ namespace Math
 
 			return result;
 		}
+
+
+	public:
+		float m00, m01, m02, m03;
+		float m10, m11, m12, m13;
+		float m20, m21, m22, m23;
+		float m30, m31, m32, m33;
 	};
+
 }
