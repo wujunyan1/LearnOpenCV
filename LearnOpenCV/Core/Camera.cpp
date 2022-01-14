@@ -39,15 +39,6 @@ Mat4 Camera::getPerspectiveMat4()
 	);
 	Mat4 orthogonal = getOrthogonalMat4();
 	perspective = orthogonal * perspective;
-
-	//float t = std::tan(eye_fov / 2) * near;
-	//float r = aspect_ratio * t;
-
-	/*perspective.printMat4();
-	m.printMat4();*/
-	printf("================\n");
-	orthogonal.printMat4();
-	perspective.printMat4();
 	return perspective;
 }
 
@@ -62,12 +53,5 @@ Mat4 Camera::getOrthogonalMat4()
 		0, 0, 1 / (far - near), 0,
 		0, 0, 0, 1
 	);
-	Mat4 trans = Mat4(
-		1, 0, 0, 0.5,
-		0, 1, 0, 0.5,
-		0, 0, 1, 0,
-		0, 0, 0, 1
-	);
-
-	return trans * m;
+	return m;
 }

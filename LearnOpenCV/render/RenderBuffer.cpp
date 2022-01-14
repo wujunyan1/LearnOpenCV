@@ -56,6 +56,24 @@ void RenderBuffer::setColor(int col, int row, Math::Vector3 color)
 
 void RenderBuffer::renderTriangle(Math::Triangle triangle, Math::Triangle color)
 {
+	Math::Matrix4 trans = Math::Matrix4(
+		1, 0, 0, 0.5,
+		0, 1, 0, 0.5,
+		0, 0, 1, 0,
+		0, 0, 0, 1
+	);
+
+	Math::Matrix4 ss = Math::Matrix4(
+		0.5, 0, 0, 0,
+		0, 0.5, 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 1
+	);
+
+	triangle.points[0] = trans * ss * Math::Vector4(triangle.points[0], 1.0f);
+	triangle.points[1] = trans * ss * Math::Vector4(triangle.points[1], 1.0f);
+	triangle.points[2] = trans * ss * Math::Vector4(triangle.points[2], 1.0f);
+
 	triangle.points[0].y = 1 - triangle.points[0].y;
 	triangle.points[1].y = 1 - triangle.points[1].y;
 	triangle.points[2].y = 1 - triangle.points[2].y;
