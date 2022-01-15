@@ -2,6 +2,7 @@
 #include "Core.h"
 #include "Component.h"
 #include "Transform.h"
+#include "../math/Math.h"
 
 namespace Core
 {
@@ -21,5 +22,8 @@ namespace Core
 		Transform* transform;
 
 		float eye_fov, aspect_ratio, near, far;
+
+		Math::Matrix4 orthogonal;
+		Math::Matrix4 perspective;
 	};
 }

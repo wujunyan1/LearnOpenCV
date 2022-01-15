@@ -47,6 +47,5 @@ namespace Math {
 	class Vector3;
 	class Vector4;
 	class Matrix4;
-	class Triangle;
 }
 

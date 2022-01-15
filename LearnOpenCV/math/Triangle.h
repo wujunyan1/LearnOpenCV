@@ -4,17 +4,23 @@
 
 namespace Math
 {
+	template <typename T = Vector3>
 	class Triangle
 	{
 	public:
-		Triangle();
-		Triangle(Vector3 f, Vector3 s, Vector3 e){
+		Triangle() 
+		{
+			points[0] = T();
+			points[1] = T();
+			points[2] = T();
+		};
+		Triangle(T f, T s, T e){
 			points[0] = f;
 			points[1] = s;
 			points[2] = e;
 		}
 
-		Triangle operator * (const Vector3& rhs)
+		Triangle operator * (const T& rhs)
 		{
 			return Triangle(
 				points[0] * rhs,
@@ -55,9 +61,14 @@ namespace Math
 			);
 		}
 
+		/*std::string str()
+		{
+			return std::format("{ \n p1 = %s \n p2 = %s \n p3 = %s \n }");
+		}*/
+
 	public:
-		Vector3 points[3] = {
-			Vector3(),Vector3(),Vector3()
+		T points[3] = {
+			T(),T(),T()
 		};
 	};
 }

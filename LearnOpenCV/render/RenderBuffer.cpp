@@ -1,5 +1,7 @@
 #include "RenderBuffer.h"
 #include "../math/Vector3.h"
+#include "../math/Vector4.h"
+#include "../math/Triangle.h"
 
 using namespace Render;
 using namespace cv;
@@ -45,6 +47,11 @@ void RenderBuffer::setColor(int col, int row, Math::Vector3 color)
 	renderBuff.at<Vec3b>(row, col) = Vec3b(color.x * UCHAR_MAX, color.y * UCHAR_MAX, color.z * UCHAR_MAX);
 }
 
+void Render::RenderBuffer::swapRenderBuffers()
+{
+
+}
+
 /**
 	p1 p2 p3
 	u  v  1-u-v
@@ -54,9 +61,9 @@ void RenderBuffer::setColor(int col, int row, Math::Vector3 color)
 **/
 
 
-void RenderBuffer::renderTriangle(Math::Triangle triangle, Math::Triangle color)
+void RenderBuffer::renderTriangle(Math::Triangle<Math::Vector3> triangle, Math::Triangle<Math::Vector4> color)
 {
-	Math::Matrix4 trans = Math::Matrix4(
+	/*Math::Matrix4 trans = Math::Matrix4(
 		1, 0, 0, 0.5,
 		0, 1, 0, 0.5,
 		0, 0, 1, 0,
@@ -69,30 +76,44 @@ void RenderBuffer::renderTriangle(Math::Triangle triangle, Math::Triangle color)
 		0, 0, 1, 0,
 		0, 0, 0, 1
 	);
+	
+	Math::Matrix4 ss = Math::Matrix4(
+		1, 0, 0, 0,
+		0, -1, 0, 1,
+		0, 0, 1, 0,
+		0, 0, 0, 1
+	);
 
-	triangle.points[0] = trans * ss * Math::Vector4(triangle.points[0], 1.0f);
-	triangle.points[1] = trans * ss * Math::Vector4(triangle.points[1], 1.0f);
-	triangle.points[2] = trans * ss * Math::Vector4(triangle.points[2], 1.0f);
+	Math::Matrix4 ss = Math::Matrix4(
+		w, 0, 0, 0,
+		0, h, 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 1
+	);
+	
+	*/
 
-	triangle.points[0].y = 1 - triangle.points[0].y;
-	triangle.points[1].y = 1 - triangle.points[1].y;
-	triangle.points[2].y = 1 - triangle.points[2].y;
+	Math::Matrix4 sk = Math::Matrix4(
+		0.5 * w, 0, 0, 0.5 * w,
+		0, -0.5 * h, 0, 0.5 * h,
+		0, 0, 1, 0,
+		0, 0, 0, 1
+	);
 
-	Math::Triangle renderTriangle = triangle * Math::Vector3(w, h, 0);
+	Math::Triangle<Math::Vector3> renderTriangle = Math::Triangle<Math::Vector3>();
+
+	sk.printMat4();
+	Math::Vector4 v1 = sk * Math::Vector4(triangle.points[0], 1.0f);
+	Math::Vector4 v2 = sk * Math::Vector4(triangle.points[1], 1.0f);
+	Math::Vector4 v3 = sk * Math::Vector4(triangle.points[2], 1.0f);
+
+	renderTriangle.points[0] = Math::Vector3(sk * Math::Vector4(triangle.points[0], 1.0f));
+	renderTriangle.points[1] = Math::Vector3(sk * Math::Vector4(triangle.points[1], 1.0f));
+	renderTriangle.points[2] = Math::Vector3(sk * Math::Vector4(triangle.points[2], 1.0f));
+
 
 	int maxX = 0, maxY = 0;
 	int minX = w, minY = h;
-
-	printf("============renderTriangle===============\n");
-	printf("v0  == %f %f %f \n", triangle.points[0].x, triangle.points[0].y, triangle.points[0].z);
-	printf("v1  == %f %f %f \n", triangle.points[1].x, triangle.points[1].y, triangle.points[1].z);
-	printf("v2  == %f %f %f \n", triangle.points[2].x, triangle.points[2].y, triangle.points[2].z);
-
-
-	printf("============renderPosTriangle===============\n");
-	printf("v0  == %f %f %f \n", renderTriangle.points[0].x, renderTriangle.points[0].y, renderTriangle.points[0].z);
-	printf("v1  == %f %f %f \n", renderTriangle.points[1].x, renderTriangle.points[1].y, renderTriangle.points[1].z);
-	printf("v2  == %f %f %f \n", renderTriangle.points[2].x, renderTriangle.points[2].y, renderTriangle.points[2].z);
 
 	for (size_t i = 0; i < 3; i++)
 	{
@@ -122,13 +143,22 @@ void RenderBuffer::renderTriangle(Math::Triangle triangle, Math::Triangle color)
 	}
 }
 
-void RenderBuffer::renderTriangle(Math::Triangle triangle, Math::Vector3 color)
+void RenderBuffer::renderTriangle(Math::Triangle<Math::Vector3> triangle, Math::Vector3 color)
 {
-	triangle.points[0].y = 1.0f - triangle.points[0].y;
-	triangle.points[1].y = 1.0f - triangle.points[1].y;
-	triangle.points[2].y = 1.0f - triangle.points[2].y;
+	Math::Matrix4 sk = Math::Matrix4(
+		0.5 * w, 0, 0, 0.5 * w,
+		0, -0.5 * h, 0, 0.5 * h,
+		0, 0, 1, 0,
+		0, 0, 0, 1
+	);
 
-	Math::Triangle renderTriangle = triangle * Math::Vector3(w, h, 0);
+	Math::Triangle<Math::Vector3> renderTriangle;
+
+	renderTriangle.points[0] = sk * Math::Vector4(triangle.points[0], 1.0f);
+	renderTriangle.points[1] = sk * Math::Vector4(triangle.points[1], 1.0f);
+	renderTriangle.points[2] = sk * Math::Vector4(triangle.points[2], 1.0f);
+
+
 
 	int maxX = 0,maxY = 0;
 	int minX = w, minY = h;
