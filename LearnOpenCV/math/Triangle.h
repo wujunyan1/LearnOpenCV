@@ -61,10 +61,12 @@ namespace Math
 			);
 		}
 
-		/*std::string str()
+		std::string toString()
 		{
-			return std::format("{ \n p1 = %s \n p2 = %s \n p3 = %s \n }");
-		}*/
+			char str[1024];
+			snprintf(str, sizeof(str), "{\n p0 = %s\n p1 = %s\n p2 = %s\n }\n", points[0].toString(), points[1].toString(), points[2].toString());
+			return std::string(str);
+		}
 
 	public:
 		T points[3] = {

@@ -33,13 +33,13 @@ void Scene::Bind()
 	Mesh* mesh = o->AddComponent<Mesh>();
 
 	transform->AddChild(t);
-	t->SetPosition(Math::Vector3(0.0, 0, 3.0f));
+	t->SetPosition(Math::Vector3(1.0f, 0.2f, 3.0f));
 
 	mesh->addTriangle(
 		Math::Triangle<Math::Vector3>(
 			Math::Vector3(0.0, 0, 0),
-			Math::Vector3(0.1, 0, 0),
-			Math::Vector3(0.0, 0.3, 0)
+			Math::Vector3(0.3, 0, 0),
+			Math::Vector3(0.0, 0.6, 0)
 		),
 		Math::Triangle<Math::Vector4>(
 			Math::Vector4(0, 0, 1, 1),

@@ -5,6 +5,7 @@
 #include <cstring>
 #include <algorithm>
 #include <vector>
+#include <string>
 
 namespace Math {
 	template <typename T>

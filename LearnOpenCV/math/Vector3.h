@@ -143,6 +143,13 @@ namespace Math
 			y = y / l;
 		}
 
+		std::string toString() 
+		{
+			char str[1024];
+			snprintf(str, sizeof(str), "x = %f, y = %f, z = %f", x, y, z);
+			return std::string(str);
+		}
+
 	public:
 		float x;
 		float y;

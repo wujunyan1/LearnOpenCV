@@ -112,7 +112,92 @@ void RenderBuffer::renderTriangle(Math::Triangle<Math::Vector3> triangle, Math::
 	renderTriangle.points[2] = Math::Vector3(sk * Math::Vector4(triangle.points[2], 1.0f));
 
 
-	int maxX = 0, maxY = 0;
+
+	Math::Vector3 vl = renderTriangle.points[0];
+	Math::Vector3 vr = renderTriangle.points[0];
+	Math::Vector3 vd = renderTriangle.points[0];
+	Math::Vector3 vt = renderTriangle.points[0];
+	int minYIndex = 0;
+
+	for (size_t i = 1; i < 3; i++)
+	{
+		Math::Vector3 v = renderTriangle.points[i];
+		if (v.y < vd.y) {
+			minYIndex = i;
+			vd = v;
+		}
+		else if (v.y > vt.y) {
+			vt = v;
+		}
+	}
+	for (size_t i = 0; i < 3; i++)
+	{
+		if (i != minYIndex)
+		{
+			Math::Vector3 v = renderTriangle.points[i];
+			if (v.x < vl.x) {
+				vl = v;
+			}
+			else if (v.x >= vr.x) {
+				vr = v;
+			}
+		}
+	}
+
+
+	/*for (size_t i = 1; i < 3; i++)
+	{
+		Math::Vector3 v = renderTriangle.points[i];
+
+		if (v.y < vd.y) {
+			if (vd.x < vl.x) {
+				vl = vd;
+			}
+			if (vd.x > vr.x) {
+				vr = vd;
+			}
+
+			vd = v;
+		}
+		else 
+		{
+			if (v.x <= vl.x) {
+				vr = vl;
+				vl = v;
+			}
+			else 
+			{
+				vr = v;
+			}
+		}
+
+		if (v.y > vt.y)
+		{
+			vt = v;
+		}
+	}*/
+
+
+	for (int y = Math::Max((int)vd.y, 0); y <= (int)vt.y && y < h; y++)
+	{
+		int minX = vd.x + (y - vd.y) * (vl.x - vd.x) / (vl.y - vd.y);
+		int maxX = vd.x + (y - vd.y) * (vr.x - vd.x) / (vr.y - vd.y);
+
+		minX = Math::Max(minX, 0);
+		for (int x = minX; x <= maxX && x < w; x++) 
+		{
+			Math::Vector3 p = Math::Vector3(x, y, 0);
+			if (renderTriangle.isIn(p)) {
+				Math::Vector3 uv = renderTriangle.getUV(p);
+				Math::Vector3 c = color.points[0] * uv.x + color.points[1] * uv.y + color.points[2] * uv.z;
+
+				renderBuff.at<Vec3b>(y, x) = Vec3b(c.x * UCHAR_MAX, c.y * UCHAR_MAX, c.z * UCHAR_MAX);
+			}
+		}
+	}
+
+
+	/*int maxX = 0, maxY = 0;
 	int minX = w, minY = h;
 
 	for (size_t i = 0; i < 3; i++)
@@ -140,7 +225,7 @@ void RenderBuffer::renderTriangle(Math::Triangle<Math::Vector3> triangle, Math::
 				renderBuff.at<Vec3b>(row, col) = Vec3b(c.x * UCHAR_MAX, c.y * UCHAR_MAX, c.z * UCHAR_MAX);
 			}
 		}
-	}
+	}*/
 }
 
 void RenderBuffer::renderTriangle(Math::Triangle<Math::Vector3> triangle, Math::Vector3 color)

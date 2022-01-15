@@ -135,6 +135,13 @@ namespace Math {
 			w = w / l;
 		}
 
+		std::string toString()
+		{
+			char str[1024];
+			snprintf(str, sizeof(str), "x = %f, y = %f, z = %f, w = %f", x, y, z, w);
+			return std::string(str);
+		}
+
 	public:
 		float w;
 	};
