@@ -25,7 +25,7 @@ namespace Render
 		void renderTriangle(Math::Triangle<Math::Vector3> triangle, Math::Vector3 color);
 		void renderTriangle(Math::Triangle<Math::Vector3> triangle, Math::Triangle<Math::Vector4> color);
 
-		void setColor(int col, int row, Math::Vector3 color);
+		void setColor(int col, int row, Math::Vector3 color, float z = 0.0f);
 
 		void swapRenderBuffers();
 
@@ -37,6 +37,8 @@ namespace Render
 
 		Mat renderBuff;
 		Mat nextBuff;
+
+		std::vector<float> zBuffer;
 
 		unsigned int w, h;
 

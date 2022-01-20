@@ -49,4 +49,27 @@ void Scene::Bind()
 	);
 
 	o->AddComponent<TestComponent>();
+
+
+	Object* o2 = ObjectManager::createNewObject();
+	Transform* t2 = o2->AddComponent<Transform>();
+	Mesh* mesh2 = o2->AddComponent<Mesh>();
+
+	transform->AddChild(t2);
+	t2->SetPosition(Math::Vector3(0.8f, 0.2f, 2.0f));
+
+	mesh2->addTriangle(
+		Math::Triangle<Math::Vector3>(
+			Math::Vector3(0.0, 0, 0),
+			Math::Vector3(0.3, 0, 0),
+			Math::Vector3(0.0, 0.6, 0)
+			),
+		Math::Triangle<Math::Vector4>(
+			Math::Vector4(1, 1, 1, 1),
+			Math::Vector4(1, 1, 0, 1),
+			Math::Vector4(1, 1, 0, 1)
+			)
+	);
+
+	o2->AddComponent<TestComponent>();
 }

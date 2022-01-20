@@ -20,6 +20,12 @@ RenderBuffer::RenderBuffer(int _w, int _h)
 	h = _h;
 	renderBuff = Mat(h, w, CV_8UC3);
 	nextBuff = Mat(h, w, CV_8UC3);
+
+	zBuffer = std::vector<float>();
+	for (size_t i = 0; i < h * w; i++)
+	{
+		zBuffer.push_back(10000000.0f);
+	}
 }
 
 Mat RenderBuffer::getRenderBuffer()
@@ -40,11 +46,20 @@ void RenderBuffer::changeNext()
 void RenderBuffer::setBackgroundColor(Math::Vector3 color)
 {
 	renderBuff = Scalar(color.x * UCHAR_MAX, color.y * UCHAR_MAX, color.z * UCHAR_MAX);
+	for (size_t i = 0; i < h * w; i++)
+	{
+		zBuffer[i] = 10000000.0f;
+	}
 }
 
-void RenderBuffer::setColor(int col, int row, Math::Vector3 color)
+void RenderBuffer::setColor(int col, int row, Math::Vector3 color, float z)
 {
-	renderBuff.at<Vec3b>(row, col) = Vec3b(color.x * UCHAR_MAX, color.y * UCHAR_MAX, color.z * UCHAR_MAX);
+	int index = col + (row * w) - 1;
+	float oldZ = zBuffer[index];
+	if (z < oldZ) {
+		renderBuff.at<Vec3b>(row, col) = Vec3b(color.x * UCHAR_MAX, color.y * UCHAR_MAX, color.z * UCHAR_MAX);
+		zBuffer[index] = z;
+	}
 }
 
 void Render::RenderBuffer::swapRenderBuffers()
@@ -190,8 +205,10 @@ void RenderBuffer::renderTriangle(Math::Triangle<Math::Vector3> triangle, Math::
 			if (renderTriangle.isIn(p)) {
 				Math::Vector3 uv = renderTriangle.getUV(p);
 				Math::Vector3 c = color.points[0] * uv.x + color.points[1] * uv.y + color.points[2] * uv.z;
+				float z = renderTriangle.points[0].z * uv.x + renderTriangle.points[1].z * uv.y + renderTriangle.points[2].z * uv.z;
 
-				renderBuff.at<Vec3b>(y, x) = Vec3b(c.x * UCHAR_MAX, c.y * UCHAR_MAX, c.z * UCHAR_MAX);
+				setColor(x, y, c, z);
+				//renderBuff.at<Vec3b>(y, x) = Vec3b(c.x * UCHAR_MAX, c.y * UCHAR_MAX, c.z * UCHAR_MAX);
 			}
 		}
 	}
