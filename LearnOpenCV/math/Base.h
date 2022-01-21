@@ -32,6 +32,18 @@ namespace Math {
 	}
 
 	template <typename T>
+	inline T Floor(const T& x)
+	{
+		return std::floor(x);
+	}
+
+	template <typename T>
+	inline T Ceil(const T& x)
+	{
+		return std::ceil(x);
+	}
+
+	template <typename T>
 	inline void Swap(T& x, T& y)
 	{
 		/*

@@ -13,7 +13,7 @@ namespace Render
 
 	public:
 		static RenderBuffer* init(int _w, int _h);
-		static RenderBuffer getInstance() { return *instance; };
+		static RenderBuffer* getInstance() { return instance; };
 
 		Mat getRenderBuffer();
 		Mat getNextBuffer();
@@ -26,11 +26,13 @@ namespace Render
 		void renderTriangle(Math::Triangle<Math::Vector3> triangle, Math::Triangle<Math::Vector4> color);
 
 		void setColor(int col, int row, Math::Vector3 color, float z = 0.0f);
+		void setColor(int col, int row, Math::Vector4 color, float z = 0.0f);
+
 
 		void swapRenderBuffers();
 
 	private:
-
+		bool inTriangleStrength(int col, int row, Math::Triangle<Math::Vector3> triangle, float* strength);
 
 	private:
 		RenderBuffer(int _w, int _h);

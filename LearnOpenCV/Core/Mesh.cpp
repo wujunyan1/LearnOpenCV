@@ -15,7 +15,7 @@ Mesh::Mesh()
 
 void Mesh::Render() 
 {
-	Render::RenderBuffer renderBuffer = Render::RenderBuffer::getInstance();
+	Render::RenderBuffer* renderBuffer = Render::RenderBuffer::getInstance();
 
 	Transform* transform = this->getObject()->GetComponent<Transform>();
 	Math::Matrix4 m = transform->GetLocalToWorldMat4();
@@ -26,8 +26,8 @@ void Mesh::Render()
 
 	int size = triangles.size();
 
-	Math::Matrix4 mvp = p * v * m;
 
+	Math::Matrix4 mvp = p * v * m;
 	for (size_t i = 0; i < size; i++)
 	{
 		Math::Triangle<Math::Vector3> t = triangles.at(i);
@@ -37,7 +37,7 @@ void Mesh::Render()
 		Math::Vector4 v2 = mvp * Math::Vector4(t.points[2], 1.0f);
 
 		Math::Vector4 v4 = Math::Vector4(t.points[0], 1.0f);
-		renderBuffer.renderTriangle(
+		renderBuffer->renderTriangle(
 			Math::Triangle<Math::Vector3>(v0 / v0.w, v1 / v1.w, v2 / v2.w),
 			colors.at(i)
 		);

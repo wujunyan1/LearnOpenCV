@@ -62,9 +62,64 @@ void RenderBuffer::setColor(int col, int row, Math::Vector3 color, float z)
 	}
 }
 
+void RenderBuffer::setColor(int col, int row, Math::Vector4 color, float z)
+{
+	int index = col + (row * w) - 1;
+	float oldZ = zBuffer[index];
+
+
+	if (z < oldZ) {
+
+		Vec3b oc = renderBuff.at<Vec3b>(row, col);
+		float alpha = color.w;
+		float srcAlpha = 1 - alpha;
+
+
+		renderBuff.at<Vec3b>(row, col) = Vec3b(
+			color.x * UCHAR_MAX * alpha + oc[0] * srcAlpha,
+			color.y * UCHAR_MAX * alpha + oc[1] * srcAlpha,
+			color.z * UCHAR_MAX * alpha + oc[2] * srcAlpha);
+		zBuffer[index] = z;
+	}
+}
+
+
 void Render::RenderBuffer::swapRenderBuffers()
 {
 
+}
+
+bool Render::RenderBuffer::inTriangleStrength(int col, int row, Math::Triangle<Math::Vector3> triangle, float* strength)
+{
+	float f = 0.3333333f;
+	Math::Vector3 p = Math::Vector3(col + f, row + f, 0);
+
+	bool isIn = false;
+	*strength = 0.0f;
+	if (triangle.isIn(p)) {
+		*strength += 0.25f;
+		isIn = true;
+	}
+
+	p.x += f;
+	if (triangle.isIn(p)) {
+		*strength += 0.25f;
+		isIn = true;
+	}
+
+	p.y += f;
+	if (triangle.isIn(p)) {
+		*strength += 0.25f;
+		isIn = true;
+	}
+
+	p.x -= f;
+	if (triangle.isIn(p)) {
+		*strength += 0.25f;
+		isIn = true;
+	}
+
+	return isIn;
 }
 
 /**
@@ -117,7 +172,7 @@ void RenderBuffer::renderTriangle(Math::Triangle<Math::Vector3> triangle, Math::
 
 	Math::Triangle<Math::Vector3> renderTriangle = Math::Triangle<Math::Vector3>();
 
-	sk.printMat4();
+	//sk.printMat4();
 	Math::Vector4 v1 = sk * Math::Vector4(triangle.points[0], 1.0f);
 	Math::Vector4 v2 = sk * Math::Vector4(triangle.points[1], 1.0f);
 	Math::Vector4 v3 = sk * Math::Vector4(triangle.points[2], 1.0f);
@@ -193,23 +248,35 @@ void RenderBuffer::renderTriangle(Math::Triangle<Math::Vector3> triangle, Math::
 	}*/
 
 
-	for (int y = Math::Max((int)vd.y, 0); y <= (int)vt.y && y < h; y++)
+	for (int y = Math::Max((int)vd.y, 0); y <= (int)vt.y + 1 && y < h; y++)
 	{
-		int minX = vd.x + (y - vd.y) * (vl.x - vd.x) / (vl.y - vd.y);
-		int maxX = vd.x + (y - vd.y) * (vr.x - vd.x) / (vr.y - vd.y);
+		int minX = Math::Floor(vd.x + (y - vd.y) * (vl.x - vd.x) / (vl.y - vd.y));
+		int maxX = Math::Ceil(vd.x + (y - vd.y) * (vr.x - vd.x) / (vr.y - vd.y));
 
 		minX = Math::Max(minX, 0);
 		for (int x = minX; x <= maxX && x < w; x++) 
 		{
-			Math::Vector3 p = Math::Vector3(x, y, 0);
-			if (renderTriangle.isIn(p)) {
+			float strength;
+			if (inTriangleStrength(x, y, renderTriangle, &strength)) 
+			{
+				Math::Vector3 p = Math::Vector3(x, y, 0);
 				Math::Vector3 uv = renderTriangle.getUV(p);
 				Math::Vector3 c = color.points[0] * uv.x + color.points[1] * uv.y + color.points[2] * uv.z;
 				float z = renderTriangle.points[0].z * uv.x + renderTriangle.points[1].z * uv.y + renderTriangle.points[2].z * uv.z;
+				
 
-				setColor(x, y, c, z);
-				//renderBuff.at<Vec3b>(y, x) = Vec3b(c.x * UCHAR_MAX, c.y * UCHAR_MAX, c.z * UCHAR_MAX);
+				setColor(x, y, Math::Vector4(c, strength), z);
 			}
+
+			//Math::Vector3 p = Math::Vector3(x, y, 0);
+			//if (renderTriangle.isIn(p)) {
+			//	Math::Vector3 uv = renderTriangle.getUV(p);
+			//	Math::Vector3 c = color.points[0] * uv.x + color.points[1] * uv.y + color.points[2] * uv.z;
+			//	float z = renderTriangle.points[0].z * uv.x + renderTriangle.points[1].z * uv.y + renderTriangle.points[2].z * uv.z;
+
+			//	setColor(x, y, c, z);
+			//	//renderBuff.at<Vec3b>(y, x) = Vec3b(c.x * UCHAR_MAX, c.y * UCHAR_MAX, c.z * UCHAR_MAX);
+			//}
 		}
 	}
 

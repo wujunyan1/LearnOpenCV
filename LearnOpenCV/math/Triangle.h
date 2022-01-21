@@ -52,13 +52,13 @@ namespace Math
 
 			Triangle t0 = Triangle(p, points[1], points[2]);
 			Triangle t1 = Triangle(p, points[0], points[2]);
-			Triangle t2 = Triangle(p, points[0], points[1]);
+			//Triangle t2 = Triangle(p, points[0], points[1]);
 
-			return Vector3(
-				t0.getArea() / area,
-				t1.getArea() / area,
-				t2.getArea() / area
-			);
+			float f0 = t0.getArea() / area;
+			float f1 = t1.getArea() / area;
+			float f2 = 1 - f0 - f1;	// 理论上三个三角形之和就是这个三角形
+
+			return Vector3(f0, f1, f2);
 		}
 
 		std::string toString()

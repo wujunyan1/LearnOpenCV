@@ -27,34 +27,40 @@ int main(int argc, char* argv[])
 	Core::Scene* scene = root->AddComponent<Core::Scene>();
 
 	while (isClose) {
-		buffer->setBackgroundColor(Math::Vector3(0.0f, 0.0f, 0.0f));
+		buffer->setBackgroundColor(Math::Vector3(1.0f, 1.0f, 1.0f));
 
 		transform->PreUpdate();
 		transform->Update();
 		transform->LaterUpdate();
 		transform->Render();
 
-		/*buffer->renderTriangle(
-			Math::Triangle(
-				Math::Vector3(0, 0.2, 0),
-				Math::Vector3(0.6, 0, 0),
-				Math::Vector3(0.1, 0.4, 0)
+		/*
+		buffer->renderTriangle(
+			Math::Triangle<Math::Vector3>(
+				Math::Vector3(0, 0.2, 3),
+				Math::Vector3(0.6, 0, 1),
+				Math::Vector3(0.1, 0.4, 2)
 			),
-			Math::Vector3(1.0f, 0.0f, 0.0f)
+			Math::Triangle<Math::Vector4>(
+				Math::Vector4(0, 0.5, 1, 1),
+				Math::Vector4(0, 0.5, 1, 1),
+				Math::Vector4(0, 0.5, 1, 1)
+			)
 		);
 
 		buffer->renderTriangle(
-			Math::Triangle(
-				Math::Vector3(1, 0.2, 0),
-				Math::Vector3(0.6, 0, 0),
-				Math::Vector3(0.1, 0.4, 0)
+			Math::Triangle<Math::Vector3>(
+				Math::Vector3(0, 0.3, 2),
+				Math::Vector3(0.7, 0, 2),
+				Math::Vector3(0.2, 0.5, 2)
 			),
-			Math::Triangle(
-				Math::Vector3(1, 0, 0),
-				Math::Vector3(0, 1, 0),
-				Math::Vector3(0, 0, 1)
+			Math::Triangle<Math::Vector4>(
+				Math::Vector4(1, 1, 0, 1),
+				Math::Vector4(1, 1, 0, 1),
+				Math::Vector4(1, 1, 0, 1)
 			)
-		);*/
+		);
+		*/
 
 
 		cv::Mat image = buffer->getRenderBuffer();
