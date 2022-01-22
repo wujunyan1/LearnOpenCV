@@ -124,6 +124,21 @@ namespace Math
 			return vec;
 		}
 
+		Vector3 add (const Vector3& rhs)
+		{
+			x += rhs.x;
+			y += rhs.y;
+			z += rhs.z;
+			return *this;
+		}
+
+		void zero()
+		{
+			x = 0.0f;
+			y = 0.0f;
+			z = 0.0f;
+		}
+
 		float len()
 		{
 			return Math::Sqrt(x * x + y * y + z * z);

@@ -21,6 +21,7 @@ int main(int argc, char* argv[])
 	int h = 720;
 	RenderBuffer* buffer = RenderBuffer::init(w, h);
 	buffer->setBackgroundColor(Math::Vector3(0.0f, 0.0f, 0.6f));
+	buffer->setAntiAliasing(AntiAliasing::X2);
 
 	Core::Object* root = Core::ObjectManager::createRootObject();
 	Core::Transform* transform = root->AddComponent<Core::Transform>();

@@ -1,7 +1,7 @@
 #include "Mesh.h"
 #include "Transform.h"
 #include "../math/Triangle.h"
-#include "../render/RenderBuffer.h"
+#include "../render/RenderMain.h"
 #include "Scene.h"
 #include "Camera.h"
 #include "../math/Vector4.h"
@@ -15,7 +15,7 @@ Mesh::Mesh()
 
 void Mesh::Render() 
 {
-	Render::RenderBuffer* renderBuffer = Render::RenderBuffer::getInstance();
+	//Render::RenderBuffer* renderBuffer = Render::RenderBuffer::getInstance();
 
 	Transform* transform = this->getObject()->GetComponent<Transform>();
 	Math::Matrix4 m = transform->GetLocalToWorldMat4();

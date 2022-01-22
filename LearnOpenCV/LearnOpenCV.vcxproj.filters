@@ -22,6 +22,12 @@
     <Filter Include="render">
       <UniqueIdentifier>{b35c5ed8-e75f-43e5-8b2d-f095af605cc1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="opengl">
+      <UniqueIdentifier>{c0126642-4495-45dd-8035-67f456c5ca11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="opencv">
+      <UniqueIdentifier>{99b01cc3-a5ca-4fec-8f82-791b3c738488}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LearnOpenCV.h">
@@ -60,9 +66,6 @@
     <ClInclude Include="math\Vector3.h">
       <Filter>math</Filter>
     </ClInclude>
-    <ClInclude Include="render\RenderBuffer.h">
-      <Filter>render</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Scene.h">
       <Filter>core</Filter>
     </ClInclude>
@@ -84,7 +87,16 @@
     <ClInclude Include="math\Vector4.h">
       <Filter>math</Filter>
     </ClInclude>
-    <ClInclude Include="render\VBO.h">
+    <ClInclude Include="opencv\RenderBuffer.h">
+      <Filter>opencv</Filter>
+    </ClInclude>
+    <ClInclude Include="opencv\OpenCVMain.h">
+      <Filter>opencv</Filter>
+    </ClInclude>
+    <ClInclude Include="render\RenderMain.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="render\Render.h">
       <Filter>render</Filter>
     </ClInclude>
   </ItemGroup>
@@ -119,9 +131,6 @@
     <ClCompile Include="math\Vector3.cpp">
       <Filter>math</Filter>
     </ClCompile>
-    <ClCompile Include="render\RenderBuffer.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Scene.cpp">
       <Filter>core</Filter>
     </ClCompile>
@@ -143,7 +152,16 @@
     <ClCompile Include="math\Vector4.cpp">
       <Filter>math</Filter>
     </ClCompile>
-    <ClCompile Include="render\VBO.cpp">
+    <ClCompile Include="opencv\RenderBuffer.cpp">
+      <Filter>opencv</Filter>
+    </ClCompile>
+    <ClCompile Include="opencv\OpenCVMain.cpp">
+      <Filter>opencv</Filter>
+    </ClCompile>
+    <ClCompile Include="render\RenderMain.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="render\Render.cpp">
       <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>

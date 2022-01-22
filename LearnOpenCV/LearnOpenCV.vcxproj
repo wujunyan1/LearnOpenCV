@@ -165,8 +165,10 @@
     <ClInclude Include="math\Triangle.h" />
     <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector4.h" />
-    <ClInclude Include="render\RenderBuffer.h" />
-    <ClInclude Include="render\VBO.h" />
+    <ClInclude Include="opencv\OpenCVMain.h" />
+    <ClInclude Include="opencv\RenderBuffer.h" />
+    <ClInclude Include="render\Render.h" />
+    <ClInclude Include="render\RenderMain.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Camera.cpp" />
@@ -186,8 +188,10 @@
     <ClCompile Include="math\Triangle.cpp" />
     <ClCompile Include="math\Vector3.cpp" />
     <ClCompile Include="math\Vector4.cpp" />
-    <ClCompile Include="render\RenderBuffer.cpp" />
-    <ClCompile Include="render\VBO.cpp" />
+    <ClCompile Include="opencv\OpenCVMain.cpp" />
+    <ClCompile Include="opencv\RenderBuffer.cpp" />
+    <ClCompile Include="render\Render.cpp" />
+    <ClCompile Include="render\RenderMain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

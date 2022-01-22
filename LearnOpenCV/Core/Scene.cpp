@@ -33,7 +33,7 @@ void Scene::Bind()
 	Mesh* mesh = o->AddComponent<Mesh>();
 
 	transform->AddChild(t);
-	t->SetPosition(Math::Vector3(1.0f, 0.2f, 2.0f));
+	t->SetPosition(Math::Vector3(0.0f, -0.2f, 1.0f));
 
 	mesh->addTriangle(
 		Math::Triangle<Math::Vector3>(
@@ -56,7 +56,7 @@ void Scene::Bind()
 	Mesh* mesh2 = o2->AddComponent<Mesh>();
 
 	transform->AddChild(t2);
-	t2->SetPosition(Math::Vector3(1.0f, 0.2f, 2.1f));
+	t2->SetPosition(Math::Vector3(0.0f, -0.2f, 1.1f));
 
 	mesh2->addTriangle(
 		Math::Triangle<Math::Vector3>(
