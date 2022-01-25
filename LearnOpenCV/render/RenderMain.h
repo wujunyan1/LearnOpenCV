@@ -7,8 +7,10 @@ namespace Render
 {
 	int CreateVBO();
 	int CreateVAO();
+	int CreateShader();
 
-	void SetVertexArray(int vbo, std::vector<Math::Triangle<Math::Vector3>> vertex,
-		std::vector<Math::Triangle<Math::Vector3>> uv,
-		std::vector<Math::Triangle<Math::Vector3>> normal);
+	void SetVertexAttribPointer(int vbo, int passageway, size_t typeSize, size_t dataSize, float* data);
+
+
+	void RenderVBO(int vbo);
 }

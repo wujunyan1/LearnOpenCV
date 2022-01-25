@@ -15,10 +15,14 @@ namespace Core
 			colors.push_back(color);
 		}
 
+		void bindRender();
+
 		void Render();
 
 	private:
 		std::vector<Math::Triangle<Math::Vector3>> triangles;
 		std::vector<Math::Triangle<Math::Vector4>> colors;
+
+		unsigned int vbo = 0;
 	};
 }

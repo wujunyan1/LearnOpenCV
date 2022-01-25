@@ -96,8 +96,20 @@
     <ClInclude Include="render\RenderMain.h">
       <Filter>render</Filter>
     </ClInclude>
-    <ClInclude Include="render\Render.h">
-      <Filter>render</Filter>
+    <ClInclude Include="opencv\VBO.h">
+      <Filter>opencv</Filter>
+    </ClInclude>
+    <ClInclude Include="opencv\VAO.h">
+      <Filter>opencv</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Vector2.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Vector1.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="opencv\CVShader.h">
+      <Filter>opencv</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -161,8 +173,20 @@
     <ClCompile Include="render\RenderMain.cpp">
       <Filter>render</Filter>
     </ClCompile>
-    <ClCompile Include="render\Render.cpp">
-      <Filter>render</Filter>
+    <ClCompile Include="opencv\VBO.cpp">
+      <Filter>opencv</Filter>
+    </ClCompile>
+    <ClCompile Include="opencv\VAO.cpp">
+      <Filter>opencv</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Vector2.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Vector1.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="opencv\CVShader.cpp">
+      <Filter>opencv</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

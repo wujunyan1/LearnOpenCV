@@ -13,11 +13,11 @@ namespace Math {
 
 		}
 
-		Vector4(Vector3 v, float _w)
-			: Vector3(v.x, v.y, v.z)
-			, w(_w) {
+		Vector4(Vector1 v, float _y = 0.0f, float _z = 0.0f, float _w = 0.0f);
 
-		}
+		Vector4(Vector2 v, float _z = 0.0f, float _w = 0.0f);
+
+		Vector4(Vector3 v, float _w = 1.0f);
 
 		Vector4(float _x, float _y, float _z, float _w)
 			: Vector3(_x, _y, _z)

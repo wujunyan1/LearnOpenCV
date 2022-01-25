@@ -47,6 +47,7 @@ void Scene::Bind()
 			Math::Vector4(0, 1, 0, 1)
 		)
 	);
+	mesh->bindRender();
 
 	o->AddComponent<TestComponent>();
 
@@ -70,6 +71,7 @@ void Scene::Bind()
 			Math::Vector4(1, 1, 0, 1)
 			)
 	);
+	mesh2->bindRender();
 
 	//o2->AddComponent<TestComponent>();
 }

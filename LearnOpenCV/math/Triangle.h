@@ -1,10 +1,11 @@
 #pragma once
 #include "Base.h"
+#include "Vector1.h"
 #include "Vector3.h"
 
 namespace Math
 {
-	template <typename T = Vector3>
+	template <typename T = Vector1>
 	class Triangle
 	{
 	public:

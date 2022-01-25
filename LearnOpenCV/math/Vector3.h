@@ -1,26 +1,27 @@
 #pragma once
 
 #include "Base.h"
+#include "Vector2.h"
 
 namespace Math 
 {
-	class Vector3
+	class Vector3 : public Vector2
 	{
 	public:
 		Vector3() 
-			: x(0.0f)
-			, y(0.0f)
+			: Vector2(0.0f, 0.0f)
 			, z(0.0f) {
 
 		}
 
 		Vector3(float _x, float _y, float _z)
-			: x(_x)
-			, y(_y)
+			: Vector2(_x, _y)
 			, z(_z) {
 
 		}
 
+		Vector3(Vector1 v2, float _y = 0.0f, float _z = 0.0f);
+		Vector3(Vector2 v2, float _z = 0.0f);
 		Vector3(Vector4 v4);
 
 		Vector3& operator = (const Vector3& rhs)
@@ -166,8 +167,6 @@ namespace Math
 		}
 
 	public:
-		float x;
-		float y;
 		float z;
 	}; 
 }

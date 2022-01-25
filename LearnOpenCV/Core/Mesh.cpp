@@ -13,6 +13,37 @@ Mesh::Mesh()
 
 }
 
+void Mesh::bindRender()
+{
+	if (vbo == 0) {
+		vbo = Render::CreateVBO();
+	}
+
+	int len = triangles.size();
+	int size = len * 3 * 3;
+	float* data = new float[size];
+
+	for (int i = 0; i < len; i++)
+	{
+		Math::Triangle<Math::Vector3> t = triangles.at(i);
+		
+		int index = i * 3 * 3;
+		data[index] = t.points[0].x;
+		data[index + 1] = t.points[0].y;
+		data[index + 2] = t.points[0].z;
+
+		data[index + 3] = t.points[1].x;
+		data[index + 4] = t.points[1].y;
+		data[index + 5] = t.points[1].z;
+
+		data[index + 6] = t.points[2].x;
+		data[index + 7] = t.points[2].y;
+		data[index + 8] = t.points[2].z;
+	}
+
+	Render::SetVertexAttribPointer(vbo, 0, 3, size, data);
+}
+
 void Mesh::Render() 
 {
 	//Render::RenderBuffer* renderBuffer = Render::RenderBuffer::getInstance();
@@ -37,9 +68,5 @@ void Mesh::Render()
 		Math::Vector4 v2 = mvp * Math::Vector4(t.points[2], 1.0f);
 
 		Math::Vector4 v4 = Math::Vector4(t.points[0], 1.0f);
-		renderBuffer->renderTriangle(
-			Math::Triangle<Math::Vector3>(v0 / v0.w, v1 / v1.w, v2 / v2.w),
-			colors.at(i)
-		);
 	}
 }

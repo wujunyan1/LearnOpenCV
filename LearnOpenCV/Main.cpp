@@ -2,7 +2,7 @@
 
 #include <opencv2/opencv.hpp>
 #include <stdlib.h>
-#include "render/RenderBuffer.h"
+#include "opencv/RenderBuffer.h"
 
 #include "math/Vector3.h"
 #include "core/Scene.h"
@@ -10,7 +10,7 @@
 #include "core/ObjectManager.h"
 #include "core/Transform.h"
 
-using namespace Render;
+using namespace OpenCV;
 using namespace cv;
 
 int main(int argc, char* argv[])
