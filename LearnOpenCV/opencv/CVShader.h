@@ -26,6 +26,7 @@ namespace OpenCV
 		}
 
 	private:
+		Math::Matrix4 mvp;
 
 	private:
 		bool _vaild;
