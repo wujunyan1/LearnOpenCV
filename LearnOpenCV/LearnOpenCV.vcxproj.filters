@@ -111,6 +111,15 @@
     <ClInclude Include="opencv\CVShader.h">
       <Filter>opencv</Filter>
     </ClInclude>
+    <ClInclude Include="render\Material.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="render\RenderQueue.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="render\ShaderProgram.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -187,6 +196,15 @@
     </ClCompile>
     <ClCompile Include="opencv\CVShader.cpp">
       <Filter>opencv</Filter>
+    </ClCompile>
+    <ClCompile Include="render\Material.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="render\RenderQueue.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="render\ShaderProgram.cpp">
+      <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -15,8 +15,8 @@ Mesh::Mesh()
 
 void Mesh::bindRender()
 {
-	if (vbo == 0) {
-		vbo = Render::CreateVBO();
+	if (!renderProgram) {
+		renderProgram = Render::CreateRenderProgram("test");
 	}
 
 	int len = triangles.size();
@@ -41,7 +41,7 @@ void Mesh::bindRender()
 		data[index + 8] = t.points[2].z;
 	}
 
-	Render::SetVertexAttribPointer(vbo, 0, 3, size, data);
+	Render::SetVertexAttribPointer(vbo, 0, Render::ShaderParamType::SPT_VEC3, 3, size, data);
 }
 
 void Mesh::Render() 

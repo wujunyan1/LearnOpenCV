@@ -6,19 +6,25 @@
 using namespace Math;
 
 Vector4::Vector4(Vector1 v, float _y, float _z, float _w)
-	: Vector3(v.x, _y, _z)
+	: x(v.x)
+	, y(_y)
+	, z(_z)
 	, w(_w) {
 
 }
 
 Vector4::Vector4(Vector2 v, float _z, float _w)
-	: Vector3(v.x, v.y, _z)
+	: x(v.x)
+	, y(v.y)
+	, z(_z)
 	, w(_w) {
 
 }
 
 Vector4::Vector4(Vector3 v, float _w)
-	: Vector3(v.x, v.y, v.z)
+	: x(v.x)
+	, y(v.y)
+	, z(v.z)
 	, w(_w) {
 
 }

@@ -20,9 +20,9 @@ int Render::CreateVAO()
 	return VAOManager::createVAO();
 }
 
-void Render::SetVertexAttribPointer(int vbo, int passageway, size_t typeSize, size_t dataSize, float* data)
+void Render::SetVertexAttribPointer(int vbo, int passageway, Render::ShaderParamType typeSize, size_t dataSize, size_t dataLength, void* data)
 {
-	VBOManager::SetVertexAttribPointer(vbo, passageway, typeSize, dataSize, data);
+	VBOManager::SetVertexAttribPointer(vbo, passageway, typeSize, dataSize, dataLength, data);
 }
 
 int Render::CreateShader()

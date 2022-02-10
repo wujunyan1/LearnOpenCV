@@ -2,15 +2,17 @@
 
 #include <opencv2/opencv.hpp>
 #include "../math/Math.h"
+#include "../render/RenderMain.h"
 
 using namespace cv;
+using namespace Render;
 
 namespace OpenCV
 {
 	struct VBOData
 	{
-		size_t typeSize;
-		std::vector<Math::Vector1>* datas;
+		Render::ShaderParamType typeSize;
+		std::vector<void*>* datas;
 	};
 
 	class VBO
@@ -31,10 +33,10 @@ namespace OpenCV
 			_vaild = false;
 		}
 
-		void SetVertexAttribPointer(int passageway, size_t typeSize, size_t dataSize, float* data);
+		void SetVertexAttribPointer(int passageway, Render::ShaderParamType typeSize, size_t dataSize, size_t dataLength, void* data);
 
 	private:
-		Math::Vector1 getDataType(size_t dataSize, float* data);
+		void* getDataType(Render::ShaderParamType typeSize, void* data);
 
 	private:
 		bool _vaild;
@@ -47,10 +49,12 @@ namespace OpenCV
 	public:
 		static int createVBO();
 
-		static void SetVertexAttribPointer(int vbo, int passageway, size_t typeSize, size_t dataSize, float* data);
+		static void SetVertexAttribPointer(int vbo, int passageway, Render::ShaderParamType typeSize, size_t dataSize, size_t dataLength, void* data);
 
 	private:
 		static int _vbo_index;
 		static std::vector<VBO*>* vbos;
+
+		static void* currCatchData;
 	};
 }

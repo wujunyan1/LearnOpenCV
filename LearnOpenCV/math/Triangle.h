@@ -5,7 +5,7 @@
 
 namespace Math
 {
-	template <typename T = Vector1>
+	template <typename T>
 	class Triangle
 	{
 	public:

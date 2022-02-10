@@ -1,16 +1,41 @@
 #include "OpenCVMain.h"
 #include "VBO.h"
+#include "../render/RenderMain.h"
 
 using namespace OpenCV;
 using namespace cv;
 
 
-Math::Vector1 VBO::getDataType(size_t dataSize, float* data)
+void* VBO::getDataType(Render::ShaderParamType typeSize, void* data)
 {
+	switch (typeSize)
+	{
+	case Render::SPT_UNKNOWN:
+		return 0;
+		break;
+	case Render::SPT_INT:
+		return (int*)data;
+		break;
+	case Render::SPT_FLOAT:
+		break;
+	case Render::SPT_VEC2:
+		break;
+	case Render::SPT_VEC3:
+		break;
+	case Render::SPT_VEC4:
+		break;
+	case Render::SPT_MAT4:
+		break;
+	case Render::SPT_TEXTURE:
+		break;
+	default:
+		break;
+	}
+
 	switch (dataSize)
 	{
 	case 1:
-		return Math::Vector1(*data++);
+		return &Math::Vector1(*data++);
 	case 2:
 		return Math::Vector2(*data++, *data++);
 	case 3:
@@ -22,7 +47,7 @@ Math::Vector1 VBO::getDataType(size_t dataSize, float* data)
 	}
 }
 
-void VBO::SetVertexAttribPointer(int passageway, size_t typeSize, size_t dataSize, float* data)
+void VBO::SetVertexAttribPointer(int passageway, Render::ShaderParamType typeSize, size_t dataSize, size_t dataLength, void* data)
 {
 	VBOData vboData = datas[passageway];
 	vboData.typeSize = typeSize;
@@ -30,10 +55,10 @@ void VBO::SetVertexAttribPointer(int passageway, size_t typeSize, size_t dataSiz
 		vboData.datas->clear();
 	}
 	else {
-		vboData.datas = new std::vector<Math::Vector1>();
+		vboData.datas = new std::vector<void*>();
 	}
 
-	for (size_t i = 0; i < dataSize;)
+	for (size_t i = 0; i < dataLength;)
 	{
 		Math::Vector1 v = getDataType(typeSize, data);
 
@@ -78,8 +103,8 @@ int VBOManager::createVBO()
 	return returnIndex;
 }
 
-void VBOManager::SetVertexAttribPointer(int vbo, int passageway, size_t typeSize, size_t dataSize, float* data)
+void VBOManager::SetVertexAttribPointer(int vbo, int passageway, Render::ShaderParamType typeSize, size_t dataSize, size_t dataLength, void* data)
 {
 	VBO* _vbo = vbos->at(vbo);
-	_vbo->SetVertexAttribPointer(passageway, typeSize, dataSize, data);
+	_vbo->SetVertexAttribPointer(passageway, typeSize, dataSize, dataLength, data);
 }

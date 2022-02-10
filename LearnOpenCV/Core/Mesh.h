@@ -2,6 +2,7 @@
 #include "Core.h"
 #include "Component.h"
 #include "../math/Math.h"
+#include "../render/RenderMain.h"
 
 namespace Core
 {
@@ -23,6 +24,7 @@ namespace Core
 		std::vector<Math::Triangle<Math::Vector3>> triangles;
 		std::vector<Math::Triangle<Math::Vector4>> colors;
 
-		unsigned int vbo = 0;
+		// ²ÄÖÊ
+		Render::RenderProgram* renderProgram = NULL;
 	};
 }

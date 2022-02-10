@@ -172,7 +172,10 @@
     <ClInclude Include="opencv\RenderBuffer.h" />
     <ClInclude Include="opencv\VAO.h" />
     <ClInclude Include="opencv\VBO.h" />
+    <ClInclude Include="render\Material.h" />
     <ClInclude Include="render\RenderMain.h" />
+    <ClInclude Include="render\RenderQueue.h" />
+    <ClInclude Include="render\ShaderProgram.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Camera.cpp" />
@@ -199,7 +202,10 @@
     <ClCompile Include="opencv\RenderBuffer.cpp" />
     <ClCompile Include="opencv\VAO.cpp" />
     <ClCompile Include="opencv\VBO.cpp" />
+    <ClCompile Include="render\Material.cpp" />
     <ClCompile Include="render\RenderMain.cpp" />
+    <ClCompile Include="render\RenderQueue.cpp" />
+    <ClCompile Include="render\ShaderProgram.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
