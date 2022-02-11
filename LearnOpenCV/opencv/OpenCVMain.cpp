@@ -9,13 +9,13 @@ using namespace cv;
 
 using namespace Render;
 
-int Render::CreateVBO()
+unsigned int Render::CreateVBO()
 {
 	return VBOManager::createVBO();
 }
 
 
-int Render::CreateVAO()
+unsigned int Render::CreateVAO()
 {
 	return VAOManager::createVAO();
 }
@@ -25,7 +25,7 @@ void Render::SetVertexAttribPointer(int vbo, int passageway, Render::ShaderParam
 	VBOManager::SetVertexAttribPointer(vbo, passageway, typeSize, dataSize, dataLength, data);
 }
 
-int Render::CreateShader()
+unsigned int Render::CreateShader()
 {
 	return CVShaderManager::createCVShader();
 }

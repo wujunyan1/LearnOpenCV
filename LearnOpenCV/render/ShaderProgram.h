@@ -6,9 +6,9 @@
 namespace Render
 {
 	// 支持的着色器参数类型
-	enum ShaderParamType
+	enum class ShaderParamType
 	{
-		SPT_UNKNOWN,
+		SPT_UNKNOWN = 0,
 		SPT_INT,
 		SPT_FLOAT,
 		SPT_VEC2,

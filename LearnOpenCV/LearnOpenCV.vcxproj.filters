@@ -120,6 +120,12 @@
     <ClInclude Include="render\ShaderProgram.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="opengl\OpenGLMain.h">
+      <Filter>opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl\OpenGLCore.h">
+      <Filter>opengl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -206,5 +212,14 @@
     <ClCompile Include="render\ShaderProgram.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="opengl\OpenGLMain.cpp">
+      <Filter>opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl\OpenGLCore.cpp">
+      <Filter>opengl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

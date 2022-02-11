@@ -218,6 +218,7 @@ namespace Core
 		{
 			worldToLocalMat4 = rotateMat.clone().transpose();
 			worldToLocalMat4 = worldToLocalMat4 * Mat4::translate(-position);
+			worldToLocalMat4 = Mat4::scale(Vector3(-scale.x, -scale.y, -scale.z)) * worldToLocalMat4;
 
 			if (parent) {
 				worldToLocalMat4 = worldToLocalMat4 * parent->worldToLocalMat4;

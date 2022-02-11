@@ -1,9 +1,9 @@
 #include "RenderMain.h"
 
-#ifndef SHADER_OPEN_CV
-#define SHADER_OPEN_CV 1
-#endif
-
-#if SHADER_OPEN_CV==1
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
 #include "../opencv/OpenCVMain.h"
 #endif // SHADER_OPEN_CV
+
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+#include "../opengl/OpenGLMain.h"
+#endif
