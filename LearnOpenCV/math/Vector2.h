@@ -30,9 +30,9 @@ namespace Math
 
 		}
 
-		inline Vector2(Vector1 v1, float _y = 0.0f);
-		inline Vector2(Vector3 v3);
-		inline Vector2(Vector4 v4);
+		Vector2(Vector1 v1, float _y = 0.0f);
+		Vector2(Vector3 v3);
+		Vector2(Vector4 v4);
 
 		inline Vector2& operator = (const Vector2& rhs)
 		{

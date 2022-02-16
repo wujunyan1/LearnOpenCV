@@ -20,38 +20,48 @@ namespace Render
 
 	class Material;
 
+	struct ShaderParam
+	{
+		class ParamData
+		{
+		public:
+			ParamData();
+			ParamData(const ParamData& other);
+			ParamData(ParamData&& other) noexcept;
+			ParamData& operator=(ParamData other) noexcept;
+			~ParamData();
+			void setData(const void* data, int copySize = 0);
+			const void* getDataPtr() const { return data; }
+			void reset();
+
+		private:
+			const void* data = nullptr;
+			int copySize = 0;  // equals to 0 if don't need to free data automatically, otherwise equals to size of data
+		};
+
+		std::string			name;
+		ShaderParamType		stype;
+		unsigned int		physicsIndex;
+		unsigned int		paramsLength;  // shader constance register num.
+		ParamData			data;
+	};
+
 	// 某个Shader渲染
 	class ShaderProgram
 	{
 	public:
-		struct ShaderParam
+
+		virtual void RenderMaterial(Material* material) {};
+
+		bool operator == (const ShaderProgram& rhs)
 		{
-			class ParamData
-			{
-			public:
-				ParamData() = default;
-				ParamData(const ParamData& other);
-				ParamData(ParamData&& other) noexcept;
-				ParamData& operator=(ParamData other) noexcept;
-				~ParamData();
-				void setData(const void* data, int copySize = 0);
-				const void* getDataPtr() const { return data; }
-				void reset();
+			return shader == rhs.shader;
+		}
 
-			private:
-				const void* data = nullptr;
-				int copySize = 0;  // equals to 0 if don't need to free data automatically, otherwise equals to size of data
-			};
-
-			std::string			name;
-			ShaderParamType		stype;
-			unsigned int		physicsIndex;
-			unsigned int		paramsLength;  // shader constance register num.
-			ParamData			data;
-		};
-
-
-		void RenderMaterial(Material* material);
+		bool operator != (const ShaderProgram& rhs)
+		{
+			return shader != rhs.shader;
+		}
 
 	protected:
 
@@ -59,7 +69,7 @@ namespace Render
 		unsigned int shader;
 
 		// 当前的 shader参数
-		std::vector<ShaderProgram::ShaderParam> s_ShaderParams;
+		std::vector<ShaderParam> s_ShaderParams;
 	};
 
 }

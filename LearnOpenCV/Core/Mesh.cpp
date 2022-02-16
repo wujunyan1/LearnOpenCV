@@ -1,10 +1,10 @@
 #include "Mesh.h"
 #include "Transform.h"
 #include "../math/Triangle.h"
-#include "../render/RenderMain.h"
 #include "Scene.h"
 #include "Camera.h"
 #include "../math/Vector4.h"
+#include "../math/Vector3.h"
 
 using namespace Core;
 
@@ -41,7 +41,10 @@ void Mesh::bindRender()
 		data[index + 8] = t.points[2].z;
 	}
 
-	Render::SetVertexAttribPointer(vbo, 0, Render::ShaderParamType::SPT_VEC3, 3, size, data);
+	Render::RenderMesh* mesh = renderProgram->createNewRenderMesh("testMesh");
+	mesh->BindArrayBufferData(size, data);
+	mesh->VertexAttribPointer(0, 3, Render::ShaderParamType::SPT_VEC3, false, 3 * sizeof(float), 0);
+	//Render::SetVertexAttribPointer(vbo, 0, Render::ShaderParamType::SPT_VEC3, 3, size, data);
 }
 
 void Mesh::Render() 
@@ -57,6 +60,8 @@ void Mesh::Render()
 
 	int size = triangles.size();
 
+	Render::Material* material = renderProgram->getMaterial();
+
 
 	Math::Matrix4 mvp = p * v * m;
 	for (size_t i = 0; i < size; i++)
@@ -69,4 +74,6 @@ void Mesh::Render()
 
 		Math::Vector4 v4 = Math::Vector4(t.points[0], 1.0f);
 	}
+
+	Render::AddRenderQueue(renderProgram);
 }

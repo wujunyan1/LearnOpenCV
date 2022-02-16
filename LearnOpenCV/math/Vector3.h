@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Base.h"
-#include "Vector2.h"
 
 namespace Math 
 {
@@ -32,9 +31,9 @@ namespace Math
 
 		}
 
-		inline Vector3(Vector1 v2, float _y = 0.0f, float _z = 0.0f);
-		inline Vector3(Vector2 v2, float _z = 0.0f);
-		inline Vector3(Vector4 v4);
+		Vector3(Vector1 v2, float _y = 0.0f, float _z = 0.0f);
+		Vector3(Vector2 v2, float _z = 0.0f);
+		Vector3(Vector4 v4);
 
 		inline Vector3& operator = (const Vector3& rhs)
 		{

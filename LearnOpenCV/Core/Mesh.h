@@ -4,6 +4,7 @@
 #include "../math/Math.h"
 #include "../render/RenderMain.h"
 
+
 namespace Core
 {
 	class Mesh : public Component

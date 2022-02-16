@@ -80,7 +80,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\Users\Administrator\Downloads\opencv\build\include;$(IncludePath)</IncludePath>
+    <IncludePath>../opencv/build/include;$(IncludePath)</IncludePath>
     <LibraryPath>../packages/glfw.3.3.4/build/native/include/GLFW;../packages/glew.1.9.0.1/build/native/lib;E:\Users\Administrator\Downloads\opencv\build\x64\vc14\lib;$(LibraryPath)</LibraryPath>
     <OutDir>../res</OutDir>
   </PropertyGroup>
@@ -123,12 +123,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../packages/glm-0.9.9.7/glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../packages/glm.0.9.9.800/build/native/include/glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opencv_world454d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew.lib;opengl32.lib;opencv_world454d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../packages/glew.1.9.0.1/build/native/lib/v110/x64/Debug/static;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -174,10 +175,14 @@
     <ClInclude Include="opencv\RenderBuffer.h" />
     <ClInclude Include="opencv\VAO.h" />
     <ClInclude Include="opencv\VBO.h" />
+    <ClInclude Include="opengl\MaterialGL.h" />
     <ClInclude Include="opengl\OpenGLCore.h" />
     <ClInclude Include="opengl\OpenGLMain.h" />
+    <ClInclude Include="opengl\RenderGLMesh.h" />
+    <ClInclude Include="opengl\RenderGLQueue.h" />
     <ClInclude Include="render\Material.h" />
     <ClInclude Include="render\RenderMain.h" />
+    <ClInclude Include="render\RenderMesh.h" />
     <ClInclude Include="render\RenderQueue.h" />
     <ClInclude Include="render\ShaderProgram.h" />
   </ItemGroup>
@@ -206,10 +211,14 @@
     <ClCompile Include="opencv\RenderBuffer.cpp" />
     <ClCompile Include="opencv\VAO.cpp" />
     <ClCompile Include="opencv\VBO.cpp" />
+    <ClCompile Include="opengl\MaterialGL.cpp" />
     <ClCompile Include="opengl\OpenGLCore.cpp" />
     <ClCompile Include="opengl\OpenGLMain.cpp" />
+    <ClCompile Include="opengl\RenderGLMesh.cpp" />
+    <ClCompile Include="opengl\RenderGLQueue.cpp" />
     <ClCompile Include="render\Material.cpp" />
     <ClCompile Include="render\RenderMain.cpp" />
+    <ClCompile Include="render\RenderMesh.cpp" />
     <ClCompile Include="render\RenderQueue.cpp" />
     <ClCompile Include="render\ShaderProgram.cpp" />
   </ItemGroup>

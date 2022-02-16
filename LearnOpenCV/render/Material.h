@@ -6,19 +6,26 @@
 
 namespace Render
 {
-	
+	// shader 的参数信息
 	class Material
 	{
 	public:
 
+		virtual void setBool(const std::string& name, bool value) {};
+		virtual void setInt(const std::string& name, int value) {};
+		virtual void setFloat(const std::string& name, float value) {};
+		virtual void setFloat4(const std::string& name, float r, float g, float b, float a) {};
+		virtual void setVec3(const std::string& name, Math::Vector3 value) {};
+		virtual void setVec3(const std::string& name, float x, float y, float z) {};
+		virtual void setMat4(const std::string& name, Math::Matrix4 mat) {};
 
-
-	private:
+	protected:
 		// 对应的shader
 		ShaderProgram* renderProgram;
 
 		// shader参数
-		std::vector<ShaderProgram::ShaderParam>	m_ShaderParams;
+		std::vector<ShaderParam>	m_ShaderParams;
+
 	};
 
 }

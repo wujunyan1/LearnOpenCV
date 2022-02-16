@@ -24,11 +24,11 @@ namespace Math {
 
 		}
 
-		inline Vector4(Vector1 v, float _y = 0.0f, float _z = 0.0f, float _w = 0.0f);
+		Vector4(Vector1 v, float _y = 0.0f, float _z = 0.0f, float _w = 0.0f);
 
-		inline Vector4(Vector2 v, float _z = 0.0f, float _w = 0.0f);
+		Vector4(Vector2 v, float _z = 0.0f, float _w = 0.0f);
 
-		inline Vector4(Vector3 v, float _w = 1.0f);
+		Vector4(Vector3 v, float _w = 1.0f);
 
 		inline Vector4(float _x, float _y, float _z, float _w)
 			: x(_x)

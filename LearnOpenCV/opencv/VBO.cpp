@@ -10,41 +10,28 @@ void* VBO::getDataType(Render::ShaderParamType typeSize, void* data)
 {
 	switch (typeSize)
 	{
-	case Render::SPT_UNKNOWN:
+	case Render::ShaderParamType::SPT_UNKNOWN:
 		return 0;
 		break;
-	case Render::SPT_INT:
+	case Render::ShaderParamType::SPT_INT:
 		return (int*)data;
 		break;
-	case Render::SPT_FLOAT:
+	case Render::ShaderParamType::SPT_FLOAT:
 		break;
-	case Render::SPT_VEC2:
+	case Render::ShaderParamType::SPT_VEC2:
 		break;
-	case Render::SPT_VEC3:
+	case Render::ShaderParamType::SPT_VEC3:
 		break;
-	case Render::SPT_VEC4:
+	case Render::ShaderParamType::SPT_VEC4:
 		break;
-	case Render::SPT_MAT4:
+	case Render::ShaderParamType::SPT_MAT4:
 		break;
-	case Render::SPT_TEXTURE:
+	case Render::ShaderParamType::SPT_TEXTURE:
 		break;
 	default:
 		break;
 	}
-
-	switch (dataSize)
-	{
-	case 1:
-		return &Math::Vector1(*data++);
-	case 2:
-		return Math::Vector2(*data++, *data++);
-	case 3:
-		return Math::Vector3(*data++, *data++, *data++);
-	case 4:
-		return Math::Vector4(*data++, *data++, *data++, *data++);
-	default:
-		break;
-	}
+	return NULL;
 }
 
 void VBO::SetVertexAttribPointer(int passageway, Render::ShaderParamType typeSize, size_t dataSize, size_t dataLength, void* data)
@@ -60,11 +47,6 @@ void VBO::SetVertexAttribPointer(int passageway, Render::ShaderParamType typeSiz
 
 	for (size_t i = 0; i < dataLength;)
 	{
-		Math::Vector1 v = getDataType(typeSize, data);
-
-		i += typeSize;
-
-		vboData.datas->push_back(v);
 	}
 }
 

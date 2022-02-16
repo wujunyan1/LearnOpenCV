@@ -38,6 +38,6 @@ namespace Render
 	Material* CreateMaterial(std::string materialName);
 
 	// 添加到渲染队列
-	void AddRenderQueue(Material* material);
+	void AddRenderQueue(RenderProgram* renderProgram);
 
 }

@@ -27,9 +27,9 @@ namespace Math
 
 		}
 
-		inline Vector1(Vector2 v2);
-		inline Vector1(Vector3 v3);
-		inline Vector1(Vector4 v4);
+		Vector1(Vector2 v2);
+		Vector1(Vector3 v3);
+		Vector1(Vector4 v4);
 
 		inline Vector1& operator = (const Vector1& rhs)
 		{
