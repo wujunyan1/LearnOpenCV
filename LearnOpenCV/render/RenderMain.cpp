@@ -10,6 +10,9 @@
 
 namespace Render 
 {
+	long getCurrentRenderTime() {
+		return clock();
+	}
 
 	unsigned int CreateVBO()
 	{
@@ -111,6 +114,66 @@ namespace Render
 #endif
 #if SHADER_PLAFORM==SHADER_PLAFORM_GL
 		return OpenGL::AddRenderQueue(dynamic_cast<OpenGL::RenderGLProgram*>(renderProgram));
+#endif
+	}
+
+	void InitEngine()
+	{
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
+		return;
+#endif
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+		return OpenGL::InitEngine();
+#endif
+	}
+
+	int CreateWindow(int w, int h, std::string title)
+	{
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
+		return OpenCV::CreaterWindow(w, h, title);
+#endif
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+		return OpenGL::CreateWindow(w, h, title);
+#endif
+	}
+
+	void ClearBuffer()
+	{
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
+		return OpenCV::ClearBuffer();
+#endif
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+		return OpenGL::ClearBuffer();
+#endif
+	}
+
+	void SetBackgroundColor(Math::Vector3 color)
+	{
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
+		return ;
+#endif
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+		return OpenGL::SetBackgroundColor(color);
+#endif
+	}
+
+	void Render(float delay)
+	{
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
+		return OpenCV::Render(delay);
+#endif
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+		return OpenGL::Render(delay);
+#endif
+	}
+
+	void RenderEnd()
+	{
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
+		return OpenCV::RenderEnd();
+#endif
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+		return OpenGL::RenderEnd();
 #endif
 	}
 }

@@ -17,9 +17,20 @@ namespace OpenGL
 		RenderGLQueue();
 		~RenderGLQueue();
 
-		void Render() {};
+		void Render();
 	private:
 
+	};
+
+	class RenderGLQueueManager
+	{
+	public:
+		static void AddRenderQueue(RenderGLProgram* renderProgram);
+
+		static void RenderQueue();
+
+	private:
+		static std::map<unsigned int, RenderGLQueue*>* queues;
 	};
 
 }

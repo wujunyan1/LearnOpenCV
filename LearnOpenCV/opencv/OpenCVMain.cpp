@@ -3,6 +3,8 @@
 #include "VBO.h"
 #include "VAO.h"
 #include "CVShader.h"
+#include <opencv2/opencv.hpp>
+#include "RenderBuffer.h"
 
 using namespace cv;
 
@@ -29,5 +31,30 @@ namespace OpenCV
 	unsigned int CreateShader()
 	{
 		return CVShaderManager::createCVShader();
+	}
+
+
+	void InitEngine()
+	{
+
+	}
+
+	int CreateWindow(int w, int h, std::string title)
+	{
+		buffer = RenderBuffer::init(w, h);
+		buffer->setBackgroundColor(Math::Vector3(0.0f, 0.0f, 0.6f));
+		buffer->setAntiAliasing(AntiAliasing::X2);
+
+		return 0;
+	}
+
+	void ClearBuff()
+	{
+
+	}
+
+	void SetBackgroundColor(Math::Vector3 color)
+	{
+		buffer->setBackgroundColor(color);
 	}
 }

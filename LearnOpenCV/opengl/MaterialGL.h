@@ -20,6 +20,11 @@ namespace OpenGL
 		void setMat4(const std::string& name, Math::Matrix4 mat);
 
 	private:
+		int getParamPhysicsIndex(const std::string& name);
+		int tryModifyShaderParam(const std::string& name, void* data, Render::ShaderParamType stype);
+		void insertData(const std::string& name, void* data, Render::ShaderParamType stype);
+		void setData(const std::string& name, const int index, void* data, Render::ShaderParamType stype);
+
 	};
 
 }

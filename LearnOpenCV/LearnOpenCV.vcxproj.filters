@@ -28,6 +28,9 @@
     <Filter Include="opencv">
       <UniqueIdentifier>{99b01cc3-a5ca-4fec-8f82-791b3c738488}</UniqueIdentifier>
     </Filter>
+    <Filter Include="file">
+      <UniqueIdentifier>{ad340aa4-78b2-4156-8963-d2e8300c99f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LearnOpenCV.h">
@@ -138,6 +141,27 @@
     <ClInclude Include="opengl\MaterialGL.h">
       <Filter>opengl</Filter>
     </ClInclude>
+    <ClInclude Include="file\FilePathManager.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\Image.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\ImageLoad.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\stb_image.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Game.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SceneManager.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl\GLShader.h">
+      <Filter>opengl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -240,6 +264,24 @@
       <Filter>opengl</Filter>
     </ClCompile>
     <ClCompile Include="opengl\MaterialGL.cpp">
+      <Filter>opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="file\FilePathManager.cpp">
+      <Filter>file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\Image.cpp">
+      <Filter>file</Filter>
+    </ClCompile>
+    <ClCompile Include="file\ImageLoad.cpp">
+      <Filter>file</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Game.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\SceneManager.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl\GLShader.cpp">
       <Filter>opengl</Filter>
     </ClCompile>
   </ItemGroup>

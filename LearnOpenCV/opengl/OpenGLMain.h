@@ -27,4 +27,14 @@ namespace OpenGL
 
 	// 添加到渲染队列
 	void AddRenderQueue(RenderGLProgram* renderProgram);
+
+	void InitEngine();
+	int CreateWindow(int w, int h, std::string title);
+	void ClearBuffer();
+
+	void SetBackgroundColor(Math::Vector3 color);
+	void Render(float delay);
+	void RenderEnd();
+
+	static GLFWwindow* window = NULL;
 }

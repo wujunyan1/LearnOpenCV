@@ -50,7 +50,7 @@ namespace Render
 		{
 			activeRenderProgram->push_back(renderProgram);
 		}
-	private:
+	protected:
 
 		// 这个队列的shader
 		ShaderProgram* shaderProgram;

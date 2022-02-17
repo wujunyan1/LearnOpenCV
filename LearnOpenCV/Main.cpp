@@ -1,17 +1,13 @@
 #include "Main.h"
 
-#include <opencv2/opencv.hpp>
 #include <stdlib.h>
-#include "opencv/RenderBuffer.h"
-
 #include "math/Vector3.h"
+#include "render/RenderMain.h"
 #include "core/Scene.h"
 #include "core/Object.h"
 #include "core/ObjectManager.h"
 #include "core/Transform.h"
-
-using namespace OpenCV;
-using namespace cv;
+#include "core/Game.h"
 
 int main(int argc, char* argv[])
 {
@@ -19,21 +15,31 @@ int main(int argc, char* argv[])
 
 	int w = 1280;
 	int h = 720;
-	RenderBuffer* buffer = RenderBuffer::init(w, h);
+	/*RenderBuffer* buffer = RenderBuffer::init(w, h);
 	buffer->setBackgroundColor(Math::Vector3(0.0f, 0.0f, 0.6f));
-	buffer->setAntiAliasing(AntiAliasing::X2);
+	buffer->setAntiAliasing(AntiAliasing::X2);*/
 
-	Core::Object* root = Core::ObjectManager::createRootObject();
-	Core::Transform* transform = root->AddComponent<Core::Transform>();
-	Core::Scene* scene = root->AddComponent<Core::Scene>();
+	Render::InitEngine();
+	Render::CreateWindow(1280, 720, "Learn Shader");
 
+	Core::Game* game = Core::Game::GetInstance();
+	game->LoadMainScene();
+
+	long time = Render::getCurrentRenderTime();
 	while (isClose) {
-		buffer->setBackgroundColor(Math::Vector3(1.0f, 1.0f, 1.0f));
+		// buffer->setBackgroundColor(Math::Vector3(1.0f, 1.0f, 1.0f));
+		Render::ClearBuff();
+		Render::SetBackgroundColor(Math::Vector3(1.0f, 1.0f, 1.0f));
 
-		transform->PreUpdate();
+		long currTime = Render::getCurrentRenderTime();
+		float delay = currTime - time;
+
+		game->Tick(delay);
+		game->Render(delay);
+		/*transform->PreUpdate();
 		transform->Update();
 		transform->LaterUpdate();
-		transform->Render();
+		transform->Render();*/
 
 		/*
 		buffer->renderTriangle(
@@ -64,10 +70,15 @@ int main(int argc, char* argv[])
 		*/
 
 
-		cv::Mat image = buffer->getRenderBuffer();
-		//image.convertTo(image, CV_8UC3, 1.0f);
-		cv::imshow("image", image);
-		int key = cv::waitKey(10);
+		//cv::Mat image = buffer->getRenderBuffer();
+		////image.convertTo(image, CV_8UC3, 1.0f);
+		//cv::imshow("image", image);
+		//int key = cv::waitKey(10);
+
+		Render::Render(delay);
+		time = currTime;
+
+		Render::RenderEnd();
 	}
 
 	return 0;

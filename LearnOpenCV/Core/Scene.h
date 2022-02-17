@@ -20,6 +20,11 @@ namespace Core
 			return currScene;
 		};
 
+		void setMainCamera(Camera* camera)
+		{
+			this->camera = camera;
+		};
+
 	private:
 		Camera* camera;
 

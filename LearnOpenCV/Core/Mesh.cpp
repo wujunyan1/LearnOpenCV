@@ -61,6 +61,7 @@ void Mesh::Render()
 	int size = triangles.size();
 
 	Render::Material* material = renderProgram->getMaterial();
+	material->setMat4("model", m);
 
 
 	Math::Matrix4 mvp = p * v * m;
