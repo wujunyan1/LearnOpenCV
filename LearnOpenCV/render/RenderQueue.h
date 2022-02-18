@@ -42,15 +42,36 @@ namespace Render
 		RenderQueue() {
 			shaderProgram = NULL;
 			activeRenderProgram = new std::vector<RenderProgram*>();
+			index = 0;
 		}
 
 		virtual void Render() {};
 
 		void addRenderProgram(RenderProgram* renderProgram) 
 		{
-			activeRenderProgram->push_back(renderProgram);
+			std::vector<RenderProgram*> queue = *activeRenderProgram;
+
+			queue.push_back(renderProgram);
+
+			if (queue.size() <= index)
+			{
+				queue.push_back(renderProgram);
+				index++;
+			}
+			else
+			{
+				queue[index] = renderProgram;
+				index++;
+			}
+		}
+
+		void clear()
+		{
+			index = 0;
 		}
 	protected:
+
+		unsigned int index;
 
 		// 这个队列的shader
 		ShaderProgram* shaderProgram;

@@ -182,11 +182,13 @@
     <ClInclude Include="opencv\VAO.h" />
     <ClInclude Include="opencv\VBO.h" />
     <ClInclude Include="opengl\GLShader.h" />
+    <ClInclude Include="opengl\GLShaderManager.h" />
     <ClInclude Include="opengl\MaterialGL.h" />
     <ClInclude Include="opengl\OpenGLCore.h" />
     <ClInclude Include="opengl\OpenGLMain.h" />
     <ClInclude Include="opengl\RenderGLMesh.h" />
     <ClInclude Include="opengl\RenderGLQueue.h" />
+    <ClInclude Include="opengl\ShaderGLProgram.h" />
     <ClInclude Include="render\Material.h" />
     <ClInclude Include="render\RenderMain.h" />
     <ClInclude Include="render\RenderMesh.h" />
@@ -224,11 +226,13 @@
     <ClCompile Include="opencv\VAO.cpp" />
     <ClCompile Include="opencv\VBO.cpp" />
     <ClCompile Include="opengl\GLShader.cpp" />
+    <ClCompile Include="opengl\GLShaderManager.cpp" />
     <ClCompile Include="opengl\MaterialGL.cpp" />
     <ClCompile Include="opengl\OpenGLCore.cpp" />
     <ClCompile Include="opengl\OpenGLMain.cpp" />
     <ClCompile Include="opengl\RenderGLMesh.cpp" />
     <ClCompile Include="opengl\RenderGLQueue.cpp" />
+    <ClCompile Include="opengl\ShaderGLProgram.cpp" />
     <ClCompile Include="render\Material.cpp" />
     <ClCompile Include="render\RenderMain.cpp" />
     <ClCompile Include="render\RenderMesh.cpp" />

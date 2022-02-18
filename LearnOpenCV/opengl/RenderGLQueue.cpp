@@ -23,7 +23,13 @@ namespace OpenGL
 
 	void RenderGLQueue::Render()
 	{
+		
 
+		for (size_t i = 0; i < index; i++)
+		{
+			RenderGLProgram* program = (RenderGLProgram*)activeRenderProgram->at(i);
+
+		}
 	}
 
 

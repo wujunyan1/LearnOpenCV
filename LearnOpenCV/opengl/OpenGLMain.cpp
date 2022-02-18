@@ -5,6 +5,8 @@
 #include <direct.h>
 #include "../file/FilePathManager.h"
 
+#include "GLShaderManager.h"
+
 using namespace Render;
 
 namespace OpenGL
@@ -70,6 +72,8 @@ namespace OpenGL
 
 	void InitEngine()
 	{
+		GLShaderManager::NewInstance();
+
 		char buffer[64];
 		char* c = _getcwd(buffer, 64);
 

@@ -162,6 +162,12 @@
     <ClInclude Include="opengl\GLShader.h">
       <Filter>opengl</Filter>
     </ClInclude>
+    <ClInclude Include="opengl\ShaderGLProgram.h">
+      <Filter>opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl\GLShaderManager.h">
+      <Filter>opengl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -282,6 +288,12 @@
       <Filter>core</Filter>
     </ClCompile>
     <ClCompile Include="opengl\GLShader.cpp">
+      <Filter>opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl\ShaderGLProgram.cpp">
+      <Filter>opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl\GLShaderManager.cpp">
       <Filter>opengl</Filter>
     </ClCompile>
   </ItemGroup>

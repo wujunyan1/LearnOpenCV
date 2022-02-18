@@ -11,11 +11,9 @@
 class GLShader
 {
 public:
-    // 程序ID
-    unsigned int ID;
 
     // 构造器读取并构建着色器
-    GLShader(const char* vertexPath, const char* fragmentPath);
+    GLShader(unsigned int vertex, unsigned int  fragment);
     ~GLShader();
 
     // 使用/激活程序
@@ -28,4 +26,12 @@ public:
     void setVec3(const std::string& name, Math::Vector3 value) const;
     void setVec3(const std::string& name, float x, float y, float z) const;
     void setMat4(const std::string& name, Math::Matrix4 mat) const;
+
+    unsigned int getID() { return ID; };
+public:
+    // 程序ID
+    unsigned int ID;
+
+    unsigned int vs;
+    unsigned int fs;
 };

@@ -63,6 +63,13 @@ namespace Render
 			return shader != rhs.shader;
 		}
 
+		unsigned int GetShader()
+		{
+			return shader;
+		}
+
+		virtual void SetVSAndPS(std::string vs, std::string ps) {};
+
 	protected:
 
 		// °ó¶¨µÄshader
