@@ -1,6 +1,9 @@
 #pragma once
 
+#include <map>
+
 #include "../render/ShaderProgram.h"
+#include "GLShader.h"
 
 namespace OpenGL
 {
@@ -13,8 +16,21 @@ namespace OpenGL
 
 		void SetVSAndPS(std::string vs, std::string ps);
 
-	protected:
+		GLShader* GetShaderObj();
 
+		void Use();
+
+		static ShaderGLProgram* GetShaderGLProgram(const std::string& shaderName);
+
+	private:
+
+		std::string shaderName;
+
+		// 当前的 shader参数
+		std::vector<Render::ShaderParam> s_ShaderParams;
+
+	private:
+		static std::map<std::string, ShaderGLProgram*>* programs;
 	};
 
 }

@@ -23,7 +23,6 @@ namespace Render
 {
 	unsigned int CreateVBO();
 	unsigned int CreateVAO();
-	unsigned int CreateShader();
 
 	// vbo  通道  数据大小  单个数据大小  数据个数 数据
 	void SetVertexAttribPointer(int vbo, int passageway, ShaderParamType typeSize, size_t dataSize, size_t dataLength, void* data);
@@ -37,6 +36,8 @@ namespace Render
 	RenderProgram* CreateRenderProgram(std::string materialName);
 
 	Material* CreateMaterial(std::string materialName);
+
+	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath);
 
 	// 添加到渲染队列
 	void AddRenderQueue(RenderProgram* renderProgram);

@@ -1,0 +1,96 @@
+基础光照
+
+冯氏光照模型
+
+光照强度：	0 ~ 1 之间
+
+
+环境光照：物体几乎永远不会是完全黑暗的。所以环境光照一般是个常量
+	相当于所有其他物品漫反射的光照到该表面的光照总量
+	
+	// Ambient
+    float ambientStrength = 0.1f;	// 光照强度
+    vec3 ambient = ambientStrength * lightColor;	// 环境光照    lightColor 光照颜色
+	
+漫反射光照：模拟光源对物体的方向性影响,物体的某一部分越是正对着光源，它就会越亮。
+	相当于光源照到表面的漫反射光
+现实中大部分物品表面都不是完全光滑的，而是凹凸不平的，光照在上面就会发生不同方向的反射
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+// Diffuse 
+    vec3 norm = normalize(Normal);	// 面的法线
+    vec3 lightDir = normalize(lightPos – WorldPos);	// 光照方向
+    float diff = max(dot(norm, lightDir), 0.0);	// 光照和面朝向的cos值，越接近90°越接近1 用来近似得到受到的光照强度
+    vec3 diffuse = diff * lightColor;
+
+
+
+
+镜面光照：模拟有光泽物体上面出现的亮点。镜面光照的颜色相比于物体的颜色会更倾向于光的颜色。
+	相当于光源的镜面反射
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Specular
+    float specularStrength = 0.5f;		// 反射强度
+    vec3 viewDir = normalize(viewPos – WorldPos);	// 视角方向
+    vec3 reflectDir = reflect(-lightDir, norm);	// 通过入射射线和法线获得反射射线 R
+
+// 32表示高光的发光值(Shininess) 一个物体的发光值越高，反射光的能力越强，散射得越少，高光点越小。在下面的图片里，你会看到不同发光值对视觉(效果)的影响：
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);	// 获得反射的强度
+    vec3 specular = specularStrength * spec * lightColor;

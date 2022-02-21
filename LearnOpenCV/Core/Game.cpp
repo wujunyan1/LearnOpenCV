@@ -9,6 +9,7 @@
 #include <stdio.h>
 
 #include "TestComponent.h"
+#include "../render/RenderMain.h"
 
 using namespace Core;
 
@@ -37,6 +38,8 @@ void Game::Render(long time)
 
 void Game::LoadMainScene()
 {
+	Render::CreateShader("defaultShader", "/asserts/shaders/shader.vert", "/asserts/shaders/shader.frag");
+
 	Scene* scene = SceneManager::GetInstance()->GetCurrScene();
 	scene->PreUpdate();
 	scene->Update();

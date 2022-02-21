@@ -9,6 +9,9 @@
 #include "core/Transform.h"
 #include "core/Game.h"
 
+#include <direct.h>
+#include "file/FilePathManager.h"
+
 int main(int argc, char* argv[])
 {
 	bool isClose = true;
@@ -19,6 +22,12 @@ int main(int argc, char* argv[])
 	buffer->setBackgroundColor(Math::Vector3(0.0f, 0.0f, 0.6f));
 	buffer->setAntiAliasing(AntiAliasing::X2);*/
 
+	char buffer[64];
+	char* c = _getcwd(buffer, 64);
+
+	printf(c);
+	FilePathManager::setRootPath(buffer);
+
 	Render::InitEngine();
 	Render::CreateWindow(1280, 720, "Learn Shader");
 
@@ -28,7 +37,7 @@ int main(int argc, char* argv[])
 	long time = Render::getCurrentRenderTime();
 	while (isClose) {
 		// buffer->setBackgroundColor(Math::Vector3(1.0f, 1.0f, 1.0f));
-		Render::ClearBuff();
+		Render::ClearBuffer();
 		Render::SetBackgroundColor(Math::Vector3(1.0f, 1.0f, 1.0f));
 
 		long currTime = Render::getCurrentRenderTime();

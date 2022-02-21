@@ -24,10 +24,6 @@ namespace OpenGL
 		glGenVertexArrays(1, &VAO);
 		return VAO;
 	}
-	unsigned int CreateShader()
-	{
-		return 0;
-	}
 
 	// vbo  通道  数据大小  单个数据大小  数据个数 数据
 	void SetVertexAttribPointer(int vbo, int passageway, Render::ShaderParamType typeSize, size_t dataSize, size_t dataLength, void* data)
@@ -56,12 +52,21 @@ namespace OpenGL
 
 	RenderGLProgram * CreateRenderProgram(std::string materialName)
 	{
-		return new RenderGLProgram();
+		RenderGLProgram* program = new RenderGLProgram();
+
+
+
+		return program;
 	}
 
 	MaterialGL* CreateMaterial(std::string materialName)
 	{
-		return NULL;
+		return new MaterialGL();
+	}
+
+	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath)
+	{
+		return GLShaderManager::Instance()->GetShader(shaderName, vsPath, fsPath);
 	}
 
 	// 添加到渲染队列
@@ -73,12 +78,6 @@ namespace OpenGL
 	void InitEngine()
 	{
 		GLShaderManager::NewInstance();
-
-		char buffer[64];
-		char* c = _getcwd(buffer, 64);
-
-		printf(c);
-		FilePathManager::setRootPath(buffer);
 
 		glfwInit();
 		glfwInitHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -128,7 +127,7 @@ namespace OpenGL
 
 	void Render(float delay)
 	{
-
+		RenderGLQueueManager::RenderQueue();
 	}
 
 	void RenderEnd()

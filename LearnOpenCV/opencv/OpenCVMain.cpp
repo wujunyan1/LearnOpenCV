@@ -48,7 +48,7 @@ namespace OpenCV
 		return 0;
 	}
 
-	void ClearBuff()
+	void ClearBuffer()
 	{
 
 	}

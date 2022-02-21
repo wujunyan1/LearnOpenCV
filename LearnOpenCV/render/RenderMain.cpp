@@ -34,16 +34,6 @@ namespace Render
 #endif
 	}
 
-	unsigned int CreateShader()
-	{
-#if SHADER_PLAFORM==SHADER_PLAFORM_CV
-		return OpenCV::CreateShader();
-#endif
-#if SHADER_PLAFORM==SHADER_PLAFORM_GL
-		return OpenGL::CreateShader();
-#endif
-	}
-
 	// vbo  通道  数据大小  单个数据大小  数据个数 数据
 	void SetVertexAttribPointer(int vbo, int passageway, ShaderParamType typeSize, size_t dataSize, size_t dataLength, void* data)
 	{
@@ -103,6 +93,16 @@ namespace Render
 #endif
 #if SHADER_PLAFORM==SHADER_PLAFORM_GL
 		return OpenGL::CreateMaterial(materialName);
+#endif
+	}
+
+	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath)
+	{
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
+		return OpenCV::CreateShader(shaderName, vsPath, fsPath);
+#endif
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+		return OpenGL::CreateShader(shaderName, vsPath, fsPath);
 #endif
 	}
 

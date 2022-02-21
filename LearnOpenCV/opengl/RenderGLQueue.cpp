@@ -1,5 +1,5 @@
 #include "RenderGLQueue.h"
-#include "../render/RenderMesh.h"
+#include "RenderGLMesh.h"
 #include "MaterialGL.h"
 
 namespace OpenGL
@@ -12,9 +12,30 @@ namespace OpenGL
 		material = new MaterialGL();
 	}
 
-
-	RenderGLQueue::RenderGLQueue()
+	Render::RenderMesh* RenderGLProgram::createNewRenderMesh(std::string name)
 	{
+		RenderGLMesh* mesh = RenderGLMeshManager::createNewRenderMesh(name);
+		this->mesh = mesh;
+		return mesh;
+	}
+
+	Render::RenderMesh* RenderGLProgram::loadRenderMesh(std::string name, std::string path)
+	{
+		RenderGLMesh* mesh = RenderGLMeshManager::loadMeshFile(name, path);
+		this->mesh = mesh;
+		return mesh;
+	}
+
+	void RenderGLProgram::setShader(const std::string& shaderName)
+	{
+		shaderProgram = ShaderGLProgram::GetShaderGLProgram(shaderName);
+	}
+
+
+	RenderGLQueue::RenderGLQueue(ShaderGLProgram* program)
+	{
+		shaderProgram = program;
+		activeRenderProgram = new std::vector<RenderGLProgram*>();
 	}
 
 	RenderGLQueue::~RenderGLQueue()
@@ -23,11 +44,14 @@ namespace OpenGL
 
 	void RenderGLQueue::Render()
 	{
-		
+		GLShader* shader = shaderProgram->GetShaderObj();
+
+		shader->use();
 
 		for (size_t i = 0; i < index; i++)
 		{
 			RenderGLProgram* program = (RenderGLProgram*)activeRenderProgram->at(i);
+
 
 		}
 	}
@@ -35,14 +59,15 @@ namespace OpenGL
 
 	void RenderGLQueueManager::AddRenderQueue(RenderGLProgram* renderProgram)
 	{
-		unsigned int vbo = renderProgram->getVBO();
+		Render::ShaderProgram* program = renderProgram->getShaderProgram();
+		unsigned int shaderID = program->GetShader();
 
 		RenderGLQueue* queue = NULL;
-		auto it = queues->find(vbo);
+		auto it = queues->find(shaderID);
 		if (it == queues->end())
 		{
-			queue = new RenderGLQueue();
-			queues->insert(std::make_pair(vbo, queue));
+			queue = new RenderGLQueue(dynamic_cast<ShaderGLProgram*>(program));
+			queues->insert(std::make_pair(shaderID, queue));
 		}
 		else
 		{
@@ -60,4 +85,5 @@ namespace OpenGL
 			queue->Render();
 		}
 	}
+
 }

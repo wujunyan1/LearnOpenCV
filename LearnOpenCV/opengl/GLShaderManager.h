@@ -27,6 +27,7 @@ namespace OpenGL
 
 		unsigned int GetShader(std::string name, std::string vs, std::string fs);
 
+		GLShader* GetShaderObj(std::string name);
 	private:
 		unsigned int LoadVertexShader(std::string path);
 		unsigned int LoadFragmentShader(std::string path);

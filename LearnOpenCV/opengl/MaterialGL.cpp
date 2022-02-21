@@ -1,4 +1,5 @@
 #include "MaterialGL.h"
+#include "GLShaderManager.h"
 
 namespace OpenGL
 {
@@ -47,6 +48,8 @@ namespace OpenGL
         {
             setData(name, index, data, stype);
         }
+
+        return index;
     }
 
     void MaterialGL::setBool(const std::string& name, bool value)
@@ -87,7 +90,6 @@ namespace OpenGL
     {
         tryModifyShaderParam(name, &mat, Render::ShaderParamType::SPT_MAT4);
     }
-
 
 
 }

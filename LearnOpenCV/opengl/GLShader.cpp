@@ -3,7 +3,9 @@
 
 GLShader::GLShader(unsigned int vertex, unsigned int  fragment)
 {
-    
+    fs = fragment;
+    vs = vertex;
+
     // 2. ±àÒë×ÅÉ«Æ÷
     int success;
     char infoLog[512];

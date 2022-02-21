@@ -21,7 +21,7 @@ namespace OpenCV
 
 	void InitEngine();
 	int CreateWindow(int w, int h, std::string title);
-	void ClearBuff();
+	void ClearBuffer();
 
 	void SetBackgroundColor(Math::Vector3 color);
 

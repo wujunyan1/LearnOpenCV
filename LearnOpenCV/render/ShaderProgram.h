@@ -74,9 +74,6 @@ namespace Render
 
 		// 绑定的shader
 		unsigned int shader;
-
-		// 当前的 shader参数
-		std::vector<ShaderParam> s_ShaderParams;
 	};
 
 }

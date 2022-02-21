@@ -3,6 +3,7 @@
 #include "OpenGLCore.h"
 #include "../render/ShaderProgram.h"
 #include "../render/Material.h"
+#include "ShaderGLProgram.h"
 
 namespace OpenGL
 {
@@ -24,6 +25,11 @@ namespace OpenGL
 		int tryModifyShaderParam(const std::string& name, void* data, Render::ShaderParamType stype);
 		void insertData(const std::string& name, void* data, Render::ShaderParamType stype);
 		void setData(const std::string& name, const int index, void* data, Render::ShaderParamType stype);
+
+	private:
+
+		// shader²ÎÊý
+		std::vector<Render::ShaderParam>	m_ShaderParams;
 
 	};
 

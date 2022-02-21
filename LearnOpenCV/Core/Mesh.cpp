@@ -17,6 +17,8 @@ void Mesh::bindRender()
 {
 	if (!renderProgram) {
 		renderProgram = Render::CreateRenderProgram("test");
+		// Render::Material* material = renderProgram->getMaterial();
+		renderProgram->setShader("defaultShader");
 	}
 
 	int len = triangles.size();

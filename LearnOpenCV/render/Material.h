@@ -19,12 +19,8 @@ namespace Render
 		virtual void setVec3(const std::string& name, float x, float y, float z) {};
 		virtual void setMat4(const std::string& name, Math::Matrix4 mat) {};
 
-	protected:
-		// 对应的shader
-		ShaderProgram* renderProgram;
 
-		// shader参数
-		std::vector<ShaderParam>	m_ShaderParams;
+	protected:
 
 	};
 

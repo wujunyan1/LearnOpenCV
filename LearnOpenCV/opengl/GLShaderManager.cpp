@@ -4,6 +4,7 @@
 
 namespace OpenGL
 {
+    GLShaderManager* GLShaderManager::ms_pSingleton_impl = NULL;
 
     unsigned int GLShaderManager::LoadVertexShader(std::string path)
     {
@@ -16,7 +17,6 @@ namespace OpenGL
         {
             std::string s = std::string(FilePathManager::getRootPath());
             // 打开文件
-
             vShaderFile.open((s + std::string(path)).c_str());
             std::stringstream vShaderStream;
             // 读取文件的缓冲内容到数据流中
@@ -158,6 +158,7 @@ namespace OpenGL
             unsigned f = GetFragment(fs);
 
             GLShader* shader = new GLShader(v, f);
+            shader_ids->insert(std::pair<std::string, GLShader*>(name, shader));
             return shader->getID();
         }
         else
@@ -166,4 +167,18 @@ namespace OpenGL
             return shader->getID();
         }
 	}
+
+
+    GLShader* GLShaderManager::GetShaderObj(std::string name)
+    {
+        auto it = shader_ids->find(name);
+        if (it == shader_ids->end())
+        {
+            return NULL;
+        }
+        else
+        {
+            return it->second;
+        }
+    }
 }
