@@ -4,6 +4,7 @@ namespace OpenGL
 {
 	RenderGLMesh::RenderGLMesh(std::string name) : Render::RenderMesh(name)
 	{
+		glGenVertexArrays(1, &tvao);
 		glGenBuffers(1, &vbo);
 	}
 	RenderGLMesh::~RenderGLMesh()
@@ -11,6 +12,7 @@ namespace OpenGL
 	}
 	void RenderGLMesh::BindArrayBufferData(size_t dataSize, void* data)
 	{
+		
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 		glBufferData(GL_ARRAY_BUFFER, dataSize, data, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);

@@ -15,7 +15,7 @@ namespace OpenGL
 		void BindArrayBufferData(size_t dataSize, void* data);
 		void VertexAttribPointer(unsigned int passageway, size_t dataSize, Render::ShaderParamType dataType, bool b, size_t delaySize, size_t startIndex);
 	private:
-
+		unsigned int tvao;
 	};
 
 

@@ -15,6 +15,8 @@ namespace OpenGL
 		Render::RenderMesh* loadRenderMesh(std::string name, std::string path);
 
 		void setShader(const std::string& shaderName);
+
+		void Render();
 	};
 
 	class RenderGLQueue

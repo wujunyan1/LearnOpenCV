@@ -112,8 +112,8 @@ namespace OpenGL
 
 	void ClearBuffer()
 	{
-		glfwPollEvents();
-		glfwSwapBuffers(window);
+		/*glfwPollEvents();
+		glfwSwapBuffers(window);*/
 	}
 
 	void SetBackgroundColor(Math::Vector3 color)

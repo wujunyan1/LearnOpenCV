@@ -31,6 +31,11 @@ namespace OpenGL
 		shaderProgram = ShaderGLProgram::GetShaderGLProgram(shaderName);
 	}
 
+	void RenderGLProgram::Render()
+	{
+		
+	}
+
 
 	RenderGLQueue::RenderGLQueue(ShaderGLProgram* program)
 	{
@@ -51,7 +56,7 @@ namespace OpenGL
 		for (size_t i = 0; i < index; i++)
 		{
 			RenderGLProgram* program = (RenderGLProgram*)activeRenderProgram->at(i);
-
+			program->Render();
 
 		}
 	}
