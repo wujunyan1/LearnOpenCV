@@ -106,7 +106,6 @@ namespace OpenGL
 		//glEnable(GL_CULL_FACE);    // ÌÞ³ýÃæ
 		//glCullFace(GL_BACK);       // ÌÞ³ý±³Ãæ
 		glEnable(GL_DEPTH_TEST);
-
 		return 0;
 	}
 

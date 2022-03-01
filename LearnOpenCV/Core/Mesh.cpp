@@ -18,7 +18,7 @@ void Mesh::bindRender()
 	if (!renderProgram) {
 		renderProgram = Render::CreateRenderProgram("test");
 		// Render::Material* material = renderProgram->getMaterial();
-		renderProgram->setShader("defaultShader");
+		renderProgram->setShader("testShader");
 	}
 
 	int len = triangles.size();
@@ -44,7 +44,7 @@ void Mesh::bindRender()
 	}
 
 	Render::RenderMesh* mesh = renderProgram->createNewRenderMesh("testMesh");
-	mesh->BindArrayBufferData(size, data);
+	mesh->BindArrayBufferData(len, size, data);
 	mesh->VertexAttribPointer(0, 3, Render::ShaderParamType::SPT_VEC3, false, 3 * sizeof(float), 0);
 	//Render::SetVertexAttribPointer(vbo, 0, Render::ShaderParamType::SPT_VEC3, 3, size, data);
 }
@@ -63,20 +63,22 @@ void Mesh::Render()
 	int size = triangles.size();
 
 	Render::Material* material = renderProgram->getMaterial();
-	material->setMat4("model", m);
+	/*material->setMat4("model", m);
+	material->setMat4("view", v);
+	material->setMat4("projection", p);*/
 
 
-	Math::Matrix4 mvp = p * v * m;
-	for (size_t i = 0; i < size; i++)
-	{
-		Math::Triangle<Math::Vector3> t = triangles.at(i);
+	//Math::Matrix4 mvp = p * v * m;
+	//for (size_t i = 0; i < size; i++)
+	//{
+	//	Math::Triangle<Math::Vector3> t = triangles.at(i);
 
-		Math::Vector4 v0 = mvp * Math::Vector4(t.points[0], 1.0f);
-		Math::Vector4 v1 = mvp * Math::Vector4(t.points[1], 1.0f);
-		Math::Vector4 v2 = mvp * Math::Vector4(t.points[2], 1.0f);
+	//	Math::Vector4 v0 = mvp * Math::Vector4(t.points[0], 1.0f);
+	//	Math::Vector4 v1 = mvp * Math::Vector4(t.points[1], 1.0f);
+	//	Math::Vector4 v2 = mvp * Math::Vector4(t.points[2], 1.0f);
 
-		Math::Vector4 v4 = Math::Vector4(t.points[0], 1.0f);
-	}
+	//	Math::Vector4 v4 = Math::Vector4(t.points[0], 1.0f);
+	//}
 
 	Render::AddRenderQueue(renderProgram);
 }

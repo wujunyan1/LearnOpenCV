@@ -7,12 +7,14 @@
 
 namespace OpenGL
 {
+	class MaterialGL;
 	// Ä³¸öShaderäÖÈ¾
 	class ShaderGLProgram : public Render::ShaderProgram
 	{
 	public:
 
 		void RenderMaterial(Render::Material* material);
+		void RenderMaterial(OpenGL::MaterialGL* material);
 
 		void SetVSAndPS(std::string vs, std::string ps);
 

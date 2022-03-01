@@ -27,6 +27,13 @@ public:
     void setVec3(const std::string& name, float x, float y, float z) const;
     void setMat4(const std::string& name, Math::Matrix4 mat) const;
 
+    void setBool(const std::string& name, const void* value) const;
+    void setInt(const std::string& name, const void* value) const;
+    void setFloat(const std::string& name, const void* value) const;
+    void setFloat4(const std::string& name, const void* value) const;
+    void setVec3(const std::string& name, const void* value) const;
+    void setMat4(const std::string& name, const void* mat) const;
+
     unsigned int getID() { return ID; };
 public:
     // ≥Ã–ÚID

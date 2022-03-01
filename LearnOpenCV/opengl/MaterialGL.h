@@ -20,6 +20,7 @@ namespace OpenGL
 		void setVec3(const std::string& name, float x, float y, float z);
 		void setMat4(const std::string& name, Math::Matrix4 mat);
 
+		std::vector<Render::ShaderParam> getShaderParams() { return m_ShaderParams; };
 	private:
 		int getParamPhysicsIndex(const std::string& name);
 		int tryModifyShaderParam(const std::string& name, void* data, Render::ShaderParamType stype);

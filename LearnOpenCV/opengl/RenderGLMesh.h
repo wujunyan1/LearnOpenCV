@@ -12,10 +12,13 @@ namespace OpenGL
 		~RenderGLMesh();
 
 
-		void BindArrayBufferData(size_t dataSize, void* data);
+		void BindArrayBufferData(size_t verticesNum, size_t dataSize, void* data);
 		void VertexAttribPointer(unsigned int passageway, size_t dataSize, Render::ShaderParamType dataType, bool b, size_t delaySize, size_t startIndex);
+	
+		void Render();
 	private:
 		unsigned int tvao;
+		unsigned int verticesNum;
 	};
 
 

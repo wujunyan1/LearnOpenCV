@@ -10,19 +10,71 @@ namespace OpenGL
 	RenderGLMesh::~RenderGLMesh()
 	{
 	}
-	void RenderGLMesh::BindArrayBufferData(size_t dataSize, void* data)
+	void RenderGLMesh::BindArrayBufferData(size_t verticesNum, size_t dataSize, void* data)
 	{
-		
+		glBindVertexArray(tvao);
+
+		this->verticesNum = verticesNum;
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, dataSize, data, GL_STATIC_DRAW);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		/*glBufferData(GL_ARRAY_BUFFER, dataSize * sizeof(float), data, GL_STATIC_DRAW);*/
+
+		/*float* vs = new float[9];
+		vs[0] = 0.2f;
+		vs[1] = 0.0f;
+		vs[2] = 0.0f;
+		vs[3] = 0.3f;
+		vs[4] = 0.2f;
+		vs[5] = 0.0f;
+		vs[6] = 0.0f;
+		vs[7] = 0.0f;
+		vs[8] = 0.0f;
+
+		glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), vs, GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);*/
 	}
 	void RenderGLMesh::VertexAttribPointer(unsigned int passageway, size_t dataSize, Render::ShaderParamType dataType, bool b, size_t delaySize, size_t startIndex)
 	{
+		//glBindVertexArray(tvao);
+		//glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		///*glVertexAttribPointer(passageway, dataSize, GL_FLOAT, GL_FALSE, delaySize, (void*)startIndex);
+		//glEnableVertexAttribArray(passageway);*/
+
+		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+		//glEnableVertexAttribArray(0);
+		//glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		
+
+		glGenVertexArrays(1, &tvao);
+		glGenBuffers(1, &vbo);
+
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glVertexAttribPointer(passageway, dataSize, GL_FLOAT, GL_FALSE, delaySize, (void*)startIndex);
-		glEnableVertexAttribArray(passageway);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		float* vs = new float[9];
+		vs[0] = 0.2f;
+		vs[1] = 0.0f;
+		vs[2] = 0.0f;
+		vs[3] = 0.3f;
+		vs[4] = 0.2f;
+		vs[5] = 0.0f;
+		vs[6] = 0.0f;
+		vs[7] = 0.0f;
+		vs[8] = 0.0f;
+
+		glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), vs, GL_STATIC_DRAW);
+
+		glBindVertexArray(tvao);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(0);
+	}
+
+	void RenderGLMesh::Render()
+	{
+		
+
+		glBindVertexArray(tvao);
+		glDrawArrays(GL_TRIANGLES, 0, 1);
+		glBindVertexArray(0);
 	}
 
 

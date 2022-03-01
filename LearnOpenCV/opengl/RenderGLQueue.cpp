@@ -33,7 +33,12 @@ namespace OpenGL
 
 	void RenderGLProgram::Render()
 	{
-		
+		shaderProgram->RenderMaterial(material);
+
+		unsigned int id = shaderProgram->GetShader();
+		glUseProgram(id);
+
+		mesh->Render();
 	}
 
 
@@ -49,9 +54,7 @@ namespace OpenGL
 
 	void RenderGLQueue::Render()
 	{
-		GLShader* shader = shaderProgram->GetShaderObj();
-
-		shader->use();
+		shaderProgram->Use();
 
 		for (size_t i = 0; i < index; i++)
 		{

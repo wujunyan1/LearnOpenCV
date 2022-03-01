@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
 	while (isClose) {
 		// buffer->setBackgroundColor(Math::Vector3(1.0f, 1.0f, 1.0f));
 		Render::ClearBuffer();
-		Render::SetBackgroundColor(Math::Vector3(1.0f, 1.0f, 1.0f));
+		Render::SetBackgroundColor(Math::Vector3(0.01f, 0.01f, 0.01f));
 
 		long currTime = Render::getCurrentRenderTime();
 		float delay = currTime - time;

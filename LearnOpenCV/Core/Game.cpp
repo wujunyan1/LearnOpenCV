@@ -39,6 +39,7 @@ void Game::Render(long time)
 void Game::LoadMainScene()
 {
 	Render::CreateShader("defaultShader", "/asserts/shaders/shader.vert", "/asserts/shaders/shader.frag");
+	Render::CreateShader("testShader", "/asserts/shaders/testShader.vert", "/asserts/shaders/testShader.frag");
 
 	Scene* scene = SceneManager::GetInstance()->GetCurrScene();
 	scene->PreUpdate();
@@ -59,8 +60,8 @@ void Game::LoadMainScene()
 	mesh->addTriangle(
 		Math::Triangle<Math::Vector3>(
 			Math::Vector3(0.0, 0, 0),
-			Math::Vector3(0.3, 0, 0),
-			Math::Vector3(0.0, 0.6, 0)
+			Math::Vector3(0.3f, 0, 0),
+			Math::Vector3(0.0, 0.6f, 0)
 			),
 		Math::Triangle<Math::Vector4>(
 			Math::Vector4(0, 0, 1, 1),

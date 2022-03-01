@@ -14,7 +14,7 @@ namespace Render
 		name = _name;
 	}
 
-	void RenderMesh::BindArrayBufferData(size_t dataSize, void* data)
+	void RenderMesh::BindArrayBufferData(size_t verticesNum, size_t dataSize, void* data)
 	{
 	}
 
