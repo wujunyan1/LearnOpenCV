@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 	game->LoadMainScene();
 
 	long time = Render::getCurrentRenderTime();
-	while (isClose) {
+	while (!Render::ShouldCloseWindow()) {
 		// buffer->setBackgroundColor(Math::Vector3(1.0f, 1.0f, 1.0f));
 		Render::ClearBuffer();
 		Render::SetBackgroundColor(Math::Vector3(0.01f, 0.01f, 0.01f));

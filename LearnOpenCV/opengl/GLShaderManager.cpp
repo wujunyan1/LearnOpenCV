@@ -107,32 +107,12 @@ namespace OpenGL
 
 	unsigned int GLShaderManager::GetVertex(std::string path)
 	{
-		auto it = vertex_ids->find(path);
-		if (it == vertex_ids->end())
-		{
-            unsigned int vertex = LoadVertexShader(path);
-            vertex_ids->insert(std::pair<std::string, unsigned int>(path, vertex));
-            return vertex;
-		}
-		else
-		{
-			return it->second;
-		}
+		return LoadVertexShader(path);
 	}
 
 	unsigned int GLShaderManager::GetFragment(std::string path)
 	{
-        auto it = fragment_ids->find(path);
-        if (it == fragment_ids->end())
-        {
-            unsigned int fragment = LoadFragmentShader(path);
-            fragment_ids->insert(std::pair<std::string, unsigned int>(path, fragment));
-            return fragment;
-        }
-        else
-        {
-            return it->second;
-        }
+        return LoadFragmentShader(path);
 	}
 
 	unsigned int GLShaderManager::GetShader(std::string name)
@@ -159,6 +139,10 @@ namespace OpenGL
 
             GLShader* shader = new GLShader(v, f);
             shader_ids->insert(std::pair<std::string, GLShader*>(name, shader));
+
+            glDeleteShader(v);
+            glDeleteShader(f);
+
             return shader->getID();
         }
         else

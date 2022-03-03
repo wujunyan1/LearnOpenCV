@@ -59,8 +59,8 @@ void Game::LoadMainScene()
 
 	mesh->addTriangle(
 		Math::Triangle<Math::Vector3>(
-			Math::Vector3(0.0, 0, 0),
-			Math::Vector3(0.3f, 0, 0),
+			Math::Vector3(-0.3f, 0, 0),
+			Math::Vector3(0.3f, 0.1f, 0),
 			Math::Vector3(0.0, 0.6f, 0)
 			),
 		Math::Triangle<Math::Vector4>(

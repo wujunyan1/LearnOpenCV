@@ -1,5 +1,6 @@
 #include "GLShader.h"
 #include "../file/FilePathManager.h"
+#include "OpenGLMain.h"
 
 GLShader::GLShader(unsigned int vertex, unsigned int  fragment)
 {
@@ -92,17 +93,17 @@ void GLShader::setFloat(const std::string& name, const void* value) const
 
 void GLShader::setFloat4(const std::string& name, const void* value) const
 {
-    glUniform4fv(glGetUniformLocation(ID, name.c_str()), 4, (GLfloat*)(&value));
+    GL_GET_ERROR(glUniform4fv(glGetUniformLocation(ID, name.c_str()), 1, (float*)(value)));
 }
 
 void GLShader::setVec3(const std::string& name, const void* value) const
 {
-    glUniform3fv(glGetUniformLocation(ID, name.c_str()), 3, (GLfloat*)(&value));
+    GL_GET_ERROR(glUniform3fv(glGetUniformLocation(ID, name.c_str()), 1, (float*)value));
 }
 
 void GLShader::setMat4(const std::string& name, const void* mat) const
 {
     int modelLoc = glGetUniformLocation(ID, name.c_str());
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (GLfloat*)&mat);
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (float*)&mat);
 }
 

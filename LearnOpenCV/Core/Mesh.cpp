@@ -22,14 +22,14 @@ void Mesh::bindRender()
 	}
 
 	int len = triangles.size();
-	int size = len * 3 * 3;
+	int size = len * 9;
 	float* data = new float[size];
 
 	for (int i = 0; i < len; i++)
 	{
 		Math::Triangle<Math::Vector3> t = triangles.at(i);
 		
-		int index = i * 3 * 3;
+		int index = i * 9;
 		data[index] = t.points[0].x;
 		data[index + 1] = t.points[0].y;
 		data[index + 2] = t.points[0].z;
@@ -43,7 +43,7 @@ void Mesh::bindRender()
 		data[index + 8] = t.points[2].z;
 	}
 
-	Render::RenderMesh* mesh = renderProgram->createNewRenderMesh("testMesh");
+	Render::RenderMesh* mesh = renderProgram->createNewRenderMesh();
 	mesh->BindArrayBufferData(len, size, data);
 	mesh->VertexAttribPointer(0, 3, Render::ShaderParamType::SPT_VEC3, false, 3 * sizeof(float), 0);
 	//Render::SetVertexAttribPointer(vbo, 0, Render::ShaderParamType::SPT_VEC3, 3, size, data);
@@ -63,6 +63,7 @@ void Mesh::Render()
 	int size = triangles.size();
 
 	Render::Material* material = renderProgram->getMaterial();
+	material->setVec3("color", Math::Vector3(0.0f, 0.3f, 0.6f));
 	/*material->setMat4("model", m);
 	material->setMat4("view", v);
 	material->setMat4("projection", p);*/

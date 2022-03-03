@@ -11,7 +11,7 @@ namespace OpenGL
 	public:
 		RenderGLProgram();
 
-		Render::RenderMesh* createNewRenderMesh(std::string name);
+		Render::RenderMesh* createNewRenderMesh(std::string name = Math::getUid());
 		Render::RenderMesh* loadRenderMesh(std::string name, std::string path);
 
 		void setShader(const std::string& shaderName);

@@ -48,6 +48,7 @@ namespace Render
 	int CreateWindow(int w, int h, std::string title);
 	void ClearBuffer();
 
+	bool ShouldCloseWindow();
 	void SetBackgroundColor(Math::Vector3 color);
 
 	void Render(float delay);

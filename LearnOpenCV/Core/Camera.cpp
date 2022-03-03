@@ -1,6 +1,4 @@
 #include "Camera.h"
-#include "Object.h"
-#include "ObjectManager.h"
 #include "Transform.h"
 
 using namespace Core;

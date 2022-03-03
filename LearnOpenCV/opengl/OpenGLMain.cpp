@@ -11,6 +11,44 @@ using namespace Render;
 
 namespace OpenGL
 {
+
+	void checkGLError(const char* message)
+	{
+		GLenum error;
+		while ((error = glGetError()) != GL_NO_ERROR)
+		{
+			const char* errorName = toGLErrorString(error);
+			printf("GLError [%x] %s: %s", error, errorName, message);
+		}
+	}
+
+	void checkGLError(const char* file, int line)
+	{
+		GLenum error;
+		while ((error = glGetError()) != GL_NO_ERROR)
+		{
+			const char* errorName = toGLErrorString(error);
+			printf("GLError [%x] %s %s, line %d \n", error, errorName, file, line);
+		}
+	}
+
+	const char* toGLErrorString(GLenum error)
+	{
+		switch (error)
+		{
+		case GL_INVALID_ENUM:                  return "INVALID_ENUM";
+		case GL_INVALID_VALUE:                 return "INVALID_VALUE";
+		case GL_INVALID_OPERATION:             return "INVALID_OPERATION";
+		case GL_STACK_OVERFLOW:                return "STACK_OVERFLOW";
+		case GL_STACK_UNDERFLOW:               return "STACK_UNDERFLOW";
+		case GL_OUT_OF_MEMORY:                 return "OUT_OF_MEMORY";
+		case GL_INVALID_FRAMEBUFFER_OPERATION: return "INVALID_FRAMEBUFFER_OPERATION";
+		default:                               return "UNKNOWN_ERR";
+		}
+	}
+
+
+
 	unsigned int CreateVBO()
 	{
 		unsigned int VBO;
@@ -102,7 +140,7 @@ namespace OpenGL
 			return -1;
 		}
 
-		glViewport(0, 0, 1280, 720);
+		glViewport(0, 0, w, h);
 		//glEnable(GL_CULL_FACE);    // ÌÞ³ýÃæ
 		//glCullFace(GL_BACK);       // ÌÞ³ý±³Ãæ
 		glEnable(GL_DEPTH_TEST);
@@ -113,6 +151,11 @@ namespace OpenGL
 	{
 		/*glfwPollEvents();
 		glfwSwapBuffers(window);*/
+	}
+
+	bool ShouldCloseWindow()
+	{
+		return glfwWindowShouldClose(window);
 	}
 
 	void SetBackgroundColor(Math::Vector3 color)
@@ -131,7 +174,7 @@ namespace OpenGL
 
 	void RenderEnd()
 	{
-		glfwPollEvents();
 		glfwSwapBuffers(window);
+		glfwPollEvents();
 	}
 }

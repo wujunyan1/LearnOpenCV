@@ -1,13 +1,18 @@
 #pragma once
 
+#ifndef MATH_BASE_H
+#define MATH_BASE_H
+
 #include <stdlib.h>
 #include <cmath>
 #include <cstring>
 #include <algorithm>
 #include <vector>
 #include <string>
+#include <ctime>
 
 namespace Math {
+
 	template <typename T>
 	inline T Sqrt(T n) {
 		return std::sqrt(n);
@@ -56,6 +61,7 @@ namespace Math {
 		std::swap(x, y);
 	}
 
+	std::string getUid();
 
 	class Vector1;
 	class Vector2;
@@ -64,3 +70,4 @@ namespace Math {
 	class Matrix4;
 }
 
+#endif

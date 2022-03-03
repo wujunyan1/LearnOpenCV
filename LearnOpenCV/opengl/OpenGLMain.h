@@ -5,8 +5,14 @@
 #include "MaterialGL.h"
 #include "RenderGLQueue.h"
 
+
 namespace OpenGL
 {
+	void checkGLError(const char* message);
+	void checkGLError(const char* file, int line);
+	const char* toGLErrorString(GLenum error);
+
+	#define GL_GET_ERROR(x)do {x; OpenGL::checkGLError(__FILE__, __LINE__);}while(false)
 
 	unsigned int CreateVBO();
 	unsigned int CreateVAO();
@@ -33,6 +39,8 @@ namespace OpenGL
 	void InitEngine();
 	int CreateWindow(int w, int h, std::string title);
 	void ClearBuffer();
+
+	bool ShouldCloseWindow();
 
 	void SetBackgroundColor(Math::Vector3 color);
 	void Render(float delay);

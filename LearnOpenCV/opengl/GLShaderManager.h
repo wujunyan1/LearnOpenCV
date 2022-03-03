@@ -34,14 +34,10 @@ namespace OpenGL
 
 	private:
 		GLShaderManager() {
-			vertex_ids = new std::map<std::string, unsigned int>();
-			fragment_ids = new std::map<std::string, unsigned int>();
 			shader_ids = new std::map<std::string, GLShader*>();
 		};
 
 	private:
-		std::map<std::string, unsigned int>* vertex_ids;
-		std::map<std::string, unsigned int>* fragment_ids;
 		std::map<std::string, GLShader*>* shader_ids;
 
 		static GLShaderManager* ms_pSingleton_impl;

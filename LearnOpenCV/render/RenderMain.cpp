@@ -147,6 +147,16 @@ namespace Render
 #endif
 	}
 
+	bool ShouldCloseWindow()
+	{
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
+		return false;
+#endif
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+		return OpenGL::ShouldCloseWindow();
+#endif
+	}
+
 	void SetBackgroundColor(Math::Vector3 color)
 	{
 #if SHADER_PLAFORM==SHADER_PLAFORM_CV

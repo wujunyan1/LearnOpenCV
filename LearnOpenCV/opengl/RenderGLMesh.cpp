@@ -14,9 +14,27 @@ namespace OpenGL
 	{
 		glBindVertexArray(tvao);
 
+		float* vertices = new float[9]; 
+		/*{
+		-0.1f, -0.5f, 0.0f,
+		 0.5f, -0.5f, 0.0f,
+		 0.0f,  0.5f, 0.0f
+		};*/
+		vertices[0] = -0.1f;
+		vertices[1] = -0.5f;
+		vertices[2] = 0.0f;
+		vertices[3] = 0.5f;
+		vertices[4] = -0.5f;
+		vertices[5] = 0.0f;
+		vertices[6] = 0.0f;
+		vertices[7] = 0.5f;
+		vertices[8] = 0.0f;
+
+		void* v = vertices;
+
 		this->verticesNum = verticesNum;
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		/*glBufferData(GL_ARRAY_BUFFER, dataSize * sizeof(float), data, GL_STATIC_DRAW);*/
+		glBufferData(GL_ARRAY_BUFFER, dataSize * sizeof(float), data, GL_STATIC_DRAW);
 
 		/*float* vs = new float[9];
 		vs[0] = 0.2f;
@@ -34,10 +52,10 @@ namespace OpenGL
 	}
 	void RenderGLMesh::VertexAttribPointer(unsigned int passageway, size_t dataSize, Render::ShaderParamType dataType, bool b, size_t delaySize, size_t startIndex)
 	{
-		//glBindVertexArray(tvao);
-		//glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		///*glVertexAttribPointer(passageway, dataSize, GL_FLOAT, GL_FALSE, delaySize, (void*)startIndex);
-		//glEnableVertexAttribArray(passageway);*/
+		glBindVertexArray(tvao);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(0);
 
 		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 		//glEnableVertexAttribArray(0);
@@ -45,35 +63,28 @@ namespace OpenGL
 
 		
 
-		glGenVertexArrays(1, &tvao);
+		/*glGenVertexArrays(1, &tvao);
 		glGenBuffers(1, &vbo);
 
+		glBindVertexArray(tvao);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-		float* vs = new float[9];
-		vs[0] = 0.2f;
-		vs[1] = 0.0f;
-		vs[2] = 0.0f;
-		vs[3] = 0.3f;
-		vs[4] = 0.2f;
-		vs[5] = 0.0f;
-		vs[6] = 0.0f;
-		vs[7] = 0.0f;
-		vs[8] = 0.0f;
+		float vertices[] = {
+		-0.1f, -0.5f, 0.0f,
+		 0.5f, -0.5f, 0.0f,
+		 0.0f,  0.5f, 0.0f
+			};
 
-		glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), vs, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-		glBindVertexArray(tvao);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(0);*/
 	}
 
 	void RenderGLMesh::Render()
 	{
-		
-
 		glBindVertexArray(tvao);
-		glDrawArrays(GL_TRIANGLES, 0, 1);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
 		glBindVertexArray(0);
 	}
 

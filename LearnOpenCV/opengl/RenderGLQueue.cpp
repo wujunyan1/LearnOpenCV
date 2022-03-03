@@ -33,11 +33,9 @@ namespace OpenGL
 
 	void RenderGLProgram::Render()
 	{
+		// 设置shader 属性
 		shaderProgram->RenderMaterial(material);
-
-		unsigned int id = shaderProgram->GetShader();
-		glUseProgram(id);
-
+		// 渲染vao
 		mesh->Render();
 	}
 
@@ -54,6 +52,7 @@ namespace OpenGL
 
 	void RenderGLQueue::Render()
 	{
+		// 使用某Shader
 		shaderProgram->Use();
 
 		for (size_t i = 0; i < index; i++)

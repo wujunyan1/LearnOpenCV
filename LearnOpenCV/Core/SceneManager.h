@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "Object.h"
 #include "ObjectManager.h"
+#include "Transform.h"
 
 namespace Core 
 {

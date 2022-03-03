@@ -1,11 +1,11 @@
 #pragma once
 #include "Core.h"
 #include "Component.h"
-#include "Transform.h"
-#include "../math/Math.h"
 
 namespace Core
 {
+	class Transform;
+
 	class Camera : public Component
 	{
 	public:

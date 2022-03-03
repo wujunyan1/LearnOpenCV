@@ -120,6 +120,11 @@ namespace Math
 			return x != rhs.x || y != rhs.y || z != rhs.z;
 		}
 
+		inline float operator [] (const int index)
+		{
+			return m[index];
+		}
+
 		inline float dot(const Vector3& rhs) const
 		{
 			return (x * rhs.x + y * rhs.y + z * rhs.z);

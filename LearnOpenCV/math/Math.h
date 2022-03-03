@@ -9,5 +9,6 @@
 #include "Triangle.h"
 
 namespace Math {
+	
 }
 
