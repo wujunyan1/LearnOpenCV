@@ -64,8 +64,12 @@ void Mesh::Render()
 
 	Render::Material* material = renderProgram->getMaterial();
 	material->setVec3("color", Math::Vector3(0.0f, 0.3f, 0.6f));
-	/*material->setMat4("model", m);
-	material->setMat4("view", v);
+
+	Math::Matrix4 ms = Math::Matrix4::scale(Math::Vector3(0.5f, 0.5f, 0.5f));
+	printf("xxxxxxx %p \n", &ms);
+
+	material->setMat4("model", m);
+	/*material->setMat4("view", v);
 	material->setMat4("projection", p);*/
 
 

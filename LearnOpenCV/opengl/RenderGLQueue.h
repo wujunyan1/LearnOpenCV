@@ -29,7 +29,6 @@ namespace OpenGL
 
 		void addRenderProgram(RenderGLProgram* renderProgram)
 		{
-
 			if (activeRenderProgram->size() <= index)
 			{
 				activeRenderProgram->push_back(renderProgram);
@@ -37,8 +36,7 @@ namespace OpenGL
 			}
 			else
 			{
-				//activeRenderProgram->at(index) = renderProgram;
-				activeRenderProgram->assign(index, renderProgram);
+				activeRenderProgram->at(index) = renderProgram;
 				index++;
 			}
 		}

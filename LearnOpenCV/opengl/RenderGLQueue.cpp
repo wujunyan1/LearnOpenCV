@@ -90,6 +90,7 @@ namespace OpenGL
 		{
 			RenderGLQueue* queue = it->second;
 			queue->Render();
+			queue->clear();
 		}
 	}
 

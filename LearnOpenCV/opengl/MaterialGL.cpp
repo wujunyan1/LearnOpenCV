@@ -38,6 +38,7 @@ namespace OpenGL
 
     int MaterialGL::tryModifyShaderParam(const std::string& name, void* data, Render::ShaderParamType stype)
     {
+        printf("xx22222222xxxxx %p \n", data);
         int index = getParamPhysicsIndex(name);
 
         if (index == -1)
@@ -48,6 +49,14 @@ namespace OpenGL
         {
             setData(name, index, data, stype);
         }
+
+
+        float* f = (float*)data;
+        printf("xxxxxxxxxxxxxxxxxxxx \n");
+        printf("%f %f %f %f \n", f[0], f[1], f[2], f[3]);
+        printf("%f %f %f %f \n", f[4], f[5], f[6], f[7]);
+        printf("%f %f %f %f \n", f[8], f[9], f[10], f[11]);
+        printf("%f %f %f %f \n", f[12], f[13], f[14], f[15]);
 
         return index;
     }
@@ -88,6 +97,7 @@ namespace OpenGL
 
     void MaterialGL::setMat4(const std::string& name, Math::Matrix4 mat)
     {
+        printf("xx111111111112xxxxx %p \n", &mat);
         tryModifyShaderParam(name, &mat, Render::ShaderParamType::SPT_MAT4);
     }
 
