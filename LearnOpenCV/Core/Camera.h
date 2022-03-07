@@ -17,6 +17,9 @@ namespace Core
 		Mat4 getViewMat4();
 		Mat4 getPerspectiveMat4();
 		Mat4 getOrthogonalMat4();
+		Mat4 getVPMat4();
+
+		virtual void LaterUpdate() override;
 
 	private:
 		Transform* transform;
@@ -25,5 +28,7 @@ namespace Core
 
 		Math::Matrix4 orthogonal;
 		Math::Matrix4 perspective;
+		Math::Matrix4 vp;
+
 	};
 }

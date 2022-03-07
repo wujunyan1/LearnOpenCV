@@ -59,16 +59,15 @@ void Mesh::Render()
 	Camera* camera = Scene::getCurrScene()->getMainCamera();
 	Math::Matrix4 v = camera->getViewMat4();
 	Math::Matrix4 p = camera->getPerspectiveMat4();
+	Math::Matrix4 VP = camera->getVPMat4();
 
 	int size = triangles.size();
 
 	Render::Material* material = renderProgram->getMaterial();
 	material->setVec3("color", Math::Vector3(0.0f, 0.3f, 0.6f));
 
-	Math::Matrix4 ms = Math::Matrix4::scale(Math::Vector3(0.5f, 0.5f, 0.5f));
-	printf("xxxxxxx %p \n", &ms);
-
 	material->setMat4("model", m);
+	material->setMat4("VP", VP);
 	/*material->setMat4("view", v);
 	material->setMat4("projection", p);*/
 

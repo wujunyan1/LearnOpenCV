@@ -55,3 +55,13 @@ Mat4 Camera::getOrthogonalMat4()
 {
 	return orthogonal;
 }
+
+Mat4 Camera::getVPMat4()
+{
+	return vp;
+}
+
+void Camera::LaterUpdate()
+{
+	vp = perspective * getViewMat4();
+}

@@ -111,7 +111,16 @@ void GLShader::setMat4(const std::string& name, const void* mat) const
     printf("%f %f %f %f \n", f[8], f[9], f[10], f[11]);
     printf("%f %f %f %f \n", f[12], f[13], f[14], f[15]);
 
-    int modelLoc = glGetUniformLocation(ID, name.c_str());
-    GL_GET_ERROR(glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (float*)mat));
+    Math::Matrix4 m4 = Math::Matrix4();
+    void* d = &m4;
+    char* data = (char*)d;
+    int buffsize = 64;
+    // memcmp(data, mat, buffsize)
+    if (memcmp(data, mat, buffsize) != 0)
+    {
+        memcpy(data, mat, buffsize);
+        int modelLoc = glGetUniformLocation(ID, name.c_str());
+        GL_GET_ERROR(glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (GLfloat*)mat));
+    }
 }
 

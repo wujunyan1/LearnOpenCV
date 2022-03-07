@@ -18,14 +18,14 @@ namespace OpenGL
 		void setFloat4(const std::string& name, float r, float g, float b, float a);
 		void setVec3(const std::string& name, Math::Vector3 value);
 		void setVec3(const std::string& name, float x, float y, float z);
-		void setMat4(const std::string& name, Math::Matrix4 mat);
+		void setMat4(const std::string& name, Math::Matrix4& mat);
 
 		std::vector<Render::ShaderParam> getShaderParams() { return m_ShaderParams; };
 	private:
 		int getParamPhysicsIndex(const std::string& name);
-		int tryModifyShaderParam(const std::string& name, void* data, Render::ShaderParamType stype);
-		void insertData(const std::string& name, void* data, Render::ShaderParamType stype);
-		void setData(const std::string& name, const int index, void* data, Render::ShaderParamType stype);
+		int tryModifyShaderParam(const std::string& name, void* data, Render::ShaderParamType stype, int copySize);
+		void insertData(const std::string& name, void* data, Render::ShaderParamType stype, int copySize);
+		void setData(const std::string& name, const int index, void* data, Render::ShaderParamType stype, int copySize);
 
 	private:
 

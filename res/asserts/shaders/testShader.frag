@@ -7,5 +7,5 @@ uniform mat4 model;
 
 void main()
 {
-    FragColor = model[1];
+    FragColor = vec4(color, 1.0f);
 }

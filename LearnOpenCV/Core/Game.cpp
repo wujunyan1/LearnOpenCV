@@ -56,6 +56,7 @@ void Game::LoadMainScene()
 
 	root->AddChild(t);
 	t->SetPosition(Math::Vector3(0.0f, -0.2f, 1.0f));
+	t->SetScale(Vector3(0.2f, 0.2f, 0.2f));
 
 	mesh->addTriangle(
 		Math::Triangle<Math::Vector3>(
@@ -74,7 +75,7 @@ void Game::LoadMainScene()
 	o->AddComponent<TestComponent>();
 
 
-	Object* o2 = ObjectManager::createNewObject();
+	/*Object* o2 = ObjectManager::createNewObject();
 	Transform* t2 = o2->AddComponent<Transform>();
 	Mesh* mesh2 = o2->AddComponent<Mesh>();
 
@@ -93,5 +94,5 @@ void Game::LoadMainScene()
 			Math::Vector4(1, 1, 0, 1)
 			)
 	);
-	mesh2->bindRender();
+	mesh2->bindRender();*/
 }
