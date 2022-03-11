@@ -13,6 +13,9 @@
 
 namespace Math {
 
+#define D_PI  double (3.1415926535897932384626433832795)
+#define F_PI  = 3.14159265358979323846f;
+
 	template <typename T>
 	inline T Sqrt(T n) {
 		return std::sqrt(n);
@@ -59,6 +62,16 @@ namespace Math {
 		*/
 
 		std::swap(x, y);
+	}
+
+	inline float radians(float angle)
+	{
+		return angle * 0.01745329251994329576923690768489f;
+	}
+
+	inline float degrees(float radians)
+	{
+		return radians * (57.295779513082320876798154814105);
 	}
 
 	std::string getUid();

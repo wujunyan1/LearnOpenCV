@@ -50,14 +50,6 @@ namespace OpenGL
             setData(name, index, data, stype, copySize);
         }
 
-
-        float* f = (float*)data;
-        printf("xxxxxxxxxxxxxxxxxxxx \n");
-        printf("%f %f %f %f \n", f[0], f[1], f[2], f[3]);
-        printf("%f %f %f %f \n", f[4], f[5], f[6], f[7]);
-        printf("%f %f %f %f \n", f[8], f[9], f[10], f[11]);
-        printf("%f %f %f %f \n", f[12], f[13], f[14], f[15]);
-
         return index;
     }
 

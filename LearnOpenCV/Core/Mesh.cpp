@@ -63,11 +63,16 @@ void Mesh::Render()
 
 	int size = triangles.size();
 
+	//m.printMat4();
+	v.printMat4();
+
 	Render::Material* material = renderProgram->getMaterial();
 	material->setVec3("color", Math::Vector3(0.0f, 0.3f, 0.6f));
 
 	material->setMat4("model", m);
 	material->setMat4("VP", VP);
+	material->setMat4("view", v);
+	material->setMat4("pers", p);
 	/*material->setMat4("view", v);
 	material->setMat4("projection", p);*/
 

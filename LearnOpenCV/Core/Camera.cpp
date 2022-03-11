@@ -22,23 +22,26 @@ void Camera::init(float fov, float aspect, float near, float far)
 	this->far = far;
 
 
-	float t = std::tan(eye_fov / 2) * near;
-	float r = aspect_ratio * t;
+	float top = std::tan(eye_fov / 2.0f) * near;
+	float right = aspect_ratio * top;
+	float bottom = -top;
+	float left = -right;
 
 	orthogonal = Mat4(
-		1 / r, 0, 0, 0,
-		0, 1 / t, 0, 0,
-		0, 0, 1 / (far - near), 0,
+		2.0f / (right - left), 0, 0, -(right + left) / (right - left),
+		0, 2.0f / (top - bottom), 0, -(top + bottom) / (top - bottom),
+		0, 0, 1, 0,
 		0, 0, 0, 1
 	);
 
+
+	float tanHalfFovy = tan(eye_fov / 2.0f);
 	perspective = Mat4(
-		near, 0, 0, 0,
-		0, near, 0, 0,
-		0, 0, near + far, -near * far,
-		0, 0, 1, 0
+		1.0f / (aspect * tanHalfFovy), 0, 0, 0,
+		0, 1.0f / (tanHalfFovy), 0, 0,
+		0, 0, -(near + far) / (far - near), -2.0f * near * far / (far - near),
+		0, 0, -1.0f, 0
 	);
-	perspective = orthogonal * perspective;
 }
 
 Mat4 Camera::getViewMat4() 

@@ -55,13 +55,13 @@ void Game::LoadMainScene()
 	Mesh* mesh = o->AddComponent<Mesh>();
 
 	root->AddChild(t);
-	t->SetPosition(Math::Vector3(0.0f, -0.2f, 1.0f));
-	t->SetScale(Vector3(0.2f, 0.2f, 0.2f));
+	t->SetPosition(Math::Vector3(0.0f, 0.0f, 3.0f));
+	// t->SetScale(Vector3(0.8f, 0.2f, 0.2f));
 
 	mesh->addTriangle(
 		Math::Triangle<Math::Vector3>(
-			Math::Vector3(-0.3f, 0, 0),
-			Math::Vector3(0.3f, 0.1f, 0),
+			Math::Vector3(0.0f, 0, 0),
+			Math::Vector3(0.3f, 0.0f, 0),
 			Math::Vector3(0.0, 0.6f, 0)
 			),
 		Math::Triangle<Math::Vector4>(
@@ -72,7 +72,10 @@ void Game::LoadMainScene()
 	);
 	mesh->bindRender();
 
-	o->AddComponent<TestComponent>();
+	Transform* camerat = root->GetChildByIndex(0);
+	camerat->getObject()->AddComponent<TestComponent>();
+
+	// o->AddComponent<TestComponent>();
 
 
 	/*Object* o2 = ObjectManager::createNewObject();
