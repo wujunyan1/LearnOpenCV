@@ -113,7 +113,7 @@ namespace Render
 		return OpenCV::AddRenderQueue(renderProgram);
 #endif
 #if SHADER_PLAFORM==SHADER_PLAFORM_GL
-		return OpenGL::AddRenderQueue(dynamic_cast<OpenGL::RenderGLProgram*>(renderProgram));
+		return OpenGL::AddRenderQueue((OpenGL::RenderGLProgram*)(renderProgram));
 #endif
 	}
 

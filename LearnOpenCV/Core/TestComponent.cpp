@@ -20,6 +20,6 @@ void TestComponent::Update()
 {
 	Transform* transform = this->getObject()->GetComponent<Transform>();
 
-	//transform->SetPosition(transform->GetPosition() + Vector3(0.01f, 0.00f, 0.0f));
-	transform->SetRotate(transform->GetRotate() + Vector3(0.00f, 0.01f, 0.0f));
+	transform->SetPosition(transform->GetPosition() + Vector3(0.001f, 0.00f, 0.0f));
+	//transform->SetRotate(transform->GetRotate() + Vector3(0.00f, 0.01f, 0.0f));
 }

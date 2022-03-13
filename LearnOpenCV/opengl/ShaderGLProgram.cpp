@@ -35,7 +35,6 @@ namespace OpenGL
 	{
 		GLShader* shader = GetShaderObj();
 		std::vector<Render::ShaderParam> params = material->getShaderParams();
-
 		for( Render::ShaderParam param : params)
 		{
 			Render::ShaderParamType stype = param.stype;

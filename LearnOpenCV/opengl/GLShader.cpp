@@ -98,29 +98,22 @@ void GLShader::setFloat4(const std::string& name, const void* value) const
 
 void GLShader::setVec3(const std::string& name, const void* value) const
 {
+    float* f = (float*)value;
+    printf("%f %f %f \n", f[0], f[1], f[2]);
     GL_GET_ERROR(glUniform3fv(glGetUniformLocation(ID, name.c_str()), 1, (float*)value));
 }
 
 void GLShader::setMat4(const std::string& name, const void* mat) const
 {
-    printf("!!!!!!!! %p \n", mat);
+    printf("!!!!!!!! %p \n", &mat);
     float* f = (float*)mat;
-    printf("=================== \n");
+    printf("=================== %s \n", name.c_str());
     printf("%f %f %f %f \n", f[0], f[1], f[2], f[3]);
     printf("%f %f %f %f \n", f[4], f[5], f[6], f[7]);
     printf("%f %f %f %f \n", f[8], f[9], f[10], f[11]);
     printf("%f %f %f %f \n", f[12], f[13], f[14], f[15]);
 
-    Math::Matrix4 m4 = Math::Matrix4();
-    void* d = &m4;
-    char* data = (char*)d;
-    int buffsize = 64;
-    // memcmp(data, mat, buffsize)
-    if (memcmp(data, mat, buffsize) != 0)
-    {
-        memcpy(data, mat, buffsize);
-        int modelLoc = glGetUniformLocation(ID, name.c_str());
-        GL_GET_ERROR(glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (GLfloat*)mat));
-    }
+    int modelLoc = glGetUniformLocation(ID, name.c_str());
+    GL_GET_ERROR(glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (GLfloat*)mat));
 }
 

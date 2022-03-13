@@ -64,15 +64,24 @@ void Mesh::Render()
 	int size = triangles.size();
 
 	//m.printMat4();
-	v.printMat4();
+	m.printMat4();
+
+	Vector4 v4 = m * Vector4(0.5f, 0, 0, 1.0f);
+	// Vector4 v5 = m.transpose() * Vector4(0.5f, 0, 0, 1.0f);
+	
+	printf("%s \n", v4.toString());
 
 	Render::Material* material = renderProgram->getMaterial();
+
+	printf("---------- %p\n", material);
+
 	material->setVec3("color", Math::Vector3(0.0f, 0.3f, 0.6f));
 
 	material->setMat4("model", m);
 	material->setMat4("VP", VP);
 	material->setMat4("view", v);
-	material->setMat4("pers", p);
+	material->setMat4("proj", p);
+
 	/*material->setMat4("view", v);
 	material->setMat4("projection", p);*/
 
@@ -88,6 +97,5 @@ void Mesh::Render()
 
 	//	Math::Vector4 v4 = Math::Vector4(t.points[0], 1.0f);
 	//}
-
 	Render::AddRenderQueue(renderProgram);
 }

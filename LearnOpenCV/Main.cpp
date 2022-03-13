@@ -16,20 +16,20 @@ int main(int argc, char* argv[])
 {
 	bool isClose = true;
 
-	int w = 1280;
-	int h = 720;
+	int w = 1000;
+	int h = 1000;
 	/*RenderBuffer* buffer = RenderBuffer::init(w, h);
 	buffer->setBackgroundColor(Math::Vector3(0.0f, 0.0f, 0.6f));
 	buffer->setAntiAliasing(AntiAliasing::X2);*/
 
-	char buffer[64];
-	char* c = _getcwd(buffer, 64);
+	char buffer[200];
+	char* c = _getcwd(buffer, 200);
 
 	printf(c);
 	FilePathManager::setRootPath(buffer);
 
 	Render::InitEngine();
-	Render::CreateWindow(1280, 720, "Learn Shader");
+	Render::CreateWindow(1000, 1000, "Learn Shader");
 
 	Core::Game* game = Core::Game::GetInstance();
 	game->LoadMainScene();
