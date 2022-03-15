@@ -13,49 +13,17 @@ namespace OpenGL
 	void RenderGLMesh::BindArrayBufferData(size_t verticesNum, size_t dataSize, void* data)
 	{
 		glBindVertexArray(tvao);
-
-		float* vertices = new float[9]; 
-		/*{
-		-0.1f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.0f,  0.5f, 0.0f
-		};*/
-		vertices[0] = -0.1f;
-		vertices[1] = -0.5f;
-		vertices[2] = 0.0f;
-		vertices[3] = 0.5f;
-		vertices[4] = -0.5f;
-		vertices[5] = 0.0f;
-		vertices[6] = 0.0f;
-		vertices[7] = 0.5f;
-		vertices[8] = 0.0f;
-
-		void* v = vertices;
-
 		this->verticesNum = verticesNum;
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, dataSize * sizeof(float), data, GL_STATIC_DRAW);
-
-		/*float* vs = new float[9];
-		vs[0] = 0.2f;
-		vs[1] = 0.0f;
-		vs[2] = 0.0f;
-		vs[3] = 0.3f;
-		vs[4] = 0.2f;
-		vs[5] = 0.0f;
-		vs[6] = 0.0f;
-		vs[7] = 0.0f;
-		vs[8] = 0.0f;
-
-		glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), vs, GL_STATIC_DRAW);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);*/
+		glBufferData(GL_ARRAY_BUFFER, dataSize, data, GL_STATIC_DRAW);
 	}
 	void RenderGLMesh::VertexAttribPointer(unsigned int passageway, size_t dataSize, Render::ShaderParamType dataType, bool b, size_t delaySize, size_t startIndex)
 	{
 		glBindVertexArray(tvao);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+		glVertexAttribPointer(0, 3, GET_OPENGL_TYPE(dataType), b ? GL_TRUE : GL_FALSE, 3 * sizeof(float), (void*)0);
 		glEnableVertexAttribArray(0);
+
 
 		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 		//glEnableVertexAttribArray(0);
@@ -91,7 +59,7 @@ namespace OpenGL
 
 	std::map<std::string, RenderGLMesh*>* RenderGLMeshManager::meshs = new std::map<std::string, RenderGLMesh*>();
 
-	RenderGLMesh* RenderGLMeshManager::createNewRenderMesh(std::string meshName)
+	RenderGLMesh* RenderGLMeshManager::createNewRenderMesh(std::string& meshName)
 	{
 		auto it = meshs->find(meshName);
 		if (it != meshs->end())

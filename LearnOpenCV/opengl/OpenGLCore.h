@@ -10,5 +10,5 @@
 
 namespace OpenGL
 {
-	
+	unsigned int GET_OPENGL_TYPE(Render::ShaderParamType dataType);
 }

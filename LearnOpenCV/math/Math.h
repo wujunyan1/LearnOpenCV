@@ -7,6 +7,7 @@
 #include "Vector4.h"
 #include "Matrix4.h"
 #include "Triangle.h"
+#include "Vector2T.h"
 
 namespace Math {
 	

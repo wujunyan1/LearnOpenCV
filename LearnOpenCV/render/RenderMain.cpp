@@ -96,6 +96,16 @@ namespace Render
 #endif
 	}
 
+	RenderMesh* CreateRenderMesh(std::string name)
+	{
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
+		return OpenCV::CreateShader(shaderName, vsPath, fsPath);
+#endif
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+		return OpenGL::CreateRenderMesh(name);
+#endif
+	}
+
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath)
 	{
 #if SHADER_PLAFORM==SHADER_PLAFORM_CV
@@ -137,6 +147,16 @@ namespace Render
 #endif
 	}
 
+	Math::Vector2T<int> GetWindowSize()
+	{
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
+		return OpenCV::CreaterWindow();
+#endif
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+		return OpenGL::GetWindowSize();
+#endif
+	}
+
 	void ClearBuffer()
 	{
 #if SHADER_PLAFORM==SHADER_PLAFORM_CV
@@ -144,6 +164,16 @@ namespace Render
 #endif
 #if SHADER_PLAFORM==SHADER_PLAFORM_GL
 		return OpenGL::ClearBuffer();
+#endif
+	}
+
+	Core::Image* CreateImage(int width, int height, int nrChannels, unsigned char* data)
+	{
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
+		return false;
+#endif
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+		return OpenGL::CreateImage(width, height, nrChannels, data);
 #endif
 	}
 

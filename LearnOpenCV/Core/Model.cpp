@@ -1,4 +1,4 @@
-#include "Mesh.h"
+#include "Model.h"
 #include "Transform.h"
 #include "../math/Triangle.h"
 #include "Scene.h"
@@ -8,12 +8,21 @@
 
 using namespace Core;
 
-Mesh::Mesh()
+Model::Model()
 {
 
 }
 
-void Mesh::bindRender()
+void Core::Model::setModel(AModel* model)
+{
+	if (!renderProgram) {
+		renderProgram = Render::CreateRenderProgram("test");
+		// Render::Material* material = renderProgram->getMaterial();
+		renderProgram->setShader("testShader");
+	}
+}
+
+void Model::bindRender()
 {
 	if (!renderProgram) {
 		renderProgram = Render::CreateRenderProgram("test");
@@ -44,12 +53,12 @@ void Mesh::bindRender()
 	}
 
 	Render::RenderMesh* mesh = renderProgram->createNewRenderMesh();
-	mesh->BindArrayBufferData(len, size, data);
+	mesh->BindArrayBufferData(len, size * sizeof(float), data);
 	mesh->VertexAttribPointer(0, 3, Render::ShaderParamType::SPT_VEC3, false, 3 * sizeof(float), 0);
 	//Render::SetVertexAttribPointer(vbo, 0, Render::ShaderParamType::SPT_VEC3, 3, size, data);
 }
 
-void Mesh::Render() 
+void Model::Render() 
 {
 	//Render::RenderBuffer* renderBuffer = Render::RenderBuffer::getInstance();
 

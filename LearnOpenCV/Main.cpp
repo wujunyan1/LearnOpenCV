@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
 	FilePathManager::setRootPath(buffer);
 
 	Render::InitEngine();
-	Render::CreateWindow(1000, 1000, "Learn Shader");
+	Render::CreateWindow(w, h, "Learn Shader");
 
 	Core::Game* game = Core::Game::GetInstance();
 	game->LoadMainScene();

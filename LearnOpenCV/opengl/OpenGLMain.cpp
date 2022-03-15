@@ -6,6 +6,7 @@
 #include "../file/FilePathManager.h"
 
 #include "GLShaderManager.h"
+#include "GLImage.h"
 
 using namespace Render;
 
@@ -91,15 +92,17 @@ namespace OpenGL
 	RenderGLProgram * CreateRenderProgram(std::string materialName)
 	{
 		RenderGLProgram* program = new RenderGLProgram();
-
-
-
 		return program;
 	}
 
 	MaterialGL* CreateMaterial(std::string materialName)
 	{
 		return new MaterialGL();
+	}
+
+	RenderGLMesh* CreateRenderMesh(std::string name)
+	{
+		return RenderGLMeshManager::createNewRenderMesh(name);;
 	}
 
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath)
@@ -147,10 +150,23 @@ namespace OpenGL
 		return 0;
 	}
 
+	Math::Vector2T<int> GetWindowSize()
+	{
+		int w, h;
+		glfwGetWindowSize(window, &w, &h);
+
+		return Math::Vector2T<int>(w, h);
+	}
+
 	void ClearBuffer()
 	{
 		/*glfwPollEvents();
 		glfwSwapBuffers(window);*/
+	}
+
+	Core::Image* CreateImage(int width, int height, int nrChannels, unsigned char* data)
+	{
+		return new GLImage(width, height, nrChannels, data);
 	}
 
 	bool ShouldCloseWindow()

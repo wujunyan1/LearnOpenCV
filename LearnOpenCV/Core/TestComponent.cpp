@@ -3,7 +3,6 @@
 #include "ObjectManager.h"
 #include "Transform.h"
 #include "Camera.h"
-#include "Mesh.h"
 
 #include "../math/Math.h"
 

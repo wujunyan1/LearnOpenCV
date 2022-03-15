@@ -6,6 +6,7 @@
 #include "ShaderProgram.h"
 #include "Material.h"
 #include "RenderQueue.h"
+#include "../file/Image.h"
 
 
 #define SHADER_PLAFORM_CV 1
@@ -36,6 +37,7 @@ namespace Render
 	RenderProgram* CreateRenderProgram(std::string materialName);
 
 	Material* CreateMaterial(std::string materialName);
+	RenderMesh* CreateRenderMesh(std::string name = Math::getUid());
 
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath);
 
@@ -46,7 +48,10 @@ namespace Render
 
 	void InitEngine();
 	int CreateWindow(int w, int h, std::string title);
+	Math::Vector2T<int> GetWindowSize();
 	void ClearBuffer();
+
+	Core::Image* CreateImage(int width, int height, int nrChannels, unsigned char* data);
 
 	bool ShouldCloseWindow();
 	void SetBackgroundColor(Math::Vector3 color);

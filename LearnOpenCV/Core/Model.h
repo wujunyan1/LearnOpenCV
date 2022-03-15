@@ -3,19 +3,22 @@
 #include "Component.h"
 #include "../math/Math.h"
 #include "../render/RenderMain.h"
+#include "../meshModel/AModel.h"
 
 
 namespace Core
 {
-	class Mesh : public Component
+	class Model : public Component
 	{
 	public:
-		Mesh();
+		Model();
 
 		void addTriangle(Math::Triangle<Math::Vector3> t, Math::Triangle<Math::Vector4> color) {
 			triangles.push_back(t);
 			colors.push_back(color);
 		}
+
+		void setModel(AModel* model);
 
 		void bindRender();
 

@@ -5,6 +5,7 @@
 #include "MaterialGL.h"
 #include "RenderGLQueue.h"
 
+#include "../file/Image.h"
 
 namespace OpenGL
 {
@@ -29,6 +30,7 @@ namespace OpenGL
 	RenderGLProgram* CreateRenderProgram(std::string materialName);
 
 	MaterialGL* CreateMaterial(std::string materialName);
+	RenderGLMesh* CreateRenderMesh(std::string name);
 
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath);
 
@@ -38,7 +40,10 @@ namespace OpenGL
 
 	void InitEngine();
 	int CreateWindow(int w, int h, std::string title);
+	Math::Vector2T<int> GetWindowSize();
 	void ClearBuffer();
+
+	Core::Image* CreateImage(int width, int height, int nrChannels, unsigned char* data);
 
 	bool ShouldCloseWindow();
 

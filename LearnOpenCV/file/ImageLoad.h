@@ -1,11 +1,18 @@
 #pragma once
 
 #include <string>
+#include <map>
 #include "Image.h"
 
-class ImageLoad
+namespace Core
 {
-public:
-	static Image* LoadImage(std::string path);
-};
+	class ImageLoad
+	{
+	private:
+		static std::map<std::string, Image*>* image_ids;
+
+	public:
+		static Image* LoadImage(std::string path);
+	};
+}
 

@@ -3,13 +3,14 @@
 #include "Camera.h"
 #include "Scene.h"
 #include "Transform.h"
-#include "Mesh.h"
+#include "Model.h"
 #include "SceneManager.h"
 
 #include <stdio.h>
 
 #include "TestComponent.h"
 #include "../render/RenderMain.h"
+#include "../meshModel/AModel.h"
 
 using namespace Core;
 
@@ -52,13 +53,13 @@ void Game::LoadMainScene()
 
 	Object* o = ObjectManager::createNewObject();
 	Transform* t = o->AddComponent<Transform>();
-	Mesh* mesh = o->AddComponent<Mesh>();
+	Model* model = o->AddComponent<Model>();
 
 	root->AddChild(t);
 	t->SetPosition(Math::Vector3(0.0f, 0.0f, -0.9f));
 	// t->SetScale(Vector3(0.8f, 0.2f, 0.2f));
 
-	mesh->addTriangle(
+	model->addTriangle(
 		Math::Triangle<Math::Vector3>(
 			Math::Vector3(0.0f, 0, 0),
 			Math::Vector3(0.5f, 0.0f, 0),
@@ -70,13 +71,15 @@ void Game::LoadMainScene()
 			Math::Vector4(0, 1, 0, 1)
 			)
 	);
-	mesh->bindRender();
+	model->bindRender();
 
 	Transform* camerat = root->GetChildByIndex(0);
 	//camerat->getObject()->AddComponent<TestComponent>();
 
 	o->AddComponent<TestComponent>();
 
+	// AModel* amodel = new AModel("/asserts/mesh/juren/nanosuit.obj");
+	AModelFactory::createModel("/asserts/mesh/juren/nanosuit.obj");
 
 	/*Object* o2 = ObjectManager::createNewObject();
 	Transform* t2 = o2->AddComponent<Transform>();

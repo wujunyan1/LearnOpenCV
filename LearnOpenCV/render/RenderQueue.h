@@ -20,6 +20,7 @@ namespace Render
 		virtual RenderMesh* loadRenderMesh(std::string name, std::string path = "") { return NULL; };
 
 		RenderMesh* getMesh() { return mesh; }
+		void setMesh(RenderMesh* mesh) { this->mesh = mesh; }
 
 		ShaderProgram* getShaderProgram() { return shaderProgram; }
 		Material* getMaterial() { return material; }

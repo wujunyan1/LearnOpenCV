@@ -25,7 +25,7 @@ namespace OpenGL
 	class RenderGLMeshManager
 	{
 	public:
-		static RenderGLMesh* createNewRenderMesh(std::string meshName);
+		static RenderGLMesh* createNewRenderMesh(std::string& meshName);
 		static RenderGLMesh* getRenderMesh(std::string meshName);
 		static void addRenderMesh(std::string meshName, RenderGLMesh* mesh);
 		static RenderGLMesh* loadMeshFile(std::string meshName, std::string path);
