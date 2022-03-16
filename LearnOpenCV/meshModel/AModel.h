@@ -5,9 +5,9 @@
 #include <assimp/postprocess.h>
 
 #include "../math/Math.h"
-#include "../render/RenderMain.h"
 #include "AMesh.h"
 #include "../file/ImageLoad.h"
+#include "../file/FilePathManager.h"
 
 
 namespace Core
@@ -22,14 +22,18 @@ namespace Core
 		{
 			loadModel(path);
 		}
-		
+
+        std::vector<AMesh>& getMeshs() { return meshes; };
+
 	private:
         // loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector.
         void loadModel(std::string const& path)
         {
+
+            std::string s = std::string(FilePathManager::getRootPath());
             // read file via ASSIMP
             Assimp::Importer importer;
-            const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+            const aiScene* scene = importer.ReadFile(s + path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
             // check for errors
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // if is Not Zero
             {
@@ -67,7 +71,7 @@ namespace Core
             // data to fill
             std::vector<AMesh::Vertex> vertices;
             std::vector<unsigned int> indices;
-            std::vector<AMesh::Texture> textures;
+            std::vector<Image*> textures;
 
             // walk through each of the mesh's vertices
             for (unsigned int i = 0; i < mesh->mNumVertices; i++)
@@ -130,16 +134,16 @@ namespace Core
             // normal: texture_normalN
 
             // 1. diffuse maps
-            std::vector<AMesh::Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
+            std::vector<Image*> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
             textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
             // 2. specular maps
-            std::vector<AMesh::Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
+            std::vector<Image*> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
             textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
             // 3. normal maps
-            std::vector<AMesh::Texture> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
+            std::vector<Image*> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
             textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
             // 4. height maps
-            std::vector<AMesh::Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
+            std::vector<Image*> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
             textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
             // return a mesh object created from the extracted mesh data
@@ -148,39 +152,20 @@ namespace Core
 
         // checks all material textures of a given type and loads the textures if they're not loaded yet.
         // the required info is returned as a Texture struct.
-        std::vector<AMesh::Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName)
+        std::vector<Image*> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName)
         {
-            std::vector<AMesh::Texture> textures;
+            std::vector<Image*> textures;
             for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
             {
                 aiString str;
                 mat->GetTexture(type, i, &str);
-                // check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
-                bool skip = false;
-                for (unsigned int j = 0; j < textures_loaded.size(); j++)
-                {
-                    if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0)
-                    {
-                        textures.push_back(textures_loaded[j]);
-                        skip = true; // a texture with the same filepath has already been loaded, continue to next one. (optimization)
-                        break;
-                    }
-                }
-                if (!skip)
-                {   // if texture hasn't been loaded already, load it
-                    AMesh::Texture texture;
-                    texture.image = ImageLoad::LoadImage(str.C_Str()); // TextureFromFile(str.C_Str(), this->directory);
-                    texture.type = typeName;
-                    texture.path = str.C_Str();
-                    textures.push_back(texture);
-                    textures_loaded.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
-                }
+                Image* image = ImageLoad::LoadImage(directory + "/" + str.C_Str()); // TextureFromFile(str.C_Str(), this->directory);
+                textures.push_back(image);
             }
             return textures;
         }
 
 	private:
-		std::vector<AMesh::Texture> textures_loaded;	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
 		std::vector<AMesh>    meshes;
 		std::string directory;
 		bool gammaCorrection;

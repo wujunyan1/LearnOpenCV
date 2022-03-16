@@ -1,7 +1,7 @@
 #pragma once
 #include "../math/Math.h"
-#include "../render/RenderMain.h"
-
+#include "../file/Image.h"
+#include "../render/RenderMesh.h"
 
 namespace Core
 {
@@ -21,20 +21,20 @@ namespace Core
 			Math::Vector3 Bitangent;
 		};
 
-		struct Texture {
-			Core::Image* image;
-			std::string type;
-			std::string path;
-		};
 	public:
-		AMesh();
-
-		AMesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures)
+		AMesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Core::Image*> textures)
 		{
 			this->vertices = vertices;
 			this->indices = indices;
 			this->textures = textures;
+
+			bindRender();
 		}
+
+		Render::RenderMesh* getRenderMesh() 
+		{
+			return mesh;
+		};
 
 	private:
 
@@ -44,6 +44,8 @@ namespace Core
 		// mesh Data
 		std::vector<Vertex>       vertices;
 		std::vector<unsigned int> indices;
-		std::vector<Texture>      textures;
+		std::vector<Core::Image*> textures;
+
+		Render::RenderMesh* mesh;
 	};
 }

@@ -16,8 +16,8 @@ int main(int argc, char* argv[])
 {
 	bool isClose = true;
 
-	int w = 1000;
-	int h = 1000;
+	int w = 1280;
+	int h = 720;
 	/*RenderBuffer* buffer = RenderBuffer::init(w, h);
 	buffer->setBackgroundColor(Math::Vector3(0.0f, 0.0f, 0.6f));
 	buffer->setAntiAliasing(AntiAliasing::X2);*/

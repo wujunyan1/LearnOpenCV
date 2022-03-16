@@ -3,6 +3,7 @@
 #include <map>
 #include "../math/Math.h"
 #include "ShaderProgram.h"
+#include "../file/Image.h"
 
 namespace Render
 {
@@ -17,15 +18,13 @@ namespace Render
 		RenderMesh(std::string _name, void* data);
 
 		virtual void BindArrayBufferData(size_t verticesNum, size_t dataSize, void* data);
+		virtual void BindElementBufferData(size_t dataSize, void* data) {};
 		virtual void VertexAttribPointer(unsigned int passageway, size_t dataSize, ShaderParamType dataType, bool b, size_t delaySize, size_t startIndex);
 
-
+		virtual void SetImage(std::vector<Core::Image*>& images) {};
 		virtual void Render() {};
 	protected:
 		std::string name;
-		unsigned int vbo;
-
-
 	};
 
 	class RenderMeshManager

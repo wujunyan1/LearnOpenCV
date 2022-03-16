@@ -5,7 +5,10 @@ out vec4 FragColor;
 uniform vec3 color;
 uniform mat4 model;
 
+uniform sampler2D texture_diffuse1;
+in vec2 uv;
+
 void main()
 {
-    FragColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+    FragColor = texture(texture_diffuse1, uv);
 }

@@ -20,6 +20,8 @@ void Core::Model::setModel(AModel* model)
 		// Render::Material* material = renderProgram->getMaterial();
 		renderProgram->setShader("testShader");
 	}
+
+	renderProgram->addModel(model);
 }
 
 void Model::bindRender()

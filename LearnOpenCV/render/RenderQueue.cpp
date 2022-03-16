@@ -4,7 +4,7 @@ namespace Render
 {
 	RenderProgram::RenderProgram()
 	{
-		mesh = NULL;
+		meshs = NULL;
 		material = NULL;
 		shaderProgram = NULL;
 		vbo = 0;

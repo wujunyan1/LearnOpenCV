@@ -6,10 +6,13 @@ namespace OpenGL
 	{
 		glGenVertexArrays(1, &tvao);
 		glGenBuffers(1, &vbo);
+		glGenBuffers(1, &ebo);
 	}
+
 	RenderGLMesh::~RenderGLMesh()
 	{
 	}
+
 	void RenderGLMesh::BindArrayBufferData(size_t verticesNum, size_t dataSize, void* data)
 	{
 		glBindVertexArray(tvao);
@@ -21,8 +24,9 @@ namespace OpenGL
 	{
 		glBindVertexArray(tvao);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glVertexAttribPointer(0, 3, GET_OPENGL_TYPE(dataType), b ? GL_TRUE : GL_FALSE, 3 * sizeof(float), (void*)0);
-		glEnableVertexAttribArray(0);
+		GLboolean bl = b ? GL_TRUE : GL_FALSE;
+		glEnableVertexAttribArray(passageway);
+		glVertexAttribPointer(passageway, dataSize, GET_OPENGL_TYPE(dataType), bl, delaySize, (void*)startIndex);
 
 
 		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
@@ -49,10 +53,24 @@ namespace OpenGL
 		glEnableVertexAttribArray(0);*/
 	}
 
+	void RenderGLMesh::BindElementBufferData(size_t dataSize, void* data)
+	{
+		glBindVertexArray(tvao);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, dataSize, data, GL_STATIC_DRAW);
+	}
+
 	void RenderGLMesh::Render()
 	{
 		glBindVertexArray(tvao);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		
+		for (unsigned int i = 0; i < images.size(); i++)
+		{
+			images[i]->use(i);
+		}
+
+		glDrawElements(GL_TRIANGLES, verticesNum, GL_UNSIGNED_INT, 0);
+		// glDrawArrays(GL_TRIANGLES, 0, 3);
 		glBindVertexArray(0);
 	}
 

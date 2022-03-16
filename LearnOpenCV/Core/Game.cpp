@@ -59,7 +59,7 @@ void Game::LoadMainScene()
 	t->SetPosition(Math::Vector3(0.0f, 0.0f, -0.9f));
 	// t->SetScale(Vector3(0.8f, 0.2f, 0.2f));
 
-	model->addTriangle(
+	/*model->addTriangle(
 		Math::Triangle<Math::Vector3>(
 			Math::Vector3(0.0f, 0, 0),
 			Math::Vector3(0.5f, 0.0f, 0),
@@ -71,7 +71,7 @@ void Game::LoadMainScene()
 			Math::Vector4(0, 1, 0, 1)
 			)
 	);
-	model->bindRender();
+	model->bindRender();*/
 
 	Transform* camerat = root->GetChildByIndex(0);
 	//camerat->getObject()->AddComponent<TestComponent>();
@@ -79,7 +79,9 @@ void Game::LoadMainScene()
 	o->AddComponent<TestComponent>();
 
 	// AModel* amodel = new AModel("/asserts/mesh/juren/nanosuit.obj");
-	AModelFactory::createModel("/asserts/mesh/juren/nanosuit.obj");
+	Core::AModel* amodel = AModelFactory::createModel("/asserts/mesh/juren/nanosuit.obj");
+	model->setModel(amodel);
+
 
 	/*Object* o2 = ObjectManager::createNewObject();
 	Transform* t2 = o2->AddComponent<Transform>();

@@ -15,15 +15,25 @@ namespace OpenGL
 	Render::RenderMesh* RenderGLProgram::createNewRenderMesh(std::string name)
 	{
 		RenderGLMesh* mesh = RenderGLMeshManager::createNewRenderMesh(name);
-		this->mesh = mesh;
+		addMesh(mesh);
 		return mesh;
 	}
 
 	Render::RenderMesh* RenderGLProgram::loadRenderMesh(std::string name, std::string path)
 	{
 		RenderGLMesh* mesh = RenderGLMeshManager::loadMeshFile(name, path);
-		this->mesh = mesh;
+		addMesh(mesh);
 		return mesh;
+	}
+
+	void RenderGLProgram::addModel(Core::AModel* model)
+	{
+		std::vector<Core::AMesh>& ameshs = model->getMeshs();
+
+		for (auto mesh : ameshs)
+		{
+			addMesh(mesh.getRenderMesh());
+		}
 	}
 
 	void RenderGLProgram::setShader(const std::string& shaderName)
@@ -36,7 +46,10 @@ namespace OpenGL
 		// ÉèÖÃshader ÊôÐÔ
 		shaderProgram->RenderMaterial(material);
 		// äÖÈ¾vao
-		mesh->Render();
+		for (auto mesh : *meshs)
+		{
+			mesh->Render();
+		}
 	}
 
 

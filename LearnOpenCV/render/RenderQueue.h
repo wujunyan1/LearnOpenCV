@@ -6,6 +6,8 @@
 #include "Material.h"
 #include "RenderMesh.h"
 
+#include "../meshModel/AModel.h"
+
 namespace Render
 {
 	class RenderProgram
@@ -19,8 +21,14 @@ namespace Render
 		virtual RenderMesh* createNewRenderMesh(std::string name = Math::getUid()) { return NULL; };
 		virtual RenderMesh* loadRenderMesh(std::string name, std::string path = "") { return NULL; };
 
-		RenderMesh* getMesh() { return mesh; }
-		void setMesh(RenderMesh* mesh) { this->mesh = mesh; }
+		std::vector <RenderMesh*>* getMeshs() { return meshs; }
+		void addMesh(RenderMesh* mesh) { 
+			if (!meshs) {
+				meshs = new std::vector<RenderMesh*>();
+			}
+			meshs->push_back(mesh); 
+		}
+		virtual void addModel(Core::AModel* model) {};
 
 		ShaderProgram* getShaderProgram() { return shaderProgram; }
 		Material* getMaterial() { return material; }
@@ -35,6 +43,6 @@ namespace Render
 
 		Material* material;
 
-		RenderMesh* mesh;
+		std::vector<RenderMesh*>* meshs;
 	};
 }
