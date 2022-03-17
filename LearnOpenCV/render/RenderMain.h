@@ -37,7 +37,8 @@ namespace Render
 	RenderProgram* CreateRenderProgram(std::string materialName);
 
 	Material* CreateMaterial(std::string materialName);
-	RenderMesh* CreateRenderMesh(std::string name = Math::getUid());
+	RenderMesh* CreateRenderMesh(std::string name = Math::stringFormat("renderMesh|%d", Math::getUid()));
+	RenderMesh* GetRenderMesh(std::string name);
 
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath);
 

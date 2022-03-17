@@ -14,5 +14,5 @@ out vec2 uv;
 void main()
 {
     uv = aTexCoords;
-    gl_Position = proj * view * model * vec4(aPos, 1.0);
+    gl_Position = VP * model * vec4(aPos, 1.0);
 }

@@ -2,6 +2,7 @@
 #include "../math/Math.h"
 #include "../file/Image.h"
 #include "../render/RenderMesh.h"
+#include "../render/Texture.h"
 
 namespace Core
 {
@@ -22,8 +23,10 @@ namespace Core
 		};
 
 	public:
-		AMesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Core::Image*> textures)
+		AMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
 		{
+			printf("add mesh %s \n", uid.c_str());
+			id = uid;
 			this->vertices = vertices;
 			this->indices = indices;
 			this->textures = textures;
@@ -41,10 +44,12 @@ namespace Core
 		void bindRender();
 
 	private:
+		std::string id;
+
 		// mesh Data
 		std::vector<Vertex>       vertices;
 		std::vector<unsigned int> indices;
-		std::vector<Core::Image*> textures;
+		std::vector<Render::Texture> textures;
 
 		Render::RenderMesh* mesh;
 	};

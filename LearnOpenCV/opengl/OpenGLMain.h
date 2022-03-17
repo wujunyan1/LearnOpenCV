@@ -30,7 +30,8 @@ namespace OpenGL
 	RenderGLProgram* CreateRenderProgram(std::string materialName);
 
 	MaterialGL* CreateMaterial(std::string materialName);
-	RenderGLMesh* CreateRenderMesh(std::string name);
+	RenderGLMesh* CreateRenderMesh(std::string& name);
+	RenderGLMesh* GetRenderMesh(std::string& name);
 
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath);
 

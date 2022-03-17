@@ -1,4 +1,5 @@
 #include "RenderGLMesh.h"
+#include "ShaderGLProgram.h"
 
 namespace OpenGL
 {
@@ -60,13 +61,19 @@ namespace OpenGL
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, dataSize, data, GL_STATIC_DRAW);
 	}
 
-	void RenderGLMesh::Render()
+	void RenderGLMesh::Render(Render::ShaderProgram* program)
 	{
 		glBindVertexArray(tvao);
 		
+		ShaderGLProgram* p = (ShaderGLProgram*)program;
+
+		GLShader* shader = p->GetShaderObj();
 		for (unsigned int i = 0; i < images.size(); i++)
 		{
-			images[i]->use(i);
+			Render::Texture& texture = images[i];
+			texture.image->use(i);
+
+			shader->setTexture(texture.shaderName, i);
 		}
 
 		glDrawElements(GL_TRIANGLES, verticesNum, GL_UNSIGNED_INT, 0);

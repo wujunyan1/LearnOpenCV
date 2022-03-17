@@ -75,6 +75,11 @@ void GLShader::setMat4(const std::string& name, Math::Matrix4 mat) const
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (GLfloat*)&mat);
 }
 
+void GLShader::setTexture(const std::string& name, unsigned int index) const
+{
+    glUniform1i(glGetUniformLocation(ID, name.c_str()), index);
+}
+
 void GLShader::setBool(const std::string& name, const void* value) const
 {
     glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);

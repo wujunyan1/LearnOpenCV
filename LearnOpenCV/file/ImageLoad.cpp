@@ -34,3 +34,13 @@ Image* ImageLoad::LoadImage(std::string path)
 	image_ids->insert(std::pair<std::string, Image*>(path, image));
 	return image;
 }
+
+Image* Core::ImageLoad::GetImage(std::string path)
+{
+	auto it = image_ids->find(path);
+	if (it != image_ids->end())
+	{
+		return it->second;
+	}
+	return nullptr;
+}

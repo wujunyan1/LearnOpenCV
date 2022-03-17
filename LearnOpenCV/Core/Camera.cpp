@@ -44,22 +44,22 @@ void Camera::init(float fov, float aspect, float near, float far)
 	);
 }
 
-Mat4 Camera::getViewMat4() 
+Mat4& Camera::getViewMat4()
 {
 	return transform->GetWorldToLocalMat4();
 }
 
-Mat4 Camera::getPerspectiveMat4() 
+Mat4& Camera::getPerspectiveMat4()
 {
 	return perspective;
 }
 
-Mat4 Camera::getOrthogonalMat4()
+Mat4& Camera::getOrthogonalMat4()
 {
 	return orthogonal;
 }
 
-Mat4 Camera::getVPMat4()
+Mat4& Camera::getVPMat4()
 {
 	return vp;
 }

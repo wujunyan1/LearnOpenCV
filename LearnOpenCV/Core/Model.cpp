@@ -6,6 +6,8 @@
 #include "../math/Vector4.h"
 #include "../math/Vector3.h"
 
+// #include "../opengl/MaterialGL.h"
+
 using namespace Core;
 
 Model::Model()
@@ -65,33 +67,31 @@ void Model::Render()
 	//Render::RenderBuffer* renderBuffer = Render::RenderBuffer::getInstance();
 
 	Transform* transform = this->getObject()->GetComponent<Transform>();
-	Math::Matrix4 m = transform->GetLocalToWorldMat4();
+	//Math::Matrix4& m = transform->GetLocalToWorldMat4();
 
 	Camera* camera = Scene::getCurrScene()->getMainCamera();
-	Math::Matrix4 v = camera->getViewMat4();
-	Math::Matrix4 p = camera->getPerspectiveMat4();
-	Math::Matrix4 VP = camera->getVPMat4();
-
-	int size = triangles.size();
+	//Math::Matrix4& v = camera->getViewMat4();
+	//Math::Matrix4& p = camera->getPerspectiveMat4();
+	//Math::Matrix4& VP = camera->getVPMat4();
 
 	//m.printMat4();
-	m.printMat4();
 
-	Vector4 v4 = m * Vector4(0.5f, 0, 0, 1.0f);
+	// Vector4 v4 = m * Vector4(0.5f, 0, 0, 1.0f);
 	// Vector4 v5 = m.transpose() * Vector4(0.5f, 0, 0, 1.0f);
 	
-	printf("%s \n", v4.toString());
+	//printf("%s \n", v4.toString());
 
 	Render::Material* material = renderProgram->getMaterial();
 
-	printf("---------- %p\n", material);
+	//printf("---------- %p\n", material);
 
-	material->setVec3("color", Math::Vector3(0.0f, 0.3f, 0.6f));
+	Math::Vector3 color = Math::Vector3(0.0f, 0.3f, 0.6f);
+	material->setVec3("color", color);
 
-	material->setMat4("model", m);
-	material->setMat4("VP", VP);
-	material->setMat4("view", v);
-	material->setMat4("proj", p);
+	material->setMat4("model", transform->GetLocalToWorldMat4());
+	material->setMat4("VP", camera->getVPMat4());
+	material->setMat4("view", camera->getViewMat4());
+	material->setMat4("proj", camera->getPerspectiveMat4());
 
 	/*material->setMat4("view", v);
 	material->setMat4("projection", p);*/

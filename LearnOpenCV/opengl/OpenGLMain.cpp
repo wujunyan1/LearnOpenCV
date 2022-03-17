@@ -100,9 +100,14 @@ namespace OpenGL
 		return new MaterialGL();
 	}
 
-	RenderGLMesh* CreateRenderMesh(std::string name)
+	RenderGLMesh* CreateRenderMesh(std::string& name)
 	{
 		return RenderGLMeshManager::createNewRenderMesh(name);;
+	}
+
+	RenderGLMesh* GetRenderMesh(std::string& name)
+	{
+		return RenderGLMeshManager::getRenderMesh(name);
 	}
 
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath)

@@ -25,11 +25,14 @@ namespace OpenGL
 		static ShaderGLProgram* GetShaderGLProgram(const std::string& shaderName);
 
 	private:
+		bool checkSameParams(std::string& name, const void* data);
+
+	private:
 
 		std::string shaderName;
 
 		// 当前的 shader参数
-		std::vector<Render::ShaderParam> s_ShaderParams;
+		std::map<std::string, const void*> m_currParams;
 
 	private:
 		static std::map<std::string, ShaderGLProgram*>* programs;

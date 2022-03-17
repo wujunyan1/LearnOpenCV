@@ -4,6 +4,9 @@
 #include "../render/RenderQueue.h"
 #include "ShaderGLProgram.h"
 
+#include "MaterialGL.h"
+#include "RenderGLMesh.h"
+
 namespace OpenGL
 {
 	class RenderGLProgram : public Render::RenderProgram
@@ -11,13 +14,14 @@ namespace OpenGL
 	public:
 		RenderGLProgram();
 
-		Render::RenderMesh* createNewRenderMesh(std::string name = Math::getUid());
+		Render::RenderMesh* createNewRenderMesh(std::string name = Math::stringFormat("renderMesh|%d",Math::getUid()));
 		Render::RenderMesh* loadRenderMesh(std::string name, std::string path);
 		
 		void addModel(Core::AModel* model);
 		void setShader(const std::string& shaderName);
 
 		void Render();
+		void RenderMesh(RenderGLMesh* mesh);
 	};
 
 	class RenderGLQueue
@@ -28,24 +32,9 @@ namespace OpenGL
 
 		void Render();
 
-		void addRenderProgram(RenderGLProgram* renderProgram)
-		{
-			if (activeRenderProgram->size() <= index)
-			{
-				activeRenderProgram->push_back(renderProgram);
-				index++;
-			}
-			else
-			{
-				activeRenderProgram->at(index) = renderProgram;
-				index++;
-			}
-		}
+		void addRenderProgram(RenderGLProgram* renderProgram);
 
-		void clear()
-		{
-			index = 0;
-		}
+		void clear();
 
 	private:
 

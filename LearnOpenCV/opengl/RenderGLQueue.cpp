@@ -48,19 +48,28 @@ namespace OpenGL
 		// äÖÈ¾vao
 		for (auto mesh : *meshs)
 		{
-			mesh->Render();
+			mesh->Render(shaderProgram);
 		}
+	}
+
+	void RenderGLProgram::RenderMesh(RenderGLMesh* mesh)
+	{
+		// ÉèÖÃshader ÊôÐÔ
+		shaderProgram->RenderMaterial(material);
+		mesh->Render(shaderProgram);
 	}
 
 
 	RenderGLQueue::RenderGLQueue(ShaderGLProgram* program)
 	{
+		index = 0;
 		shaderProgram = program;
 		activeRenderProgram = new std::vector<RenderGLProgram*>();
 	}
 
 	RenderGLQueue::~RenderGLQueue()
 	{
+		delete activeRenderProgram;
 	}
 
 	void RenderGLQueue::Render()
@@ -72,10 +81,27 @@ namespace OpenGL
 		{
 			RenderGLProgram* program = (RenderGLProgram*)activeRenderProgram->at(i);
 			program->Render();
-
 		}
 	}
 
+	void RenderGLQueue::addRenderProgram(RenderGLProgram* renderProgram)
+	{
+		if (activeRenderProgram->size() <= index)
+		{
+			activeRenderProgram->push_back(renderProgram);
+			index++;
+		}
+		else
+		{
+			activeRenderProgram->at(index) = renderProgram;
+			index++;
+		}
+	}
+
+	void RenderGLQueue::clear()
+	{
+		index = 0;
+	}
 
 	void RenderGLQueueManager::AddRenderQueue(RenderGLProgram* renderProgram)
 	{

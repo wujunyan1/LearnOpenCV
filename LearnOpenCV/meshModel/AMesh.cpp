@@ -5,7 +5,7 @@ using namespace Core;
 
 void Core::AMesh::bindRender()
 {
-	mesh = Render::CreateRenderMesh();
+	mesh = Render::CreateRenderMesh(id);
 
 	mesh->BindArrayBufferData(indices.size(), vertices.size() * sizeof(Vertex), &vertices[0]);
 	mesh->BindElementBufferData(indices.size() * sizeof(unsigned int), &indices[0]);

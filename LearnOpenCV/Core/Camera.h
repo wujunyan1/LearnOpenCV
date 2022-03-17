@@ -14,10 +14,10 @@ namespace Core
 		void Bind();
 		void init(float fov, float aspect, float near, float far);
 
-		Mat4 getViewMat4();
-		Mat4 getPerspectiveMat4();
-		Mat4 getOrthogonalMat4();
-		Mat4 getVPMat4();
+		Mat4& getViewMat4();
+		Mat4& getPerspectiveMat4();
+		Mat4& getOrthogonalMat4();
+		Mat4& getVPMat4();
 
 		virtual void LaterUpdate() override;
 

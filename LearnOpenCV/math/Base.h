@@ -15,6 +15,7 @@ namespace Math {
 
 #define D_PI  double (3.1415926535897932384626433832795)
 #define F_PI  = 3.14159265358979323846f;
+	static unsigned int nextId = 0;
 
 	template <typename T>
 	inline T Sqrt(T n) {
@@ -74,7 +75,9 @@ namespace Math {
 		return radians * (57.295779513082320876798154814105);
 	}
 
-	std::string getUid();
+	std::string stringFormat(std::string fmt, ...);
+
+	unsigned int getUid();
 
 	class Vector1;
 	class Vector2;

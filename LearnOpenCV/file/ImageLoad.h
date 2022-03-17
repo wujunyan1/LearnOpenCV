@@ -13,6 +13,8 @@ namespace Core
 
 	public:
 		static Image* LoadImage(std::string path);
+
+		static Image* GetImage(std::string path);
 	};
 }
 

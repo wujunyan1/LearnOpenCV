@@ -106,6 +106,16 @@ namespace Render
 #endif
 	}
 
+	RenderMesh* GetRenderMesh(std::string name)
+	{
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
+		return OpenCV::CreateShader(name);
+#endif
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+		return OpenGL::GetRenderMesh(name);
+#endif
+	}
+
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath)
 	{
 #if SHADER_PLAFORM==SHADER_PLAFORM_CV

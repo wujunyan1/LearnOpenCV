@@ -183,6 +183,9 @@
     <ClInclude Include="opengl\GLImage.h">
       <Filter>opengl</Filter>
     </ClInclude>
+    <ClInclude Include="render\Texture.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -322,6 +325,9 @@
     </ClCompile>
     <ClCompile Include="opengl\GLImage.cpp">
       <Filter>opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="render\Texture.cpp">
+      <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -60,21 +60,21 @@ namespace Core
 
 		}
 
-		Mat4 GetLocalToWorldMat4() {
+		Mat4& GetLocalToWorldMat4() {
 			if (matChanged) {
 				UpdateLocalMat4();
 			}
 			return localToWorldMat4;
 		}
 
-		Mat4 GetWorldToLocalMat4() {
+		Mat4& GetWorldToLocalMat4() {
 			if (matChanged) {
 				UpdateLocalMat4();
 			}
 			return worldToLocalMat4;
 		}
 
-		Mat4 GetLocalMat4() {
+		Mat4& GetLocalMat4() {
 			if (matChanged) {
 				UpdateLocalMat4();
 			}

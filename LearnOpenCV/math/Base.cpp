@@ -4,11 +4,17 @@
 #include "Matrix4.h"
 #include "Triangle.h"
 
-int nextId = 0;
+std::string Math::stringFormat(std::string fmt, ...)
+{
+	char targetString[1024];
+	va_list _ArgList;
+	__crt_va_start(_ArgList, fmt);
+	vsnprintf(targetString, sizeof(targetString), fmt.c_str(), _ArgList);
+	__crt_va_end(_ArgList);
 
+	return targetString;
+}
 
-std::string Math::getUid() {
-	std::time_t currTime = std::time(0);
-
-	return std::to_string(currTime) + "|" + std::to_string(nextId++);
+unsigned int Math::getUid() {
+	return nextId++;
 }

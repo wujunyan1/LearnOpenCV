@@ -3,6 +3,7 @@
 #include "OpenGLCore.h"
 #include "../render/RenderMesh.h"
 #include "GLImage.h"
+#include "GLShader.h"
 
 namespace OpenGL
 {
@@ -17,17 +18,19 @@ namespace OpenGL
 		void VertexAttribPointer(unsigned int passageway, size_t dataSize, Render::ShaderParamType dataType, bool b, size_t delaySize, size_t startIndex);
 		void BindElementBufferData(size_t dataSize, void* data);
 
-		void SetImage(std::vector<Core::Image*>& images) 
+		void SetImage(std::vector<Render::Texture>& images)
 		{
 			this->images = images;
 		};
-		void Render();
+		void BindRender(GLShader* shader);
+
+		void Render(Render::ShaderProgram* program);
 	private:
 		unsigned int ebo;
 		unsigned int vbo;
 		unsigned int tvao;
 		unsigned int verticesNum;
-		std::vector<Core::Image*> images;
+		std::vector<Render::Texture> images;
 	};
 
 

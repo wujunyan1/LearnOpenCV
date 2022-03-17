@@ -83,6 +83,27 @@ void Game::LoadMainScene()
 	model->setModel(amodel);
 
 
+	for (size_t i = 0; i < 1000; i++)
+	{
+		Object* ro = ObjectManager::createNewObject();
+		Transform* rt = ro->AddComponent<Transform>();
+		Model* model = ro->AddComponent<Model>();
+		model->setModel(amodel);
+		root->AddChild(rt);
+
+		int x = rand() % 20 + 1;
+		int y = rand() % 20 + 1;
+		int z = rand() % 20 + 1;
+		rt->SetPosition(Math::Vector3(x, y, -z));
+
+		int roll = rand() % 6;
+		int yaw = rand() % 6;
+		int pitch = rand() % 6;
+		rt->SetRotate(Vector3(pitch, yaw, roll));
+
+		ro->AddComponent<TestComponent>();
+	}
+
 	/*Object* o2 = ObjectManager::createNewObject();
 	Transform* t2 = o2->AddComponent<Transform>();
 	Mesh* mesh2 = o2->AddComponent<Mesh>();

@@ -18,7 +18,7 @@ namespace Render
 		void setVBO(unsigned int _vbo) { vbo = _vbo; }
 		unsigned int getVBO() { return vbo; }
 
-		virtual RenderMesh* createNewRenderMesh(std::string name = Math::getUid()) { return NULL; };
+		virtual RenderMesh* createNewRenderMesh(std::string name = Math::stringFormat("renderMesh|%d", Math::getUid())) { return NULL; };
 		virtual RenderMesh* loadRenderMesh(std::string name, std::string path = "") { return NULL; };
 
 		std::vector <RenderMesh*>* getMeshs() { return meshs; }

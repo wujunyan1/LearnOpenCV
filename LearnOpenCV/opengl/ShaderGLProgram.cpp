@@ -26,6 +26,23 @@ namespace OpenGL
 		return NULL;
 	}
 
+	bool ShaderGLProgram::checkSameParams(std::string& name, const void* data)
+	{
+		auto it = m_currParams.find(name);
+		if (it == m_currParams.end())
+		{
+			//m_currParams.insert(std::pair<std::string, void*>(name, data));
+			m_currParams[name] = data;
+			return false;
+		}
+
+		if (it->second == data) {
+			return true;
+		}
+		m_currParams[name] = data;
+		return false;
+	}
+
 	void ShaderGLProgram::RenderMaterial(Render::Material* material)
 	{
 		RenderMaterial(dynamic_cast<OpenGL::MaterialGL*>(material));
@@ -34,7 +51,8 @@ namespace OpenGL
 	void ShaderGLProgram::RenderMaterial(OpenGL::MaterialGL* material)
 	{
 		GLShader* shader = GetShaderObj();
-		std::vector<Render::ShaderParam> params = material->getShaderParams();
+
+		std::vector<Render::ShaderParam>& params = material->getShaderParams();
 		for( Render::ShaderParam param : params)
 		{
 			Render::ShaderParamType stype = param.stype;
@@ -43,21 +61,31 @@ namespace OpenGL
 			case Render::ShaderParamType::SPT_UNKNOWN:
 				break;
 			case Render::ShaderParamType::SPT_INT:
-				shader->setInt(param.name, param.data.getDataPtr());
+				if (!checkSameParams(param.name, param.data.getDataPtr())) {
+					shader->setInt(param.name, param.data.getDataPtr());
+				}
 				break;
 			case Render::ShaderParamType::SPT_FLOAT:
-				shader->setFloat(param.name, param.data.getDataPtr());
+				if (!checkSameParams(param.name, param.data.getDataPtr())) {
+					shader->setFloat(param.name, param.data.getDataPtr());
+				}
 				break;
 			case Render::ShaderParamType::SPT_VEC2:
 				break;
 			case Render::ShaderParamType::SPT_VEC3:
-				shader->setVec3(param.name, param.data.getDataPtr());
+				if (!checkSameParams(param.name, param.data.getDataPtr())) {
+					shader->setVec3(param.name, param.data.getDataPtr());
+				}
 				break;
 			case Render::ShaderParamType::SPT_VEC4:
-				shader->setFloat4(param.name, param.data.getDataPtr());
+				if (!checkSameParams(param.name, param.data.getDataPtr())) {
+					shader->setFloat4(param.name, param.data.getDataPtr());
+				}
 				break;
 			case Render::ShaderParamType::SPT_MAT4:
-				shader->setMat4(param.name, param.data.getDataPtr());
+				if (!checkSameParams(param.name, param.data.getDataPtr())) {
+					shader->setMat4(param.name, param.data.getDataPtr());
+				}
 				break;
 			case Render::ShaderParamType::SPT_TEXTURE:
 				break;
@@ -82,6 +110,8 @@ namespace OpenGL
 	{
 		GLShader* shader = GetShaderObj();
 		shader->use();
+
+		m_currParams.clear();
 	}
 
 }
