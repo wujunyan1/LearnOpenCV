@@ -8,6 +8,8 @@
 #include "GLShaderManager.h"
 #include "GLImage.h"
 
+#include "../input/Input.h"
+
 using namespace Render;
 
 namespace OpenGL
@@ -129,6 +131,7 @@ namespace OpenGL
 		glfwInitHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwInitHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwInitHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 	}
 
 	int CreateWindow(int w, int h, std::string title)
@@ -197,5 +200,43 @@ namespace OpenGL
 	{
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+	}
+
+
+	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+	{
+		/*if (action != GLFW_PRESS)
+			return;
+		switch (key)
+		{
+		case GLFW_KEY_ESCAPE:
+			glfwSetWindowShouldClose(window, GL_TRUE);
+			break;
+		default:
+			break;
+		}*/
+
+		if (action == GLFW_PRESS)
+			Core::Input::PressKey(key);
+		else if (action == GLFW_RELEASE)
+			Core::Input::ReleaseKey(key);
+	}
+
+	void mouse_enter_callback(GLFWwindow* window, int index)
+	{
+
+	}
+
+	void mouse_pos_callback(GLFWwindow* window, double x, double y)
+	{
+		Core::Input::mousePos = Core::Vector2(x, y);
+	}
+
+	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+	{
+		if (action == GLFW_PRESS)
+			Core::Input::keys[button] = true;
+		else if (action == GLFW_RELEASE)
+			Core::Input::keys[button] = false;
 	}
 }
