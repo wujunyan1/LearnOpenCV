@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Core\Camera.h" />
+    <ClInclude Include="Core\CameraMoveComponent.h" />
     <ClInclude Include="Core\Component.h" />
     <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\CoreDef.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="file\Image.h" />
     <ClInclude Include="file\ImageLoad.h" />
     <ClInclude Include="file\stb_image.h" />
+    <ClInclude Include="input\Input.h" />
     <ClInclude Include="LearnOpenCV.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="math\Base.h" />
@@ -202,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Camera.cpp" />
+    <ClCompile Include="Core\CameraMoveComponent.cpp" />
     <ClCompile Include="Core\Component.cpp" />
     <ClCompile Include="Core\Core.cpp" />
     <ClCompile Include="Core\Game.cpp" />
@@ -215,6 +218,7 @@
     <ClCompile Include="file\FilePathManager.cpp" />
     <ClCompile Include="file\Image.cpp" />
     <ClCompile Include="file\ImageLoad.cpp" />
+    <ClCompile Include="input\Input.cpp" />
     <ClCompile Include="LearnOpenCV.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="math\Base.cpp" />

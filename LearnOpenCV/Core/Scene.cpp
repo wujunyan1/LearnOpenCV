@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Model.h"
 #include "TestComponent.h"
+#include "CameraMoveComponent.h"
 
 #include "../math/Math.h"
 
@@ -30,6 +31,8 @@ void Scene::Bind()
 	camera->init(Math::radians(45.0f), size.x * 1.0f / size.y, 0.1f, 100.0f);
 	transform->AddChild(cameraT);
 	cameraT->SetPosition({0, 0, 0});
+
+	cameraObj->AddComponent<CameraMoveComponent>();
 
 	//o2->AddComponent<TestComponent>();
 }

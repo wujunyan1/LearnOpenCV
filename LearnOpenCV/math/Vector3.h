@@ -183,5 +183,10 @@ namespace Math
 		}
 
 	}; 
+
+	inline const Vector3 operator* (const float rhs, const Vector3 lhs)
+	{
+		return Vector3(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs);
+	}
 }
 

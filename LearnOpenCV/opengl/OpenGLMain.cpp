@@ -15,6 +15,44 @@ using namespace Render;
 namespace OpenGL
 {
 
+	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+	{
+		/*if (action != GLFW_PRESS)
+			return;
+		switch (key)
+		{
+		case GLFW_KEY_ESCAPE:
+			glfwSetWindowShouldClose(window, GL_TRUE);
+			break;
+		default:
+			break;
+		}*/
+
+		if (action == GLFW_PRESS)
+			Core::Input::PressKey((Core::Input::Key)key);
+		else if (action == GLFW_RELEASE)
+			Core::Input::ReleaseKey((Core::Input::Key)key);
+	}
+
+	void mouse_enter_callback(GLFWwindow* window, int index)
+	{
+
+	}
+
+	void mouse_pos_callback(GLFWwindow* window, double x, double y)
+	{
+		Core::Input::UpdateMousePosition(Math::Vector2(x, y));
+	}
+
+	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+	{
+		if (action == GLFW_PRESS)
+			Core::Input::PressKey((Core::Input::Key)button);
+		else if (action == GLFW_RELEASE)
+			Core::Input::ReleaseKey((Core::Input::Key)button);
+	}
+
+
 	void checkGLError(const char* message)
 	{
 		GLenum error;
@@ -132,6 +170,7 @@ namespace OpenGL
 		glfwInitHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwInitHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+		
 	}
 
 	int CreateWindow(int w, int h, std::string title)
@@ -155,6 +194,17 @@ namespace OpenGL
 		//glEnable(GL_CULL_FACE);    // ÌÞ³ýÃæ
 		//glCullFace(GL_BACK);       // ÌÞ³ý±³Ãæ
 		glEnable(GL_DEPTH_TEST);
+
+		// glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+		// glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);    // Êó±ê¼ýÍ·Òþ²Ø
+
+		glfwSetCursorEnterCallback(window, mouse_enter_callback);
+		glfwSetCursorPosCallback(window, mouse_pos_callback);
+		glfwSetMouseButtonCallback(window, mouse_button_callback);
+		glfwSetKeyCallback(window, key_callback);
+
+
 		return 0;
 	}
 
@@ -200,43 +250,5 @@ namespace OpenGL
 	{
 		glfwSwapBuffers(window);
 		glfwPollEvents();
-	}
-
-
-	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-	{
-		/*if (action != GLFW_PRESS)
-			return;
-		switch (key)
-		{
-		case GLFW_KEY_ESCAPE:
-			glfwSetWindowShouldClose(window, GL_TRUE);
-			break;
-		default:
-			break;
-		}*/
-
-		if (action == GLFW_PRESS)
-			Core::Input::PressKey(key);
-		else if (action == GLFW_RELEASE)
-			Core::Input::ReleaseKey(key);
-	}
-
-	void mouse_enter_callback(GLFWwindow* window, int index)
-	{
-
-	}
-
-	void mouse_pos_callback(GLFWwindow* window, double x, double y)
-	{
-		Core::Input::mousePos = Core::Vector2(x, y);
-	}
-
-	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
-	{
-		if (action == GLFW_PRESS)
-			Core::Input::keys[button] = true;
-		else if (action == GLFW_RELEASE)
-			Core::Input::keys[button] = false;
 	}
 }

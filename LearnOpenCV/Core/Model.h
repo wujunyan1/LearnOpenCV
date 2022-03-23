@@ -19,6 +19,7 @@ namespace Core
 		}
 
 		void setModel(AModel* model);
+		
 
 		void bindRender();
 

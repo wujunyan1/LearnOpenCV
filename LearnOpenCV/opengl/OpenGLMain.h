@@ -9,6 +9,14 @@
 
 namespace OpenGL
 {
+	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+	void mouse_enter_callback(GLFWwindow* window, int index);
+
+	void mouse_pos_callback(GLFWwindow* window, double x, double y);
+
+	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
+
 	void checkGLError(const char* message);
 	void checkGLError(const char* file, int line);
 	const char* toGLErrorString(GLenum error);

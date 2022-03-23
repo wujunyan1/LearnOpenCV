@@ -49,8 +49,6 @@ void Game::LoadMainScene()
 
 	Core::Transform* root = scene->getObject()->GetComponent<Core::Transform>();
 
-
-
 	Object* o = ObjectManager::createNewObject();
 	Transform* t = o->AddComponent<Transform>();
 	Model* model = o->AddComponent<Model>();
@@ -83,7 +81,7 @@ void Game::LoadMainScene()
 	model->setModel(amodel);
 
 
-	for (size_t i = 0; i < 1000; i++)
+	for (size_t i = 0; i < 1; i++)
 	{
 		Object* ro = ObjectManager::createNewObject();
 		Transform* rt = ro->AddComponent<Transform>();
@@ -104,9 +102,9 @@ void Game::LoadMainScene()
 		ro->AddComponent<TestComponent>();
 	}
 
-	/*Object* o2 = ObjectManager::createNewObject();
+	Object* o2 = ObjectManager::createNewObject();
 	Transform* t2 = o2->AddComponent<Transform>();
-	Mesh* mesh2 = o2->AddComponent<Mesh>();
+	Model* mesh2 = o2->AddComponent<Model>();
 
 	root->AddChild(t2);
 	t2->SetPosition(Math::Vector3(0.0f, -0.2f, 1.1f));
@@ -123,5 +121,5 @@ void Game::LoadMainScene()
 			Math::Vector4(1, 1, 0, 1)
 			)
 	);
-	mesh2->bindRender();*/
+	mesh2->bindRender();
 }

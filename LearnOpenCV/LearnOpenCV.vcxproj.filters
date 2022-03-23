@@ -34,6 +34,9 @@
     <Filter Include="meshModel">
       <UniqueIdentifier>{1609111a-825e-4ed2-9678-6973492a647f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="input">
+      <UniqueIdentifier>{cf1dc046-8aac-42df-8cff-7607040ed564}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LearnOpenCV.h">
@@ -186,6 +189,12 @@
     <ClInclude Include="render\Texture.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="input\Input.h">
+      <Filter>input</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CameraMoveComponent.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -328,6 +337,12 @@
     </ClCompile>
     <ClCompile Include="render\Texture.cpp">
       <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="input\Input.cpp">
+      <Filter>input</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\CameraMoveComponent.cpp">
+      <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
