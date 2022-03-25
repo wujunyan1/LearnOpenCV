@@ -195,6 +195,7 @@
     <ClInclude Include="opengl\RenderGLMesh.h" />
     <ClInclude Include="opengl\RenderGLQueue.h" />
     <ClInclude Include="opengl\ShaderGLProgram.h" />
+    <ClInclude Include="render\BlendFunc.h" />
     <ClInclude Include="render\Material.h" />
     <ClInclude Include="render\RenderMain.h" />
     <ClInclude Include="render\RenderMesh.h" />
@@ -246,6 +247,7 @@
     <ClCompile Include="opengl\RenderGLMesh.cpp" />
     <ClCompile Include="opengl\RenderGLQueue.cpp" />
     <ClCompile Include="opengl\ShaderGLProgram.cpp" />
+    <ClCompile Include="render\BlendFunc.cpp" />
     <ClCompile Include="render\Material.cpp" />
     <ClCompile Include="render\RenderMain.cpp" />
     <ClCompile Include="render\RenderMesh.cpp" />

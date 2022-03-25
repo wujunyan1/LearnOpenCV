@@ -7,6 +7,5 @@ namespace Render
 		meshs = NULL;
 		material = NULL;
 		shaderProgram = NULL;
-		vbo = 0;
 	}
 }

@@ -22,16 +22,18 @@ namespace Core
 		// constructor, expects a filepath to a 3D model.
 		AModel(std::string const& path, bool gamma = false) : gammaCorrection(gamma)
 		{
+            modelId = Math::getUid();
 			loadModel(path);
 		}
 
         std::vector<AMesh>& getMeshs() { return meshes; };
+        void addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
 
 	private:
         // loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector.
         void loadModel(std::string const& path)
         {
-            modelId = Math::getUid();
+            // modelId = Math::getUid();
             printf("loadModel %d", modelId);
             std::string s = std::string(FilePathManager::getRootPath());
             // read file via ASSIMP
@@ -170,7 +172,7 @@ namespace Core
                 Render::Texture texture;
                 texture.image = image;
                 texture.imageName = str.C_Str();
-                texture.shaderName = typeName;
+                texture.uniformName = typeName;
                 textures.push_back(texture);
             }
             return textures;
@@ -181,12 +183,14 @@ namespace Core
 		std::string directory;
         unsigned int modelId;
 		bool gammaCorrection;
+
 	};
 
     class AModelFactory
     {
     public:
         static AModel* createModel(std::string path);
+        static AModel* createCustomModel();
 
     private: 
         static std::map<std::string, AModel*>* models;

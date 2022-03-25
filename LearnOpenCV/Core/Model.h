@@ -4,7 +4,7 @@
 #include "../math/Math.h"
 #include "../render/RenderMain.h"
 #include "../meshModel/AModel.h"
-
+#include "../render/BlendFunc.h"
 
 namespace Core
 {
@@ -13,21 +13,24 @@ namespace Core
 	public:
 		Model();
 
-		void addTriangle(Math::Triangle<Math::Vector3> t, Math::Triangle<Math::Vector4> color) {
-			triangles.push_back(t);
-			colors.push_back(color);
-		}
-
 		void setModel(AModel* model);
 		
 
 		void bindRender();
 
 		void Render();
-	private:
-		std::vector<Math::Triangle<Math::Vector3>> triangles;
-		std::vector<Math::Triangle<Math::Vector4>> colors;
 
+		void setShader(std::string shaderName);
+
+		// 是否开启深度测试，默认开启
+		void setBlend(bool enable);
+
+		// 目标是深度缓存里的， src是ps输出的
+		void setBlendFunc(Render::BlendFunc src, Render::BlendFunc target);
+
+		// 是否开启深度测试，默认开启
+		void setDepthTest(bool enable);
+	private:
 		// 材质
 		Render::RenderProgram* renderProgram = NULL;
 	};

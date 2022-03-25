@@ -195,6 +195,9 @@
     <ClInclude Include="Core\CameraMoveComponent.h">
       <Filter>core</Filter>
     </ClInclude>
+    <ClInclude Include="render\BlendFunc.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -343,6 +346,9 @@
     </ClCompile>
     <ClCompile Include="Core\CameraMoveComponent.cpp">
       <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="render\BlendFunc.cpp">
+      <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

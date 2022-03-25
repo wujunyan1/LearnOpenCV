@@ -103,7 +103,7 @@ void GLShader::setFloat4(const std::string& name, const void* value) const
 
 void GLShader::setVec3(const std::string& name, const void* value) const
 {
-    GL_GET_ERROR(glUniform3fv(glGetUniformLocation(ID, name.c_str()), 1, (float*)value));
+    GL_GET_ERROR(glUniform3fv(glGetUniformLocation(ID, name.c_str()), 1, (GLfloat*)value));
 }
 
 void GLShader::setMat4(const std::string& name, const void* mat) const

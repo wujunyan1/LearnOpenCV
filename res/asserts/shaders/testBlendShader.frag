@@ -18,5 +18,5 @@ void main()
     vec4 diffuse = texture(texture_diffuse, uv);
 
     // FragColor = vec4((ambient + diffuse).rgb, 1.0f);
-    FragColor = ambient; // + diffuse;
+    FragColor = ambient; //vec4(color, ambient.a); // + diffuse;
 }

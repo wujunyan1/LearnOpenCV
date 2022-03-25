@@ -71,7 +71,7 @@ namespace OpenGL
 
     void MaterialGL::setVec3(const std::string& name, Math::Vector3& value)
     {
-        tryModifyShaderParam(name, &value, Render::ShaderParamType::SPT_VEC3);
+        tryModifyShaderParam(name, &value, Render::ShaderParamType::SPT_VEC3, sizeof(Math::Vector3));
     }
 
     void MaterialGL::setVec3(const std::string& name, float x, float y, float z)

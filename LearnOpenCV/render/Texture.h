@@ -9,6 +9,6 @@ namespace Render
 	{
 		Core::Image* image;
 		std::string imageName;
-		std::string shaderName;
+		std::string uniformName;
 	};
 }

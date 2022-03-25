@@ -6,7 +6,6 @@
 
 namespace OpenGL
 {
-
 class GLImage : public Core::Image
 {
 public:
@@ -53,13 +52,23 @@ public:
 	void use(int textureIndex)
 	{
 		//glDepthMask(GL_FALSE);                                                         //关掉深度测试     
-		glEnable(GL_BLEND);                                                            //开混合模式贴图     
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);                             //设置混合方式 
+		//glEnable(GL_BLEND);                                                            //开混合模式贴图     
+		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);                             //设置混合方式 
+		//GL_ZERO
+
+		//GL_BLEND
 
 		glBindTexture(GL_TEXTURE_2D, texture);
 		glActiveTexture(GLImage::textureIndex[textureIndex]);
 		//glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND);			//贴图模式为混合
 	}
+
+	void exit(int textureIndex)
+	{
+		
+	}
+
+	void setBlendFunc();
 
 public:
 	static const int textureIndex[32];

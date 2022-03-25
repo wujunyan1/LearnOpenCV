@@ -234,11 +234,12 @@ namespace OpenGL
 
 	void SetBackgroundColor(Math::Vector3 color)
 	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		GL_GET_ERROR(glDepthMask(GL_TRUE));
+		GL_GET_ERROR(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 		//processInput(window);
 
-		glClearColor(color.x, color.y, color.z, 1.0);
-		glClear(GL_COLOR_BUFFER_BIT);
+		GL_GET_ERROR(glClearColor(color.x, color.y, color.z, 1.0));
+		GL_GET_ERROR(glClear(GL_COLOR_BUFFER_BIT));
 	}
 
 	void Render(float delay)

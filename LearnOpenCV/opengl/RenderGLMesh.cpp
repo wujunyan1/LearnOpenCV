@@ -73,7 +73,7 @@ namespace OpenGL
 			Render::Texture& texture = images[i];
 			texture.image->use(i);
 
-			shader->setTexture(texture.shaderName, i);
+			shader->setTexture(texture.uniformName, i);
 		}
 
 		glDrawElements(GL_TRIANGLES, verticesNum, GL_UNSIGNED_INT, 0);

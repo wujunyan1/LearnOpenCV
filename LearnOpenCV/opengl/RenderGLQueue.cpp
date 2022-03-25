@@ -2,6 +2,8 @@
 #include "RenderGLMesh.h"
 #include "MaterialGL.h"
 
+#include "OpenGLMain.h"
+
 namespace OpenGL
 {
 	std::map<unsigned int, RenderGLQueue*>* RenderGLQueueManager::queues = new std::map<unsigned int, RenderGLQueue*>();
@@ -43,6 +45,16 @@ namespace OpenGL
 
 	void RenderGLProgram::Render()
 	{
+		GL_GET_ERROR(glDepthMask(depthTest ? GL_TRUE : GL_FALSE));                                                       //关掉深度测试
+		
+		if (blend) {
+			GL_GET_ERROR(glEnable(GL_BLEND));	//开混合模式贴图 
+		}
+		else{
+			GL_GET_ERROR(glDisable(GL_BLEND));
+		} 
+		GL_GET_ERROR(glBlendFunc((int)srcBlendFunc, (int)targetBlendFunc));                           //设置混合方式 
+
 		// 设置shader 属性
 		shaderProgram->RenderMaterial(material);
 		// 渲染vao
