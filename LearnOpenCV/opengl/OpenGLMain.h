@@ -43,10 +43,6 @@ namespace OpenGL
 
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath);
 
-
-	// 添加到渲染队列
-	void AddRenderQueue(RenderGLProgram* renderProgram);
-
 	void InitEngine();
 	int CreateWindow(int w, int h, std::string title);
 	Math::Vector2T<int> GetWindowSize();

@@ -155,12 +155,6 @@ namespace OpenGL
 		return GLShaderManager::Instance()->GetShader(shaderName, vsPath, fsPath);
 	}
 
-	// 添加到渲染队列
-	void AddRenderQueue(RenderGLProgram* renderProgram)
-	{
-		RenderGLQueueManager::AddRenderQueue(renderProgram);
-	}
-
 	void InitEngine()
 	{
 		GLShaderManager::NewInstance();
@@ -244,7 +238,7 @@ namespace OpenGL
 
 	void Render(float delay)
 	{
-		RenderGLQueueManager::RenderQueue();
+		Render::RenderQueueManager::RenderQueue();
 	}
 
 	void RenderEnd()

@@ -20,6 +20,8 @@
 #define SHADER_FLOAT GL_FLOAT
 #endif
 
+
+
 namespace Render
 {
 	unsigned int CreateVBO();
@@ -42,8 +44,11 @@ namespace Render
 
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath);
 
+	template <typename T = RenderQueue>
+	void AddCustomRenderQueue(std::string name);
+
 	// 添加到渲染队列
-	void AddRenderQueue(RenderProgram* renderProgram);
+	void AddRender(RenderProgram* renderProgram);
 
 	long getCurrentRenderTime();
 
@@ -59,4 +64,9 @@ namespace Render
 
 	void Render(float delay);
 	void RenderEnd();
+
+	template<typename T>
+	void AddCustomRenderQueue(std::string name)
+	{
+	}
 }

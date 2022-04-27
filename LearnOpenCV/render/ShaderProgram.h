@@ -70,6 +70,8 @@ namespace Render
 
 		virtual void SetVSAndPS(std::string vs, std::string ps) {};
 
+		virtual void Use() {};
+
 	protected:
 
 		// °ó¶¨µÄshader

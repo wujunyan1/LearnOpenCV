@@ -71,7 +71,7 @@ void Model::Render()
 
 	//	Math::Vector4 v4 = Math::Vector4(t.points[0], 1.0f);
 	//}
-	Render::AddRenderQueue(renderProgram);
+	Render::AddRender(renderProgram);
 }
 
 void Core::Model::setShader(std::string shaderName)

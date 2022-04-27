@@ -47,15 +47,4 @@ namespace OpenGL
 		std::vector<RenderGLProgram*>* activeRenderProgram;
 	};
 
-	class RenderGLQueueManager
-	{
-	public:
-		static void AddRenderQueue(RenderGLProgram* renderProgram);
-
-		static void RenderQueue();
-
-	private:
-		static std::map<unsigned int, RenderGLQueue*>* queues;
-	};
-
 }

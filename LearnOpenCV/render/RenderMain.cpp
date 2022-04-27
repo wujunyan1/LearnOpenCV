@@ -127,14 +127,9 @@ namespace Render
 	}
 
 	// 添加到渲染队列
-	void AddRenderQueue(RenderProgram* renderProgram)
+	void AddRender(RenderProgram* renderProgram)
 	{
-#if SHADER_PLAFORM==SHADER_PLAFORM_CV
-		return OpenCV::AddRenderQueue(renderProgram);
-#endif
-#if SHADER_PLAFORM==SHADER_PLAFORM_GL
-		return OpenGL::AddRenderQueue((OpenGL::RenderGLProgram*)(renderProgram));
-#endif
+		RenderQueueManager::AddRenderQueue(renderProgram);
 	}
 
 	void InitEngine()

@@ -6,9 +6,6 @@
 
 namespace OpenGL
 {
-	std::map<unsigned int, RenderGLQueue*>* RenderGLQueueManager::queues = new std::map<unsigned int, RenderGLQueue*>();
-
-
 	RenderGLProgram::RenderGLProgram(): Render::RenderProgram()
 	{
 		material = new MaterialGL();
@@ -114,35 +111,4 @@ namespace OpenGL
 	{
 		index = 0;
 	}
-
-	void RenderGLQueueManager::AddRenderQueue(RenderGLProgram* renderProgram)
-	{
-		Render::ShaderProgram* program = renderProgram->getShaderProgram();
-		unsigned int shaderID = program->GetShader();
-
-		RenderGLQueue* queue = NULL;
-		auto it = queues->find(shaderID);
-		if (it == queues->end())
-		{
-			queue = new RenderGLQueue(dynamic_cast<ShaderGLProgram*>(program));
-			queues->insert(std::make_pair(shaderID, queue));
-		}
-		else
-		{
-			queue = it->second;
-		}
-		queue->addRenderProgram(renderProgram);
-	}
-
-	void RenderGLQueueManager::RenderQueue()
-	{
-		std::map<unsigned int, RenderGLQueue*>::iterator it;
-		for (it = queues->begin(); it != queues->end(); it++)
-		{
-			RenderGLQueue* queue = it->second;
-			queue->Render();
-			queue->clear();
-		}
-	}
-
 }

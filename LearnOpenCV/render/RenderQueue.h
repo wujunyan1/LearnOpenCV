@@ -48,6 +48,8 @@ namespace Render
 
 		// 是否开启深度测试，默认开启
 		void setDepthTest(bool enable) { depthTest = enable; };
+
+		void setQueue(std::string name) { this->queueName = name; };
 	protected:
 		ShaderProgram* shaderProgram;
 
@@ -61,5 +63,47 @@ namespace Render
 		bool blend = false;
 		BlendFunc srcBlendFunc = BlendFunc::SRC_ALPHA;
 		BlendFunc targetBlendFunc = BlendFunc::ONE_MINUS_SRC_ALPHA;
+
+		std::string queueName;
+	};
+
+	class RenderQueue
+	{
+	public:
+		RenderQueue(ShaderProgram* program);
+		~RenderQueue();
+
+		void Render();
+
+		void addRenderProgram(RenderProgram* renderProgram);
+
+		void clear();
+
+	private:
+
+		unsigned int index;
+
+		// 这个队列的shader
+		ShaderProgram* shaderProgram;
+
+		// 激活的需要渲染的
+		std::vector<RenderProgram*>* activeRenderProgram;
+	};
+
+
+	class RenderQueueManager
+	{
+	public:
+		static void AddRenderQueue(RenderProgram* renderProgram);
+
+		static void RenderQueue();
+
+		static void AddCustomRenderQuene();
+
+	private:
+
+
+	private:
+		static std::map<unsigned int, Render::RenderQueue*>* queues;
 	};
 }
