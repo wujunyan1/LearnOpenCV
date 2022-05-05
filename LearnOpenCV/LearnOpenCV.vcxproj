@@ -169,6 +169,7 @@
     <ClInclude Include="file\stb_image.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="LearnOpenCV.h" />
+    <ClInclude Include="logic\renderQueue\RenderOpaqueQueue.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="math\Base.h" />
     <ClInclude Include="math\Math.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="file\ImageLoad.cpp" />
     <ClCompile Include="input\Input.cpp" />
     <ClCompile Include="LearnOpenCV.cpp" />
+    <ClCompile Include="logic\renderQueue\RenderOpaqueQueue.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="math\Base.cpp" />
     <ClCompile Include="math\Math.cpp" />

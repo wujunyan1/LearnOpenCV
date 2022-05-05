@@ -79,7 +79,7 @@ namespace Render
 
 		void clear();
 
-	private:
+	protected:
 
 		unsigned int index;
 
@@ -98,12 +98,21 @@ namespace Render
 
 		static void RenderQueue();
 
-		static void AddCustomRenderQuene();
+		template <typename T = Render::RenderQueue>
+		static void AddCustomRenderQuene(std::string name);
 
 	private:
-
+		template <typename T = Render::RenderQueue>
+		static std::map<std::string, T>* queuesCls = new std::map<std::string, T>();
 
 	private:
 		static std::map<unsigned int, Render::RenderQueue*>* queues;
 	};
+
+
+	template<typename T>
+	inline void RenderQueueManager::AddCustomRenderQuene(std::string name)
+	{
+		queuesCls->insert(std::make_pair(name, T));
+	}
 }

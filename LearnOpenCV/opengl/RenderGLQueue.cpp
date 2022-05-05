@@ -42,6 +42,11 @@ namespace OpenGL
 
 	void RenderGLProgram::Render()
 	{
+		if (meshs == nullptr)
+		{
+			return;
+		}
+
 		GL_GET_ERROR(glDepthMask(depthTest ? GL_TRUE : GL_FALSE));                                                       //πÿµÙ…Ó∂»≤‚ ‘
 		
 		if (blend) {

@@ -37,6 +37,12 @@
     <Filter Include="input">
       <UniqueIdentifier>{cf1dc046-8aac-42df-8cff-7607040ed564}</UniqueIdentifier>
     </Filter>
+    <Filter Include="logic">
+      <UniqueIdentifier>{3e8bcdb4-644c-49e7-b03f-b082676c6d03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="logic\renderQueue">
+      <UniqueIdentifier>{d76eedc9-cc8b-48eb-93b2-cc08586a55b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LearnOpenCV.h">
@@ -198,6 +204,9 @@
     <ClInclude Include="render\BlendFunc.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="logic\renderQueue\RenderOpaqueQueue.h">
+      <Filter>logic\renderQueue</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -349,6 +358,9 @@
     </ClCompile>
     <ClCompile Include="render\BlendFunc.cpp">
       <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="logic\renderQueue\RenderOpaqueQueue.cpp">
+      <Filter>logic\renderQueue</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
