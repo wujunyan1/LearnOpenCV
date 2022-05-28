@@ -65,8 +65,8 @@ namespace Render
 	void Render(float delay);
 	void RenderEnd();
 
-	template<typename T>
-	void AddCustomRenderQueue(std::string name)
+	void AddCustomRenderQueue(std::string name, Render::RenderQueue* render)
 	{
+		RenderQueueManager::AddCustomRenderQuene(name, render);
 	}
 }

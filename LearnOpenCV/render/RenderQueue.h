@@ -35,6 +35,9 @@ namespace Render
 
 		virtual void Render() {};
 
+		void setRenderQueueName(const std::string renderQueueName) { renderQueue = renderQueueName; };
+		std::string& getRenderQueueName() { return renderQueue; };
+
 		// 目标是深度缓存里的， src是ps输出的
 		void setBlendFunc(Render::BlendFunc src, Render::BlendFunc target) {
 			this->srcBlendFunc = src;
@@ -49,6 +52,7 @@ namespace Render
 		// 是否开启深度测试，默认开启
 		void setDepthTest(bool enable) { depthTest = enable; };
 
+		std::string getQueueName() { return this->queueName; };
 		void setQueue(std::string name) { this->queueName = name; };
 	protected:
 		ShaderProgram* shaderProgram;
@@ -56,6 +60,8 @@ namespace Render
 		Material* material;
 
 		std::vector<RenderMesh*>* meshs;
+
+		std::string renderQueue;
 
 		bool depthTest = true;
 
@@ -98,21 +104,25 @@ namespace Render
 
 		static void RenderQueue();
 
-		template <typename T = Render::RenderQueue>
-		static void AddCustomRenderQuene(std::string name);
+		static void AddCustomRenderQuene(std::string name, Render::RenderQueue* render);
+
+		static Render::RenderQueue* GetCustomRenderQuene(std::string name);
 
 	private:
-		template <typename T = Render::RenderQueue>
-		static std::map<std::string, T>* queuesCls = new std::map<std::string, T>();
-
-	private:
+		static std::map<std::string, Render::RenderQueue*>* queuesCls;
 		static std::map<unsigned int, Render::RenderQueue*>* queues;
 	};
 
 
-	template<typename T>
-	inline void RenderQueueManager::AddCustomRenderQuene(std::string name)
+	inline void RenderQueueManager::AddCustomRenderQuene(std::string name, Render::RenderQueue* render)
 	{
-		queuesCls->insert(std::make_pair(name, T));
+		queuesCls->insert(std::make_pair(name, render));
+	}
+
+	inline Render::RenderQueue* RenderQueueManager::GetCustomRenderQuene(std::string name)
+	{
+		auto it = queuesCls->find(name);
+
+		return nullptr;
 	}
 }

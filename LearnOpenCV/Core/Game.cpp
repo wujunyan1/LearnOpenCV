@@ -11,6 +11,7 @@
 #include "TestComponent.h"
 #include "../render/RenderMain.h"
 #include "../meshModel/AModel.h"
+#include "../logic/renderQueue/RenderOpaqueQueue.h"
 
 using namespace Core;
 
@@ -42,6 +43,8 @@ void Game::LoadMainScene()
 	Render::CreateShader("defaultShader", "/asserts/shaders/shader.vert", "/asserts/shaders/shader.frag");
 	Render::CreateShader("testShader", "/asserts/shaders/testShader.vert", "/asserts/shaders/testShader.frag");
 	Render::CreateShader("testBlendShader", "/asserts/shaders/testBlendShader.vert", "/asserts/shaders/testBlendShader.frag");
+
+	Render::AddCustomRenderQueue<Logic::RenderOpaqueQueue>("RenderOpaqueQueue");
 
 	Scene* scene = SceneManager::GetInstance()->GetCurrScene();
 	scene->PreUpdate();

@@ -3,6 +3,7 @@
 namespace Render
 {
 	std::map<unsigned int, Render::RenderQueue*>* RenderQueueManager::queues = new std::map<unsigned int, Render::RenderQueue*>();
+	std::map<std::string, Render::RenderQueue*>* RenderQueueManager::queuesCls = new std::map<std::string, Render::RenderQueue*>();
 
 	RenderProgram::RenderProgram()
 	{
@@ -73,6 +74,9 @@ namespace Render
 			queue = it->second;
 		}
 		queue->addRenderProgram(renderProgram);
+
+		std::string queueName = renderProgram->getQueueName();
+		
 	}
 
 	void RenderQueueManager::RenderQueue()
