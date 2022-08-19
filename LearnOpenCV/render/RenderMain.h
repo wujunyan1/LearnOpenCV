@@ -44,8 +44,7 @@ namespace Render
 
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath);
 
-	template <typename T = RenderQueue>
-	void AddCustomRenderQueue(std::string name);
+	void AddCustomRenderQueue(const std::string& type, Render::RenderQueueManager::RenderCreator creator);
 
 	// 添加到渲染队列
 	void AddRender(RenderProgram* renderProgram);
@@ -65,8 +64,9 @@ namespace Render
 	void Render(float delay);
 	void RenderEnd();
 
-	void AddCustomRenderQueue(std::string name, Render::RenderQueue* render)
+	template<typename T>
+	void AddCustomRenderQueue(std::string& name)
 	{
-		RenderQueueManager::AddCustomRenderQuene(name, render);
+		RenderQueueManager::registerRenderQueueCreator(name, T);
 	}
 }

@@ -3,7 +3,6 @@
 namespace Render
 {
 	std::map<unsigned int, Render::RenderQueue*>* RenderQueueManager::queues = new std::map<unsigned int, Render::RenderQueue*>();
-	std::map<std::string, Render::RenderQueue*>* RenderQueueManager::queuesCls = new std::map<std::string, Render::RenderQueue*>();
 
 	RenderProgram::RenderProgram()
 	{
@@ -12,10 +11,10 @@ namespace Render
 		shaderProgram = NULL;
 	}
 
-	RenderQueue::RenderQueue(ShaderProgram* program)
+	RenderQueue::RenderQueue()
 	{
 		index = 0;
-		shaderProgram = program;
+		shaderProgram = nullptr;
 		activeRenderProgram = new std::vector<RenderProgram*>();
 	}
 
@@ -57,6 +56,23 @@ namespace Render
 
 
 
+	void RenderQueueManager::registerRenderQueueCreator(const std::string& type, RenderCreator creator)
+	{
+		RenderQueueCreatorMap& map = GetRenderQueueCreatorMap();
+		map[type] = creator;
+	}
+
+	Render::RenderQueue* RenderQueueManager::createRenderQueue(const std::string& type)
+	{
+		RenderQueueCreatorMap& map = GetRenderQueueCreatorMap();
+		const auto itor = map.find(type);
+		if (itor == map.end())
+		{
+			return nullptr;
+		}
+		return itor->second();
+	}
+
 	void RenderQueueManager::AddRenderQueue(RenderProgram* renderProgram)
 	{
 		Render::ShaderProgram* program = renderProgram->getShaderProgram();
@@ -66,7 +82,7 @@ namespace Render
 		auto it = queues->find(shaderID);
 		if (it == queues->end())
 		{
-			queue = new Render::RenderQueue(program);
+			queue = new Render::RenderQueue();
 			queues->insert(std::make_pair(shaderID, queue));
 		}
 		else

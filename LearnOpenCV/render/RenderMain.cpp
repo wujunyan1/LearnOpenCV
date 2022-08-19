@@ -126,6 +126,11 @@ namespace Render
 #endif
 	}
 
+	void AddCustomRenderQueue(const std::string& type, Render::RenderQueueManager::RenderCreator creator)
+	{
+		Render::RenderQueueManager::registerRenderQueueCreator(type, creator);
+	}
+
 	// 添加到渲染队列
 	void AddRender(RenderProgram* renderProgram)
 	{

@@ -44,7 +44,7 @@ void Game::LoadMainScene()
 	Render::CreateShader("testShader", "/asserts/shaders/testShader.vert", "/asserts/shaders/testShader.frag");
 	Render::CreateShader("testBlendShader", "/asserts/shaders/testBlendShader.vert", "/asserts/shaders/testBlendShader.frag");
 
-	Render::AddCustomRenderQueue<Logic::RenderOpaqueQueue>("RenderOpaqueQueue");
+	Render::AddCustomRenderQueue("RenderOpaqueQueue", Core::new_class<Logic::RenderOpaqueQueue>());
 
 	Scene* scene = SceneManager::GetInstance()->GetCurrScene();
 	scene->PreUpdate();

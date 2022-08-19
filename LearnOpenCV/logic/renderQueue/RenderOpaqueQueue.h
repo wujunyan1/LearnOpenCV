@@ -9,7 +9,7 @@ namespace Logic
 	class RenderOpaqueQueue: public Render::RenderQueue
 	{
 	public:
-		RenderOpaqueQueue(Render::ShaderProgram* program) : Render::RenderQueue(program)
+		RenderOpaqueQueue() : Render::RenderQueue()
 		{
 
 		}

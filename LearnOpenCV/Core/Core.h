@@ -9,6 +9,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <functional>
 
 #include "TypeDef.h"
 
@@ -24,5 +25,15 @@ namespace Core
 
 	typedef std::string			String;
 
+
+	template<typename Class>
+	struct new_class
+	{
+		template<typename... Args>
+		Class* operator()(Args&&... args) const
+		{
+			return new Class(std::forward<Args>(args)...);
+		}
+	};
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../Core/Core.h"
 #include <map>
 #include "../math/Math.h"
 #include "ShaderProgram.h"
@@ -76,7 +77,7 @@ namespace Render
 	class RenderQueue
 	{
 	public:
-		RenderQueue(ShaderProgram* program);
+		RenderQueue();
 		~RenderQueue();
 
 		void Render();
@@ -100,29 +101,24 @@ namespace Render
 	class RenderQueueManager
 	{
 	public:
+		// for create instance Instance
+		typedef std::function<Render::RenderQueue* ()> RenderCreator;
+		typedef std::map<std::string, RenderCreator> RenderQueueCreatorMap;
+
+		static void registerRenderQueueCreator(const std::string& type, RenderCreator creator);
+		static Render::RenderQueue* createRenderQueue(const std::string& type);
+
 		static void AddRenderQueue(RenderProgram* renderProgram);
 
 		static void RenderQueue();
 
-		static void AddCustomRenderQuene(std::string name, Render::RenderQueue* render);
-
-		static Render::RenderQueue* GetCustomRenderQuene(std::string name);
-
 	private:
-		static std::map<std::string, Render::RenderQueue*>* queuesCls;
+		static RenderQueueManager::RenderQueueCreatorMap& GetRenderQueueCreatorMap()
+		{
+			static RenderQueueCreatorMap map;
+			return map;
+		}
+
 		static std::map<unsigned int, Render::RenderQueue*>* queues;
 	};
-
-
-	inline void RenderQueueManager::AddCustomRenderQuene(std::string name, Render::RenderQueue* render)
-	{
-		queuesCls->insert(std::make_pair(name, render));
-	}
-
-	inline Render::RenderQueue* RenderQueueManager::GetCustomRenderQuene(std::string name)
-	{
-		auto it = queuesCls->find(name);
-
-		return nullptr;
-	}
 }
