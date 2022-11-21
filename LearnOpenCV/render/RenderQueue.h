@@ -32,6 +32,9 @@ namespace Render
 		ShaderProgram* getShaderProgram() { return shaderProgram; }
 		Material* getMaterial() { return material; }
 
+		void setMaterialName(const std::string name) { materialName = name; };
+		std::string& getMaterialName() { return materialName; };
+
 		virtual void setShader(const std::string& shaderName) {};
 
 		virtual void Render() {};
@@ -58,11 +61,13 @@ namespace Render
 	protected:
 		ShaderProgram* shaderProgram;
 
+		std::string materialName;
 		Material* material;
 
 		std::vector<RenderMesh*>* meshs;
 
 		std::string renderQueue;
+
 
 		bool depthTest = true;
 
@@ -87,6 +92,8 @@ namespace Render
 		void clear();
 
 	protected:
+
+		unsigned int renderSort;
 
 		unsigned int index;
 

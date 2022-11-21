@@ -14,6 +14,7 @@ Model::Model()
 {
 	renderProgram = Render::CreateRenderProgram("test");
 	renderProgram->setShader("testShader");
+	renderProgram->setRenderQueueName("RenderOpaqueQueue");
 }
 
 void Core::Model::setModel(AModel* model)
@@ -77,6 +78,11 @@ void Model::Render()
 void Core::Model::setShader(std::string shaderName)
 {
 	renderProgram->setShader(shaderName);
+}
+
+void Core::Model::setRenderQueue(std::string renderName)
+{
+	renderProgram->setRenderQueueName(renderName);
 }
 
 void Core::Model::setBlend(bool enable)

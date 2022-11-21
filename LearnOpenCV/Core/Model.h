@@ -22,6 +22,8 @@ namespace Core
 
 		void setShader(std::string shaderName);
 
+		void setRenderQueue(std::string renderName);
+
 		// 是否开启深度测试，默认开启
 		void setBlend(bool enable);
 

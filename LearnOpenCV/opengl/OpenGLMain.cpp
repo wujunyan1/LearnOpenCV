@@ -132,6 +132,7 @@ namespace OpenGL
 	RenderGLProgram * CreateRenderProgram(std::string materialName)
 	{
 		RenderGLProgram* program = new RenderGLProgram();
+		program->setMaterialName(materialName);
 		return program;
 	}
 

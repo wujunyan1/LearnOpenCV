@@ -6,6 +6,19 @@
 
 namespace Core 
 {
+	enum Space
+	{
+		/// <summary>
+		/// 应用相对于本地坐标系的变换。
+		/// </summary>
+		Self,
+
+		/// <summary>
+		/// 应用相对于世界坐标系的变换。
+		/// </summary>
+		World,
+	};
+
 	class Transform : public Component
 	{
 	public:
@@ -55,6 +68,8 @@ namespace Core
 		Vector3 GetRotate() {
 			return rotate;
 		}
+
+		void Rotate(Vector3 rotate, Space space);
 
 		void Quaternion() {
 

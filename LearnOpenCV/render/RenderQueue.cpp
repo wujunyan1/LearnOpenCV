@@ -25,6 +25,10 @@ namespace Render
 
 	void RenderQueue::Render()
 	{
+		if (!shaderProgram) 
+		{
+			return;
+		}
 		// Ê¹ÓÃÄ³Shader
 		shaderProgram->Use();
 
@@ -37,6 +41,11 @@ namespace Render
 
 	void RenderQueue::addRenderProgram(RenderProgram* renderProgram)
 	{
+		if (!shaderProgram)
+		{
+			shaderProgram = renderProgram->getShaderProgram();
+		}
+		// 
 		if (activeRenderProgram->size() <= index)
 		{
 			activeRenderProgram->push_back(renderProgram);
@@ -82,7 +91,7 @@ namespace Render
 		auto it = queues->find(shaderID);
 		if (it == queues->end())
 		{
-			queue = new Render::RenderQueue();
+			queue = createRenderQueue(renderProgram->getRenderQueueName());  // new Render::RenderQueue();
 			queues->insert(std::make_pair(shaderID, queue));
 		}
 		else

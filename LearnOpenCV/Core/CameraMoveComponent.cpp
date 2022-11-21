@@ -54,19 +54,15 @@ void CameraMoveComponent::Update()
         Vector2 currMousePos = Input::GetCurrMousePos();
 
         float xoffset = currMousePos.x - preMousePos.x;
-        float yoffset = preMousePos.y - currMousePos.y; // 注意这里是相反的，因为y坐标的范围是从下往上的
+        float yoffset = currMousePos.y - preMousePos.y; // 注意这里是相反的，因为y坐标的范围是从下往上的
         preMousePos = currMousePos;
 
         float sensitivity = 0.01f;
         xoffset *= sensitivity;
         yoffset *= sensitivity;
 
-        Vector3 rotate = transform->GetRotate();
-
-        rotate.y += xoffset;
-        rotate.x -= yoffset;
-
-        transform->SetRotate(rotate);
+        //transform->SetRotate(rotate);
+        transform->Rotate(Vector3(yoffset, xoffset, 0), Space::Self);
     }
     if (Core::Input::isMouseLeftUp(Input::Key::MOUSE_BUTTON_LEFT)) {
         isTouchDown = false;

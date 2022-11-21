@@ -81,7 +81,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>../opencv/build/include;$(IncludePath)</IncludePath>
-    <LibraryPath>../packages/glfw.3.3.6/build/native/include/GLFW;../packages/glew.1.9.0.1/build/native/lib;E:\opencv\build\x64\vc14\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>../packages/glfw.3.3.6/build/native/include/GLFW;../packages/glew.1.9.0.1/build/native/lib;../opencv/build/x64/vc14/lib;$(LibraryPath)</LibraryPath>
     <OutDir>../res</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -174,6 +174,7 @@
     <ClInclude Include="math\Base.h" />
     <ClInclude Include="math\Math.h" />
     <ClInclude Include="math\Matrix4.h" />
+    <ClInclude Include="math\Quaternion.h" />
     <ClInclude Include="math\Triangle.h" />
     <ClInclude Include="math\Vector1.h" />
     <ClInclude Include="math\Vector2.h" />
@@ -227,6 +228,7 @@
     <ClCompile Include="math\Base.cpp" />
     <ClCompile Include="math\Math.cpp" />
     <ClCompile Include="math\Matrix4.cpp" />
+    <ClCompile Include="math\Quaternion.cpp" />
     <ClCompile Include="math\Triangle.cpp" />
     <ClCompile Include="math\Vector1.cpp" />
     <ClCompile Include="math\Vector2.cpp" />
