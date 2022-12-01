@@ -6,6 +6,7 @@
 
 namespace Math
 {
+	class Quaternion;
 	class Matrix4
 	{
 	public:
@@ -21,6 +22,8 @@ namespace Math
 
 			float m[16];
 		};
+
+		static const Matrix4 IDENTITY;
 
 	public:
 		inline Matrix4() : Matrix4(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f)
@@ -378,9 +381,21 @@ namespace Math
 			return result;
 		}
 
-		inline float operator [] (const int index)
+		inline float operator() (int i, int j) const
 		{
-			return m[index];
+			return getRow(i)[j];
+		}
+
+		inline Vector4 operator[] (int row) const
+		{
+			return getRow(row);
+		}
+
+		inline Vector4 getRow(int row) const
+		{
+			const float* p = m + row * 4;
+			//return Vector4(p[0], p[1], p[2], p[3]);
+			return *(Vector4*)(p);
 		}
 
 		// 转置矩阵
@@ -570,6 +585,11 @@ namespace Math
 			return result;
 		}
 
+
+		float determinant() const;
+
+		// 从矩阵中分离出缩放，旋转和平移信息。
+		bool decompose(Vector3* scale, Quaternion* rotation, Vector3* translation) const;
 
 	};
 

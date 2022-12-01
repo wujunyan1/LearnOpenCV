@@ -1,8 +1,14 @@
+#include "Base.h"
 #include "Math.h"
 #include "Vector3.h"
 #include "Vector4.h"
 #include "Matrix4.h"
 #include "Triangle.h"
+
+#define QUAN_EPSILON	(Real)(1e-03)
+
+using namespace Math;
+
 
 std::string Math::stringFormat(std::string fmt, ...)
 {

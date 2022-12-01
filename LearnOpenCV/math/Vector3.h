@@ -16,6 +16,17 @@ namespace Math
 			float m[3];
 		};
 
+
+		static const Vector3 ZERO;					//!< Vec3(0, 0, 0)
+		static const Vector3 ONE;					//!< Vec3(1, 1, 1)
+		static const Vector3 HALF;					//!< Vec3(0.5f, 0.5f, 0.5f)
+		static const Vector3 UNIT_X;				//!< Vec3(1, 0, 0)
+		static const Vector3 UNIT_Y;				//!< Vec3(0, 1, 0)
+		static const Vector3 UNIT_Z;				//!< Vec3(0, 0, 1)
+		static const Vector3 NEG_UNIT_X;			//!< Vec3(-1, 0, 0)
+		static const Vector3 NEG_UNIT_Y;			//!< Vec3(0, -1, 0)
+		static const Vector3 NEG_UNIT_Z;			//!< Vec3(0, 0, -1)
+
 	public:
 		inline Vector3()
 			: x(0.0f)
@@ -59,6 +70,14 @@ namespace Math
 			return *this;
 		}
 
+		inline Vector3& operator *= (const float value)
+		{
+			x *= value;
+			y *= value;
+			z *= value;
+			return *this;
+		}
+
 		inline Vector3& operator *= (const Vector3& rhs)
 		{
 			x = x * rhs.x;
@@ -75,12 +94,17 @@ namespace Math
 			return *this;
 		}
 
-		inline Vector3 operator + (const Vector3& rhs)
+		inline const Vector3& operator + () const
+		{
+			return *this;
+		}
+
+		inline Vector3 operator + (const Vector3& rhs) const
 		{
 			return Vector3(x + rhs.x, y + rhs.y, z + rhs.z);
 		}
 
-		inline Vector3 operator - (const Vector3& rhs)
+		inline Vector3 operator - (const Vector3& rhs) const
 		{
 			return Vector3(x - rhs.x, y - rhs.y, z - rhs.z);
 		}
@@ -130,6 +154,15 @@ namespace Math
 			return (x * rhs.x + y * rhs.y + z * rhs.z);
 		}
 
+		static inline Vector3 Cross(const Vector3& a, const Vector3& b)
+		{
+			return {
+				a.y * b.z - a.z * b.y,
+				a.z * b.x - a.x * b.z,
+				a.x * b.y - a.y * b.x
+			};
+		}
+
 		inline Vector3 cross(const Vector3& rhs) const
 		{
 			Vector3 vec;
@@ -161,6 +194,11 @@ namespace Math
 			return Math::Sqrt(x * x + y * y + z * z);
 		}
 
+		inline float lenSqr()
+		{
+			return x * x + y * y + z * z;
+		}
+
 		inline Vector3 normal()
 		{
 			float l = this->len();
@@ -172,7 +210,14 @@ namespace Math
 			float l = this->len();
 			x = x / l;
 			y = y / l;
-			y = y / l;
+			z = z / l;
+		}
+
+		inline Vector3 normalizedCopy() const
+		{
+			Vector3 ret = *this;
+			ret.normalize();
+			return ret;
 		}
 
 		inline std::string toString()
@@ -180,6 +225,25 @@ namespace Math
 			char str[1024];
 			snprintf(str, sizeof(str), "x = %f, y = %f, z = %f", x, y, z);
 			return std::string(str);
+		}
+
+
+		inline Vector3 perpendicular() const
+		{
+
+			Vector3 perp = this->cross(UNIT_X);
+
+			// Check length
+			if (perp.lenSqr() == 0.0)
+			{
+				/* This vector is the Y axis multiplied by a scalar, so we have
+				to use another axis.
+				*/
+				perp = this->cross(UNIT_Y);
+			}
+			perp.normalize();
+
+			return perp;
 		}
 
 	}; 

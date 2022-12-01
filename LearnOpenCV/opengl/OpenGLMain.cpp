@@ -165,6 +165,7 @@ namespace OpenGL
 		glfwInitHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwInitHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+		glfwSwapInterval(0);
 		
 	}
 

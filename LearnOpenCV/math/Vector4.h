@@ -123,6 +123,11 @@ namespace Math {
 			return x != rhs.x || y != rhs.y || z != rhs.z || w != rhs.w;
 		}
 
+		inline float operator [] (int row) const
+		{
+			return m[row];
+		}
+
 		inline float dot(const Vector4& rhs) const
 		{
 			return (x * rhs.x + y * rhs.y + z * rhs.z + w * rhs.w);
