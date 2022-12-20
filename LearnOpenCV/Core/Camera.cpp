@@ -1,5 +1,6 @@
 #include "Camera.h"
 #include "Transform.h"
+#include "Scene.h"
 
 using namespace Core;
 
@@ -67,4 +68,9 @@ Mat4& Camera::getVPMat4()
 void Camera::LaterUpdate()
 {
 	vp = perspective * getViewMat4();
+}
+
+void Core::Camera::render(Scene* scene)
+{
+
 }

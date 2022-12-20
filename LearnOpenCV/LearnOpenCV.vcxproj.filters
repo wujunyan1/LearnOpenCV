@@ -210,6 +210,15 @@
     <ClInclude Include="math\Quaternion.h">
       <Filter>math</Filter>
     </ClInclude>
+    <ClInclude Include="Core\CameraManager.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="render\RenderStage.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="render\RenderScene.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -367,6 +376,15 @@
     </ClCompile>
     <ClCompile Include="math\Quaternion.cpp">
       <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\CameraManager.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="render\RenderStage.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="render\RenderScene.cpp">
+      <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

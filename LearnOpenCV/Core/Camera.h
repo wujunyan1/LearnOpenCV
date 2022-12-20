@@ -5,6 +5,7 @@
 namespace Core
 {
 	class Transform;
+	class Scene;
 
 	class Camera : public Component
 	{
@@ -20,6 +21,8 @@ namespace Core
 		Mat4& getVPMat4();
 
 		virtual void LaterUpdate() override;
+
+		void render(Scene* scene);
 
 	private:
 		Transform* transform;
