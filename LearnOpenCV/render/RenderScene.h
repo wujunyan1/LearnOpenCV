@@ -12,8 +12,8 @@ namespace Render
 		RenderScene() {};
 		~RenderScene();
 
-		void beforeRender() {};
-		void render(Core::Camera* renderCamera) {};
+		virtual void beforeRender() {};
+		virtual void render(Core::Camera* renderCamera) {};
 
 	private:
 	};

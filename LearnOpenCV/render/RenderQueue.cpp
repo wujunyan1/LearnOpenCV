@@ -23,7 +23,7 @@ namespace Render
 		delete activeRenderProgram;
 	}
 
-	void RenderQueue::Render()
+	void RenderQueue::Render(Core::Camera* camera)
 	{
 		if (!shaderProgram) 
 		{
@@ -110,7 +110,15 @@ namespace Render
 		for (it = queues->begin(); it != queues->end(); it++)
 		{
 			Render::RenderQueue* queue = it->second;
-			queue->Render();
+		}
+	}
+
+	void RenderQueueManager::ClearRenderQueue()
+	{
+		std::map<unsigned int, Render::RenderQueue*>::iterator it;
+		for (it = queues->begin(); it != queues->end(); it++)
+		{
+			Render::RenderQueue* queue = it->second;
 			queue->clear();
 		}
 	}

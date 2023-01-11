@@ -8,6 +8,7 @@
 #include "RenderMesh.h"
 #include "BlendFunc.h"
 
+#include "../Core/Camera.h"
 #include "../meshModel/AModel.h"
 
 namespace Render
@@ -58,6 +59,9 @@ namespace Render
 
 		std::string getQueueName() { return this->queueName; };
 		void setQueue(std::string name) { this->queueName = name; };
+
+		void setRenderStage(unsigned int stage) { this->renderStage = stage; };
+		unsigned int getRenderStage() { return this->renderStage; };
 	protected:
 		ShaderProgram* shaderProgram;
 
@@ -68,6 +72,7 @@ namespace Render
 
 		std::string renderQueue;
 
+		unsigned int renderStage = 0;
 
 		bool depthTest = true;
 
@@ -85,7 +90,7 @@ namespace Render
 		RenderQueue();
 		~RenderQueue();
 
-		void Render();
+		void Render(Core::Camera* camera);
 
 		void addRenderProgram(RenderProgram* renderProgram);
 
@@ -118,14 +123,16 @@ namespace Render
 		static void AddRenderQueue(RenderProgram* renderProgram);
 
 		static void RenderQueue();
+		static void ClearRenderQueue();
 
-	private:
+	public:
 		static RenderQueueManager::RenderQueueCreatorMap& GetRenderQueueCreatorMap()
 		{
 			static RenderQueueCreatorMap map;
 			return map;
 		}
 
+	private:
 		static std::map<unsigned int, Render::RenderQueue*>* queues;
 	};
 }

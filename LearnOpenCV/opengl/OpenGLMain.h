@@ -53,6 +53,7 @@ namespace OpenGL
 	bool ShouldCloseWindow();
 
 	void SetBackgroundColor(Math::Vector3 color);
+	void BeforeRender(float delay);
 	void Render(float delay);
 	void RenderEnd();
 

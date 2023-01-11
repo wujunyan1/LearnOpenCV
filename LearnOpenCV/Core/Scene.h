@@ -13,7 +13,7 @@ namespace Core
 		void Bind();
 
 		Camera* getMainCamera() { 
-			return camera; 
+			return mainCamera; 
 		};
 
 		static Scene* getCurrScene() {
@@ -22,11 +22,12 @@ namespace Core
 
 		void setMainCamera(Camera* camera)
 		{
-			this->camera = camera;
+			this->mainCamera = camera;
 		};
 
 	private:
-		Camera* camera;
+		Camera* mainCamera;
+		std::vector<Camera*> cameras;
 
 		static Scene* currScene;
 	};

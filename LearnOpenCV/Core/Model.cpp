@@ -15,6 +15,7 @@ Model::Model()
 	renderProgram = Render::CreateRenderProgram("test");
 	renderProgram->setShader("testShader");
 	renderProgram->setRenderQueueName("RenderOpaqueQueue");
+	renderProgram->setRenderStage(1000);
 }
 
 void Core::Model::setModel(AModel* model)

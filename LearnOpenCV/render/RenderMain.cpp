@@ -1,4 +1,5 @@
 #include "RenderMain.h"
+#include "RenderStage.h"
 
 #if SHADER_PLAFORM==SHADER_PLAFORM_CV
 #include "../opencv/OpenCVMain.h"
@@ -134,7 +135,8 @@ namespace Render
 	// 添加到渲染队列
 	void AddRender(RenderProgram* renderProgram)
 	{
-		RenderQueueManager::AddRenderQueue(renderProgram);
+		RenderStageManager::AddRenderProgram(renderProgram);
+		// RenderQueueManager::AddRenderQueue(renderProgram);
 	}
 
 	void InitEngine()
@@ -204,6 +206,16 @@ namespace Render
 #endif
 #if SHADER_PLAFORM==SHADER_PLAFORM_GL
 		return OpenGL::SetBackgroundColor(color);
+#endif
+	}
+
+	void BeforeRender(float delay)
+	{
+#if SHADER_PLAFORM==SHADER_PLAFORM_CV
+		
+#endif
+#if SHADER_PLAFORM==SHADER_PLAFORM_GL
+		return OpenGL::BeforeRender(delay);
 #endif
 	}
 

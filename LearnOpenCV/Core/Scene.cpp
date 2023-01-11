@@ -16,6 +16,7 @@ Scene* Scene::currScene = nullptr;
 Scene::Scene() 
 {
 	currScene = this;
+	cameras = std::vector<Camera*>();
 }
 
 void Scene::Bind()
@@ -24,15 +25,17 @@ void Scene::Bind()
 
 	Object* cameraObj = ObjectManager::createNewObject();
 	Transform* cameraT = cameraObj->AddComponent<Transform>();
-	camera = cameraObj->AddComponent<Camera>();
+	mainCamera = cameraObj->AddComponent<Camera>();
 
 	Math::Vector2T<int> size = Render::GetWindowSize();
 
-	camera->init(Math::radians(45.0f), size.x * 1.0f / size.y, 0.1f, 100.0f);
+	mainCamera->init(Math::radians(45.0f), size.x * 1.0f / size.y, 0.1f, 100.0f);
 	transform->AddChild(cameraT);
 	cameraT->SetPosition({0, 0, 0});
 
 	cameraObj->AddComponent<CameraMoveComponent>();
+
+	cameras.push_back(mainCamera);
 
 	//o2->AddComponent<TestComponent>();
 }

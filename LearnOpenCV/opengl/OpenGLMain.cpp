@@ -8,7 +8,10 @@
 #include "GLShaderManager.h"
 #include "GLImage.h"
 
+#include "../render/RenderStage.h"
 #include "../input/Input.h"
+
+#include "../Core/Scene.h"
 
 using namespace Render;
 
@@ -238,13 +241,26 @@ namespace OpenGL
 		GL_GET_ERROR(glClear(GL_COLOR_BUFFER_BIT));
 	}
 
+	void BeforeRender(float delay)
+	{
+		Render::RenderStageManager::beforeRender();
+	}
+
 	void Render(float delay)
 	{
-		Render::RenderQueueManager::RenderQueue();
+		// Render::RenderStageManager::render();
+
+		Core::Scene* scene = Core::Scene::getCurrScene();
+		Render::RenderStageManager::render(scene->getMainCamera());
+
+		//Render::RenderQueueManager::RenderQueue();
 	}
 
 	void RenderEnd()
 	{
+		Render::RenderStageManager::renderEnd();
+
+		Render::RenderQueueManager::ClearRenderQueue();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
