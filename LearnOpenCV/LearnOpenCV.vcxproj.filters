@@ -219,6 +219,15 @@
     <ClInclude Include="render\RenderScene.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="math\Matrix3.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Obb.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\AABB.h">
+      <Filter>math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -385,6 +394,15 @@
     </ClCompile>
     <ClCompile Include="render\RenderScene.cpp">
       <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Matrix3.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Obb.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\AABB.cpp">
+      <Filter>math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
