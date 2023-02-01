@@ -17,7 +17,6 @@ namespace OpenGL
 		Render::RenderMesh* createNewRenderMesh(std::string name = Math::stringFormat("renderMesh|%d",Math::getUid()));
 		Render::RenderMesh* loadRenderMesh(std::string name, std::string path);
 		
-		void addModel(Core::AModel* model);
 		void setShader(const std::string& shaderName);
 
 		void Render();

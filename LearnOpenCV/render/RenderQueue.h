@@ -21,14 +21,10 @@ namespace Render
 		virtual RenderMesh* createNewRenderMesh(std::string name = Math::stringFormat("renderMesh|%d", Math::getUid())) { return NULL; };
 		virtual RenderMesh* loadRenderMesh(std::string name, std::string path = "") { return NULL; };
 
-		std::vector <RenderMesh*>* getMeshs() { return meshs; }
-		void addMesh(RenderMesh* mesh) { 
-			if (!meshs) {
-				meshs = new std::vector<RenderMesh*>();
-			}
-			meshs->push_back(mesh); 
-		}
-		virtual void addModel(Core::AModel* model) {};
+		void setModel(Core::AModel* model) 
+		{
+			_model = model;
+		};
 
 		ShaderProgram* getShaderProgram() { return shaderProgram; }
 		Material* getMaterial() { return material; }
@@ -62,13 +58,25 @@ namespace Render
 
 		void setRenderStage(unsigned int stage) { this->renderStage = stage; };
 		unsigned int getRenderStage() { return this->renderStage; };
+
+		void setLocalToWorldMat4(Math::Matrix4& lTw) 
+		{
+			if (_model == nullptr)
+			{
+				return;
+			}
+
+			renderAABB.initVertices(_model->getObb().getPoints());
+			renderAABB.localToWorld(lTw);
+		};
+
 	protected:
 		ShaderProgram* shaderProgram;
 
 		std::string materialName;
 		Material* material;
 
-		std::vector<RenderMesh*>* meshs;
+		Core::AModel* _model;
 
 		std::string renderQueue;
 
@@ -82,6 +90,8 @@ namespace Render
 		BlendFunc targetBlendFunc = BlendFunc::ONE_MINUS_SRC_ALPHA;
 
 		std::string queueName;
+
+		Math::AABB renderAABB;
 	};
 
 	class RenderQueue

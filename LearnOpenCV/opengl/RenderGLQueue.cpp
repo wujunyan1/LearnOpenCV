@@ -25,16 +25,6 @@ namespace OpenGL
 		return mesh;
 	}
 
-	void RenderGLProgram::addModel(Core::AModel* model)
-	{
-		std::vector<Core::AMesh>& ameshs = model->getMeshs();
-
-		for (auto mesh : ameshs)
-		{
-			addMesh(mesh.getRenderMesh());
-		}
-	}
-
 	void RenderGLProgram::setShader(const std::string& shaderName)
 	{
 		shaderProgram = ShaderGLProgram::GetShaderGLProgram(shaderName);
@@ -42,7 +32,7 @@ namespace OpenGL
 
 	void RenderGLProgram::Render()
 	{
-		if (meshs == nullptr)
+		if (_model == nullptr)
 		{
 			return;
 		}
@@ -60,9 +50,12 @@ namespace OpenGL
 		// …Ë÷√shader  Ù–‘
 		shaderProgram->RenderMaterial(material);
 		// ‰÷»ævao
-		for (auto mesh : *meshs)
+		std::vector<Core::AMesh>& ameshs = _model->getMeshs();
+
+		for (size_t i = 0; i < ameshs.size(); i++)
 		{
-			mesh->Render(shaderProgram);
+			Core::AMesh& mesh = ameshs[i];
+			mesh.getRenderMesh()->Render(shaderProgram);
 		}
 	}
 

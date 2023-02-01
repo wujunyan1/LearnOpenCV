@@ -20,7 +20,7 @@ Model::Model()
 
 void Core::Model::setModel(AModel* model)
 {
-	renderProgram->addModel(model);
+	renderProgram->setModel(model);
 }
 
 void Model::bindRender()
@@ -53,10 +53,12 @@ void Model::Render()
 	Math::Vector3 color = Math::Vector3(0.0f, 0.3f, 0.6f);
 	//material->setVec3("color", color);
 
-	material->setMat4("model", transform->GetLocalToWorldMat4());
-	material->setMat4("VP", camera->getVPMat4());
+	Math::Matrix4& mat4 = transform->GetLocalToWorldMat4();
+	renderProgram->setLocalToWorldMat4(mat4);
+	material->setMat4("model", mat4);
+	/*material->setMat4("VP", camera->getVPMat4());
 	material->setMat4("view", camera->getViewMat4());
-	material->setMat4("proj", camera->getPerspectiveMat4());
+	material->setMat4("proj", camera->getPerspectiveMat4());*/
 
 	/*material->setMat4("view", v);
 	material->setMat4("projection", p);*/

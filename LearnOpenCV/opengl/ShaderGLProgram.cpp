@@ -48,6 +48,13 @@ namespace OpenGL
 		RenderMaterial(dynamic_cast<OpenGL::MaterialGL*>(material));
 	}
 
+
+	void ShaderGLProgram::setMat4(const std::string& name, Math::Matrix4& mat)
+	{
+		GLShader* shader = GetShaderObj();
+		shader->setMat4(name, mat);
+	}
+
 	void ShaderGLProgram::RenderMaterial(OpenGL::MaterialGL* material)
 	{
 		GLShader* shader = GetShaderObj();

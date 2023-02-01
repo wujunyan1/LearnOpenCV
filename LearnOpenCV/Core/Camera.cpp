@@ -28,6 +28,16 @@ void Camera::init(float fov, float aspect, float near, float far)
 	float bottom = -top;
 	float left = -right;
 
+	this->n_top = top;
+	this->n_right = right;
+	this->n_bottom = bottom;
+	this->n_left = left;
+
+	this->f_top = std::tan(eye_fov / 2.0f) * far;
+	this->f_right = aspect_ratio * this->f_top;
+	this->f_bottom = -this->f_top;
+	this->f_left = -this->f_right;
+
 	orthogonal = Mat4(
 		2.0f / (right - left), 0, 0, -(right + left) / (right - left),
 		0, 2.0f / (top - bottom), 0, -(top + bottom) / (top - bottom),
@@ -72,5 +82,4 @@ void Camera::LaterUpdate()
 
 void Core::Camera::render(Scene* scene)
 {
-
 }

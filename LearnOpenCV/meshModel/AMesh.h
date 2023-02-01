@@ -8,6 +8,7 @@ namespace Core
 {
 	class AMesh
 	{
+		friend class AModel;
 	public:
 		struct Vertex {
 			// position

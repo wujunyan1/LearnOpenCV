@@ -31,6 +31,9 @@ namespace Render
 		}
 		// Ê¹ÓÃÄ³Shader
 		shaderProgram->Use();
+		shaderProgram->setMat4("VP", camera->getVPMat4());
+		shaderProgram->setMat4("view", camera->getViewMat4());
+		shaderProgram->setMat4("proj", camera->getPerspectiveMat4());
 
 		for (size_t i = 0; i < index; i++)
 		{

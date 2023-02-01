@@ -169,7 +169,6 @@ namespace OpenGL
 		glfwInitHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 		glfwSwapInterval(0);
-		
 	}
 
 	int CreateWindow(int w, int h, std::string title)

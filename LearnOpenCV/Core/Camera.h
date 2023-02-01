@@ -33,5 +33,8 @@ namespace Core
 		Math::Matrix4 perspective;
 		Math::Matrix4 vp;
 
+		float n_top, n_bottom, n_left, n_right;
+		float f_top, f_bottom, f_left, f_right;
+
 	};
 }

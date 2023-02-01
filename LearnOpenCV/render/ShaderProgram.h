@@ -72,6 +72,8 @@ namespace Render
 
 		virtual void Use() {};
 
+		virtual void setMat4(const std::string& name, Math::Matrix4& mat) {};
+
 	protected:
 
 		// °ó¶¨µÄshader

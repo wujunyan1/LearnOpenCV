@@ -29,6 +29,8 @@ namespace Core
         std::vector<AMesh>& getMeshs() { return meshes; };
         void addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
 
+        Math::Obb& getObb() { return obb; };
+
 	private:
         // loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector.
         void loadModel(std::string const& path)
@@ -48,12 +50,15 @@ namespace Core
             // retrieve the directory path of the filepath
             directory = path.substr(0, path.find_last_of('/'));
 
+            std::vector<Math::Vector3> points;
             // process ASSIMP's root node recursively
-            processNode(scene->mRootNode, scene);
+            processNode(scene->mRootNode, scene, points);
+
+            obb = Math::Obb(points);
         }
 
         // processes a node in a recursive fashion. Processes each individual mesh located at the node and repeats this process on its children nodes (if any).
-        void processNode(aiNode* node, const aiScene* scene)
+        void processNode(aiNode* node, const aiScene* scene, std::vector<Math::Vector3>& points)
         {
             // process each mesh located at the current node
             for (unsigned int i = 0; i < node->mNumMeshes; i++)
@@ -61,17 +66,17 @@ namespace Core
                 // the node object only contains indices to index the actual objects in the scene. 
                 // the scene contains all the data, node is just to keep stuff organized (like relations between nodes).
                 aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-                meshes.push_back(processMesh(meshes.size(), mesh, scene));
+                meshes.push_back(processMesh(meshes.size(), mesh, scene, points));
             }
             // after we've processed all of the meshes (if any) we then recursively process each of the children nodes
             for (unsigned int i = 0; i < node->mNumChildren; i++)
             {
-                processNode(node->mChildren[i], scene);
+                processNode(node->mChildren[i], scene, points);
             }
 
         }
 
-        AMesh processMesh(unsigned int index, aiMesh* mesh, const aiScene* scene)
+        AMesh processMesh(unsigned int index, aiMesh* mesh, const aiScene* scene, std::vector<Math::Vector3>& points)
         {
             // data to fill
             std::vector<AMesh::Vertex> vertices;
@@ -88,6 +93,7 @@ namespace Core
                 vector.y = mesh->mVertices[i].y;
                 vector.z = mesh->mVertices[i].z;
                 vertex.Position = vector;
+                points.push_back(vertex.Position);
                 // normals
                 if (mesh->HasNormals())
                 {
@@ -178,12 +184,14 @@ namespace Core
             return textures;
         }
 
+        void updateObb();
+
 	private:
 		std::vector<AMesh>    meshes;
 		std::string directory;
         unsigned int modelId;
 		bool gammaCorrection;
-
+        Math::Obb obb;
 	};
 
     class AModelFactory

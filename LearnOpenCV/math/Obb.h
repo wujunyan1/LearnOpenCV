@@ -13,7 +13,12 @@ namespace Math
 		{
 		};
 
-		Obb(std::vector<Vector3> vertices)
+		Obb(std::vector<Vector3>& vertices)
+		{
+			initPoints(vertices);
+		};
+
+		void initPoints(std::vector<Vector3>& vertices)
 		{
 			if (vertices.size() < 2)
 			{
@@ -47,7 +52,6 @@ namespace Math
 
 			updatePoints();
 		};
-
 
 	public:
 		inline Obb operator * (const Matrix4 mat)

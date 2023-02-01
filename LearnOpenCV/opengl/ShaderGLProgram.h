@@ -21,6 +21,7 @@ namespace OpenGL
 		GLShader* GetShaderObj();
 
 		void Use();
+		void setMat4(const std::string& name, Math::Matrix4& mat);
 
 		static ShaderGLProgram* GetShaderGLProgram(const std::string& shaderName);
 

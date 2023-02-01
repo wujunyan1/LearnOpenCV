@@ -12,8 +12,28 @@ AModel::AModel()
 void Core::AModel::addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
 {
 	meshes.push_back(AMesh(Math::stringFormat("%d|%d", modelId, meshes.size()), vertices, indices, textures));
+
+	updateObb();
 }
 
+void Core::AModel::updateObb()
+{
+	std::vector<Math::Vector3> points;
+
+	std::vector<Core::AMesh>& ameshs = getMeshs();
+
+	for (size_t i = 0; i < ameshs.size(); i++)
+	{
+		Core::AMesh& mesh = ameshs[i];
+		for (size_t j = 0; j < mesh.vertices.size(); j++)
+		{
+			Core::AMesh::Vertex& vertice = mesh.vertices[j];
+			points.push_back(vertice.Position);
+		}
+	}
+
+	obb.initPoints(points);
+}
 
 std::map<std::string, AModel*>* AModelFactory::models = new std::map<std::string, AModel*>();
 
