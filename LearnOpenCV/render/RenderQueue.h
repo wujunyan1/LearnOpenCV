@@ -15,6 +15,7 @@ namespace Render
 {
 	class RenderProgram
 	{
+		friend class RenderQueue;
 	public:
 		RenderProgram();
 
@@ -70,6 +71,8 @@ namespace Render
 			renderAABB.localToWorld(lTw);
 		};
 
+		Math::AABB& getRenderAABB() { return renderAABB; };
+
 	protected:
 		ShaderProgram* shaderProgram;
 
@@ -92,6 +95,9 @@ namespace Render
 		std::string queueName;
 
 		Math::AABB renderAABB;
+
+	public:
+		float cameraDistance;
 	};
 
 	class RenderQueue

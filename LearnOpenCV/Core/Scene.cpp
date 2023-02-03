@@ -29,7 +29,7 @@ void Scene::Bind()
 
 	Math::Vector2T<int> size = Render::GetWindowSize();
 
-	mainCamera->init(Math::radians(45.0f), size.x * 1.0f / size.y, 0.1f, 100.0f);
+	mainCamera->init(Math::radians(45.0f), size.x * 1.0f / size.y, 0.1f, 1000.0f);
 	transform->AddChild(cameraT);
 	cameraT->SetPosition({0, 0, 0});
 

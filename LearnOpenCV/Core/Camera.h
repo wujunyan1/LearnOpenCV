@@ -22,7 +22,10 @@ namespace Core
 
 		virtual void LaterUpdate() override;
 
-		void render(Scene* scene);
+		void Render();
+
+		Math::AABB& getPerspectiveAABB() { return perspectiveAabb; };
+		Math::Vector3& getWorldPosition() { return worldPosition; };
 
 	private:
 		Transform* transform;
@@ -36,5 +39,7 @@ namespace Core
 		float n_top, n_bottom, n_left, n_right;
 		float f_top, f_bottom, f_left, f_right;
 
+		Math::AABB perspectiveAabb;
+		Math::Vector3 worldPosition;
 	};
 }

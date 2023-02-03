@@ -4,9 +4,18 @@ namespace Render
 {
 	std::map<unsigned int, Render::RenderQueue*>* RenderQueueManager::queues = new std::map<unsigned int, Render::RenderQueue*>();
 
+	bool distanceNearToFarCompare(RenderProgram* v1, RenderProgram* v2)
+	{
+		return v1->cameraDistance < v2->cameraDistance;
+	}
+
+	bool distanceFarToNearCompare(RenderProgram* v1, RenderProgram* v2)
+	{
+		return v1->cameraDistance > v2->cameraDistance;
+	}
+
 	RenderProgram::RenderProgram()
 	{
-		meshs = NULL;
 		material = NULL;
 		shaderProgram = NULL;
 	}
@@ -35,10 +44,32 @@ namespace Render
 		shaderProgram->setMat4("view", camera->getViewMat4());
 		shaderProgram->setMat4("proj", camera->getPerspectiveMat4());
 
+		Math::AABB& perspectiveAABB = camera->getPerspectiveAABB();
+
+		std::vector<RenderProgram*> renderProgram;
+		bool blend = false;
 		for (size_t i = 0; i < index; i++)
 		{
 			RenderProgram* program = activeRenderProgram->at(i);
-			program->Render();
+			Math::AABB& renderAABB = program->getRenderAABB();
+			if (perspectiveAABB.isOverlap(renderAABB)) {
+				renderProgram.push_back(program);
+				program->cameraDistance = (perspectiveAABB._center - renderAABB._center).lenSqr();
+				blend = program->blend;
+			}
+		}
+
+		//todu 不透明物体 从近到远  透明物体 从远到近
+		if (blend) {
+			std::sort(renderProgram.begin(), renderProgram.end(), distanceFarToNearCompare);
+		}
+		else {
+			std::sort(renderProgram.begin(), renderProgram.end(), distanceNearToFarCompare);
+		}
+
+		for (size_t i = 0; i < renderProgram.size(); i++)
+		{
+			renderProgram[i]->Render();
 		}
 	}
 

@@ -80,6 +80,38 @@ void Camera::LaterUpdate()
 	vp = perspective * getViewMat4();
 }
 
-void Core::Camera::render(Scene* scene)
+void Core::Camera::Render()
 {
+	Math::Matrix4& m4 = transform->GetLocalToWorldMat4();
+
+	Vector3 center = m4 * Vector4(0, 0, 0, 1);
+	Vector3 xdir = m4 * Vector4(1, 0, 0, 0);
+	Vector3 ydir = m4 * Vector4(0, 1, 0, 0);
+	Vector3 zdir = m4 * Vector4(0, 0, 1, 0);
+
+	xdir.normalize();
+	ydir.normalize();
+	zdir.normalize();
+
+	Vector3 near = center - zdir * this->near;
+	Vector3 far = center - zdir * this->far;
+
+	Vector3 nright = xdir * this->n_right;
+	Vector3 ntop = ydir * this->n_top;
+	Vector3 fright = xdir * this->f_right;
+	Vector3 ftop = ydir * this->f_top;
+
+	std::vector<Vector3> points = {
+		near + nright + ntop,
+		near - nright + ntop,
+		near + nright - ntop,
+		near - nright - ntop,
+		far + fright + ftop,
+		far - fright + ftop,
+		far + fright - ftop,
+		far - fright - ftop
+	};
+
+	worldPosition = center;
+	perspectiveAabb.initVertices(points);
 }

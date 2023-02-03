@@ -95,7 +95,7 @@ namespace Math
 			std::vector<Vector3> worldPoints;
 			for (size_t i = 0; i < 8; i++)
 			{
-				worldPoints[i] = mat * points[i];
+				worldPoints.push_back(mat * points[i]);
 			}
 
 			initVertices(worldPoints);
