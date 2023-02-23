@@ -25,9 +25,6 @@
     <Filter Include="opengl">
       <UniqueIdentifier>{c0126642-4495-45dd-8035-67f456c5ca11}</UniqueIdentifier>
     </Filter>
-    <Filter Include="opencv">
-      <UniqueIdentifier>{99b01cc3-a5ca-4fec-8f82-791b3c738488}</UniqueIdentifier>
-    </Filter>
     <Filter Include="file">
       <UniqueIdentifier>{ad340aa4-78b2-4156-8963-d2e8300c99f1}</UniqueIdentifier>
     </Filter>
@@ -102,29 +99,14 @@
     <ClInclude Include="math\Vector4.h">
       <Filter>math</Filter>
     </ClInclude>
-    <ClInclude Include="opencv\RenderBuffer.h">
-      <Filter>opencv</Filter>
-    </ClInclude>
-    <ClInclude Include="opencv\OpenCVMain.h">
-      <Filter>opencv</Filter>
-    </ClInclude>
     <ClInclude Include="render\RenderMain.h">
       <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="opencv\VBO.h">
-      <Filter>opencv</Filter>
-    </ClInclude>
-    <ClInclude Include="opencv\VAO.h">
-      <Filter>opencv</Filter>
     </ClInclude>
     <ClInclude Include="math\Vector2.h">
       <Filter>math</Filter>
     </ClInclude>
     <ClInclude Include="math\Vector1.h">
       <Filter>math</Filter>
-    </ClInclude>
-    <ClInclude Include="opencv\CVShader.h">
-      <Filter>opencv</Filter>
     </ClInclude>
     <ClInclude Include="render\Material.h">
       <Filter>render</Filter>
@@ -281,29 +263,14 @@
     <ClCompile Include="math\Vector4.cpp">
       <Filter>math</Filter>
     </ClCompile>
-    <ClCompile Include="opencv\RenderBuffer.cpp">
-      <Filter>opencv</Filter>
-    </ClCompile>
-    <ClCompile Include="opencv\OpenCVMain.cpp">
-      <Filter>opencv</Filter>
-    </ClCompile>
     <ClCompile Include="render\RenderMain.cpp">
       <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="opencv\VBO.cpp">
-      <Filter>opencv</Filter>
-    </ClCompile>
-    <ClCompile Include="opencv\VAO.cpp">
-      <Filter>opencv</Filter>
     </ClCompile>
     <ClCompile Include="math\Vector2.cpp">
       <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="math\Vector1.cpp">
       <Filter>math</Filter>
-    </ClCompile>
-    <ClCompile Include="opencv\CVShader.cpp">
-      <Filter>opencv</Filter>
     </ClCompile>
     <ClCompile Include="render\Material.cpp">
       <Filter>render</Filter>

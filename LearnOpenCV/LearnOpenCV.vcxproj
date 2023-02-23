@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\Users\Administrator\Downloads\opencv\build\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\Users\Administrator\Downloads\opencv\build\x64\vc14\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -93,7 +93,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\Users\Administrator\Downloads\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -187,11 +187,6 @@
     <ClInclude Include="math\Vector4.h" />
     <ClInclude Include="meshModel\AMesh.h" />
     <ClInclude Include="meshModel\AModel.h" />
-    <ClInclude Include="opencv\CVShader.h" />
-    <ClInclude Include="opencv\OpenCVMain.h" />
-    <ClInclude Include="opencv\RenderBuffer.h" />
-    <ClInclude Include="opencv\VAO.h" />
-    <ClInclude Include="opencv\VBO.h" />
     <ClInclude Include="opengl\GLImage.h" />
     <ClInclude Include="opengl\GLShader.h" />
     <ClInclude Include="opengl\GLShaderManager.h" />
@@ -247,11 +242,6 @@
     <ClCompile Include="math\Vector4.cpp" />
     <ClCompile Include="meshModel\AMesh.cpp" />
     <ClCompile Include="meshModel\AModel.cpp" />
-    <ClCompile Include="opencv\CVShader.cpp" />
-    <ClCompile Include="opencv\OpenCVMain.cpp" />
-    <ClCompile Include="opencv\RenderBuffer.cpp" />
-    <ClCompile Include="opencv\VAO.cpp" />
-    <ClCompile Include="opencv\VBO.cpp" />
     <ClCompile Include="opengl\GLImage.cpp" />
     <ClCompile Include="opengl\GLShader.cpp" />
     <ClCompile Include="opengl\GLShaderManager.cpp" />

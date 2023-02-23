@@ -79,7 +79,7 @@ namespace Render
 		std::string materialName;
 		Material* material;
 
-		Core::AModel* _model;
+		Core::AModel* _model = nullptr;
 
 		std::string renderQueue;
 
@@ -97,7 +97,7 @@ namespace Render
 		Math::AABB renderAABB;
 
 	public:
-		float cameraDistance;
+		float cameraDistance = 999999.9f;
 	};
 
 	class RenderQueue

@@ -71,26 +71,30 @@ namespace Core {
 		void PreUpdate() {
 			for (auto i : *componentList)
 			{
-				i->PreUpdate();
+				if (i->isActive())
+					i->PreUpdate();
 			}
 		}
 		void Update() {
 			for (auto i : *componentList)
 			{
-				i->Update();
+				if (i->isActive())
+					i->Update();
 			}
 		}
 		void LaterUpdate() {
 			for (auto i : *componentList)
 			{
-				i->LaterUpdate();
+				if (i->isActive())
+					i->LaterUpdate();
 			}
 		}
 
 		void Render() {
 			for (auto i : *componentList)
 			{
-				i->Render();
+				if (i->isActive())
+					i->Render();
 			}
 		}
 

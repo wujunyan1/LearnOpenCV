@@ -27,6 +27,8 @@ namespace Core
 		Math::AABB& getPerspectiveAABB() { return perspectiveAabb; };
 		Math::Vector3& getWorldPosition() { return worldPosition; };
 
+		void beginRender();
+
 	private:
 		Transform* transform;
 
@@ -41,5 +43,8 @@ namespace Core
 
 		Math::AABB perspectiveAabb;
 		Math::Vector3 worldPosition;
+
+	private:
+		unsigned int fbo = 0;
 	};
 }

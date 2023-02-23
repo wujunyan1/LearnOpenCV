@@ -9,8 +9,7 @@
 #include "../file/Image.h"
 
 
-#define SHADER_PLAFORM_CV 1
-#define SHADER_PLAFORM_GL 2
+#define SHADER_PLAFORM_GL 1
 
 #ifndef SHADER_PLAFORM
 #define SHADER_PLAFORM SHADER_PLAFORM_GL
@@ -60,6 +59,9 @@ namespace Render
 
 	bool ShouldCloseWindow();
 	void SetBackgroundColor(Math::Vector3 color);
+
+	unsigned int CreateNewFramebuffer();
+	void BindFramebuffer(unsigned int fbo);
 
 	void BeforeRender(float delay);
 	void Render(float delay);

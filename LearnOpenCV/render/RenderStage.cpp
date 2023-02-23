@@ -131,6 +131,8 @@ void RenderStageManager::beforeRender()
 
 void RenderStageManager::render(Core::Camera* renderCamera)
 {
+	
+
 	std::vector<RenderStage*>::iterator it;
 	for (it = renderStages.begin(); it != renderStages.end(); it++)
 	{

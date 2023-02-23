@@ -35,5 +35,9 @@ namespace Core
 	private:
 		// ²ÄÖÊ
 		Render::RenderProgram* renderProgram = NULL;
+
+		bool b_isShow = true;
+
+		float f_alpha = 1.0f;
 	};
 }

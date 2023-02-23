@@ -115,3 +115,8 @@ void Core::Camera::Render()
 	worldPosition = center;
 	perspectiveAabb.initVertices(points);
 }
+
+void Core::Camera::beginRender()
+{
+
+}

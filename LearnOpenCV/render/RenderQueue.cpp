@@ -6,12 +6,12 @@ namespace Render
 
 	bool distanceNearToFarCompare(RenderProgram* v1, RenderProgram* v2)
 	{
-		return v1->cameraDistance < v2->cameraDistance;
+		return v1->cameraDistance > v2->cameraDistance;
 	}
 
 	bool distanceFarToNearCompare(RenderProgram* v1, RenderProgram* v2)
 	{
-		return v1->cameraDistance > v2->cameraDistance;
+		return v1->cameraDistance < v2->cameraDistance;
 	}
 
 	RenderProgram::RenderProgram()
@@ -22,6 +22,7 @@ namespace Render
 
 	RenderQueue::RenderQueue()
 	{
+		renderSort = 0;
 		index = 0;
 		shaderProgram = nullptr;
 		activeRenderProgram = new std::vector<RenderProgram*>();
