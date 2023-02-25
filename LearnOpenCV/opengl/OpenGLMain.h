@@ -57,6 +57,8 @@ namespace OpenGL
 	void Render(float delay);
 	void RenderEnd();
 
+	void BindFramebuffer(unsigned int fbo);
+
 	static GLFWwindow* window = NULL;
 
 	enum class GLKeyTCoreKey

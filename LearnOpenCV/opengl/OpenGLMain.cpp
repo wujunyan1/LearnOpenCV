@@ -263,4 +263,9 @@ namespace OpenGL
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
+
+	void BindFramebuffer(unsigned int fbo)
+	{
+		glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+	}
 }

@@ -1,5 +1,6 @@
 #include "RenderStage.h"
 #include "RenderQueue.h"
+#include "../opengl/OpenGLMain.h"
 
 using namespace Render;
 
@@ -131,7 +132,7 @@ void RenderStageManager::beforeRender()
 
 void RenderStageManager::render(Core::Camera* renderCamera)
 {
-	
+	renderCamera->beginRender();
 
 	std::vector<RenderStage*>::iterator it;
 	for (it = renderStages.begin(); it != renderStages.end(); it++)

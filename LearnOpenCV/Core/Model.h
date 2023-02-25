@@ -24,7 +24,7 @@ namespace Core
 
 		void setRenderQueue(std::string renderName);
 
-		// 是否开启深度测试，默认开启
+		// 是否开启混合模式
 		void setBlend(bool enable);
 
 		// 目标是深度缓存里的， src是ps输出的

@@ -47,24 +47,26 @@ void Model::Render()
 	renderProgram->setLocalToWorldMat4(mat4);
 	material->setMat4("model", mat4);
 
-	if (Math::IsEqual(f_alpha, 0.0f, 0.001f))
-	{
-		return;
-	}
-	else if (Math::IsEqual(f_alpha, 1.0f, 0.001f))
-	{
-		setShader("testBlendShader");  //testBlendShader
-		setDepthTest(false);
-		setBlend(true);
-		setBlendFunc(Render::BlendFunc::SRC_ALPHA, Render::BlendFunc::ONE_MINUS_SRC_ALPHA);
-	}
-	else 
-	{
-		setShader("testShader");  //testBlendShader
-		setDepthTest(true);
-		setBlend(true);
-		setBlendFunc(Render::BlendFunc::SRC_ALPHA, Render::BlendFunc::ONE_MINUS_SRC_ALPHA);
-	}
+	//if (Math::IsEqual(f_alpha, 0.0f, 0.001f))
+	//{
+	//	return;
+	//}
+	//else if (Math::IsEqual(f_alpha, 1.0f, 0.001f))
+	//{
+	//	printf("xxxxxxxxxx not  alpha %f", f_alpha);
+	//	setShader("testShader");  //testShader
+	//	setDepthTest(false);
+	//	setBlend(false);
+	//	//setBlendFunc(Render::BlendFunc::SRC_ALPHA, Render::BlendFunc::ONE_MINUS_SRC_ALPHA);
+	//}
+	//else 
+	//{
+	//	printf("---------  alpha %f", f_alpha);
+	//	setShader("testBlendShader");  //testBlendShader
+	//	setDepthTest(true);
+	//	setBlend(true);
+	//	setBlendFunc(Render::BlendFunc::SRC_ALPHA, Render::BlendFunc::ONE_MINUS_SRC_ALPHA);
+	//}
 
 	Render::AddRender(renderProgram);
 }

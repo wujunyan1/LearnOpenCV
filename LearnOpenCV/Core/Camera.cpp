@@ -1,6 +1,7 @@
 #include "Camera.h"
 #include "Transform.h"
 #include "Scene.h"
+#include "../render/RenderMain.h"
 
 using namespace Core;
 
@@ -118,5 +119,5 @@ void Core::Camera::Render()
 
 void Core::Camera::beginRender()
 {
-
+	Render::BindFramebuffer(fbo);
 }
