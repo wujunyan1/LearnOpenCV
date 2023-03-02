@@ -17,7 +17,7 @@ namespace OpenGL
 		unsigned int shaderId = GLShaderManager::Instance()->GetShader(shaderName);
 		if (shaderId != 0)
 		{
-			ShaderGLProgram* newProgram = new ShaderGLProgram();
+			ShaderGLProgram* newProgram = new ShaderGLProgram(shaderId);
 			newProgram->shaderName = shaderName;
 			programs->insert(std::pair<std::string, ShaderGLProgram*>(shaderName, newProgram));
 			return newProgram;

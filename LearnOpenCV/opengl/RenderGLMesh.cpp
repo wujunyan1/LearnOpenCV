@@ -28,30 +28,6 @@ namespace OpenGL
 		GLboolean bl = b ? GL_TRUE : GL_FALSE;
 		glEnableVertexAttribArray(passageway);
 		glVertexAttribPointer(passageway, dataSize, GET_OPENGL_TYPE(dataType), bl, delaySize, (void*)startIndex);
-
-
-		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-		//glEnableVertexAttribArray(0);
-		//glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-		
-
-		/*glGenVertexArrays(1, &tvao);
-		glGenBuffers(1, &vbo);
-
-		glBindVertexArray(tvao);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
-		float vertices[] = {
-		-0.1f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.0f,  0.5f, 0.0f
-			};
-
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-		glEnableVertexAttribArray(0);*/
 	}
 
 	void RenderGLMesh::BindElementBufferData(size_t dataSize, void* data)
@@ -71,9 +47,14 @@ namespace OpenGL
 		for (unsigned int i = 0; i < images.size(); i++)
 		{
 			Render::Texture& texture = images[i];
-			texture.image->use(i);
+			//texture.image->use(i);
 
-			shader->setTexture(texture.uniformName, i);
+			glBindTexture(GL_TEXTURE_2D, texture.image->getTextureId());
+			glActiveTexture(Core::Image::textureIndex[i]);
+
+			printf("use image %s uniformName %s", texture.image->getName().c_str(), Math::stringFormat(texture.uniformName, i).c_str());
+
+			shader->setTexture(Math::stringFormat(texture.uniformName, i), i);
 		}
 
 		glDrawElements(GL_TRIANGLES, verticesNum, GL_UNSIGNED_INT, 0);

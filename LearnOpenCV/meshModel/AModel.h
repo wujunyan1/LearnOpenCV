@@ -36,7 +36,7 @@ namespace Core
         void loadModel(std::string const& path)
         {
             // modelId = Math::getUid();
-            printf("loadModel %d", modelId);
+            printf("loadModel %d %s \n", modelId, path.c_str());
             std::string s = std::string(FilePathManager::getRootPath());
             // read file via ASSIMP
             Assimp::Importer importer;
@@ -55,12 +55,16 @@ namespace Core
             processNode(scene->mRootNode, scene, points);
 
             obb = Math::Obb(points);
+
+
         }
 
         // processes a node in a recursive fashion. Processes each individual mesh located at the node and repeats this process on its children nodes (if any).
         void processNode(aiNode* node, const aiScene* scene, std::vector<Math::Vector3>& points)
         {
             // process each mesh located at the current node
+
+            printf("mNumMeshes %d\n", node->mNumMeshes);
             for (unsigned int i = 0; i < node->mNumMeshes; i++)
             {
                 // the node object only contains indices to index the actual objects in the scene. 
@@ -145,19 +149,19 @@ namespace Core
             // normal: texture_normalN
 
             // 1. diffuse maps
-            std::vector<Render::Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
+            std::vector<Render::Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "material[%d].diffuse");
             textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
             // 2. specular maps
-            std::vector<Render::Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
+            std::vector<Render::Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "material[%d].specular");
             textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
             // 3. ambient maps
-            std::vector<Render::Texture> ambientMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_ambient");
+            std::vector<Render::Texture> ambientMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "material[%d].ambient");
             textures.insert(textures.end(), ambientMaps.begin(), ambientMaps.end());
             // 4. normal maps
-            std::vector<Render::Texture> normalMaps = loadMaterialTextures(material, aiTextureType_NORMALS, "texture_normal");
+            std::vector<Render::Texture> normalMaps = loadMaterialTextures(material, aiTextureType_NORMALS, "material[%d].normal");
             textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
             // 5. height maps
-            std::vector<Render::Texture> heightMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_height");
+            std::vector<Render::Texture> heightMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "material[%d].height");
             textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
             // return a mesh object created from the extracted mesh data
@@ -168,11 +172,13 @@ namespace Core
         // the required info is returned as a Texture struct.
         std::vector<Render::Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName)
         {
+            printf("loadMaterialTextures  %d %s \n", mat->GetTextureCount(type), typeName.c_str());
             std::vector<Render::Texture> textures;
             for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
             {
                 aiString str;
                 mat->GetTexture(type, i, &str);
+                printf("load image %s \n", str.C_Str());
                 Image* image = ImageLoad::LoadImage(directory + "/" + str.C_Str()); // TextureFromFile(str.C_Str(), this->directory);
                 
                 Render::Texture texture;

@@ -1,10 +1,8 @@
 #include "RenderMain.h"
 #include "RenderStage.h"
+#include "../file/Image.h"
 
-
-#if SHADER_PLAFORM==SHADER_PLAFORM_GL
 #include "../opengl/OpenGLMain.h"
-#endif
 
 namespace Render 
 {
@@ -101,9 +99,9 @@ namespace Render
 		return OpenGL::ClearBuffer();
 	}
 
-	Core::Image* CreateImage(int width, int height, int nrChannels, unsigned char* data)
+	Core::Image* CreateImage(std::string& path, int width, int height, int nrChannels, unsigned char* data)
 	{
-		return OpenGL::CreateImage(width, height, nrChannels, data);
+		return new Core::Image(path, width, height, nrChannels, data);
 	}
 
 	bool ShouldCloseWindow()

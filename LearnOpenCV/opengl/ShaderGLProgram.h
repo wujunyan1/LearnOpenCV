@@ -13,6 +13,8 @@ namespace OpenGL
 	{
 	public:
 
+		ShaderGLProgram(unsigned int shaderId) : ShaderProgram(shaderId) {};
+
 		void RenderMaterial(Render::Material* material);
 		void RenderMaterial(OpenGL::MaterialGL* material);
 

@@ -2,7 +2,6 @@
 
 #include "OpenGLCore.h"
 #include "../render/RenderMesh.h"
-#include "GLImage.h"
 #include "GLShader.h"
 
 namespace OpenGL

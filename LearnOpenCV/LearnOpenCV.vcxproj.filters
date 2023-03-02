@@ -171,9 +171,6 @@
     <ClInclude Include="meshModel\AModel.h">
       <Filter>meshModel</Filter>
     </ClInclude>
-    <ClInclude Include="opengl\GLImage.h">
-      <Filter>opengl</Filter>
-    </ClInclude>
     <ClInclude Include="render\Texture.h">
       <Filter>render</Filter>
     </ClInclude>
@@ -209,6 +206,12 @@
     </ClInclude>
     <ClInclude Include="math\AABB.h">
       <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\DirLight.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="render\RenderLight.h">
+      <Filter>render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -332,9 +335,6 @@
     <ClCompile Include="meshModel\AModel.cpp">
       <Filter>meshModel</Filter>
     </ClCompile>
-    <ClCompile Include="opengl\GLImage.cpp">
-      <Filter>opengl</Filter>
-    </ClCompile>
     <ClCompile Include="render\Texture.cpp">
       <Filter>render</Filter>
     </ClCompile>
@@ -370,6 +370,12 @@
     </ClCompile>
     <ClCompile Include="math\AABB.cpp">
       <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\DirLight.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="render\RenderLight.cpp">
+      <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

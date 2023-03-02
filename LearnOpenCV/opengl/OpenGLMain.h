@@ -48,8 +48,6 @@ namespace OpenGL
 	Math::Vector2T<int> GetWindowSize();
 	void ClearBuffer();
 
-	Core::Image* CreateImage(int width, int height, int nrChannels, unsigned char* data);
-
 	bool ShouldCloseWindow();
 
 	void SetBackgroundColor(Math::Vector3 color);

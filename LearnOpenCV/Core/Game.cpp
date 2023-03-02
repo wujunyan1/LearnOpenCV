@@ -45,6 +45,7 @@ void Game::LoadMainScene()
 	Render::CreateShader("testBlendShader", "/asserts/shaders/testBlendShader.vert", "/asserts/shaders/testBlendShader.frag");
 
 	Render::AddCustomRenderQueue("RenderOpaqueQueue", Core::new_class<Logic::RenderOpaqueQueue>());
+	Render::AddCustomRenderQueue("DefaultRenderQueue", Core::new_class<Render::RenderQueue>());
 
 	Scene* scene = SceneManager::GetInstance()->GetCurrScene();
 	scene->PreUpdate();
@@ -109,6 +110,19 @@ void Game::LoadMainScene()
 
 		// ro->AddComponent<TestComponent>();
 	}
+
+	Object* eggObj = ObjectManager::createNewObject();
+	Transform* eggTransform = eggObj->AddComponent<Transform>();
+	Model* eggModel = eggObj->AddComponent<Model>();
+
+	root->AddChild(eggTransform);
+	eggTransform->SetPosition(Math::Vector3(0.0f, 0.0f, -3.9f));
+	eggTransform->SetScale(Math::Vector3(0.02f, 0.02f, 0.02f));
+	Core::AModel* eggAModel = AModelFactory::createModel("/asserts/mesh/unicorn/unicorn.glb");
+	eggModel->setModel(eggAModel);
+	eggModel->setDepthTest(true);
+	eggModel->setBlend(false);
+
 
 	for (size_t i = 0; i < 10; i++)
 	{
@@ -176,19 +190,20 @@ void Game::LoadMainScene()
 		Render::Texture texture;
 		texture.image = ImageLoad::LoadImage("/asserts/images/blending_transparent_window.png");
 		texture.imageName = "blending_transparent_window.png";
-		texture.uniformName = "texture_ambient";
+		texture.uniformName = "material.ambient";
 		textures.push_back(texture);
 
 		Render::Texture texture2;
 		texture2.image = ImageLoad::LoadImage("/asserts/images/blending_transparent_window.png");
 		texture2.imageName = "blending_transparent_window.png";
-		texture2.uniformName = "texture_diffuse";
+		texture2.uniformName = "material.diffuse";
 		textures.push_back(texture2);
 
 		Core::AModel* acustommodel = AModelFactory::createCustomModel();
 		acustommodel->addMesh(vertices, indices, textures);
 
 		mesh2->setShader("testBlendShader");  //testBlendShader
+		mesh2->setRenderQueue("DefaultRenderQueue");
 		mesh2->setModel(acustommodel);
 		mesh2->setDepthTest(false);
 		mesh2->setBlend(true);
@@ -262,19 +277,20 @@ void Game::LoadMainScene()
 		Render::Texture texture;
 		texture.image = ImageLoad::LoadImage("/asserts/images/img_0_eff_bd.png");
 		texture.imageName = "img_0_eff_bd.png";
-		texture.uniformName = "texture_ambient";
+		texture.uniformName = "material.ambient";
 		textures.push_back(texture);
 
 		Render::Texture texture2;
 		texture2.image = ImageLoad::LoadImage("/asserts/images/img_0_eff_bd.png");
 		texture2.imageName = "img_0_eff_bd.png";
-		texture2.uniformName = "texture_diffuse";
+		texture2.uniformName = "material.diffuse";
 		textures.push_back(texture2);
 
 		Core::AModel* acustommodel = AModelFactory::createCustomModel();
 		acustommodel->addMesh(vertices, indices, textures);
 
 		mesh2->setShader("testBlendShader");  //testBlendShader
+		mesh2->setRenderQueue("DefaultRenderQueue");
 		mesh2->setModel(acustommodel);
 		mesh2->setDepthTest(false);
 		mesh2->setBlend(true);

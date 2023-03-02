@@ -155,6 +155,7 @@
     <ClInclude Include="Core\Component.h" />
     <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\CoreDef.h" />
+    <ClInclude Include="Core\DirLight.h" />
     <ClInclude Include="Core\Game.h" />
     <ClInclude Include="Core\Model.h" />
     <ClInclude Include="Core\Object.h" />
@@ -187,7 +188,6 @@
     <ClInclude Include="math\Vector4.h" />
     <ClInclude Include="meshModel\AMesh.h" />
     <ClInclude Include="meshModel\AModel.h" />
-    <ClInclude Include="opengl\GLImage.h" />
     <ClInclude Include="opengl\GLShader.h" />
     <ClInclude Include="opengl\GLShaderManager.h" />
     <ClInclude Include="opengl\MaterialGL.h" />
@@ -198,6 +198,7 @@
     <ClInclude Include="opengl\ShaderGLProgram.h" />
     <ClInclude Include="render\BlendFunc.h" />
     <ClInclude Include="render\Material.h" />
+    <ClInclude Include="render\RenderLight.h" />
     <ClInclude Include="render\RenderMain.h" />
     <ClInclude Include="render\RenderMesh.h" />
     <ClInclude Include="render\RenderQueue.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="Core\CameraMoveComponent.cpp" />
     <ClCompile Include="Core\Component.cpp" />
     <ClCompile Include="Core\Core.cpp" />
+    <ClCompile Include="Core\DirLight.cpp" />
     <ClCompile Include="Core\Game.cpp" />
     <ClCompile Include="Core\Model.cpp" />
     <ClCompile Include="Core\Object.cpp" />
@@ -242,7 +244,6 @@
     <ClCompile Include="math\Vector4.cpp" />
     <ClCompile Include="meshModel\AMesh.cpp" />
     <ClCompile Include="meshModel\AModel.cpp" />
-    <ClCompile Include="opengl\GLImage.cpp" />
     <ClCompile Include="opengl\GLShader.cpp" />
     <ClCompile Include="opengl\GLShaderManager.cpp" />
     <ClCompile Include="opengl\MaterialGL.cpp" />
@@ -253,6 +254,7 @@
     <ClCompile Include="opengl\ShaderGLProgram.cpp" />
     <ClCompile Include="render\BlendFunc.cpp" />
     <ClCompile Include="render\Material.cpp" />
+    <ClCompile Include="render\RenderLight.cpp" />
     <ClCompile Include="render\RenderMain.cpp" />
     <ClCompile Include="render\RenderMesh.cpp" />
     <ClCompile Include="render\RenderQueue.cpp" />

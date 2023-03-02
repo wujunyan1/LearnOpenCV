@@ -27,7 +27,7 @@ Image* ImageLoad::LoadImage(std::string path)
 	Image* image = NULL;
 	if (data)
 	{
-		image = Render::CreateImage(width, height, nrChannels, data);
+		image = Render::CreateImage(path, width, height, nrChannels, data);
 	}
 	stbi_image_free(data);
 

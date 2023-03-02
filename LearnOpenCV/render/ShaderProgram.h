@@ -51,6 +51,8 @@ namespace Render
 	{
 	public:
 
+		ShaderProgram(unsigned int shaderId): shader(shaderId) {};
+
 		virtual void RenderMaterial(Material* material) {};
 
 		bool operator == (const ShaderProgram& rhs)

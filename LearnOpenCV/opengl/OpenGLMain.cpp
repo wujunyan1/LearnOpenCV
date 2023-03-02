@@ -6,7 +6,6 @@
 #include "../file/FilePathManager.h"
 
 #include "GLShaderManager.h"
-#include "GLImage.h"
 
 #include "../render/RenderStage.h"
 #include "../input/Input.h"
@@ -218,11 +217,6 @@ namespace OpenGL
 	{
 		/*glfwPollEvents();
 		glfwSwapBuffers(window);*/
-	}
-
-	Core::Image* CreateImage(int width, int height, int nrChannels, unsigned char* data)
-	{
-		return new GLImage(width, height, nrChannels, data);
 	}
 
 	bool ShouldCloseWindow()
