@@ -213,6 +213,9 @@
     <ClInclude Include="render\RenderLight.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="file\stb_image_write.h">
+      <Filter>file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">

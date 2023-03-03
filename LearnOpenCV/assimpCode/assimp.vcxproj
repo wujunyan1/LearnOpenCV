@@ -60,7 +60,7 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../../res</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">assimp.dir\Debug\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\assimp.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">assimp-vc143-mtd</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\assimp\include;D:\assimp;D:\assimp\code;D:\assimp\.;D:\assimp\contrib\zlib;D:\assimp\code\..\contrib\pugixml\src;D:\assimp\code\..\contrib\rapidjson\include;D:\assimp\code\..\contrib;D:\assimp\code\..\contrib\unzip;D:\assimp\code\..\contrib\openddlparser\include;D:\assimp\code\..\include;D:\assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../LearnOpenCV/assimpCode;../../LearnOpenCV/include;../../LearnOpenCV/assimpCode/Common;../../LearnOpenCV/contrib/zlib;../../LearnOpenCV\contrib\pugixml\src;../../LearnOpenCV\contrib\rapidjson\include;../../LearnOpenCV\contrib;../../LearnOpenCV\contrib\unzip;../../LearnOpenCV\contrib\openddlparser\include;../../;../../LearnOpenCV;../../LearnOpenCV\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -124,8 +124,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>D:/assimp/lib/Debug/assimp-vc143-mtd.lib</ImportLibrary>
-      <ProgramDataBaseFile>D:/assimp/bin/Debug/assimp-vc143-mtd.pdb</ProgramDataBaseFile>
+      <ImportLibrary>../assimp/lib/Debug/assimp-vc143-mtd.lib</ImportLibrary>
+      <ProgramDataBaseFile>../assimp/bin/Debug/assimp-vc143-mtd.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>

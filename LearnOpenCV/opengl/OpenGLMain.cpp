@@ -236,24 +236,21 @@ namespace OpenGL
 
 	void BeforeRender(float delay)
 	{
-		Render::RenderStageManager::beforeRender();
+		//Render::RenderStageManager::beforeRender();
 	}
 
 	void Render(float delay)
 	{
 		// Render::RenderStageManager::render();
 
-		Core::Scene* scene = Core::Scene::getCurrScene();
-		Render::RenderStageManager::render(scene->getMainCamera());
+		//Core::Scene* scene = Core::Scene::getCurrScene();
+		//Render::RenderStageManager::render(scene->getMainCamera());
 
 		//Render::RenderQueueManager::RenderQueue();
 	}
 
 	void RenderEnd()
 	{
-		Render::RenderStageManager::renderEnd();
-
-		Render::RenderQueueManager::ClearRenderQueue();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}

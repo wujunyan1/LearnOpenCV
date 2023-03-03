@@ -4,6 +4,8 @@
 
 #include "../opengl/OpenGLMain.h"
 
+#include "../Core/Scene.h"
+
 namespace Render 
 {
 	long getCurrentRenderTime() {
@@ -128,16 +130,20 @@ namespace Render
 
 	void BeforeRender(float delay)
 	{
-		return OpenGL::BeforeRender(delay);
+		return Render::RenderStageManager::beforeRender();
 	}
 
 	void Render(float delay)
 	{
-		return OpenGL::Render(delay);
+		Core::Scene* scene = Core::Scene::getCurrScene();
+		Render::RenderStageManager::render(scene->getMainCamera());
+		return;
 	}
 
 	void RenderEnd()
 	{
+		Render::RenderStageManager::renderEnd();
+		Render::RenderQueueManager::ClearRenderQueue();
 		return OpenGL::RenderEnd();
 	}
 }

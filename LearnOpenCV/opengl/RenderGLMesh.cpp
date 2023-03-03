@@ -43,18 +43,36 @@ namespace OpenGL
 		
 		ShaderGLProgram* p = (ShaderGLProgram*)program;
 
+		unsigned int diffuseIndex = 0;
+		unsigned int ambientIndex = 0;
+		unsigned int specularIndex = 0;
+		unsigned int normalIndex = 0;
+		unsigned int heightIndex = 0;
+
 		GLShader* shader = p->GetShaderObj();
 		for (unsigned int i = 0; i < images.size(); i++)
 		{
 			Render::Texture& texture = images[i];
 			//texture.image->use(i);
 
-			glBindTexture(GL_TEXTURE_2D, texture.image->getTextureId());
 			glActiveTexture(Core::Image::textureIndex[i]);
+			int num = 0;
+			if (texture.uniformName == "material.diffuse")
+				num = diffuseIndex++;
+			else if (texture.uniformName == "material.ambient")
+				num = ambientIndex++;
+			else if (texture.uniformName == "material.specular")
+				num = specularIndex++;
+			else if (texture.uniformName == "material.normal")
+				num = normalIndex++;
+			else if (texture.uniformName == "material.height")
+				num = heightIndex++;
 
-			printf("use image %s uniformName %s", texture.image->getName().c_str(), Math::stringFormat(texture.uniformName, i).c_str());
+			std::string uniformName = texture.uniformName; // Math::stringFormat(texture.uniformName, num);
+			printf("RenderGLMesh::Render %d %s %s \n", i, uniformName.c_str(), texture.image->getName().c_str());
 
-			shader->setTexture(Math::stringFormat(texture.uniformName, i), i);
+			shader->setTexture(uniformName, i);
+			glBindTexture(GL_TEXTURE_2D, texture.image->getTextureId());
 		}
 
 		glDrawElements(GL_TRIANGLES, verticesNum, GL_UNSIGNED_INT, 0);

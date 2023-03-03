@@ -54,69 +54,22 @@ void Game::LoadMainScene()
 
 	Core::Transform* root = scene->getObject()->GetComponent<Core::Transform>();
 
-	Object* o = ObjectManager::createNewObject();
+	/*Object* o = ObjectManager::createNewObject();
 	Transform* t = o->AddComponent<Transform>();
 	Model* model = o->AddComponent<Model>();
-
 	root->AddChild(t);
 	t->SetPosition(Math::Vector3(0.0f, 0.0f, -0.9f));
-	// t->SetScale(Vector3(0.8f, 0.2f, 0.2f));
-
-	/*model->addTriangle(
-		Math::Triangle<Math::Vector3>(
-			Math::Vector3(0.0f, 0, 0),
-			Math::Vector3(0.5f, 0.0f, 0),
-			Math::Vector3(0.0, 0.5f, 0)
-			),
-		Math::Triangle<Math::Vector4>(
-			Math::Vector4(0, 0, 1, 1),
-			Math::Vector4(1, 0, 0, 1),
-			Math::Vector4(0, 1, 0, 1)
-			)
-	);
-	model->bindRender();*/
-
-	Transform* camerat = root->GetChildByIndex(0);
-	//camerat->getObject()->AddComponent<TestComponent>();
-
-	// o->AddComponent<TestComponent>();
-
-	// AModel* amodel = new AModel("/asserts/mesh/juren/nanosuit.obj");
 	Core::AModel* amodel = AModelFactory::createModel("/asserts/mesh/juren/nanosuit.obj");
 	model->setModel(amodel);
 	model->setDepthTest(true);
-	model->setBlend(false);
+	model->setBlend(false);*/
 
-
-	for (size_t i = 0; i < 0; i++)
-	{
-		Object* ro = ObjectManager::createNewObject();
-		Transform* rt = ro->AddComponent<Transform>();
-		Model* model = ro->AddComponent<Model>();
-		model->setModel(amodel);
-		model->setDepthTest(true);
-		model->setBlend(false);
-		root->AddChild(rt);
-
-		int x = rand() % 20 + 1;
-		int y = rand() % 20 + 1;
-		int z = rand() % 20 + 1;
-		rt->SetPosition(Math::Vector3(x, y, -z));
-
-		int roll = rand() % 6;
-		int yaw = rand() % 6;
-		int pitch = rand() % 6;
-		rt->SetRotate(Vector3(pitch, yaw, roll));
-
-		// ro->AddComponent<TestComponent>();
-	}
 
 	Object* eggObj = ObjectManager::createNewObject();
 	Transform* eggTransform = eggObj->AddComponent<Transform>();
 	Model* eggModel = eggObj->AddComponent<Model>();
-
 	root->AddChild(eggTransform);
-	eggTransform->SetPosition(Math::Vector3(0.0f, 0.0f, -3.9f));
+	eggTransform->SetPosition(Math::Vector3(0.0f, 0.0f, -4.9f));
 	eggTransform->SetScale(Math::Vector3(0.02f, 0.02f, 0.02f));
 	Core::AModel* eggAModel = AModelFactory::createModel("/asserts/mesh/unicorn/unicorn.glb");
 	eggModel->setModel(eggAModel);
@@ -124,7 +77,7 @@ void Game::LoadMainScene()
 	eggModel->setBlend(false);
 
 
-	for (size_t i = 0; i < 10; i++)
+	for (size_t i = 0; i < 0; i++)
 	{
 		Object* o2 = ObjectManager::createNewObject();
 		Transform* t2 = o2->AddComponent<Transform>();
@@ -211,7 +164,7 @@ void Game::LoadMainScene()
 		//mesh2->setBlendFunc(Render::BlendFunc::ONE, Render::BlendFunc::ONE_MINUS_SRC_ALPHA);
 	}
 
-	for (size_t i = 0; i < 10; i++)
+	for (size_t i = 0; i < 0; i++)
 	{
 		Object* o2 = ObjectManager::createNewObject();
 		Transform* t2 = o2->AddComponent<Transform>();

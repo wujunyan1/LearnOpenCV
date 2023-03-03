@@ -17,5 +17,6 @@ namespace Core
 
 	private:
 
+		Vector3 diffuse;
 	};
 }
