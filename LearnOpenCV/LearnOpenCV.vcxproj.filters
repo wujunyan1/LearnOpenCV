@@ -40,6 +40,9 @@
     <Filter Include="logic\renderQueue">
       <UniqueIdentifier>{d76eedc9-cc8b-48eb-93b2-cc08586a55b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ui">
+      <UniqueIdentifier>{273eac8c-d494-4e9b-a923-debfdfd24b85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LearnOpenCV.h">
@@ -216,6 +219,12 @@
     <ClInclude Include="file\stb_image_write.h">
       <Filter>file</Filter>
     </ClInclude>
+    <ClInclude Include="ui\UITransform.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SkyBox.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -379,6 +388,12 @@
     </ClCompile>
     <ClCompile Include="render\RenderLight.cpp">
       <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\UITransform.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\SkyBox.cpp">
+      <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -162,6 +162,7 @@
     <ClInclude Include="Core\ObjectManager.h" />
     <ClInclude Include="Core\Scene.h" />
     <ClInclude Include="Core\SceneManager.h" />
+    <ClInclude Include="Core\SkyBox.h" />
     <ClInclude Include="Core\TestComponent.h" />
     <ClInclude Include="Core\Transform.h" />
     <ClInclude Include="Core\TypeDef.h" />
@@ -207,6 +208,7 @@
     <ClInclude Include="render\RenderStage.h" />
     <ClInclude Include="render\ShaderProgram.h" />
     <ClInclude Include="render\Texture.h" />
+    <ClInclude Include="ui\UITransform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Camera.cpp" />
@@ -221,6 +223,7 @@
     <ClCompile Include="Core\ObjectManager.cpp" />
     <ClCompile Include="Core\Scene.cpp" />
     <ClCompile Include="Core\SceneManager.cpp" />
+    <ClCompile Include="Core\SkyBox.cpp" />
     <ClCompile Include="Core\TestComponent.cpp" />
     <ClCompile Include="Core\Transform.cpp" />
     <ClCompile Include="file\FilePathManager.cpp" />
@@ -263,6 +266,7 @@
     <ClCompile Include="render\RenderStage.cpp" />
     <ClCompile Include="render\ShaderProgram.cpp" />
     <ClCompile Include="render\Texture.cpp" />
+    <ClCompile Include="ui\UITransform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

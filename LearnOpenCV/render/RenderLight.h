@@ -29,7 +29,7 @@ namespace Render
 	class RenderLightManager
 	{
 	private:
-		static RenderLight m_dirLights;
+		static std::vector<RenderLight> m_dirLights;
 		static std::vector<RenderLight> m_pointLights;
 	};
 }
