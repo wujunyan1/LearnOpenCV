@@ -2,6 +2,7 @@
 #include "Core.h"
 #include "Component.h"
 #include "Camera.h"
+#include "../file/ImageLoad.h"
 
 namespace Core
 {
@@ -14,5 +15,7 @@ namespace Core
 
 
 	private:
+
+		ImageCubeMap* image;
 	};
 }

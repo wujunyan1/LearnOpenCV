@@ -5,6 +5,8 @@
 #include "ShaderProgram.h"
 #include "../file/Image.h"
 #include "Texture.h"
+#include "../opengl/OpenGLCore.h"
+#include "../opengl/GLShader.h"
 
 namespace Render
 {
@@ -15,30 +17,41 @@ namespace Render
 	class RenderMesh
 	{
 	public:
-		RenderMesh(std::string _name);
-		RenderMesh(std::string _name, void* data);
+		RenderMesh(std::string name);
+		~RenderMesh();
 
-		std::string& getName() { return name; };
 
-		virtual void BindArrayBufferData(size_t verticesNum, size_t dataSize, void* data);
-		virtual void BindElementBufferData(size_t dataSize, void* data) {};
-		virtual void VertexAttribPointer(unsigned int passageway, size_t dataSize, ShaderParamType dataType, bool b, size_t delaySize, size_t startIndex);
+		void BindArrayBufferData(size_t verticesNum, size_t dataSize, void* data);
+		void VertexAttribPointer(unsigned int passageway, size_t dataSize, Render::ShaderParamType dataType, bool b, size_t delaySize, size_t startIndex);
+		void BindElementBufferData(size_t dataSize, void* data);
 
-		virtual void SetImage(std::vector<Texture>& images) {};
-		virtual void Render(ShaderProgram* program) {};
-	protected:
-		std::string name;
+		void SetImage(std::vector<Render::Texture>& images)
+		{
+			this->images = images;
+		};
+		void BindRender(GLShader* shader);
+
+		void Render(Render::ShaderProgram* program);
+	private:
+		unsigned int ebo;
+		unsigned int vbo;
+		unsigned int tvao;
+		unsigned int verticesNum;
+		std::vector<Render::Texture> images;
+
+		std::string m_name;
 	};
 
 	class RenderMeshManager
 	{
 	public:
-		static RenderMesh* createNewRenderMesh(std::string meshName);
-		static RenderMesh* getRenderMesh(std::string meshName);
-		static void addRenderMesh(std::string meshName, RenderMesh* mesh);
-		static void loadMeshFile(std::string meshName, std::string path);
+		static RenderMesh* createNewRenderMesh(std::string& meshName);
+		static RenderMesh* getRenderMesh(std::string& meshName);
+		static void addRenderMesh(std::string& meshName, RenderMesh* mesh);
+		static RenderMesh* loadMeshFile(std::string& meshName, std::string& path);
 
 	private:
 		static std::map<std::string, RenderMesh*>* meshs;
 	};
+
 }

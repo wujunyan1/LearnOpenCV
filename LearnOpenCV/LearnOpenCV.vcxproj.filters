@@ -129,9 +129,6 @@
     <ClInclude Include="render\RenderMesh.h">
       <Filter>render</Filter>
     </ClInclude>
-    <ClInclude Include="opengl\RenderGLMesh.h">
-      <Filter>opengl</Filter>
-    </ClInclude>
     <ClInclude Include="opengl\RenderGLQueue.h">
       <Filter>opengl</Filter>
     </ClInclude>
@@ -304,9 +301,6 @@
     </ClCompile>
     <ClCompile Include="render\RenderMesh.cpp">
       <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="opengl\RenderGLMesh.cpp">
-      <Filter>opengl</Filter>
     </ClCompile>
     <ClCompile Include="opengl\RenderGLQueue.cpp">
       <Filter>opengl</Filter>

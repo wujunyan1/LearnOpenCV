@@ -5,7 +5,7 @@
 #include "ShaderGLProgram.h"
 
 #include "MaterialGL.h"
-#include "RenderGLMesh.h"
+#include "../render/RenderMesh.h"
 
 namespace OpenGL
 {
@@ -20,7 +20,7 @@ namespace OpenGL
 		void setShader(const std::string& shaderName);
 
 		void Render();
-		void RenderMesh(RenderGLMesh* mesh);
+		void RenderMesh(Render::RenderMesh* mesh);
 	};
 
 	class RenderGLQueue

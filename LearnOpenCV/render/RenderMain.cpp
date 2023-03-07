@@ -56,12 +56,12 @@ namespace Render
 
 	RenderMesh* CreateRenderMesh(std::string name)
 	{
-		return OpenGL::CreateRenderMesh(name);
+		return RenderMeshManager::createNewRenderMesh(name);
 	}
 
 	RenderMesh* GetRenderMesh(std::string name)
 	{
-		return OpenGL::GetRenderMesh(name);
+		return RenderMeshManager::getRenderMesh(name);
 	}
 
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath)
@@ -99,11 +99,6 @@ namespace Render
 	void ClearBuffer()
 	{
 		return OpenGL::ClearBuffer();
-	}
-
-	Core::Image* CreateImage(std::string& path, int width, int height, int nrChannels, unsigned char* data)
-	{
-		return new Core::Image(path, width, height, nrChannels, data);
 	}
 
 	bool ShouldCloseWindow()

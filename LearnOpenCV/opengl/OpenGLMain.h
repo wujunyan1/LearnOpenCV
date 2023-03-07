@@ -1,7 +1,6 @@
 #pragma once
 
 #include "OpenGLCore.h"
-#include "RenderGLMesh.h"
 #include "MaterialGL.h"
 #include "RenderGLQueue.h"
 
@@ -38,8 +37,6 @@ namespace OpenGL
 	RenderGLProgram* CreateRenderProgram(std::string materialName);
 
 	MaterialGL* CreateMaterial(std::string materialName);
-	RenderGLMesh* CreateRenderMesh(std::string& name);
-	RenderGLMesh* GetRenderMesh(std::string& name);
 
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath);
 

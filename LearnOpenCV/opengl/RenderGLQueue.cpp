@@ -1,5 +1,5 @@
 #include "RenderGLQueue.h"
-#include "RenderGLMesh.h"
+#include "../render/RenderMesh.h"
 #include "MaterialGL.h"
 
 #include "OpenGLMain.h"
@@ -13,13 +13,13 @@ namespace OpenGL
 
 	Render::RenderMesh* RenderGLProgram::createNewRenderMesh(std::string name)
 	{
-		RenderGLMesh* mesh = RenderGLMeshManager::createNewRenderMesh(name);
+		Render::RenderMesh* mesh = Render::RenderMeshManager::createNewRenderMesh(name);
 		return mesh;
 	}
 
 	Render::RenderMesh* RenderGLProgram::loadRenderMesh(std::string name, std::string path)
 	{
-		RenderGLMesh* mesh = RenderGLMeshManager::loadMeshFile(name, path);
+		Render::RenderMesh* mesh = Render::RenderMeshManager::loadMeshFile(name, path);
 		return mesh;
 	}
 
@@ -57,7 +57,7 @@ namespace OpenGL
 		}
 	}
 
-	void RenderGLProgram::RenderMesh(RenderGLMesh* mesh)
+	void RenderGLProgram::RenderMesh(Render::RenderMesh* mesh)
 	{
 		// ÉèÖÃshader ÊôĞÔ
 		shaderProgram->RenderMaterial(material);

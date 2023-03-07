@@ -13,9 +13,16 @@
 #include "../meshModel/AModel.h"
 #include "../logic/renderQueue/RenderOpaqueQueue.h"
 
+#include "../file/ImageLoad.h"
+
 using namespace Core;
 
 Game* Game::instance = nullptr;
+
+Game::~Game()
+{
+	ImageLoad::Destroy();
+}
 
 void Game::Tick(long time)
 {
@@ -54,7 +61,7 @@ void Game::LoadMainScene()
 
 	Core::Transform* root = scene->getObject()->GetComponent<Core::Transform>();
 
-	/*Object* o = ObjectManager::createNewObject();
+	Object* o = ObjectManager::createNewObject();
 	Transform* t = o->AddComponent<Transform>();
 	Model* model = o->AddComponent<Model>();
 	root->AddChild(t);
@@ -62,15 +69,15 @@ void Game::LoadMainScene()
 	Core::AModel* amodel = AModelFactory::createModel("/asserts/mesh/juren/nanosuit.obj");
 	model->setModel(amodel);
 	model->setDepthTest(true);
-	model->setBlend(false);*/
+	model->setBlend(false);
 
 
 	Object* eggObj = ObjectManager::createNewObject();
 	Transform* eggTransform = eggObj->AddComponent<Transform>();
 	Model* eggModel = eggObj->AddComponent<Model>();
 	root->AddChild(eggTransform);
-	eggTransform->SetPosition(Math::Vector3(0.0f, 0.0f, -4.9f));
-	eggTransform->SetScale(Math::Vector3(0.02f, 0.02f, 0.02f));
+	eggTransform->SetPosition(Math::Vector3(0.0f, 0.0f, -6.9f));
+	eggTransform->SetScale(Math::Vector3(0.03f, 0.03f, 0.03f));
 	Core::AModel* eggAModel = AModelFactory::createModel("/asserts/mesh/unicorn/unicorn.glb");
 	eggModel->setModel(eggAModel);
 	eggModel->setDepthTest(true);

@@ -39,6 +39,8 @@ namespace Core {
 			delay = 0.0f;
 		}
 
+		~Game();
+
 		Camera mainCamera;
 		float delay;
 	};
