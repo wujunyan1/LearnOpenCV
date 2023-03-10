@@ -22,6 +22,8 @@ namespace Core
 
 		virtual void LaterUpdate() override;
 
+		void SetMainCamera(bool isMain);
+		bool GetMainCamera() { return m_isMainCamera; };
 		void Render();
 
 		Math::AABB& getPerspectiveAABB() { return perspectiveAabb; };
@@ -43,6 +45,8 @@ namespace Core
 
 		Math::AABB perspectiveAabb;
 		Math::Vector3 worldPosition;
+
+		bool m_isMainCamera = false;
 
 	private:
 		unsigned int fbo = 0;

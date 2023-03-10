@@ -7,6 +7,7 @@
 #include "Material.h"
 #include "RenderQueue.h"
 #include "../file/Image.h"
+#include "RenderSkyBox.h"
 
 
 #define SHADER_PLAFORM_GL 1
@@ -47,6 +48,7 @@ namespace Render
 
 	// 添加到渲染队列
 	void AddRender(RenderProgram* renderProgram);
+	void AddSkyBox(RenderSkyBox* skybox);
 	void AddLight();
 
 	long getCurrentRenderTime();

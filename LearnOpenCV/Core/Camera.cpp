@@ -81,8 +81,38 @@ void Camera::LaterUpdate()
 	vp = perspective * getViewMat4();
 }
 
+void Core::Camera::SetMainCamera(bool isMain)
+{
+	m_isMainCamera = isMain;
+
+	Scene* scene = dynamic_cast<Scene*>(transform->GetRoot());
+	if (!scene)
+	{
+		return;
+	}
+	if (isMain)
+	{
+		scene->setMainCamera(this);
+	}
+}
+
 void Core::Camera::Render()
 {
+	if (!b_isActive)
+	{
+		return;
+	}
+
+	Scene* scene = dynamic_cast<Scene*>(transform->GetRoot());
+	if (!scene)
+	{
+		return;
+	}
+	if (!m_isMainCamera)
+	{
+		scene->addRenderCamera(this);
+	}
+
 	Math::Matrix4& m4 = transform->GetLocalToWorldMat4();
 
 	Vector3 center = m4 * Vector4(0, 0, 0, 1);
@@ -115,6 +145,8 @@ void Core::Camera::Render()
 
 	worldPosition = center;
 	perspectiveAabb.initVertices(points);
+
+
 }
 
 void Core::Camera::beginRender()

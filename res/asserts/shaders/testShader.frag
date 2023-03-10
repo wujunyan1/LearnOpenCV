@@ -41,8 +41,11 @@ void main()
 
     // normal
     vec4 normal = texture(material.normal, uv);
+    
+    // specular
+    vec4 specular = texture(material.specular, uv);
 
     //FragColor = vec4((ambient + diffuse).rgb, 1.0f);
     //FragColor = vec4(diffuse.r, 0, 0, 1.0f);
-    FragColor = normal; // + diffuse;
+    FragColor = diffuse; // + diffuse;
 }

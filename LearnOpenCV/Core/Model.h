@@ -24,6 +24,8 @@ namespace Core
 
 		void setRenderQueue(std::string renderName);
 
+		void setRenderStageIndex(unsigned int stage);
+
 		// 是否开启混合模式
 		void setBlend(bool enable);
 

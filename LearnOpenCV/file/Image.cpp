@@ -3,6 +3,7 @@
 #include "stb_image.h"
 #include "stb_image_write.h"
 
+#include "FilePathManager.h"
 
 using namespace Core;
 
@@ -48,9 +49,10 @@ ImageCubeMap::ImageCubeMap(std::string & name, std::vector<std::string>&faces) :
 	glGenTextures(1, &textureID);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
 
+	std::string s = std::string(FilePathManager::getRootPath());
 	for (unsigned int i = 0; i < faces.size(); i++)
 	{
-		unsigned char* data = stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
+		unsigned char* data = stbi_load((s + faces[i]).c_str(), &width, &height, &nrChannels, 0);
 		if (data)
 		{
 			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,

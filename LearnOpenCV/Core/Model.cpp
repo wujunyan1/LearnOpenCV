@@ -81,6 +81,11 @@ void Core::Model::setRenderQueue(std::string renderName)
 	renderProgram->setRenderQueueName(renderName);
 }
 
+void Core::Model::setRenderStageIndex(unsigned int stage)
+{
+	renderProgram->setRenderStage(stage);
+}
+
 void Core::Model::setBlend(bool enable)
 {
 	renderProgram->setBlend(enable);

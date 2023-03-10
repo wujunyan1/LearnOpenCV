@@ -222,6 +222,9 @@
     <ClInclude Include="Core\SkyBox.h">
       <Filter>core</Filter>
     </ClInclude>
+    <ClInclude Include="render\RenderSkyBox.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -388,6 +391,9 @@
     </ClCompile>
     <ClCompile Include="Core\SkyBox.cpp">
       <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="render\RenderSkyBox.cpp">
+      <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

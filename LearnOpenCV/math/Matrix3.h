@@ -7,6 +7,7 @@
 namespace Math
 {
 	class Quaternion;
+	class Matrix4;
 	class Matrix3
 	{
 	public:
@@ -46,6 +47,8 @@ namespace Math
 			m10 = f10; m11 = f11; m12 = f12;
 			m20 = f20; m21 = f21; m22 = f22;
 		}
+
+		Matrix3(Matrix4 mat4);
 
 		inline Matrix3& operator= (const Matrix3& rhs)
 		{

@@ -1,6 +1,9 @@
 #include "RenderStage.h"
 #include "RenderQueue.h"
 #include "../opengl/OpenGLMain.h"
+#include "../Core/Object.h"
+#include "../Core/SkyBox.h"
+#include "RenderSkyBox.h"
 
 using namespace Render;
 
@@ -80,6 +83,16 @@ void RenderStage::renderEnd()
 }
 
 
+void Render::SkyBoxRenderStage::render(Core::Camera* renderCamera)
+{
+	Core::Object* obj = renderCamera->getObject();
+	Core::SkyBox* skybox = obj->GetComponent<Core::SkyBox>();
+	if (skybox)
+	{
+		skybox->getRenderSkyBox()->render(renderCamera);
+	}
+}
+
 
 
 std::map<unsigned int, RenderStage*> RenderStageManager::stages = std::map<unsigned int, RenderStage*>();
@@ -117,6 +130,12 @@ void RenderStageManager::AddRenderProgram(RenderProgram* renderProgram)
 void RenderStageManager::beforeRender()
 {
 	renderStages.clear();
+
+	const auto itor = stages.find(RENDER_SKY_BOX_STAGE);
+	if (itor == stages.end())
+	{
+		stages.insert(std::make_pair(RENDER_SKY_BOX_STAGE, new SkyBoxRenderStage(RENDER_SKY_BOX_STAGE)));
+	}
 
 	std::map<unsigned int, RenderStage*>::iterator it;
 	for (it = stages.begin(); it != stages.end(); it++)

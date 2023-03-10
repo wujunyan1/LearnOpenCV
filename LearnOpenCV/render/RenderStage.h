@@ -20,7 +20,7 @@ namespace Render
 		void AddRenderProgram(RenderProgram* renderProgram);
 
 		void beforeRender();
-		void render(Core::Camera* renderCamera);
+		virtual void render(Core::Camera* renderCamera);
 		void renderEnd();
 
 		unsigned int getRenderStage() { return renderStage; };
@@ -32,8 +32,18 @@ namespace Render
 		std::map<unsigned int, Render::RenderQueue*>* queues;
 	};
 
+	class SkyBoxRenderStage : public RenderStage
+	{
+	public:
+		SkyBoxRenderStage(unsigned int index) : RenderStage(index) {};
+
+		void render(Core::Camera* renderCamera);
+	};
+
 	class RenderStageManager
 	{
+		static const unsigned int RENDER_SKY_BOX_STAGE = 19999;
+
 	public:
 		static void beforeRender();
 		static void render(Core::Camera* renderCamera);

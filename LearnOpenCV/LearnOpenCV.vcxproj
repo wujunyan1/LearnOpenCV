@@ -204,6 +204,7 @@
     <ClInclude Include="render\RenderMesh.h" />
     <ClInclude Include="render\RenderQueue.h" />
     <ClInclude Include="render\RenderScene.h" />
+    <ClInclude Include="render\RenderSkyBox.h" />
     <ClInclude Include="render\RenderStage.h" />
     <ClInclude Include="render\ShaderProgram.h" />
     <ClInclude Include="render\Texture.h" />
@@ -261,6 +262,7 @@
     <ClCompile Include="render\RenderMesh.cpp" />
     <ClCompile Include="render\RenderQueue.cpp" />
     <ClCompile Include="render\RenderScene.cpp" />
+    <ClCompile Include="render\RenderSkyBox.cpp" />
     <ClCompile Include="render\RenderStage.cpp" />
     <ClCompile Include="render\ShaderProgram.cpp" />
     <ClCompile Include="render\Texture.cpp" />

@@ -20,21 +20,22 @@ namespace Core
 		Scene* GetCurrScene() { return currScene; }
 	private:
 		SceneManager() {
-			root = ObjectManager::createRootObject();
+			/*root = ObjectManager::createRootObject();
 			transform = root->AddComponent<Transform>();
 			
 			Object* o = ObjectManager::createNewObject();
 			Transform* t = o->AddComponent<Transform>();
 			transform->AddChild(t);
 
-			currScene = o->AddComponent<Scene>();
+			currScene = o->AddComponent<Scene>();*/
+
+			currScene = new Scene();
+			currScene->Bind();
 		}
 
 	private:
 		static SceneManager* instance;
 
-		Object* root;
-		Transform* transform;
 		Scene* currScene;
 	};
 

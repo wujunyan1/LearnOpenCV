@@ -81,6 +81,11 @@ namespace Render
 		// RenderQueueManager::AddRenderQueue(renderProgram);
 	}
 
+	void AddSkyBox(RenderSkyBox* skybox)
+	{
+
+	}
+
 	void InitEngine()
 	{
 		return OpenGL::InitEngine();
@@ -131,6 +136,15 @@ namespace Render
 	void Render(float delay)
 	{
 		Core::Scene* scene = Core::Scene::getCurrScene();
+
+		std::vector<Core::Camera*>& cameras = scene->getRenderCameras();
+
+		// 先渲染其他摄像机，在渲染主摄像机
+		for (auto it = cameras.begin(); it != cameras.end(); it++)
+		{
+			// Render::RenderStageManager::render(*it);
+		}
+
 		Render::RenderStageManager::render(scene->getMainCamera());
 		return;
 	}

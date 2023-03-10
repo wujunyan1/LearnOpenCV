@@ -96,6 +96,22 @@ namespace Core
 			return localMat4;
 		}
 
+		Transform* GetParent()
+		{
+			return parent;
+		}
+
+		Transform* GetRoot()
+		{
+			Transform* transform = parent;
+			while (transform)
+			{
+				transform = transform->GetParent();
+			}
+
+			return transform;
+		}
+
 		void AddChild(Transform* child) {
 			if (children == NULL) {
 				children = new std::vector<Transform*>();
@@ -183,7 +199,7 @@ namespace Core
 			}
 		}
 
-		void Render() {
+		virtual void Render() {
 			if (children == nullptr) {
 				return;
 			}

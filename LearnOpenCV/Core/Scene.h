@@ -1,16 +1,23 @@
 #pragma once
 #include "Core.h"
 #include "Component.h"
+#include "Transform.h"
 #include "Camera.h"
 
 namespace Core
 {
-	class Scene : public Component
+	class Scene : public Transform
 	{
 	public:
 		Scene();
 
 		void Bind();
+
+		void Render()
+		{
+			cameras.clear();
+			Transform::Render();
+		};
 
 		Camera* getMainCamera() { 
 			return mainCamera; 
@@ -24,6 +31,16 @@ namespace Core
 		{
 			this->mainCamera = camera;
 		};
+
+		void addRenderCamera(Camera* camera)
+		{
+			cameras.push_back(camera);
+		}
+
+		std::vector<Camera*>& getRenderCameras()
+		{
+			return cameras;
+		}
 
 	private:
 		Camera* mainCamera;

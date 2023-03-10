@@ -1,5 +1,6 @@
 #include "Matrix3.h"
 #include "Quaternion.h"
+#include "Matrix4.h"
 
 using namespace Math;
 
@@ -7,6 +8,13 @@ const Matrix3 Matrix3::IDENTITY(
 	1, 0, 0,
 	0, 1, 0,
 	0, 0, 1);
+
+Math::Matrix3::Matrix3(Matrix4 mat4)
+{
+	m00 = mat4.m00; m01 = mat4.m01; m02 = mat4.m02;
+	m10 = mat4.m10; m11 = mat4.m11; m12 = mat4.m12;
+	m20 = mat4.m20; m21 = mat4.m21; m22 = mat4.m22;
+}
 
 float Matrix3::determinant() const
 {

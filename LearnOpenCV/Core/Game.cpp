@@ -29,20 +29,17 @@ void Game::Tick(long time)
 	delay = time;
 
 	Scene* currScene = SceneManager::GetInstance()->GetCurrScene();
-	Object* o = currScene->getObject();
 
-	o->PreUpdate();
-	o->Update();
-	o->LaterUpdate();
+	currScene->PreUpdate();
+	currScene->Update();
+	currScene->LaterUpdate();
 }
 
 
 void Game::Render(long time)
 {
 	Scene* currScene = SceneManager::GetInstance()->GetCurrScene();
-	Object* o = currScene->getObject();
-
-	o->Render();
+	currScene->Render();
 }
 
 void Game::LoadMainScene()
@@ -50,16 +47,17 @@ void Game::LoadMainScene()
 	Render::CreateShader("defaultShader", "/asserts/shaders/shader.vert", "/asserts/shaders/shader.frag");
 	Render::CreateShader("testShader", "/asserts/shaders/testShader.vert", "/asserts/shaders/testShader.frag");
 	Render::CreateShader("testBlendShader", "/asserts/shaders/testBlendShader.vert", "/asserts/shaders/testBlendShader.frag");
+	Render::CreateShader("skyBoxShader", "/asserts/shaders/skyBoxShader.vert", "/asserts/shaders/skyBoxShader.frag");
 
 	Render::AddCustomRenderQueue("RenderOpaqueQueue", Core::new_class<Logic::RenderOpaqueQueue>());
 	Render::AddCustomRenderQueue("DefaultRenderQueue", Core::new_class<Render::RenderQueue>());
 
 	Scene* scene = SceneManager::GetInstance()->GetCurrScene();
-	scene->PreUpdate();
+	/*scene->PreUpdate();
 	scene->Update();
-	scene->LaterUpdate();
+	scene->LaterUpdate();*/
 
-	Core::Transform* root = scene->getObject()->GetComponent<Core::Transform>();
+	Core::Transform* root = scene;
 
 	Object* o = ObjectManager::createNewObject();
 	Transform* t = o->AddComponent<Transform>();
@@ -251,6 +249,7 @@ void Game::LoadMainScene()
 
 		mesh2->setShader("testBlendShader");  //testBlendShader
 		mesh2->setRenderQueue("DefaultRenderQueue");
+		mesh2->setRenderStageIndex(20000);
 		mesh2->setModel(acustommodel);
 		mesh2->setDepthTest(false);
 		mesh2->setBlend(true);
