@@ -36,6 +36,11 @@ namespace OpenGL
 			Core::Input::ReleaseKey((Core::Input::Key)key);
 	}
 
+	void window_size_callback(GLFWwindow* window, int width, int height)
+	{
+
+	}
+
 	void mouse_enter_callback(GLFWwindow* window, int index)
 	{
 
@@ -191,6 +196,7 @@ namespace OpenGL
 		glfwSetMouseButtonCallback(window, mouse_button_callback);
 		glfwSetKeyCallback(window, key_callback);
 
+		glfwSetWindowSizeCallback(window, window_size_callback);
 
 		return 0;
 	}

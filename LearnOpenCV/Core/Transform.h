@@ -104,12 +104,14 @@ namespace Core
 		Transform* GetRoot()
 		{
 			Transform* transform = parent;
+			Transform* beforeTransform = parent;
 			while (transform)
 			{
+				beforeTransform = transform;
 				transform = transform->GetParent();
 			}
 
-			return transform;
+			return beforeTransform;
 		}
 
 		void AddChild(Transform* child) {
@@ -120,6 +122,7 @@ namespace Core
 				child->parent->removeChild(child);
 			}
 
+			child->parent = this;
 			children->push_back(child);
 		}
 
@@ -139,6 +142,7 @@ namespace Core
 					break;
 				}
 			}
+			child->parent = nullptr;
 		}
 
 		Transform* GetChildByIndex(int index) {

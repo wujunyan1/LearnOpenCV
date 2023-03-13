@@ -35,7 +35,7 @@ void Scene::Bind()
 
 	cameraObj->AddComponent<CameraMoveComponent>();
 	
-	// mainCamera->SetMainCamera(true);
+	mainCamera->SetMainCamera(true);
 	
 	SkyBox* skybox = cameraObj->AddComponent<SkyBox>();
 

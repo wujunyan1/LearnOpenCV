@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
 	long time = Render::getCurrentRenderTime();
 	while (!Render::ShouldCloseWindow()) {
 		// buffer->setBackgroundColor(Math::Vector3(1.0f, 1.0f, 1.0f));
-		Render::ClearBuffer();
+		/*Render::ClearBuffer();*/
 		Render::SetBackgroundColor(Math::Vector3(0.01f, 0.01f, 0.01f));
 
 		long currTime = Render::getCurrentRenderTime();

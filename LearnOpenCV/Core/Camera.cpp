@@ -2,6 +2,7 @@
 #include "Transform.h"
 #include "Scene.h"
 #include "../render/RenderMain.h"
+#include "Game.h"
 
 using namespace Core;
 
@@ -9,6 +10,10 @@ Camera::Camera()
 {
 	printf("Camera");
 	//transform = getObject()->GetComponent<Transform>();
+
+	Game::GetInstance()->registerEvent("WindowSizeChange", [=]( int width, int height)-> bool {
+
+		});
 }
 
 void Camera::Bind()
@@ -110,6 +115,7 @@ void Core::Camera::Render()
 	}
 	if (!m_isMainCamera)
 	{
+		printf("camera no mainCamera \n");
 		scene->addRenderCamera(this);
 	}
 

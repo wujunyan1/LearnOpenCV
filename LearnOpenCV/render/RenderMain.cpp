@@ -142,7 +142,7 @@ namespace Render
 		// 先渲染其他摄像机，在渲染主摄像机
 		for (auto it = cameras.begin(); it != cameras.end(); it++)
 		{
-			// Render::RenderStageManager::render(*it);
+			Render::RenderStageManager::render(*it);
 		}
 
 		Render::RenderStageManager::render(scene->getMainCamera());
