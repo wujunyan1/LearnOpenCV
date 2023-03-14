@@ -1,6 +1,8 @@
 #pragma once
 #include "Camera.h"
 #include "../event/Event.h"
+#include "../event/EventDispatcher.h"
+#include "../event/EventCustom.h"
 
 namespace Core {
 	class Game
@@ -24,33 +26,27 @@ namespace Core {
 		void Tick(long time);
 		void Render(long time);
 
-		Camera GetMainCamera() { return mainCamera; }
-
-		void SetMainCamera(Camera c) { mainCamera = c; }
-
 		float GetCurrUpdateDelay() { return delay / 1000; }
 
 		void LoadMainScene();
 
-		Event::unsubscribe registerEvent(std::string name, Event::Callback callback)
-		{
-			return m_eventManager->registerEvent(name, callback);
-		}
+		EventDispatcher* GetEventDispatcher() { return dispatcher; };
+
 	private:
 		static Game* instance;
 
 		Game() 
 		{
 			delay = 0.0f;
-			m_eventManager = new EventManager();
+			dispatcher = new EventDispatcher();
+			dispatcher->setEnabled(true);
 		}
 
 		~Game();
 
-		Camera mainCamera;
 		float delay;
 
-		EventManager* m_eventManager;
+		EventDispatcher* dispatcher;
 	};
 }
 

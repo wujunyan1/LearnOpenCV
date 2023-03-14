@@ -24,13 +24,14 @@ void Scene::Bind()
 {
 	
 	Object* cameraObj = ObjectManager::createNewObject();
+	this->AddChild(cameraObj);
+
 	Transform* cameraT = cameraObj->AddComponent<Transform>();
 	mainCamera = cameraObj->AddComponent<Camera>();
 
 	Math::Vector2T<int> size = Render::GetWindowSize();
 
 	mainCamera->init(Math::radians(45.0f), size.x * 1.0f / size.y, 0.1f, 1000.0f);
-	this->AddChild(cameraT);
 	cameraT->SetPosition({0, 0, 0});
 
 	cameraObj->AddComponent<CameraMoveComponent>();

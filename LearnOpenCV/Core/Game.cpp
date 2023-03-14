@@ -15,6 +15,8 @@
 
 #include "../file/ImageLoad.h"
 
+#include "../Core/AutoreleasePool.h"
+
 using namespace Core;
 
 Game* Game::instance = nullptr;
@@ -22,11 +24,14 @@ Game* Game::instance = nullptr;
 Game::~Game()
 {
 	ImageLoad::Destroy();
+	delete dispatcher;
 }
 
 void Game::Tick(long time)
 {
 	delay = time;
+
+	PoolManager::getInstance()->getCurrentPool()->clear();
 
 	Scene* currScene = SceneManager::GetInstance()->GetCurrScene();
 
@@ -52,17 +57,16 @@ void Game::LoadMainScene()
 	Render::AddCustomRenderQueue("RenderOpaqueQueue", Core::new_class<Logic::RenderOpaqueQueue>());
 	Render::AddCustomRenderQueue("DefaultRenderQueue", Core::new_class<Render::RenderQueue>());
 
-	Scene* scene = SceneManager::GetInstance()->GetCurrScene();
+	Scene* root = SceneManager::GetInstance()->GetCurrScene();
 	/*scene->PreUpdate();
 	scene->Update();
 	scene->LaterUpdate();*/
 
-	Core::Transform* root = scene;
 
 	Object* o = ObjectManager::createNewObject();
+	root->AddChild(o);
 	Transform* t = o->AddComponent<Transform>();
 	Model* model = o->AddComponent<Model>();
-	root->AddChild(t);
 	t->SetPosition(Math::Vector3(0.0f, 0.0f, -0.9f));
 	Core::AModel* amodel = AModelFactory::createModel("/asserts/mesh/juren/nanosuit.obj");
 	model->setModel(amodel);
@@ -71,9 +75,10 @@ void Game::LoadMainScene()
 
 
 	Object* eggObj = ObjectManager::createNewObject();
+	root->AddChild(eggObj);
+
 	Transform* eggTransform = eggObj->AddComponent<Transform>();
 	Model* eggModel = eggObj->AddComponent<Model>();
-	root->AddChild(eggTransform);
 	eggTransform->SetPosition(Math::Vector3(0.0f, 0.0f, -6.9f));
 	eggTransform->SetScale(Math::Vector3(0.03f, 0.03f, 0.03f));
 	Core::AModel* eggAModel = AModelFactory::createModel("/asserts/mesh/unicorn/unicorn.glb");
@@ -88,7 +93,7 @@ void Game::LoadMainScene()
 		Transform* t2 = o2->AddComponent<Transform>();
 		Model* mesh2 = o2->AddComponent<Model>();
 
-		root->AddChild(t2);
+		root->AddChild(o2);
 
 		int x = rand() % 10 + 1;
 		int y = rand() % 10 + 1;
@@ -175,7 +180,7 @@ void Game::LoadMainScene()
 		Transform* t2 = o2->AddComponent<Transform>();
 		Model* mesh2 = o2->AddComponent<Model>();
 
-		root->AddChild(t2);
+		root->AddChild(o2);
 
 		int x = rand() % 10 + 1;
 		int y = rand() % 10 + 1;

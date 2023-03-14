@@ -6,7 +6,7 @@
 
 namespace Core
 {
-	class Scene : public Transform
+	class Scene : public Object
 	{
 	public:
 		Scene();
@@ -16,7 +16,7 @@ namespace Core
 		void Render()
 		{
 			cameras.clear();
-			Transform::Render();
+			Object::Render();
 		};
 
 		Camera* getMainCamera() { 

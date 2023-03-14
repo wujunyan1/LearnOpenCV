@@ -3,6 +3,8 @@
 #include "Scene.h"
 #include "../render/RenderMain.h"
 #include "Game.h"
+#include "../event/EventDispatcher.h"
+#include "../event/EventListenerCustom.h"
 
 using namespace Core;
 
@@ -11,9 +13,10 @@ Camera::Camera()
 	printf("Camera");
 	//transform = getObject()->GetComponent<Transform>();
 
-	Game::GetInstance()->registerEvent("WindowSizeChange", [=]( int width, int height)-> bool {
-
-		});
+	winSizeChangeEventListener = Game::GetInstance()->GetEventDispatcher()->addCustomEventListener("winSizeChangeEvent", [this](EventCustom* _event){
+		Vector2* size = (Vector2*)_event->getUserData();
+		this->init(eye_fov, size->x * 1.0f / size->y, near, far);
+	});
 }
 
 void Camera::Bind()
@@ -90,7 +93,7 @@ void Core::Camera::SetMainCamera(bool isMain)
 {
 	m_isMainCamera = isMain;
 
-	Scene* scene = dynamic_cast<Scene*>(transform->GetRoot());
+	Scene* scene = dynamic_cast<Scene*>(getObject()->GetRoot());
 	if (!scene)
 	{
 		return;
@@ -108,7 +111,7 @@ void Core::Camera::Render()
 		return;
 	}
 
-	Scene* scene = dynamic_cast<Scene*>(transform->GetRoot());
+	Scene* scene = dynamic_cast<Scene*>(getObject()->GetRoot());
 	if (!scene)
 	{
 		return;

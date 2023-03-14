@@ -3,18 +3,19 @@
 #include <vector>
 #include "Component.h"
 #include "Core.h"
+#include "TreeNode.h"
 
 
 namespace Core {
-	class Object
+	class Object : public TreeNode
 	{
 	public:
-		
+		friend class ObjectManager;
 
 	public:
-		Object(unsigned int id) {
+		Object() : TreeNode()
+		{
 			componentList = new std::vector<Component*>();
-			this->id = id;
 		}
 
 		~Object() {
@@ -68,40 +69,48 @@ namespace Core {
 		}
 
 
-		void PreUpdate() {
+		virtual void PreUpdate() {
 			for (auto i : *componentList)
 			{
 				if (i->isActive())
 					i->PreUpdate();
 			}
+
+			TreeNode::PreUpdate();
 		}
-		void Update() {
+		virtual void Update() {
 			for (auto i : *componentList)
 			{
 				if (i->isActive())
 					i->Update();
 			}
+
+			TreeNode::Update();
 		}
-		void LaterUpdate() {
+		virtual void LaterUpdate() {
 			for (auto i : *componentList)
 			{
 				if (i->isActive())
 					i->LaterUpdate();
 			}
+
+			TreeNode::LaterUpdate();
 		}
 
-		void Render() {
+		virtual void Render() {
 			for (auto i : *componentList)
 			{
 				if (i->isActive())
 					i->Render();
 			}
+
+			TreeNode::Render();
 		}
 
 	private:
 		std::vector<Component*>* componentList;
 		String name;
-		unsigned int id;
+		unsigned int id = 0;
 	};
 
 

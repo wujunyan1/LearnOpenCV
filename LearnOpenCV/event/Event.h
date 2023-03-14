@@ -1,53 +1,62 @@
 #pragma once
-#include <functional>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <string>
-#include <map>
-#include <list>
 
-using namespace Core;
 namespace Core
 {
-	class Event
-	{
-		friend class EventManager;
-	public:
-		using Callback = std::function<bool()>;
+    class TreeNode;
 
-		using unsubscribe = std::function<bool()>;
+    class Event
+    {
+    public:
+        /** Type Event type.*/
+        enum class Type
+        {
+            TOUCH,
+            KEYBOARD,
+            MOUSE,
+            FOCUS,
+            GAME_CONTROLLER,
+            CUSTOM
+        };
 
-		Event(std::string& name) :m_name(name) {};
+        /** Constructor */
+        Event(Type type);
+    public:
+        /** Destructor.
+         */
+        virtual ~Event();
 
-	private:
+        /** Gets the event type.
+         *
+         * @return The event type.
+         */
+        Type getType() const { return _type; }
 
-		template<class ...Args>
-		unsubscribe pushCallback(Callback callback)
-		{
-			subscribers.push_back(callback);
-			std::list<Callback>::iterator iter = --subscribers.end();
-			
-			return [=]()-> bool {
-				subscribers.erase(iter);
-				return true;
-			};
-		};
+        /** Stops propagation for current event.
+         */
+        void stopPropagation() { _isStopped = true; }
 
+        /** Checks whether the event has been stopped.
+         *
+         * @return True if the event has been stopped.
+         */
+        bool isStopped() const { return _isStopped; }
 
-		std::list<Callback> subscribers;
-		std::string m_name;
-	};
+        /** Gets current target of the event.
+         * @return The target with which the event associates.
+         * @note It's only available when the event listener is associated with node.
+         *        It returns 0 when the listener is associated with fixed priority.
+         */
+        TreeNode* getCurrentTarget() { return _currentTarget; }
 
-	class EventManager
-	{
-	public:
-		EventManager();
-		~EventManager();
+    protected:
+        /** Sets current target */
+        void setCurrentTarget(TreeNode* target) { _currentTarget = target; }
 
-		Event::unsubscribe registerEvent(std::string& name, Event::Callback callback);
-		bool emit(std::string& name, ...);
+        Type _type;     ///< Event type
 
-	private:
-		std::map<std::string, Event> events;
-	};
+        bool _isStopped;       ///< whether the event has been stopped.
+        TreeNode* _currentTarget;  ///< Current target
+
+        friend class EventDispatcher;
+    };
 }

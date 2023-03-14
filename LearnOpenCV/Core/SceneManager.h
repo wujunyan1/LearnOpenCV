@@ -30,6 +30,8 @@ namespace Core
 			currScene = o->AddComponent<Scene>();*/
 
 			currScene = new Scene();
+			currScene->autorelease();
+			currScene->retain();
 			currScene->Bind();
 		}
 

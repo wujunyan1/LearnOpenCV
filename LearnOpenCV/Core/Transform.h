@@ -35,9 +35,6 @@ namespace Core
 
 
 			matChanged = true;
-
-			children = NULL;
-			parent = NULL;
 		}
 
 		Vector3 GetPosition() {
@@ -96,63 +93,6 @@ namespace Core
 			return localMat4;
 		}
 
-		Transform* GetParent()
-		{
-			return parent;
-		}
-
-		Transform* GetRoot()
-		{
-			Transform* transform = parent;
-			Transform* beforeTransform = parent;
-			while (transform)
-			{
-				beforeTransform = transform;
-				transform = transform->GetParent();
-			}
-
-			return beforeTransform;
-		}
-
-		void AddChild(Transform* child) {
-			if (children == NULL) {
-				children = new std::vector<Transform*>();
-			}
-			if (child->parent) {
-				child->parent->removeChild(child);
-			}
-
-			child->parent = this;
-			children->push_back(child);
-		}
-
-		void removeChild(Transform* child) {
-			if (children == NULL) {
-				return;
-			}
-			
-			int objId = child->getObject()->GetId();
-			std::vector<Transform*>::iterator itor = children->begin();
-			while (itor != children->end())
-			{
-				Transform* c = *itor;
-				int id = c->getObject()->GetId();
-				if (objId == id) {
-					itor = children->erase(itor);
-					break;
-				}
-			}
-			child->parent = nullptr;
-		}
-
-		Transform* GetChildByIndex(int index) {
-			return children->at(index);
-		}
-
-		std::vector<Transform*>* getChildren() {
-			return children;
-		}
-
 		Vector3 getForword() {
 			if (matChanged) {
 				UpdateLocalMat4();
@@ -172,45 +112,6 @@ namespace Core
 				UpdateLocalMat4();
 			}
 			return up;
-		}
-
-
-		void PreUpdate() {
-			if (children == nullptr) {
-				return;
-			}
-			for (auto i : *children)
-			{
-				i->getObject()->PreUpdate();
-			}
-		}
-		void Update() {
-			if (children == nullptr) {
-				return;
-			}
-			for (auto i : *children)
-			{
-				i->getObject()->Update();
-			}
-		}
-		void LaterUpdate() {
-			if (children == nullptr) {
-				return;
-			}
-			for (auto i : *children)
-			{
-				i->getObject()->LaterUpdate();
-			}
-		}
-
-		virtual void Render() {
-			if (children == nullptr) {
-				return;
-			}
-			for (auto i : *children)
-			{
-				i->getObject()->Render();
-			}
 		}
 
 
@@ -237,14 +138,27 @@ namespace Core
 		{
 			localToWorldMat4 = localMat4;
 
+			Object* parent = dynamic_cast<Object*>(getObject()->GetParent());
 			if (parent) {
-				localToWorldMat4 = parent->localToWorldMat4 * localMat4;
+				Transform* parentTransform = parent->GetComponent<Transform>();
+				if (parentTransform)
+				{
+					localToWorldMat4 = parentTransform->localToWorldMat4 * localMat4;
+				}
 			}
 
+			std::vector<TreeNode*>* children = getObject()->getChildren();
 			if (children) {
 				for (auto i : *children)
 				{
-					i->updateLocalToWorldMat4();
+					Object* obj = dynamic_cast<Object*>(i);
+					if (obj) {
+						Transform* objTransform = obj->GetComponent<Transform>();
+						if (objTransform)
+						{
+							objTransform->updateLocalToWorldMat4();
+						}
+					}
 				}
 			}
 		}
@@ -255,14 +169,27 @@ namespace Core
 			worldToLocalMat4 = worldToLocalMat4 * Mat4::translate(-position);
 			worldToLocalMat4 = Mat4::scale(Vector3(1.0f / scale.x, 1.0f / scale.y, 1.0f / scale.z)) * worldToLocalMat4;
 
+			Object* parent = dynamic_cast<Object*>(getObject()->GetParent());
 			if (parent) {
-				worldToLocalMat4 = worldToLocalMat4 * parent->worldToLocalMat4;
+				Transform* parentTransform = parent->GetComponent<Transform>();
+				if (parentTransform)
+				{
+					worldToLocalMat4 = worldToLocalMat4 * parentTransform->worldToLocalMat4;
+				}
 			}
 
+			std::vector<TreeNode*>* children = getObject()->getChildren();
 			if (children) {
 				for (auto i : *children)
 				{
-					i->updateWorldToLocalMat4();
+					Object* obj = dynamic_cast<Object*>(i);
+					if (obj) {
+						Transform* objTransform = obj->GetComponent<Transform>();
+						if (objTransform)
+						{
+							objTransform->updateWorldToLocalMat4();
+						}
+					}
 				}
 			}
 		}
@@ -286,8 +213,6 @@ namespace Core
 
 		bool matChanged = false;
 
-		std::vector<Transform*>* children;
-		Transform* parent;
 	};
 
 

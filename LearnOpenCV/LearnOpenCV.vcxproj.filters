@@ -43,6 +43,9 @@
     <Filter Include="ui">
       <UniqueIdentifier>{273eac8c-d494-4e9b-a923-debfdfd24b85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="event">
+      <UniqueIdentifier>{7b226b3e-0118-4601-b6d0-b12573142f67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LearnOpenCV.h">
@@ -225,6 +228,54 @@
     <ClInclude Include="render\RenderSkyBox.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="event\Event.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventCustom.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventDispatcher.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventListener.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventListenerCustom.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventListenerFocus.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventListenerKeyboard.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventListenerMouse.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventListenerTouch.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventFocus.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventKeyboard.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventMouse.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="event\EventTouch.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Ref.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\AutoreleasePool.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\TreeNode.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -394,6 +445,54 @@
     </ClCompile>
     <ClCompile Include="render\RenderSkyBox.cpp">
       <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="event\Event.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="event\EventCustom.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="event\EventDispatcher.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="event\EventListener.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="event\EventListenerCustom.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="event\EventListenerFocus.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="event\EventListenerKeyboard.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="event\EventListenerMouse.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="event\EventListenerTouch.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="event\EventFocus.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="event\EventKeyboard.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="event\EventMouse.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="event\EventTouch.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Ref.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\AutoreleasePool.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\TreeNode.cpp">
+      <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

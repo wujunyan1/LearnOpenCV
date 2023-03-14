@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Core\AutoreleasePool.h" />
     <ClInclude Include="Core\Camera.h" />
     <ClInclude Include="Core\CameraManager.h" />
     <ClInclude Include="Core\CameraMoveComponent.h" />
@@ -160,12 +161,27 @@
     <ClInclude Include="Core\Model.h" />
     <ClInclude Include="Core\Object.h" />
     <ClInclude Include="Core\ObjectManager.h" />
+    <ClInclude Include="Core\Ref.h" />
     <ClInclude Include="Core\Scene.h" />
     <ClInclude Include="Core\SceneManager.h" />
     <ClInclude Include="Core\SkyBox.h" />
     <ClInclude Include="Core\TestComponent.h" />
     <ClInclude Include="Core\Transform.h" />
+    <ClInclude Include="Core\TreeNode.h" />
     <ClInclude Include="Core\TypeDef.h" />
+    <ClInclude Include="event\Event.h" />
+    <ClInclude Include="event\EventCustom.h" />
+    <ClInclude Include="event\EventDispatcher.h" />
+    <ClInclude Include="event\EventFocus.h" />
+    <ClInclude Include="event\EventKeyboard.h" />
+    <ClInclude Include="event\EventListener.h" />
+    <ClInclude Include="event\EventListenerCustom.h" />
+    <ClInclude Include="event\EventListenerFocus.h" />
+    <ClInclude Include="event\EventListenerKeyboard.h" />
+    <ClInclude Include="event\EventListenerMouse.h" />
+    <ClInclude Include="event\EventListenerTouch.h" />
+    <ClInclude Include="event\EventMouse.h" />
+    <ClInclude Include="event\EventTouch.h" />
     <ClInclude Include="file\FilePathManager.h" />
     <ClInclude Include="file\Image.h" />
     <ClInclude Include="file\ImageLoad.h" />
@@ -211,6 +227,7 @@
     <ClInclude Include="ui\UITransform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\AutoreleasePool.cpp" />
     <ClCompile Include="Core\Camera.cpp" />
     <ClCompile Include="Core\CameraManager.cpp" />
     <ClCompile Include="Core\CameraMoveComponent.cpp" />
@@ -221,11 +238,26 @@
     <ClCompile Include="Core\Model.cpp" />
     <ClCompile Include="Core\Object.cpp" />
     <ClCompile Include="Core\ObjectManager.cpp" />
+    <ClCompile Include="Core\Ref.cpp" />
     <ClCompile Include="Core\Scene.cpp" />
     <ClCompile Include="Core\SceneManager.cpp" />
     <ClCompile Include="Core\SkyBox.cpp" />
     <ClCompile Include="Core\TestComponent.cpp" />
     <ClCompile Include="Core\Transform.cpp" />
+    <ClCompile Include="Core\TreeNode.cpp" />
+    <ClCompile Include="event\Event.cpp" />
+    <ClCompile Include="event\EventCustom.cpp" />
+    <ClCompile Include="event\EventDispatcher.cpp" />
+    <ClCompile Include="event\EventFocus.cpp" />
+    <ClCompile Include="event\EventKeyboard.cpp" />
+    <ClCompile Include="event\EventListener.cpp" />
+    <ClCompile Include="event\EventListenerCustom.cpp" />
+    <ClCompile Include="event\EventListenerFocus.cpp" />
+    <ClCompile Include="event\EventListenerKeyboard.cpp" />
+    <ClCompile Include="event\EventListenerMouse.cpp" />
+    <ClCompile Include="event\EventListenerTouch.cpp" />
+    <ClCompile Include="event\EventMouse.cpp" />
+    <ClCompile Include="event\EventTouch.cpp" />
     <ClCompile Include="file\FilePathManager.cpp" />
     <ClCompile Include="file\Image.cpp" />
     <ClCompile Include="file\ImageLoad.cpp" />

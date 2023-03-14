@@ -6,7 +6,9 @@ ObjectManager* ObjectManager::instance = nullptr;
 unsigned int ObjectManager::_oid = 0;
 
 Object* ObjectManager::createNewObject() {
-	Object* obj = new Object(_oid++);
+	Object* obj = new Object();
+	obj->id = _oid++;
+	obj->autorelease();
 
 	GetInstance()->AddObject(obj);
 
@@ -14,7 +16,8 @@ Object* ObjectManager::createNewObject() {
 }
 
 Object* ObjectManager::createRootObject() {
-	Object* obj = new Object(_oid++);
+	Object* obj = new Object();
+	obj->id = _oid++;
 
 	GetInstance()->AddRootObject(obj);
 

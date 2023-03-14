@@ -6,6 +6,7 @@ namespace Core
 {
 	class Transform;
 	class Scene;
+	class EventListenerCustom;
 
 	class Camera : public Component
 	{
@@ -50,5 +51,7 @@ namespace Core
 
 	private:
 		unsigned int fbo = 0;
+
+		EventListenerCustom* winSizeChangeEventListener;
 	};
 }
