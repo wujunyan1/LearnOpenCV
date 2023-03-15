@@ -8,7 +8,7 @@ C:/Program Files/CMake/share/cmake-3.23/Modules/CheckIncludeFileCXX.cmake
 C:/Program Files/CMake/share/cmake-3.23/Modules/CheckTypeSize.c.in
 C:/Program Files/CMake/share/cmake-3.23/Modules/CheckTypeSize.cmake
 C:/Program Files/CMake/share/cmake-3.23/Modules/Internal/CheckSourceCompiles.cmake
-D:/assimp/CMakeFiles/CheckTypeSize/OFF64_T.c
-D:/assimp/contrib/zlib/CMakeLists.txt
-D:/assimp/contrib/zlib/zconf.h.cmakein
-D:/assimp/contrib/zlib/zlib.pc.cmakein
+./CMakeFiles/CheckTypeSize/OFF64_T.c
+./contrib/zlib/CMakeLists.txt
+./contrib/zlib/zconf.h.cmakein
+./contrib/zlib/zlib.pc.cmakein

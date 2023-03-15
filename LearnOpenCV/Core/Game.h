@@ -1,8 +1,5 @@
 #pragma once
 #include "Camera.h"
-#include "../event/Event.h"
-#include "../event/EventDispatcher.h"
-#include "../event/EventCustom.h"
 
 namespace Core {
 	class Game
@@ -30,23 +27,14 @@ namespace Core {
 
 		void LoadMainScene();
 
-		EventDispatcher* GetEventDispatcher() { return dispatcher; };
-
 	private:
 		static Game* instance;
 
-		Game() 
-		{
-			delay = 0.0f;
-			dispatcher = new EventDispatcher();
-			dispatcher->setEnabled(true);
-		}
+		Game();
 
 		~Game();
 
 		float delay;
-
-		EventDispatcher* dispatcher;
 	};
 }
 

@@ -16,15 +16,22 @@
 #include "../file/ImageLoad.h"
 
 #include "../Core/AutoreleasePool.h"
+#include "GlobalDictionary.h"
 
 using namespace Core;
 
 Game* Game::instance = nullptr;
 
+Game::Game()
+{
+	delay = 0.0f;
+	GlobalDictionary::initGame();
+}
+
 Game::~Game()
 {
 	ImageLoad::Destroy();
-	delete dispatcher;
+	GlobalDictionary::destroyGame();
 }
 
 void Game::Tick(long time)

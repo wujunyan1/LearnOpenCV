@@ -5,6 +5,8 @@
 #include "Game.h"
 #include "../event/EventDispatcher.h"
 #include "../event/EventListenerCustom.h"
+#include "../math/Vector2T.h"
+#include "GlobalDictionary.h"
 
 using namespace Core;
 
@@ -12,9 +14,9 @@ Camera::Camera()
 {
 	printf("Camera");
 	//transform = getObject()->GetComponent<Transform>();
-
-	winSizeChangeEventListener = Game::GetInstance()->GetEventDispatcher()->addCustomEventListener("winSizeChangeEvent", [this](EventCustom* _event){
-		Vector2* size = (Vector2*)_event->getUserData();
+	
+	winSizeChangeEventListener = GlobalDictionary::getDispatcher()->addCustomEventListener("winSizeChangeEvent", [this](EventCustom* _event) {
+		Math::Vector2T<int>* size = (Math::Vector2T<int>*)_event->getUserData();
 		this->init(eye_fov, size->x * 1.0f / size->y, near, far);
 	});
 }

@@ -11,7 +11,7 @@
 #include "../input/Input.h"
 
 #include "../Core/Scene.h"
-#include "../Core/Game.h"
+#include "../Core/GlobalDictionary.h"
 
 using namespace Render;
 
@@ -39,9 +39,9 @@ namespace OpenGL
 
 	void window_size_callback(GLFWwindow* window, int width, int height)
 	{
-		Math::Vector2 size = { width * 1.0f, height * 1.0f };
-		Core::Game::GetInstance()->GetEventDispatcher()->dispatchCustomEvent("winSizeChangeEvent", &size);
-		glViewport(0, 0, width, height);
+		Math::Vector2T<int> size = { width, height };
+		Core::GlobalDictionary::getDispatcher()->dispatchCustomEvent("winSizeChangeEvent", &size);
+		glViewport(0, 0, size.x, size.y);
 	}
 
 	void mouse_enter_callback(GLFWwindow* window, int index)

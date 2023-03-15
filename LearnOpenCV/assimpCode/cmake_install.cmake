@@ -1,4 +1,4 @@
-# Install script for directory: D:/assimp/code
+# Install script for directory: ./code
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,136 +34,136 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xlibassimp5.2.5-devx" OR NOT CMAKE_INSTALL_COMPONENT)
   if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY OPTIONAL FILES "D:/assimp/lib/Debug/assimp-vc143-mtd.lib")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY OPTIONAL FILES "./lib/Debug/assimp-vc143-mtd.lib")
   elseif("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY OPTIONAL FILES "D:/assimp/lib/Release/assimp-vc143-mt.lib")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY OPTIONAL FILES "./lib/Release/assimp-vc143-mt.lib")
   elseif("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Mm][Ii][Nn][Ss][Ii][Zz][Ee][Rr][Ee][Ll])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY OPTIONAL FILES "D:/assimp/lib/MinSizeRel/assimp-vc143-mt.lib")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY OPTIONAL FILES "./lib/MinSizeRel/assimp-vc143-mt.lib")
   elseif("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY OPTIONAL FILES "D:/assimp/lib/RelWithDebInfo/assimp-vc143-mt.lib")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY OPTIONAL FILES "./lib/RelWithDebInfo/assimp-vc143-mt.lib")
   endif()
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xlibassimp5.2.5x" OR NOT CMAKE_INSTALL_COMPONENT)
   if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE SHARED_LIBRARY FILES "D:/assimp/bin/Debug/assimp-vc143-mtd.dll")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE SHARED_LIBRARY FILES "./bin/Debug/assimp-vc143-mtd.dll")
   elseif("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE SHARED_LIBRARY FILES "D:/assimp/bin/Release/assimp-vc143-mt.dll")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE SHARED_LIBRARY FILES "./bin/Release/assimp-vc143-mt.dll")
   elseif("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Mm][Ii][Nn][Ss][Ii][Zz][Ee][Rr][Ee][Ll])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE SHARED_LIBRARY FILES "D:/assimp/bin/MinSizeRel/assimp-vc143-mt.dll")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE SHARED_LIBRARY FILES "./bin/MinSizeRel/assimp-vc143-mt.dll")
   elseif("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE SHARED_LIBRARY FILES "D:/assimp/bin/RelWithDebInfo/assimp-vc143-mt.dll")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE SHARED_LIBRARY FILES "./bin/RelWithDebInfo/assimp-vc143-mt.dll")
   endif()
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xassimp-devx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/assimp" TYPE FILE FILES
-    "D:/assimp/code/../include/assimp/anim.h"
-    "D:/assimp/code/../include/assimp/aabb.h"
-    "D:/assimp/code/../include/assimp/ai_assert.h"
-    "D:/assimp/code/../include/assimp/camera.h"
-    "D:/assimp/code/../include/assimp/color4.h"
-    "D:/assimp/code/../include/assimp/color4.inl"
-    "D:/assimp/code/../include/assimp/config.h"
-    "D:/assimp/code/../include/assimp/ColladaMetaData.h"
-    "D:/assimp/code/../include/assimp/commonMetaData.h"
-    "D:/assimp/code/../include/assimp/defs.h"
-    "D:/assimp/code/../include/assimp/cfileio.h"
-    "D:/assimp/code/../include/assimp/light.h"
-    "D:/assimp/code/../include/assimp/material.h"
-    "D:/assimp/code/../include/assimp/material.inl"
-    "D:/assimp/code/../include/assimp/matrix3x3.h"
-    "D:/assimp/code/../include/assimp/matrix3x3.inl"
-    "D:/assimp/code/../include/assimp/matrix4x4.h"
-    "D:/assimp/code/../include/assimp/matrix4x4.inl"
-    "D:/assimp/code/../include/assimp/mesh.h"
-    "D:/assimp/code/../include/assimp/ObjMaterial.h"
-    "D:/assimp/code/../include/assimp/pbrmaterial.h"
-    "D:/assimp/code/../include/assimp/GltfMaterial.h"
-    "D:/assimp/code/../include/assimp/postprocess.h"
-    "D:/assimp/code/../include/assimp/quaternion.h"
-    "D:/assimp/code/../include/assimp/quaternion.inl"
-    "D:/assimp/code/../include/assimp/scene.h"
-    "D:/assimp/code/../include/assimp/metadata.h"
-    "D:/assimp/code/../include/assimp/texture.h"
-    "D:/assimp/code/../include/assimp/types.h"
-    "D:/assimp/code/../include/assimp/vector2.h"
-    "D:/assimp/code/../include/assimp/vector2.inl"
-    "D:/assimp/code/../include/assimp/vector3.h"
-    "D:/assimp/code/../include/assimp/vector3.inl"
-    "D:/assimp/code/../include/assimp/version.h"
-    "D:/assimp/code/../include/assimp/cimport.h"
-    "D:/assimp/code/../include/assimp/AssertHandler.h"
-    "D:/assimp/code/../include/assimp/importerdesc.h"
-    "D:/assimp/code/../include/assimp/Importer.hpp"
-    "D:/assimp/code/../include/assimp/DefaultLogger.hpp"
-    "D:/assimp/code/../include/assimp/ProgressHandler.hpp"
-    "D:/assimp/code/../include/assimp/IOStream.hpp"
-    "D:/assimp/code/../include/assimp/IOSystem.hpp"
-    "D:/assimp/code/../include/assimp/Logger.hpp"
-    "D:/assimp/code/../include/assimp/LogStream.hpp"
-    "D:/assimp/code/../include/assimp/NullLogger.hpp"
-    "D:/assimp/code/../include/assimp/cexport.h"
-    "D:/assimp/code/../include/assimp/Exporter.hpp"
-    "D:/assimp/code/../include/assimp/DefaultIOStream.h"
-    "D:/assimp/code/../include/assimp/DefaultIOSystem.h"
-    "D:/assimp/code/../include/assimp/ZipArchiveIOSystem.h"
-    "D:/assimp/code/../include/assimp/SceneCombiner.h"
-    "D:/assimp/code/../include/assimp/fast_atof.h"
-    "D:/assimp/code/../include/assimp/qnan.h"
-    "D:/assimp/code/../include/assimp/BaseImporter.h"
-    "D:/assimp/code/../include/assimp/Hash.h"
-    "D:/assimp/code/../include/assimp/MemoryIOWrapper.h"
-    "D:/assimp/code/../include/assimp/ParsingUtils.h"
-    "D:/assimp/code/../include/assimp/StreamReader.h"
-    "D:/assimp/code/../include/assimp/StreamWriter.h"
-    "D:/assimp/code/../include/assimp/StringComparison.h"
-    "D:/assimp/code/../include/assimp/StringUtils.h"
-    "D:/assimp/code/../include/assimp/SGSpatialSort.h"
-    "D:/assimp/code/../include/assimp/GenericProperty.h"
-    "D:/assimp/code/../include/assimp/SpatialSort.h"
-    "D:/assimp/code/../include/assimp/SkeletonMeshBuilder.h"
-    "D:/assimp/code/../include/assimp/SmallVector.h"
-    "D:/assimp/code/../include/assimp/SmoothingGroups.h"
-    "D:/assimp/code/../include/assimp/SmoothingGroups.inl"
-    "D:/assimp/code/../include/assimp/StandardShapes.h"
-    "D:/assimp/code/../include/assimp/RemoveComments.h"
-    "D:/assimp/code/../include/assimp/Subdivision.h"
-    "D:/assimp/code/../include/assimp/Vertex.h"
-    "D:/assimp/code/../include/assimp/LineSplitter.h"
-    "D:/assimp/code/../include/assimp/TinyFormatter.h"
-    "D:/assimp/code/../include/assimp/Profiler.h"
-    "D:/assimp/code/../include/assimp/LogAux.h"
-    "D:/assimp/code/../include/assimp/Bitmap.h"
-    "D:/assimp/code/../include/assimp/XMLTools.h"
-    "D:/assimp/code/../include/assimp/IOStreamBuffer.h"
-    "D:/assimp/code/../include/assimp/CreateAnimMesh.h"
-    "D:/assimp/code/../include/assimp/XmlParser.h"
-    "D:/assimp/code/../include/assimp/BlobIOSystem.h"
-    "D:/assimp/code/../include/assimp/MathFunctions.h"
-    "D:/assimp/code/../include/assimp/Exceptional.h"
-    "D:/assimp/code/../include/assimp/ByteSwapper.h"
-    "D:/assimp/code/../include/assimp/Base64.hpp"
+    "./code/../include/assimp/anim.h"
+    "./code/../include/assimp/aabb.h"
+    "./code/../include/assimp/ai_assert.h"
+    "./code/../include/assimp/camera.h"
+    "./code/../include/assimp/color4.h"
+    "./code/../include/assimp/color4.inl"
+    "./code/../include/assimp/config.h"
+    "./code/../include/assimp/ColladaMetaData.h"
+    "./code/../include/assimp/commonMetaData.h"
+    "./code/../include/assimp/defs.h"
+    "./code/../include/assimp/cfileio.h"
+    "./code/../include/assimp/light.h"
+    "./code/../include/assimp/material.h"
+    "./code/../include/assimp/material.inl"
+    "./code/../include/assimp/matrix3x3.h"
+    "./code/../include/assimp/matrix3x3.inl"
+    "./code/../include/assimp/matrix4x4.h"
+    "./code/../include/assimp/matrix4x4.inl"
+    "./code/../include/assimp/mesh.h"
+    "./code/../include/assimp/ObjMaterial.h"
+    "./code/../include/assimp/pbrmaterial.h"
+    "./code/../include/assimp/GltfMaterial.h"
+    "./code/../include/assimp/postprocess.h"
+    "./code/../include/assimp/quaternion.h"
+    "./code/../include/assimp/quaternion.inl"
+    "./code/../include/assimp/scene.h"
+    "./code/../include/assimp/metadata.h"
+    "./code/../include/assimp/texture.h"
+    "./code/../include/assimp/types.h"
+    "./code/../include/assimp/vector2.h"
+    "./code/../include/assimp/vector2.inl"
+    "./code/../include/assimp/vector3.h"
+    "./code/../include/assimp/vector3.inl"
+    "./code/../include/assimp/version.h"
+    "./code/../include/assimp/cimport.h"
+    "./code/../include/assimp/AssertHandler.h"
+    "./code/../include/assimp/importerdesc.h"
+    "./code/../include/assimp/Importer.hpp"
+    "./code/../include/assimp/DefaultLogger.hpp"
+    "./code/../include/assimp/ProgressHandler.hpp"
+    "./code/../include/assimp/IOStream.hpp"
+    "./code/../include/assimp/IOSystem.hpp"
+    "./code/../include/assimp/Logger.hpp"
+    "./code/../include/assimp/LogStream.hpp"
+    "./code/../include/assimp/NullLogger.hpp"
+    "./code/../include/assimp/cexport.h"
+    "./code/../include/assimp/Exporter.hpp"
+    "./code/../include/assimp/DefaultIOStream.h"
+    "./code/../include/assimp/DefaultIOSystem.h"
+    "./code/../include/assimp/ZipArchiveIOSystem.h"
+    "./code/../include/assimp/SceneCombiner.h"
+    "./code/../include/assimp/fast_atof.h"
+    "./code/../include/assimp/qnan.h"
+    "./code/../include/assimp/BaseImporter.h"
+    "./code/../include/assimp/Hash.h"
+    "./code/../include/assimp/MemoryIOWrapper.h"
+    "./code/../include/assimp/ParsingUtils.h"
+    "./code/../include/assimp/StreamReader.h"
+    "./code/../include/assimp/StreamWriter.h"
+    "./code/../include/assimp/StringComparison.h"
+    "./code/../include/assimp/StringUtils.h"
+    "./code/../include/assimp/SGSpatialSort.h"
+    "./code/../include/assimp/GenericProperty.h"
+    "./code/../include/assimp/SpatialSort.h"
+    "./code/../include/assimp/SkeletonMeshBuilder.h"
+    "./code/../include/assimp/SmallVector.h"
+    "./code/../include/assimp/SmoothingGroups.h"
+    "./code/../include/assimp/SmoothingGroups.inl"
+    "./code/../include/assimp/StandardShapes.h"
+    "./code/../include/assimp/RemoveComments.h"
+    "./code/../include/assimp/Subdivision.h"
+    "./code/../include/assimp/Vertex.h"
+    "./code/../include/assimp/LineSplitter.h"
+    "./code/../include/assimp/TinyFormatter.h"
+    "./code/../include/assimp/Profiler.h"
+    "./code/../include/assimp/LogAux.h"
+    "./code/../include/assimp/Bitmap.h"
+    "./code/../include/assimp/XMLTools.h"
+    "./code/../include/assimp/IOStreamBuffer.h"
+    "./code/../include/assimp/CreateAnimMesh.h"
+    "./code/../include/assimp/XmlParser.h"
+    "./code/../include/assimp/BlobIOSystem.h"
+    "./code/../include/assimp/MathFunctions.h"
+    "./code/../include/assimp/Exceptional.h"
+    "./code/../include/assimp/ByteSwapper.h"
+    "./code/../include/assimp/Base64.hpp"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xassimp-devx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/assimp/Compiler" TYPE FILE FILES
-    "D:/assimp/code/../include/assimp/Compiler/pushpack1.h"
-    "D:/assimp/code/../include/assimp/Compiler/poppack1.h"
-    "D:/assimp/code/../include/assimp/Compiler/pstdint.h"
+    "./code/../include/assimp/Compiler/pushpack1.h"
+    "./code/../include/assimp/Compiler/poppack1.h"
+    "./code/../include/assimp/Compiler/pstdint.h"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE FILE FILES "D:/assimp/code/Debug/assimp-vc143-mtd.pdb")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE FILE FILES "./code/Debug/assimp-vc143-mtd.pdb")
   endif("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE FILE FILES "D:/assimp/code/RelWithDebInfo/assimp-vc143-mt.pdb")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE FILE FILES "./code/RelWithDebInfo/assimp-vc143-mt.pdb")
   endif("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
 endif()
 
