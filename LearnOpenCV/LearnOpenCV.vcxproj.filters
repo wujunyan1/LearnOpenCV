@@ -276,6 +276,12 @@
     <ClInclude Include="Core\TreeNode.h">
       <Filter>core</Filter>
     </ClInclude>
+    <ClInclude Include="ui\UICanvas.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GlobalDictionary.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -492,6 +498,12 @@
       <Filter>core</Filter>
     </ClCompile>
     <ClCompile Include="Core\TreeNode.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\UICanvas.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\GlobalDictionary.cpp">
       <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>
