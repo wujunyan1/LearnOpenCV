@@ -9,6 +9,7 @@
 #include "SkyBox.h"
 
 #include "../math/Math.h"
+#include "GlobalDictionary.h"
 
 using namespace Core;
 
@@ -29,7 +30,7 @@ void Scene::Bind()
 	Transform* cameraT = cameraObj->AddComponent<Transform>();
 	mainCamera = cameraObj->AddComponent<Camera>();
 
-	Math::Vector2T<int> size = Render::GetWindowSize();
+	Math::Vector2T<int> size = GlobalDictionary::getRealWindowSize();
 
 	mainCamera->init(Math::radians(45.0f), size.x * 1.0f / size.y, 0.1f, 1000.0f);
 	cameraT->SetPosition({0, 0, 0});

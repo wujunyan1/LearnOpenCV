@@ -8,7 +8,7 @@
 using namespace Core;
 namespace UI 
 {
-	class UICanvas : public Transform
+	class UICanvas : public Component
 	{
 	public:
 
@@ -16,9 +16,6 @@ namespace UI
 
 	private:
 
-		Math::Vector2T<Vector2> rect_position = {{0.5, 0.5}, {0.5, 0.5}};
-
-		Vector2 size = {0, 0};
-		Vector2 anchor = { 0.5, 0.5 };
+		
 	};
 }

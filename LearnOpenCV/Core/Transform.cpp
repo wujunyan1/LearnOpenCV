@@ -12,4 +12,8 @@ void Transform::Rotate(Vector3 rotate, Space space)
 
 		this->rotateMat = this->rotateMat * rotateMat;
 	}
+	else if (space == Space::World)
+	{
+
+	}
 }

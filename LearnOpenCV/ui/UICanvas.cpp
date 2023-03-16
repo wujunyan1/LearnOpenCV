@@ -5,7 +5,7 @@ using namespace Core;
 
 namespace UI
 {
-	UICanvas::UICanvas() : Transform()
+	UICanvas::UICanvas() : Component()
 	{
 		GlobalDictionary::getDispatcher()->addCustomEventListener("winSizeChangeEvent", [this](EventCustom* _event) {
 			Math::Vector2T<int>* size = (Math::Vector2T<int>*)_event->getUserData();

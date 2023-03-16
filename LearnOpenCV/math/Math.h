@@ -11,6 +11,7 @@
 #include "Vector2T.h"
 #include "Obb.h"
 #include "AABB.h"
+#include "UVector2.h"
 
 namespace Math {
 	

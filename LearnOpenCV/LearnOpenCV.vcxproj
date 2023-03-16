@@ -200,6 +200,7 @@
     <ClInclude Include="math\Obb.h" />
     <ClInclude Include="math\Quaternion.h" />
     <ClInclude Include="math\Triangle.h" />
+    <ClInclude Include="math\UVector2.h" />
     <ClInclude Include="math\Vector1.h" />
     <ClInclude Include="math\Vector2.h" />
     <ClInclude Include="math\Vector2T.h" />
@@ -276,6 +277,7 @@
     <ClCompile Include="math\Obb.cpp" />
     <ClCompile Include="math\Quaternion.cpp" />
     <ClCompile Include="math\Triangle.cpp" />
+    <ClCompile Include="math\UVector2.cpp" />
     <ClCompile Include="math\Vector1.cpp" />
     <ClCompile Include="math\Vector2.cpp" />
     <ClCompile Include="math\Vector2T.cpp" />
