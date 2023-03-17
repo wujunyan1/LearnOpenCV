@@ -10,7 +10,6 @@ namespace Core
 	public:
 
 		TreeNode() {
-			children = NULL;
 			parent = NULL;
 		}
 
@@ -33,34 +32,29 @@ namespace Core
 		}
 
 		void AddChild(TreeNode* child) {
-			if (children == NULL) {
-				children = new std::vector<TreeNode*>();
-			}
 			if (child->parent) {
 				child->parent->removeChild(child);
 			}
 
 			child->parent = this;
 			child->retain();
-			children->push_back(child);
+			children.push_back(child);
+
+			childOrderChange = true;
 		}
 
 		void removeChild(TreeNode* child) {
-			if (children == NULL) {
-				return;
-			}
-			
 			if (child->parent != this)
 			{
 				return;
 			}
 
-			std::vector<TreeNode*>::iterator itor = children->begin();
-			while (itor != children->end())
+			std::vector<TreeNode*>::iterator itor = children.begin();
+			while (itor != children.end())
 			{
 				TreeNode* c = *itor;
 				if (child == c) {
-					itor = children->erase(itor);
+					itor = children.erase(itor);
 					break;
 				}
 			}
@@ -69,54 +63,78 @@ namespace Core
 		}
 
 		TreeNode* GetChildByIndex(int index) {
-			return children->at(index);
+			return children.at(index);
 		}
 
-		std::vector<TreeNode*>* getChildren() {
+		std::vector<TreeNode*>& getChildren() {
 			return children;
 		}
 
-		virtual void PreUpdate() {
-			if (children == nullptr) {
-				return;
+		unsigned int getOrder() { return m_order; };
+		void setOrder(unsigned int order) 
+		{ 
+			m_order = order; 
+			_orderOfArrival = ++global_orderOfArrival;
+			if (parent)
+			{
+				parent->childOrderChange = true;
 			}
-			for (auto i : *children)
+		};
+
+
+		virtual void PreUpdate() {
+			for (auto i : children)
 			{
 				i->PreUpdate();
 			}
 		}
 		virtual void Update() {
-			if (children == nullptr) {
-				return;
-			}
-			for (auto i : *children)
+			for (auto i : children)
 			{
 				i->Update();
 			}
 		}
 		virtual void LaterUpdate() {
-			if (children == nullptr) {
-				return;
-			}
-			for (auto i : *children)
+			for (auto i : children)
 			{
 				i->LaterUpdate();
 			}
 		}
 
 		virtual void Render() {
-			if (children == nullptr) {
-				return;
+			if (childOrderChange)
+			{
+				sortNodes();
+				childOrderChange = false;
 			}
-			for (auto i : *children)
+			for (auto i : children)
 			{
 				i->Render();
 			}
 		}
 
+	private:
+		void sortNodes()
+		{
+			std::sort(std::begin(children), std::end(children), [](TreeNode* n1, TreeNode* n2) {
+				return (n1->m_order == n2->m_order && n1->_orderOfArrival < n2->_orderOfArrival) || n1->m_order < n2->m_order;
+				});
+		}
+
+		void childrenChangeOrder()
+		{
+
+		}
+
 	protected:
-		std::vector<TreeNode*>* children;
+		std::vector<TreeNode*> children;
 		TreeNode* parent;
+		unsigned int m_order = 50;
+		unsigned int _orderOfArrival = 0;
+		std::string name;
+		bool childOrderChange = false;
+
+		static unsigned int global_orderOfArrival;
 	};
 
 

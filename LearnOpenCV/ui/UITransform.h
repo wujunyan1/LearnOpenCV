@@ -4,20 +4,21 @@
 #include "../Core/Object.h"
 #include "../Core/Transform.h"
 #include "../math/UVector2.h"
+#include "../render/RenderMain.h"
 #include <vector>
 
 using namespace Core;
 using namespace Math;
 namespace UI 
 {
+	class UICanvas;
+
 	class UITransform : public Component
 	{
 	public:
+		friend class UICanvas;
 
-		UITransform() : Component()
-		{
-
-		}
+		UITransform();
 
 		UVector2 GetPosition() {
 			return rect_position;
@@ -69,6 +70,7 @@ namespace UI
 			return localMat4;
 		}
 
+		virtual void Render();
 
 	private:
 
@@ -120,11 +122,12 @@ namespace UI
 		{
 			worldToLocalMat4 = rotateMat.clone().transpose();
 			worldToLocalMat4 = worldToLocalMat4 * Mat4::translate(-m_realPosition);
+			worldToLocalMat4 = Mat4::translate(-m_realSize * pivot) * worldToLocalMat4;
 			worldToLocalMat4 = Mat4::scale(Vector3(1.0f / m_scale.x, 1.0f / m_scale.y, 1.0f)) * worldToLocalMat4;
 
 			Object* parent = dynamic_cast<Object*>(getObject()->GetParent());
 			if (parent) {
-				Transform* parentTransform = parent->GetComponent<Transform>();
+				UITransform* parentTransform = parent->GetComponent<UITransform>();
 				if (parentTransform)
 				{
 					worldToLocalMat4 = worldToLocalMat4 * parentTransform->worldToLocalMat4;
@@ -137,7 +140,7 @@ namespace UI
 				{
 					Object* obj = dynamic_cast<Object*>(i);
 					if (obj) {
-						Transform* objTransform = obj->GetComponent<Transform>();
+						UITransform* objTransform = obj->GetComponent<UITransform>();
 						if (objTransform)
 						{
 							objTransform->updateWorldToLocalMat4();
@@ -146,7 +149,9 @@ namespace UI
 				}
 			}
 		}
-	private:
+
+	public:
+
 
 
 	private:

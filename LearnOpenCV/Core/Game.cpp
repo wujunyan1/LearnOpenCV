@@ -63,6 +63,7 @@ void Game::LoadMainScene()
 
 	Render::AddCustomRenderQueue("RenderOpaqueQueue", Core::new_class<Logic::RenderOpaqueQueue>());
 	Render::AddCustomRenderQueue("DefaultRenderQueue", Core::new_class<Render::RenderQueue>());
+	Render::AddCustomRenderQueue("RenderUIQueue", Core::new_class<Logic::RenderOpaqueQueue>());
 
 	Scene* root = SceneManager::GetInstance()->GetCurrScene();
 	/*scene->PreUpdate();

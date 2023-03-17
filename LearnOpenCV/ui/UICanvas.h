@@ -14,8 +14,10 @@ namespace UI
 
 		UICanvas();
 
+		virtual void Render();
 	private:
 
-		
+		void updateUITransform(Vector2 size);
+
 	};
 }

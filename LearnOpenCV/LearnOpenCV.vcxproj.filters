@@ -285,6 +285,12 @@
     <ClInclude Include="math\UVector2.h">
       <Filter>math</Filter>
     </ClInclude>
+    <ClInclude Include="ui\UIImage.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="render\RenderUIQueue.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -511,6 +517,12 @@
     </ClCompile>
     <ClCompile Include="math\UVector2.cpp">
       <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\UIImage.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="render\RenderUIQueue.cpp">
+      <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

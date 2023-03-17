@@ -224,9 +224,11 @@
     <ClInclude Include="render\RenderScene.h" />
     <ClInclude Include="render\RenderSkyBox.h" />
     <ClInclude Include="render\RenderStage.h" />
+    <ClInclude Include="render\RenderUIQueue.h" />
     <ClInclude Include="render\ShaderProgram.h" />
     <ClInclude Include="render\Texture.h" />
     <ClInclude Include="ui\UICanvas.h" />
+    <ClInclude Include="ui\UIImage.h" />
     <ClInclude Include="ui\UITransform.h" />
   </ItemGroup>
   <ItemGroup>
@@ -301,9 +303,11 @@
     <ClCompile Include="render\RenderScene.cpp" />
     <ClCompile Include="render\RenderSkyBox.cpp" />
     <ClCompile Include="render\RenderStage.cpp" />
+    <ClCompile Include="render\RenderUIQueue.cpp" />
     <ClCompile Include="render\ShaderProgram.cpp" />
     <ClCompile Include="render\Texture.cpp" />
     <ClCompile Include="ui\UICanvas.cpp" />
+    <ClCompile Include="ui\UIImage.cpp" />
     <ClCompile Include="ui\UITransform.cpp" />
   </ItemGroup>
   <ItemGroup>

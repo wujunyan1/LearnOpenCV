@@ -2,18 +2,42 @@
 #include "../Core/Core.h"
 #include "../Core/Component.h"
 #include "../Core/Object.h"
-#include "../Core/Transform.h"
+#include "../file/Image.h"
+#include "../file/ImageLoad.h"
+#include "../render/RenderMain.h"
 #include <vector>
 
 using namespace Core;
 namespace UI 
 {
-	class UITransform : public Transform
+	class UIImage : public Component
 	{
 	public:
 
-		UITransform() : Transform() {
+		UIImage() : Component() {
 		}
 
+		void setImage(std::string& name);
+
+		// 目标是深度缓存里的， src是ps输出的
+		void setBlendFunc(Render::BlendFunc src, Render::BlendFunc target) {
+			srcBlendFunc = src; 
+			targetBlendFunc = target;
+		};
+
+		void setColor(Vector3 color) { m_color = color; };
+
+		virtual void Render();
+
+	private:
+		std::string imageName = "";
+		Image* image = nullptr;
+
+		Vector3 m_color = { 1,1,1 };
+		Render::BlendFunc srcBlendFunc = Render::BlendFunc::SRC_ALPHA;
+		Render::BlendFunc targetBlendFunc = Render::BlendFunc::ONE_MINUS_SRC_ALPHA;
+
+		// 材质
+		Render::RenderProgram* renderProgram = NULL;
 	};
 }

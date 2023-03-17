@@ -1,7 +1,17 @@
 #include "UITransform.h"
 #include "../Core/GlobalDictionary.h"
+#include "UICanvas.h"
 
 using namespace Core;
+
+UI::UITransform::UITransform()
+{
+
+}
+
+void UI::UITransform::Render()
+{
+}
 
 void UI::UITransform::UpdateRealPosition()
 {
