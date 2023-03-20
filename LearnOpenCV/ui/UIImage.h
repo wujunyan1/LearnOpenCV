@@ -14,20 +14,19 @@ namespace UI
 	{
 	public:
 
-		UIImage() : Component() {
-		}
+		UIImage();
 
 		void setImage(std::string& name);
 
 		// 目标是深度缓存里的， src是ps输出的
-		void setBlendFunc(Render::BlendFunc src, Render::BlendFunc target) {
-			srcBlendFunc = src; 
-			targetBlendFunc = target;
-		};
+		void setBlendFunc(Render::BlendFunc src, Render::BlendFunc target);
 
 		void setColor(Vector3 color) { m_color = color; };
 
 		virtual void Render();
+
+	private:
+		void initModel();
 
 	private:
 		std::string imageName = "";
@@ -39,5 +38,7 @@ namespace UI
 
 		// 材质
 		Render::RenderProgram* renderProgram = NULL;
+
+		AModel* model = NULL;
 	};
 }

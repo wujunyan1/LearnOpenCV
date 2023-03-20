@@ -9,11 +9,17 @@ AModel::AModel()
 
 }
 
-void Core::AModel::addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
+AMesh& Core::AModel::addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
 {
-	meshes.push_back(AMesh(Math::stringFormat("%d|%d", modelId, meshes.size()), vertices, indices, textures));
+	return addMesh(Math::stringFormat("%d|%d", modelId, meshes.size()), vertices, indices, textures);
+}
+
+AMesh& Core::AModel::addMesh(std::string name, std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
+{
+	meshes.push_back(AMesh(name, vertices, indices, textures));
 
 	updateObb();
+	return *(--meshes.end());
 }
 
 void Core::AModel::updateObb()

@@ -3,10 +3,20 @@
 
 using namespace Core;
 
+Core::AMesh::AMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
+{
+	printf("add mesh %s \n", uid.c_str());
+	id = uid;
+	this->vertices = vertices;
+	this->indices = indices;
+	this->textures = textures;
+
+	mesh = Render::CreateRenderMesh(id);
+	bindRender();
+}
+
 void Core::AMesh::bindRender()
 {
-	mesh = Render::CreateRenderMesh(id);
-
 	mesh->BindArrayBufferData(indices.size(), vertices.size() * sizeof(Vertex), &vertices[0]);
 	mesh->BindElementBufferData(indices.size() * sizeof(unsigned int), &indices[0]);
 

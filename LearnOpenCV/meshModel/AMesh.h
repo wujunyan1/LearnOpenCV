@@ -24,14 +24,11 @@ namespace Core
 		};
 
 	public:
-		AMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
-		{
-			printf("add mesh %s \n", uid.c_str());
-			id = uid;
-			this->vertices = vertices;
-			this->indices = indices;
-			this->textures = textures;
+		AMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
 
+		void updateTexture(std::vector<Render::Texture> textures)
+		{
+			this->textures = textures;
 			bindRender();
 		}
 

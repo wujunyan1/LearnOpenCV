@@ -2,4 +2,4 @@
 
 using namespace Core;
 
-unsigned int TreeNode::global_orderOfArrival = 0
+unsigned int TreeNode::global_orderOfArrival = 0;

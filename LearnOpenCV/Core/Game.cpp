@@ -18,6 +18,10 @@
 #include "../Core/AutoreleasePool.h"
 #include "GlobalDictionary.h"
 
+#include "../ui/UICanvas.h"
+#include "../ui/UIImage.h"
+#include "../ui/UITransform.h"
+
 using namespace Core;
 
 Game* Game::instance = nullptr;
@@ -269,4 +273,14 @@ void Game::LoadMainScene()
 		mesh2->setBlendFunc(Render::BlendFunc::SRC_ALPHA, Render::BlendFunc::ONE_MINUS_SRC_ALPHA);
 		//mesh2->setBlendFunc(Render::BlendFunc::ONE, Render::BlendFunc::ONE_MINUS_SRC_ALPHA);
 	}
+
+
+	Object* uiBase = ObjectManager::createNewObject();
+	uiBase->AddComponent<UI::UITransform>();
+	uiBase->AddComponent<UI::UICanvas>();
+	root->AddChild(uiBase);
+
+	Object* showUI = ObjectManager::createNewObject();
+	UI::UITransform* uiTransform = showUI->AddComponent<UI::UITransform>();
+	UI::UIImage* uiImage = showUI->AddComponent<UI::UIImage>();
 }

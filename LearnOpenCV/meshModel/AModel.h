@@ -27,7 +27,20 @@ namespace Core
 		}
 
         std::vector<AMesh>& getMeshs() { return meshes; };
-        void addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
+        AMesh& addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
+        AMesh& addMesh(std::string meshName, std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
+
+        AMesh* getMesh(std::string meshName)
+        {
+            for (auto mesh : meshes)
+            {
+                if (mesh.id == meshName)
+                {
+                    return &mesh;
+                }
+            }
+            return nullptr;
+        }
 
         Math::Obb& getObb() { return obb; };
 

@@ -102,17 +102,15 @@ namespace UI
 				}
 			}
 
-			std::vector<TreeNode*>* children = getObject()->getChildren();
-			if (children) {
-				for (auto i : *children)
-				{
-					Object* obj = dynamic_cast<Object*>(i);
-					if (obj) {
-						UITransform* objTransform = obj->GetComponent<UITransform>();
-						if (objTransform)
-						{
-							objTransform->updateLocalToWorldMat4();
-						}
+			std::vector<TreeNode*>& children = getObject()->getChildren();
+			for (auto i : children)
+			{
+				Object* obj = dynamic_cast<Object*>(i);
+				if (obj) {
+					UITransform* objTransform = obj->GetComponent<UITransform>();
+					if (objTransform)
+					{
+						objTransform->updateLocalToWorldMat4();
 					}
 				}
 			}
@@ -134,17 +132,15 @@ namespace UI
 				}
 			}
 
-			std::vector<TreeNode*>* children = getObject()->getChildren();
-			if (children) {
-				for (auto i : *children)
-				{
-					Object* obj = dynamic_cast<Object*>(i);
-					if (obj) {
-						UITransform* objTransform = obj->GetComponent<UITransform>();
-						if (objTransform)
-						{
-							objTransform->updateWorldToLocalMat4();
-						}
+			std::vector<TreeNode*>& children = getObject()->getChildren();
+			for (auto i : children)
+			{
+				Object* obj = dynamic_cast<Object*>(i);
+				if (obj) {
+					UITransform* objTransform = obj->GetComponent<UITransform>();
+					if (objTransform)
+					{
+						objTransform->updateWorldToLocalMat4();
 					}
 				}
 			}

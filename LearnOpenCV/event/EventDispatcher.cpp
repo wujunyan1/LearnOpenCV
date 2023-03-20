@@ -251,7 +251,7 @@ namespace Core
         if (recursive)
         {
             const auto children = target->getChildren();
-            for (const auto& child : *children)
+            for (const auto& child : children)
             {
                 pauseEventListenersForTarget(child, true);
             }
@@ -283,7 +283,7 @@ namespace Core
         if (recursive)
         {
             const auto& children = target->getChildren();
-            for (const auto& child : *children)
+            for (const auto& child : children)
             {
                 resumeEventListenersForTarget(child, true);
             }
@@ -333,7 +333,7 @@ namespace Core
         if (recursive)
         {
             const auto& children = target->getChildren();
-            for (const auto& child : *children)
+            for (const auto& child : children)
             {
                 removeEventListenersForTarget(child, true);
             }
@@ -1442,7 +1442,7 @@ namespace Core
 
         // Also set the dirty flag for node's children
         const auto& children = node->getChildren();
-        for (const auto& child : *children)
+        for (const auto& child : children)
         {
             setDirtyForTreeNode(child);
         }

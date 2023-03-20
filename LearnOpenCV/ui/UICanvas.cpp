@@ -10,7 +10,7 @@ namespace UI
 	{
 		GlobalDictionary::getDispatcher()->addCustomEventListener("winSizeChangeEvent", [this](EventCustom* _event) {
 			Math::Vector2T<int>* size = (Math::Vector2T<int>*)_event->getUserData();
-			updateUITransform({ size->x, size->y });
+			updateUITransform({ (float)size->x, (float)size->y });
 		});
 	}
 
