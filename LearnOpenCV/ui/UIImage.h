@@ -5,6 +5,7 @@
 #include "../file/Image.h"
 #include "../file/ImageLoad.h"
 #include "../render/RenderMain.h"
+#include "../meshModel/AUIMesh.h"
 #include <vector>
 
 using namespace Core;
@@ -40,5 +41,6 @@ namespace UI
 		Render::RenderProgram* renderProgram = NULL;
 
 		AModel* model = NULL;
+		AUIMesh* mesh = NULL;
 	};
 }

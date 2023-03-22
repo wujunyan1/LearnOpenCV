@@ -7,6 +7,7 @@
 
 #include "../math/Math.h"
 #include "AMesh.h"
+#include "ABaseMesh.h"
 #include "../file/ImageLoad.h"
 #include "../file/FilePathManager.h"
 
@@ -26,11 +27,12 @@ namespace Core
 			loadModel(path);
 		}
 
-        std::vector<AMesh>& getMeshs() { return meshes; };
+        std::vector<ABaseMesh>& getMeshs() { return meshes; };
         AMesh& addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
-        AMesh& addMesh(std::string meshName, std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
+        ABaseMesh& addMesh(std::string meshName, std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
+        ABaseMesh& addMesh(ABaseMesh mesh);
 
-        AMesh* getMesh(std::string meshName)
+        ABaseMesh* getMesh(std::string meshName)
         {
             for (auto mesh : meshes)
             {
@@ -231,7 +233,7 @@ namespace Core
         void updateObb();
 
 	private:
-		std::vector<AMesh>    meshes;
+		std::vector<ABaseMesh>    meshes;
 		std::string directory;
         unsigned int modelId;
 		bool gammaCorrection;

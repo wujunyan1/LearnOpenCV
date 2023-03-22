@@ -7,39 +7,41 @@
 
 namespace Core
 {
-	class AMesh : public ABaseMesh
+	class AUIMesh: public ABaseMesh
 	{
 		friend class AModel;
 	public:
 		struct Vertex {
 			// position
 			Math::Vector3 Position;
-			// normal
-			Math::Vector3 Normal;
 			// texCoords
 			Math::Vector2 TexCoords;
-			// tangent
-			Math::Vector3 Tangent;
-			// bitangent
-			Math::Vector3 Bitangent;
 		};
 
 	public:
-		AMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
+		AUIMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices, Render::Texture textures);
 
-		virtual int getMeshType() { return AMesh::MeshType; };
+		virtual int getMeshType() { return AUIMesh::MeshType; };
 
-		void updateTexture(std::vector<Render::Texture> textures)
+		void updateTexture(Render::Texture textures)
 		{
-			this->textures = textures;
+			this->textures.clear();
+			this->textures.push_back(textures);
 			bindRender();
 		}
 
+		Render::RenderMesh* getRenderMesh() 
+		{
+			return mesh;
+		};
+
 	private:
 
-		virtual void bindRender();
+		void bindRender();
 
 	private:
+		std::string id;
+
 		// mesh Data
 		std::vector<Vertex>       vertices;
 		std::vector<unsigned int> indices;
@@ -48,7 +50,6 @@ namespace Core
 		Render::RenderMesh* mesh;
 
 	public:
-		const static int MeshType = 1;
-
+		const static int MeshType = 2;
 	};
 }

@@ -106,11 +106,11 @@ namespace Render
 		RenderQueue();
 		~RenderQueue();
 
-		void Render(Core::Camera* camera);
+		virtual void Render(Core::Camera* camera);
 
 		void addRenderProgram(RenderProgram* renderProgram);
 
-		void clear();
+		virtual void clear();
 
 	protected:
 

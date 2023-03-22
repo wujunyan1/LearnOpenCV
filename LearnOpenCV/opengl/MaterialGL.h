@@ -26,6 +26,8 @@ namespace OpenGL
 
 		void testPrint(std::string pr);
 
+		const void* getData(const std::string& name);
+
 	private:
 		int getParamPhysicsIndex(const std::string& name);
 		int tryModifyShaderParam(const std::string& name, void* data, Render::ShaderParamType stype, int copySize = 0);

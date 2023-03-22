@@ -6,7 +6,16 @@ using namespace Core;
 
 UI::UITransform::UITransform()
 {
+	m_scale = Vector3(1.0f, 1.0f, 1.0f);
+	m_rotate = Vector3(0.0f, 0.0f, 0.0f);
 
+	localToWorldMat4 = Mat4(1.0f);
+	localMat4 = Mat4(1.0f);
+	rotateMat = Mat4(1.0f);
+	worldToLocalMat4 = Mat4(1.0f);
+
+
+	matChanged = true;
 }
 
 void UI::UITransform::Render()

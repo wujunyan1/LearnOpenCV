@@ -1,5 +1,6 @@
 #include "UIImage.h"
 #include "UITransform.h"
+#include "../meshModel/AUIMesh.h"
 
 using namespace Core;
 namespace UI
@@ -7,7 +8,7 @@ namespace UI
 	UIImage::UIImage() : Component() {
 
 		renderProgram = Render::CreateRenderProgram("test");
-		renderProgram->setShader("testShader");
+		renderProgram->setShader("uiShader");
 		renderProgram->setRenderQueueName("RenderUIQueue");
 		renderProgram->setRenderStage(2000);
 
@@ -25,15 +26,14 @@ namespace UI
 		}
 		image = ImageLoad::LoadImage(name);
 
-		AMesh& mesh = model->getMesh("texture2d");
 
-		std::vector<Render::Texture> textures;
 		Render::Texture texture;
 		texture.image = image;
 		texture.imageName = "blending_transparent_window.png";
 		texture.uniformName = "texture2d";
-		textures.push_back(texture);
-		mesh.updateTexture(textures);
+
+		mesh->updateTexture(texture);
+		
 	}
 
 	void UI::UIImage::setBlendFunc(Render::BlendFunc src, Render::BlendFunc target)
@@ -56,45 +56,63 @@ namespace UI
 		renderProgram->setLocalToWorldMat4(mat4);
 		material->setMat4("model", mat4);
 
+		Math::Vector4 showpos1 = Math::Vector4(1, 1, 1, 1);
+		printf("========uiimage::render========");
+		printf("%s \n", showpos1.toString().c_str());
+
+		float left = 0.0f;
+		float right = 1280.0f;
+		float top = 0.0f;
+		float bottom = 720.0f;
+		float near = -1.0f;
+		float far = 1.0f;
+
+		Mat4 ortho = Mat4(1);
+		ortho.m00 = (2.0f) / (right - left);
+		ortho.m11 = (2.0f) / (top - bottom);
+		ortho.m22 = -(2.0f) / (far - near);
+		/*ortho.m30 = -(right + left) / (right - left);
+		ortho.m31 = -(top + bottom) / (top - bottom);
+		ortho.m32 = -(far + near) / (far - near);*/
+
+		ortho.printMat4();
+
+		showpos1 = ortho  * Math::Vector4(1, 1, 0, 1);
+		printf("%s \n", showpos1.toString().c_str());
+		showpos1 = ortho  * Math::Vector4(0, 1, 0, 1);
+		printf("%s \n", showpos1.toString().c_str());
+		showpos1 = ortho  * Math::Vector4(0, 0, 0, 1);
+		printf("%s \n", showpos1.toString().c_str());
+		showpos1 = ortho  * Math::Vector4(1, 0, 0, 1);
+		printf("%s \n", showpos1.toString().c_str());
+
 		Render::AddRender(renderProgram);
 	}
 
 	void UIImage::initModel()
 	{
-		std::vector<AMesh::Vertex> vertices;
+		std::vector<AUIMesh::Vertex> vertices;
 		std::vector<unsigned int> indices;
 		std::vector<Render::Texture> textures;
 
-		AMesh::Vertex vertex1;
-		vertex1.Position = Math::Vector3(-0.5f, -0.5f, 0);
+		AUIMesh::Vertex vertex1;
+		vertex1.Position = Math::Vector3(-1.0f, -1.0f, 0);
 		vertex1.TexCoords = Math::Vector2(0, 0);
-		vertex1.Normal = Math::Vector3(0, 0, 1.0f);
-		vertex1.Tangent = Math::Vector3(0, 0, 0);
-		vertex1.Bitangent = Math::Vector3(0, 0, 0);
 		vertices.push_back(vertex1);
 
-		AMesh::Vertex vertex2;
-		vertex2.Position = Math::Vector3(0.5f, -0.5f, 0);
+		AUIMesh::Vertex vertex2;
+		vertex2.Position = Math::Vector3(1.0f, -1.0f, 0);
 		vertex2.TexCoords = Math::Vector2(1, 0);
-		vertex2.Normal = Math::Vector3(0, 0, 1.0f);
-		vertex2.Tangent = Math::Vector3(0, 0, 0);
-		vertex2.Bitangent = Math::Vector3(0, 0, 0);
 		vertices.push_back(vertex2);
 
-		AMesh::Vertex vertex3;
-		vertex3.Position = Math::Vector3(-0.5f, 0.5f, 0);
+		AUIMesh::Vertex vertex3;
+		vertex3.Position = Math::Vector3(-1.0f, 1.0f, 0);
 		vertex3.TexCoords = Math::Vector2(0, 1);
-		vertex3.Normal = Math::Vector3(0, 0, 1.0f);
-		vertex3.Tangent = Math::Vector3(0, 0, 0);
-		vertex3.Bitangent = Math::Vector3(0, 0, 0);
 		vertices.push_back(vertex3);
 
-		AMesh::Vertex vertex4;
-		vertex4.Position = Math::Vector3(0.5f, 0.5f, 0);
+		AUIMesh::Vertex vertex4;
+		vertex4.Position = Math::Vector3(1.0f, 1.0f, 0);
 		vertex4.TexCoords = Math::Vector2(1, 1);
-		vertex4.Normal = Math::Vector3(0, 0, 1.0f);
-		vertex4.Tangent = Math::Vector3(0, 0, 0);
-		vertex4.Bitangent = Math::Vector3(0, 0, 0);
 		vertices.push_back(vertex4);
 
 		indices.push_back(0);
@@ -111,7 +129,8 @@ namespace UI
 		textures.push_back(texture);
 
 		model = AModelFactory::createCustomModel();
-		model->addMesh("texture2d", vertices, indices, textures);
+		mesh = new AUIMesh("texture2d", vertices, indices, texture);
+		model->addMesh(*mesh);
 
 		renderProgram->setModel(model);
 	}

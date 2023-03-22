@@ -49,13 +49,6 @@ void Camera::init(float fov, float aspect, float near, float far)
 	this->f_bottom = -this->f_top;
 	this->f_left = -this->f_right;
 
-	orthogonal = Mat4(
-		2.0f / (right - left), 0, 0, -(right + left) / (right - left),
-		0, 2.0f / (top - bottom), 0, -(top + bottom) / (top - bottom),
-		0, 0, 1, 0,
-		0, 0, 0, 1
-	);
-
 
 	float tanHalfFovy = tan(eye_fov / 2.0f);
 	perspective = Mat4(

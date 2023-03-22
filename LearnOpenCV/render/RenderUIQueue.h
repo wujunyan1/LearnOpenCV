@@ -17,16 +17,18 @@ namespace Render
 
 		~RenderUIQueue();
 
-		void Render();
+		virtual void Render(Core::Camera* camera);
 
 		void addRenderCanvas(UI::UICanvas* canvas);
 
-		void clear();
+		virtual void clear();
 
 	private:
 
 		// 激活的需要渲染的
 		std::vector<UI::UICanvas*>* activeRenderUI;
+
+		Math::Matrix4 ortho;
 	};
 
 

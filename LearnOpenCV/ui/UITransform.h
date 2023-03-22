@@ -83,10 +83,9 @@ namespace UI
 			localMat4 = rotateMat * localMat4;
 			localMat4 = Mat4::translate(m_realPosition) * localMat4;
 
+			matChanged = false;
 			updateLocalToWorldMat4();
 			updateWorldToLocalMat4();
-
-			matChanged = false;
 		}
 
 		void updateLocalToWorldMat4()
@@ -98,7 +97,7 @@ namespace UI
 				UITransform* parentTransform = parent->GetComponent<UITransform>();
 				if (parentTransform)
 				{
-					localToWorldMat4 = parentTransform->localToWorldMat4 * localMat4;
+					localToWorldMat4 = parentTransform->GetLocalToWorldMat4() * localMat4;
 				}
 			}
 
@@ -162,7 +161,7 @@ namespace UI
 
 		Mat4 rotateMat = Mat4();
 
-		bool matChanged = false;
+		bool matChanged = true;
 
 		Math::UVector2 rect_position = {{0.5, 0.5}, {0.5, 0.5}};
 		Math::UVector2 rect_size = { {0, 100}, {0, 100} };

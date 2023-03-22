@@ -21,6 +21,7 @@ namespace Render
 		virtual void setMat4(const std::string& name, Math::Matrix4& mat) {};
 		virtual void setTexture(const std::string& name, Texture& texture) {};
 
+		virtual const void* getData(const std::string& name) { return nullptr; };
 	protected:
 
 	};

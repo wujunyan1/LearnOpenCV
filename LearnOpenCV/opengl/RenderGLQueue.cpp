@@ -48,11 +48,11 @@ namespace OpenGL
 		// …Ë÷√shader  Ù–‘
 		shaderProgram->RenderMaterial(material);
 		// ‰÷»ævao
-		std::vector<Core::AMesh>& ameshs = _model->getMeshs();
+		std::vector<Core::ABaseMesh>& ameshs = _model->getMeshs();
 
 		for (size_t i = 0; i < ameshs.size(); i++)
 		{
-			Core::AMesh& mesh = ameshs[i];
+			Core::ABaseMesh& mesh = ameshs[i];
 			mesh.getRenderMesh()->Render(shaderProgram);
 		}
 	}

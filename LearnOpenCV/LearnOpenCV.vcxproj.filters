@@ -291,6 +291,12 @@
     <ClInclude Include="render\RenderUIQueue.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="meshModel\ABaseMesh.h">
+      <Filter>meshModel</Filter>
+    </ClInclude>
+    <ClInclude Include="meshModel\AUIMesh.h">
+      <Filter>meshModel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -523,6 +529,12 @@
     </ClCompile>
     <ClCompile Include="render\RenderUIQueue.cpp">
       <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="meshModel\ABaseMesh.cpp">
+      <Filter>meshModel</Filter>
+    </ClCompile>
+    <ClCompile Include="meshModel\AUIMesh.cpp">
+      <Filter>meshModel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

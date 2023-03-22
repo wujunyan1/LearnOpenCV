@@ -206,8 +206,10 @@
     <ClInclude Include="math\Vector2T.h" />
     <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector4.h" />
+    <ClInclude Include="meshModel\ABaseMesh.h" />
     <ClInclude Include="meshModel\AMesh.h" />
     <ClInclude Include="meshModel\AModel.h" />
+    <ClInclude Include="meshModel\AUIMesh.h" />
     <ClInclude Include="opengl\GLShader.h" />
     <ClInclude Include="opengl\GLShaderManager.h" />
     <ClInclude Include="opengl\MaterialGL.h" />
@@ -285,8 +287,10 @@
     <ClCompile Include="math\Vector2T.cpp" />
     <ClCompile Include="math\Vector3.cpp" />
     <ClCompile Include="math\Vector4.cpp" />
+    <ClCompile Include="meshModel\ABaseMesh.cpp" />
     <ClCompile Include="meshModel\AMesh.cpp" />
     <ClCompile Include="meshModel\AModel.cpp" />
+    <ClCompile Include="meshModel\AUIMesh.cpp" />
     <ClCompile Include="opengl\GLShader.cpp" />
     <ClCompile Include="opengl\GLShaderManager.cpp" />
     <ClCompile Include="opengl\MaterialGL.cpp" />

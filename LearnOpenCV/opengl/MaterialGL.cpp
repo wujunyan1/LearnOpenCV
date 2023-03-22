@@ -98,6 +98,7 @@ namespace OpenGL
     }
 
 
+
     void MaterialGL::testPrint(std::string pr)
     {
         const void* mat = nullptr;
@@ -139,5 +140,18 @@ namespace OpenGL
                 break;
             }
         }
+    }
+
+
+    const void* OpenGL::MaterialGL::getData(const std::string& name)
+    {
+        for (auto i : m_ShaderParams)
+        {
+            if (i.name == name)
+            {
+                return i.data.getDataPtr();
+            }
+        }
+        return nullptr;
     }
 }

@@ -21,6 +21,7 @@
 #include "../ui/UICanvas.h"
 #include "../ui/UIImage.h"
 #include "../ui/UITransform.h"
+#include "../render/RenderUIQueue.h"
 
 using namespace Core;
 
@@ -64,10 +65,11 @@ void Game::LoadMainScene()
 	Render::CreateShader("testShader", "/asserts/shaders/testShader.vert", "/asserts/shaders/testShader.frag");
 	Render::CreateShader("testBlendShader", "/asserts/shaders/testBlendShader.vert", "/asserts/shaders/testBlendShader.frag");
 	Render::CreateShader("skyBoxShader", "/asserts/shaders/skyBoxShader.vert", "/asserts/shaders/skyBoxShader.frag");
+	Render::CreateShader("uiShader", "/asserts/shaders/uiShader.vert", "/asserts/shaders/uiShader.frag");
 
 	Render::AddCustomRenderQueue("RenderOpaqueQueue", Core::new_class<Logic::RenderOpaqueQueue>());
 	Render::AddCustomRenderQueue("DefaultRenderQueue", Core::new_class<Render::RenderQueue>());
-	Render::AddCustomRenderQueue("RenderUIQueue", Core::new_class<Logic::RenderOpaqueQueue>());
+	Render::AddCustomRenderQueue("RenderUIQueue", Core::new_class<Render::RenderUIQueue>());
 
 	Scene* root = SceneManager::GetInstance()->GetCurrScene();
 	/*scene->PreUpdate();
@@ -283,4 +285,6 @@ void Game::LoadMainScene()
 	Object* showUI = ObjectManager::createNewObject();
 	UI::UITransform* uiTransform = showUI->AddComponent<UI::UITransform>();
 	UI::UIImage* uiImage = showUI->AddComponent<UI::UIImage>();
+
+	uiBase->AddChild(showUI);
 }

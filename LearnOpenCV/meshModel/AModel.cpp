@@ -11,10 +11,10 @@ AModel::AModel()
 
 AMesh& Core::AModel::addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
 {
-	return addMesh(Math::stringFormat("%d|%d", modelId, meshes.size()), vertices, indices, textures);
+	return (AMesh&)addMesh(Math::stringFormat("%d|%d", modelId, meshes.size()), vertices, indices, textures);
 }
 
-AMesh& Core::AModel::addMesh(std::string name, std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
+ABaseMesh& Core::AModel::addMesh(std::string name, std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
 {
 	meshes.push_back(AMesh(name, vertices, indices, textures));
 
@@ -22,19 +22,29 @@ AMesh& Core::AModel::addMesh(std::string name, std::vector<AMesh::Vertex> vertic
 	return *(--meshes.end());
 }
 
+ABaseMesh& Core::AModel::addMesh(ABaseMesh mesh)
+{
+	meshes.push_back(mesh);
+	return *(--meshes.end());
+}
+
 void Core::AModel::updateObb()
 {
 	std::vector<Math::Vector3> points;
 
-	std::vector<Core::AMesh>& ameshs = getMeshs();
+	std::vector<Core::ABaseMesh>& ameshs = getMeshs();
 
 	for (size_t i = 0; i < ameshs.size(); i++)
 	{
-		Core::AMesh& mesh = ameshs[i];
-		for (size_t j = 0; j < mesh.vertices.size(); j++)
+		Core::ABaseMesh& mesh = ameshs[i];
+		if (mesh.getMeshType() == AMesh::MeshType)
 		{
-			Core::AMesh::Vertex& vertice = mesh.vertices[j];
-			points.push_back(vertice.Position);
+			Core::AMesh& amesh = (Core::AMesh&)mesh;
+			for (size_t j = 0; j < amesh.vertices.size(); j++)
+			{
+				Core::AMesh::Vertex& vertice = amesh.vertices[j];
+				points.push_back(vertice.Position);
+			}
 		}
 	}
 
