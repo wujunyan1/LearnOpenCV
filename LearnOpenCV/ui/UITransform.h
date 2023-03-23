@@ -29,6 +29,24 @@ namespace UI
 			matChanged = true;
 		}
 
+		Vector2 GetPivot() {
+			return pivot;
+		}
+
+		void SetPivot(Vector2 v) {
+			pivot = v;
+			matChanged = true;
+		}
+
+		UVector2 GetSize() {
+			return rect_size;
+		}
+
+		void SetSize(UVector2 v) {
+			rect_size = v;
+			matChanged = true;
+		}
+
 		void SetScale(Vector3 v) {
 			m_scale = v;
 			matChanged = true;
@@ -47,6 +65,14 @@ namespace UI
 
 		Vector3 GetRotate() {
 			return m_rotate;
+		}
+
+		Mat4& GetRenderModelMat4()
+		{
+			if (matChanged) {
+				UpdateLocalMat4();
+			}
+			return renderModelMat4;
 		}
 
 		Mat4& GetLocalToWorldMat4() {
@@ -77,15 +103,24 @@ namespace UI
 		void UpdateRealPosition();
 
 		void UpdateLocalMat4() {
+			UpdateRealPosition();
+
 			// 缩放 锚点平移 旋转 平移
+
 			localMat4 = Mat4::scale(Vector3(m_scale.x, m_scale.y, 1));
-			localMat4 = Mat4::translate(m_realSize * pivot) * localMat4;
+			localMat4.printMat4();
+			localMat4 = Mat4::translate(-Vector3(m_realSize * pivot, 0)) * localMat4;
+			localMat4.printMat4();
 			localMat4 = rotateMat * localMat4;
+			localMat4.printMat4();
 			localMat4 = Mat4::translate(m_realPosition) * localMat4;
+			localMat4.printMat4();
 
 			matChanged = false;
 			updateLocalToWorldMat4();
 			updateWorldToLocalMat4();
+
+			renderModelMat4 = localToWorldMat4 * Mat4::scale(Vector3(m_realSize.x, m_realSize.y, 1));
 		}
 
 		void updateLocalToWorldMat4()
@@ -160,6 +195,8 @@ namespace UI
 		Mat4 worldToLocalMat4 = Mat4();
 
 		Mat4 rotateMat = Mat4();
+
+		Mat4 renderModelMat4 = Mat4();
 
 		bool matChanged = true;
 

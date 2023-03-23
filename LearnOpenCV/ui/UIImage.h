@@ -41,6 +41,6 @@ namespace UI
 		Render::RenderProgram* renderProgram = NULL;
 
 		AModel* model = NULL;
-		AUIMesh* mesh = NULL;
+		Render::Texture texture;
 	};
 }

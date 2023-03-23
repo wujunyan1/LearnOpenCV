@@ -1,5 +1,6 @@
 #include "RenderMesh.h"
 #include "../opengl/ShaderGLProgram.h"
+#include "../opengl/MaterialGL.h"
 
 namespace Render
 {
@@ -37,7 +38,7 @@ namespace Render
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, dataSize, data, GL_STATIC_DRAW);
 	}
 
-	void RenderMesh::Render(Render::ShaderProgram* program)
+	void RenderMesh::Render(Render::ShaderProgram* program, Render::Material* material)
 	{
 		/*if (m_name != "0|Visor")
 		{
@@ -55,6 +56,19 @@ namespace Render
 		unsigned int heightIndex = 0;
 
 		GLShader* shader = p->GetShaderObj();
+
+		OpenGL::MaterialGL* materialGl = (OpenGL::MaterialGL*)material;
+		std::vector<Render::Texture>& textures = materialGl->getShaderTextures();
+		int index = 0;
+		for (Render::Texture texture : textures)
+		{
+			int textureIndex = index++;
+			//texture.image->use(textureIndex);
+			glActiveTexture(Core::Image::textureIndex[textureIndex]);
+			glBindTexture(GL_TEXTURE_2D, texture.image->getTextureId());
+			shader->setTexture(texture.uniformName, textureIndex);
+		}
+
 		for (unsigned int i = 0; i < images.size(); i++)
 		{
 			Render::Texture& texture = images[i];
@@ -75,9 +89,9 @@ namespace Render
 			std::string uniformName = texture.uniformName; // Math::stringFormat(texture.uniformName, num);
 			//printf("RenderGLMesh::Render %d %s %s \n", i, uniformName.c_str(), texture.image->getName().c_str());
 
-			glActiveTexture(Core::Image::textureIndex[i]);
+			glActiveTexture(Core::Image::textureIndex[i + index]);
 			glBindTexture(GL_TEXTURE_2D, texture.image->getTextureId());
-			shader->setTexture(uniformName, i);
+			shader->setTexture(uniformName, i + index);
 			//glActiveTexture(Core::Image::textureIndex[i]);
 			//texture.image->use(i);
 			//glBindTexture(GL_TEXTURE_2D, texture.image->getTextureId());

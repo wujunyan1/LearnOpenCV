@@ -3,14 +3,12 @@
 
 using namespace Core;
 
-Core::AUIMesh::AUIMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices, Render::Texture textures):ABaseMesh(uid)
+Core::AUIMesh::AUIMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices):ABaseMesh(uid)
 {
 	printf("add mesh %s \n", uid.c_str());
 	id = uid;
 	this->vertices = vertices;
 	this->indices = indices;
-	this->textures.clear();
-	this->textures.push_back(textures);
 
 	mesh = Render::CreateRenderMesh(id);
 	bindRender();
@@ -29,6 +27,4 @@ void Core::AUIMesh::bindRender()
 
 	// weights
 	//mesh->VertexAttribPointer(6, 4, Render::ShaderParamType::SPT_VEC4, false, sizeof(Vertex), offsetof(Vertex, m_Weights));
-
-	mesh->SetImage(textures);
 }

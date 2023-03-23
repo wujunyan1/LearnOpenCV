@@ -19,16 +19,9 @@ namespace Core
 		};
 
 	public:
-		AUIMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices, Render::Texture textures);
+		AUIMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices);
 
 		virtual int getMeshType() { return AUIMesh::MeshType; };
-
-		void updateTexture(Render::Texture textures)
-		{
-			this->textures.clear();
-			this->textures.push_back(textures);
-			bindRender();
-		}
 
 		Render::RenderMesh* getRenderMesh() 
 		{
@@ -45,7 +38,6 @@ namespace Core
 		// mesh Data
 		std::vector<Vertex>       vertices;
 		std::vector<unsigned int> indices;
-		std::vector<Render::Texture> textures;
 
 		Render::RenderMesh* mesh;
 

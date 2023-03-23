@@ -7,6 +7,7 @@
 #include "Texture.h"
 #include "../opengl/OpenGLCore.h"
 #include "../opengl/GLShader.h"
+#include "../render/Material.h"
 
 namespace Render
 {
@@ -31,7 +32,7 @@ namespace Render
 		};
 		void BindRender(GLShader* shader);
 
-		void Render(Render::ShaderProgram* program);
+		void Render(Render::ShaderProgram* program, Render::Material* material);
 	private:
 		unsigned int ebo;
 		unsigned int vbo;

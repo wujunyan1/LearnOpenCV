@@ -31,8 +31,8 @@ namespace Core
 
 			//GL_BLEND
 
-			glBindTexture(GL_TEXTURE_2D, textureID);
 			glActiveTexture(Image::textureIndex[textureIndex]);
+			glBindTexture(GL_TEXTURE_2D, textureID);
 			//glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND);			//贴图模式为混合
 		}
 

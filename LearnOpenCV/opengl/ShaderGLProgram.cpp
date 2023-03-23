@@ -100,7 +100,6 @@ namespace OpenGL
 				break;
 			}
 		}
-
 	}
 
 	void ShaderGLProgram::SetVSAndPS(std::string vs, std::string ps)

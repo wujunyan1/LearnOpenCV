@@ -14,6 +14,17 @@ namespace UI
 		});
 	}
 
+	void UICanvas::Bind()
+	{
+		UITransform* transform = getObject()->GetComponent<UITransform>();
+		/*Math::Vector2T<int> windowSize = GlobalDictionary::getRealWindowSize();
+		transform->m_realSize = { (float)windowSize.x, (float)windowSize.y };*/
+		transform->SetPosition({ { 0, 0 }, { 0, 0 } });
+		transform->SetPivot({ 0, 0 });
+		transform->SetSize({ {1, 0}, {1, 0} });
+		transform->UpdateLocalMat4();
+	}
+
 	void UICanvas::Render()
 	{
 

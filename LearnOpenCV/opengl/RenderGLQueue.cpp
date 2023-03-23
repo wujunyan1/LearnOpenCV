@@ -53,7 +53,7 @@ namespace OpenGL
 		for (size_t i = 0; i < ameshs.size(); i++)
 		{
 			Core::ABaseMesh& mesh = ameshs[i];
-			mesh.getRenderMesh()->Render(shaderProgram);
+			mesh.getRenderMesh()->Render(shaderProgram, material);
 		}
 	}
 
@@ -61,7 +61,7 @@ namespace OpenGL
 	{
 		// ÉèÖÃshader ÊôÐÔ
 		shaderProgram->RenderMaterial(material);
-		mesh->Render(shaderProgram);
+		mesh->Render(shaderProgram, material);
 	}
 
 

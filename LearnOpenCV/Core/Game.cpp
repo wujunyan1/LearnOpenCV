@@ -286,5 +286,8 @@ void Game::LoadMainScene()
 	UI::UITransform* uiTransform = showUI->AddComponent<UI::UITransform>();
 	UI::UIImage* uiImage = showUI->AddComponent<UI::UIImage>();
 
+	uiTransform->SetPosition({ {1, -100} ,{1, 0} });
+	uiTransform->SetSize({ {0, 200}, {0, 100} });
+
 	uiBase->AddChild(showUI);
 }

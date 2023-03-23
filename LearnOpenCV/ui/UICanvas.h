@@ -14,6 +14,8 @@ namespace UI
 
 		UICanvas();
 
+		virtual void Bind();
+
 		virtual void Render();
 	private:
 

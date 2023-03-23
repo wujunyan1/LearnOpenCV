@@ -45,4 +45,8 @@ void UI::UITransform::UpdateRealPosition()
 	float y = parentSize.y * rect_position.y.x + rect_position.y.y;
 	m_realPosition.x = x;
 	m_realPosition.y = y;
+
+	printf("m_realSize %f %f \n", m_realSize.x, m_realSize.y);
+	printf("m_realPosition %f %f \n", m_realPosition.x, m_realPosition.y);
+
 }
