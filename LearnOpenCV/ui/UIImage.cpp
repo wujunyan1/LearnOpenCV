@@ -131,13 +131,14 @@ namespace UI
 		indices.push_back(1);
 		indices.push_back(3);
 
+		AUIMesh mesh = AUIMesh("texture2d", vertices, indices);
+
 		texture.image = ImageLoad::LoadImage("/asserts/images/blending_transparent_window.png");
 		texture.imageName = "blending_transparent_window.png";
 		texture.uniformName = "texture2d";
 		renderProgram->getMaterial()->setTexture("texture2d", texture);
 
 		model = AModelFactory::createCustomModel();
-		AUIMesh mesh = AUIMesh("texture2d", vertices, indices);
 		model->addMesh(mesh);
 
 		renderProgram->setModel(model);

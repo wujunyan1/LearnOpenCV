@@ -56,12 +56,12 @@ namespace Render
 
 	RenderMesh* CreateRenderMesh(std::string name)
 	{
-		return RenderMeshManager::createNewRenderMesh(name);
+		return RenderMesh::createNewRenderMesh(name);
 	}
 
 	RenderMesh* GetRenderMesh(std::string name)
 	{
-		return RenderMeshManager::getRenderMesh(name);
+		return RenderMesh::getRenderMesh(name);
 	}
 
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath)

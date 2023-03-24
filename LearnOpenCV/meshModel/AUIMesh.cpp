@@ -3,6 +3,11 @@
 
 using namespace Core;
 
+Core::AUIMesh::AUIMesh(std::string uid) : ABaseMesh(uid)
+{
+
+}
+
 Core::AUIMesh::AUIMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices):ABaseMesh(uid)
 {
 	printf("add mesh %s \n", uid.c_str());
@@ -27,4 +32,40 @@ void Core::AUIMesh::bindRender()
 
 	// weights
 	//mesh->VertexAttribPointer(6, 4, Render::ShaderParamType::SPT_VEC4, false, sizeof(Vertex), offsetof(Vertex, m_Weights));
+}
+
+void Core::AUIMesh::initEngine()
+{
+	std::vector<AUIMesh::Vertex> vertices;
+	std::vector<unsigned int> indices;
+
+	AUIMesh::Vertex vertex1;
+	//vertex1.Position = Math::Vector3(-0.5f, -0.5f, 0);
+	vertex1.Position = Math::Vector3(0.0f, 0.0f, 0);
+	vertex1.TexCoords = Math::Vector2(0, 0);
+	vertices.push_back(vertex1);
+
+	AUIMesh::Vertex vertex2;
+	vertex2.Position = Math::Vector3(1.0f, 0.0f, 0);
+	vertex2.TexCoords = Math::Vector2(1, 0);
+	vertices.push_back(vertex2);
+
+	AUIMesh::Vertex vertex3;
+	vertex3.Position = Math::Vector3(0.0f, 1.0f, 0);
+	vertex3.TexCoords = Math::Vector2(0, 1);
+	vertices.push_back(vertex3);
+
+	AUIMesh::Vertex vertex4;
+	vertex4.Position = Math::Vector3(1.0f, 1.0f, 0);
+	vertex4.TexCoords = Math::Vector2(1, 1);
+	vertices.push_back(vertex4);
+
+	indices.push_back(0);
+	indices.push_back(1);
+	indices.push_back(2);
+	indices.push_back(2);
+	indices.push_back(1);
+	indices.push_back(3);
+
+	BaseAUIMesh = AUIMesh("texture2d", vertices, indices);
 }

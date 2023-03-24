@@ -297,6 +297,12 @@
     <ClInclude Include="meshModel\AUIMesh.h">
       <Filter>meshModel</Filter>
     </ClInclude>
+    <ClInclude Include="render\RenderBaseMesh.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="render\RenderUIMesh.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -535,6 +541,12 @@
     </ClCompile>
     <ClCompile Include="meshModel\AUIMesh.cpp">
       <Filter>meshModel</Filter>
+    </ClCompile>
+    <ClCompile Include="render\RenderBaseMesh.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="render\RenderUIMesh.cpp">
+      <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

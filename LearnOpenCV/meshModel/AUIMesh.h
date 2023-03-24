@@ -19,6 +19,7 @@ namespace Core
 		};
 
 	public:
+		AUIMesh(std::string uid = "");
 		AUIMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices);
 
 		virtual int getMeshType() { return AUIMesh::MeshType; };
@@ -32,6 +33,12 @@ namespace Core
 
 		void bindRender();
 
+		static void initEngine();
+
+		static AUIMesh& getBaseAUIMesh() {
+			return BaseAUIMesh;
+		};
+
 	private:
 		std::string id;
 
@@ -43,5 +50,8 @@ namespace Core
 
 	public:
 		const static int MeshType = 2;
+
+	private:
+		static AUIMesh BaseAUIMesh;
 	};
 }

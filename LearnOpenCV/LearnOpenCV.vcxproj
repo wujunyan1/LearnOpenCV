@@ -219,6 +219,7 @@
     <ClInclude Include="opengl\ShaderGLProgram.h" />
     <ClInclude Include="render\BlendFunc.h" />
     <ClInclude Include="render\Material.h" />
+    <ClInclude Include="render\RenderBaseMesh.h" />
     <ClInclude Include="render\RenderLight.h" />
     <ClInclude Include="render\RenderMain.h" />
     <ClInclude Include="render\RenderMesh.h" />
@@ -226,6 +227,7 @@
     <ClInclude Include="render\RenderScene.h" />
     <ClInclude Include="render\RenderSkyBox.h" />
     <ClInclude Include="render\RenderStage.h" />
+    <ClInclude Include="render\RenderUIMesh.h" />
     <ClInclude Include="render\RenderUIQueue.h" />
     <ClInclude Include="render\ShaderProgram.h" />
     <ClInclude Include="render\Texture.h" />
@@ -300,6 +302,7 @@
     <ClCompile Include="opengl\ShaderGLProgram.cpp" />
     <ClCompile Include="render\BlendFunc.cpp" />
     <ClCompile Include="render\Material.cpp" />
+    <ClCompile Include="render\RenderBaseMesh.cpp" />
     <ClCompile Include="render\RenderLight.cpp" />
     <ClCompile Include="render\RenderMain.cpp" />
     <ClCompile Include="render\RenderMesh.cpp" />
@@ -307,6 +310,7 @@
     <ClCompile Include="render\RenderScene.cpp" />
     <ClCompile Include="render\RenderSkyBox.cpp" />
     <ClCompile Include="render\RenderStage.cpp" />
+    <ClCompile Include="render\RenderUIMesh.cpp" />
     <ClCompile Include="render\RenderUIQueue.cpp" />
     <ClCompile Include="render\ShaderProgram.cpp" />
     <ClCompile Include="render\Texture.cpp" />

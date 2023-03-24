@@ -13,13 +13,13 @@ namespace OpenGL
 
 	Render::RenderMesh* RenderGLProgram::createNewRenderMesh(std::string name)
 	{
-		Render::RenderMesh* mesh = Render::RenderMeshManager::createNewRenderMesh(name);
+		Render::RenderMesh* mesh = Render::RenderMesh::createNewRenderMesh(name);
 		return mesh;
 	}
 
 	Render::RenderMesh* RenderGLProgram::loadRenderMesh(std::string name, std::string path)
 	{
-		Render::RenderMesh* mesh = Render::RenderMeshManager::loadMeshFile(name, path);
+		Render::RenderMesh* mesh = Render::RenderMesh::loadMeshFile(name, path);
 		return mesh;
 	}
 
