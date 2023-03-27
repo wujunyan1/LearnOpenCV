@@ -29,15 +29,20 @@ namespace Core
 			return mesh;
 		};
 
+		static AUIMesh getBaseAUIMesh(std::string name) {
+			auto it = baseAUIMesh.find(name);
+			if (it != baseAUIMesh.end())
+			{
+				return it->second;
+			}
+			AUIMesh base = AUIMesh();
+			return base;
+		};
+
+		static void initEngine();
 	private:
 
 		void bindRender();
-
-		static void initEngine();
-
-		static AUIMesh& getBaseAUIMesh() {
-			return BaseAUIMesh;
-		};
 
 	private:
 		std::string id;
@@ -52,6 +57,6 @@ namespace Core
 		const static int MeshType = 2;
 
 	private:
-		static AUIMesh BaseAUIMesh;
+		static std::map<std::string, AUIMesh> baseAUIMesh;
 	};
 }

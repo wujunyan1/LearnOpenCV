@@ -80,7 +80,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>../opencv/build/include;$(IncludePath)</IncludePath>
+    <IncludePath>../opencv/build/include;../LearnOpenCV/libraries/freetype-2.13.0/include;$(IncludePath)</IncludePath>
     <LibraryPath>../packages/glfw.3.3.6/build/native/include/GLFW;../packages/glew.1.9.0.1/build/native/lib;../opencv/build/x64/vc14/lib;$(LibraryPath)</LibraryPath>
     <OutDir>../res</OutDir>
   </PropertyGroup>
@@ -128,8 +128,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>assimp-vc143-mtd.lib;zlibstaticd.lib;glew.lib;opengl32.lib;opencv_world454d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../packages/glew.1.9.0.1/build/native/lib/v110/x64/Debug/static;../LearnOpenCV/assimp/lib/Debug;../LearnOpenCV/contrib/zlib/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc143-mtd.lib;zlibstaticd.lib;glew.lib;opengl32.lib;opencv_world454d.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../packages/glew.1.9.0.1/build/native/lib/v110/x64/Debug/static;../LearnOpenCV/assimp/lib/Debug;../LearnOpenCV/contrib/zlib/Debug;../LearnOpenCV/include/freetype;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

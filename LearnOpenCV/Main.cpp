@@ -32,6 +32,7 @@ int main(int argc, char* argv[])
 	Render::CreateWindow(w, h, "Learn Shader");
 
 	Core::Game* game = Core::Game::GetInstance();
+	game->InitEngine();
 	game->LoadMainScene();
 
 	long time = Render::getCurrentRenderTime();

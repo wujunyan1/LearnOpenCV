@@ -27,6 +27,8 @@ namespace Core {
 
 		void LoadMainScene();
 
+		void InitEngine();
+
 	private:
 		static Game* instance;
 

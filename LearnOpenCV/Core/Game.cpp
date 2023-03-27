@@ -23,6 +23,8 @@
 #include "../ui/UITransform.h"
 #include "../render/RenderUIQueue.h"
 
+#include "../meshModel/AUIMesh.h"
+
 using namespace Core;
 
 Game* Game::instance = nullptr;
@@ -290,4 +292,9 @@ void Game::LoadMainScene()
 	uiTransform->SetSize({ {0, 200}, {0, 100} });
 
 	uiBase->AddChild(showUI);
+}
+
+void Core::Game::InitEngine()
+{
+	AUIMesh::initEngine();
 }

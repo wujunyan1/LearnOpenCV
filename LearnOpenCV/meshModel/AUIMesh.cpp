@@ -3,6 +3,8 @@
 
 using namespace Core;
 
+std::map<std::string, AUIMesh> AUIMesh::baseAUIMesh = std::map<std::string, AUIMesh>();
+
 Core::AUIMesh::AUIMesh(std::string uid) : ABaseMesh(uid)
 {
 
@@ -67,5 +69,5 @@ void Core::AUIMesh::initEngine()
 	indices.push_back(1);
 	indices.push_back(3);
 
-	BaseAUIMesh = AUIMesh("texture2d", vertices, indices);
+	baseAUIMesh.insert(std::pair<std::string, AUIMesh>("base", AUIMesh("texture2d", vertices, indices)));
 }
