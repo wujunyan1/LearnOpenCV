@@ -5,9 +5,9 @@
 
 namespace Render
 {
-	RenderFont::RenderFont(char cr)
+	RenderFont::RenderFont()
 	{
-
+		
 	}
 
 }

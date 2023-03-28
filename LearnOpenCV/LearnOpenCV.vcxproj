@@ -218,8 +218,10 @@
     <ClInclude Include="opengl\RenderGLQueue.h" />
     <ClInclude Include="opengl\ShaderGLProgram.h" />
     <ClInclude Include="render\BlendFunc.h" />
+    <ClInclude Include="render\font\FontManager.h" />
     <ClInclude Include="render\Material.h" />
     <ClInclude Include="render\RenderBaseMesh.h" />
+    <ClInclude Include="render\RenderFont.h" />
     <ClInclude Include="render\RenderLight.h" />
     <ClInclude Include="render\RenderMain.h" />
     <ClInclude Include="render\RenderMesh.h" />
@@ -301,8 +303,10 @@
     <ClCompile Include="opengl\RenderGLQueue.cpp" />
     <ClCompile Include="opengl\ShaderGLProgram.cpp" />
     <ClCompile Include="render\BlendFunc.cpp" />
+    <ClCompile Include="render\font\FontManager.cpp" />
     <ClCompile Include="render\Material.cpp" />
     <ClCompile Include="render\RenderBaseMesh.cpp" />
+    <ClCompile Include="render\RenderFont.cpp" />
     <ClCompile Include="render\RenderLight.cpp" />
     <ClCompile Include="render\RenderMain.cpp" />
     <ClCompile Include="render\RenderMesh.cpp" />

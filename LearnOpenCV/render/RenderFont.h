@@ -8,10 +8,13 @@
 
 namespace Render
 {
+	
 	class RenderFont
 	{
 	public:
-		RenderFont(char cr);
+
+	public:
+		RenderFont();
 	private:
 	};
 

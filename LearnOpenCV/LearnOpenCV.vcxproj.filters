@@ -46,6 +46,9 @@
     <Filter Include="event">
       <UniqueIdentifier>{7b226b3e-0118-4601-b6d0-b12573142f67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="render\font">
+      <UniqueIdentifier>{f5d15bc3-d674-4187-8cf7-d41ccd3d8950}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LearnOpenCV.h">
@@ -303,6 +306,12 @@
     <ClInclude Include="render\RenderUIMesh.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="render\RenderFont.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="render\font\FontManager.h">
+      <Filter>render\font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -547,6 +556,12 @@
     </ClCompile>
     <ClCompile Include="render\RenderUIMesh.cpp">
       <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="render\RenderFont.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="render\font\FontManager.cpp">
+      <Filter>render\font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
