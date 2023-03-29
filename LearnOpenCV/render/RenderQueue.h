@@ -19,8 +19,8 @@ namespace Render
 	public:
 		RenderProgram();
 
-		virtual RenderMesh* createNewRenderMesh(std::string name = Math::stringFormat("renderMesh|%d", Math::getUid())) { return NULL; };
-		virtual RenderMesh* loadRenderMesh(std::string name, std::string path = "") { return NULL; };
+		virtual RenderMesh* createNewRenderMesh(std::string name = Math::stringFormat("renderMesh|%d", Math::getUid()));
+		virtual RenderMesh* loadRenderMesh(std::string name, std::string path = "");
 
 		void setModel(Core::AModel* model) 
 		{
@@ -33,9 +33,9 @@ namespace Render
 		void setMaterialName(const std::string name) { materialName = name; };
 		std::string& getMaterialName() { return materialName; };
 
-		virtual void setShader(const std::string& shaderName) {};
+		virtual void setShader(const std::string& shaderName);
 
-		virtual void Render() {};
+		virtual void Render();
 
 		void setRenderQueueName(const std::string renderQueueName) { renderQueue = renderQueueName; };
 		std::string& getRenderQueueName() { return renderQueue; };

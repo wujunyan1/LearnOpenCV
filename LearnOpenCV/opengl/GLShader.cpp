@@ -1,6 +1,6 @@
 #include "GLShader.h"
 #include "../file/FilePathManager.h"
-#include "OpenGLMain.h"
+#include "../render/RenderMain.h"
 
 GLShader::GLShader(unsigned int vertex, unsigned int  fragment)
 {

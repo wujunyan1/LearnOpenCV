@@ -212,16 +212,13 @@
     <ClInclude Include="meshModel\AUIMesh.h" />
     <ClInclude Include="opengl\GLShader.h" />
     <ClInclude Include="opengl\GLShaderManager.h" />
-    <ClInclude Include="opengl\MaterialGL.h" />
     <ClInclude Include="opengl\OpenGLCore.h" />
-    <ClInclude Include="opengl\OpenGLMain.h" />
-    <ClInclude Include="opengl\RenderGLQueue.h" />
-    <ClInclude Include="opengl\ShaderGLProgram.h" />
     <ClInclude Include="render\BlendFunc.h" />
     <ClInclude Include="render\font\FontManager.h" />
     <ClInclude Include="render\Material.h" />
     <ClInclude Include="render\RenderBaseMesh.h" />
     <ClInclude Include="render\RenderFont.h" />
+    <ClInclude Include="render\RenderFontMesh.h" />
     <ClInclude Include="render\RenderLight.h" />
     <ClInclude Include="render\RenderMain.h" />
     <ClInclude Include="render\RenderMesh.h" />
@@ -234,6 +231,7 @@
     <ClInclude Include="render\ShaderProgram.h" />
     <ClInclude Include="render\Texture.h" />
     <ClInclude Include="ui\UICanvas.h" />
+    <ClInclude Include="ui\UIFont.h" />
     <ClInclude Include="ui\UIImage.h" />
     <ClInclude Include="ui\UITransform.h" />
   </ItemGroup>
@@ -297,16 +295,13 @@
     <ClCompile Include="meshModel\AUIMesh.cpp" />
     <ClCompile Include="opengl\GLShader.cpp" />
     <ClCompile Include="opengl\GLShaderManager.cpp" />
-    <ClCompile Include="opengl\MaterialGL.cpp" />
     <ClCompile Include="opengl\OpenGLCore.cpp" />
-    <ClCompile Include="opengl\OpenGLMain.cpp" />
-    <ClCompile Include="opengl\RenderGLQueue.cpp" />
-    <ClCompile Include="opengl\ShaderGLProgram.cpp" />
     <ClCompile Include="render\BlendFunc.cpp" />
     <ClCompile Include="render\font\FontManager.cpp" />
     <ClCompile Include="render\Material.cpp" />
     <ClCompile Include="render\RenderBaseMesh.cpp" />
     <ClCompile Include="render\RenderFont.cpp" />
+    <ClCompile Include="render\RenderFontMesh.cpp" />
     <ClCompile Include="render\RenderLight.cpp" />
     <ClCompile Include="render\RenderMain.cpp" />
     <ClCompile Include="render\RenderMesh.cpp" />
@@ -319,6 +314,7 @@
     <ClCompile Include="render\ShaderProgram.cpp" />
     <ClCompile Include="render\Texture.cpp" />
     <ClCompile Include="ui\UICanvas.cpp" />
+    <ClCompile Include="ui\UIFont.cpp" />
     <ClCompile Include="ui\UIImage.cpp" />
     <ClCompile Include="ui\UITransform.cpp" />
   </ItemGroup>

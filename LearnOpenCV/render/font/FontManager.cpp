@@ -1,9 +1,6 @@
 #include "FontManager.h"
 #include "../../file/FilePathManager.h"
 
-#include <ft2build.h>
-#include FT_FREETYPE_H 
-
 namespace Render
 {
 	FontSource::FontSource(std::string font)
@@ -52,11 +49,16 @@ namespace Render
             // 储存字符供之后使用
             Character character = {
                 texture,
-                {face->glyph->bitmap.width, face->glyph->bitmap.rows},
+                Math::Vector2T<unsigned int>(face->glyph->bitmap.width, face->glyph->bitmap.rows),
                 {face->glyph->bitmap_left, face->glyph->bitmap_top},
                 face->glyph->advance.x
             };
             Characters.insert(std::pair<char, Character>(c, character));
+
+            if (textureBuff)
+            {
+                
+            }
         }
 	}
 
@@ -110,6 +112,10 @@ namespace Render
         Characters.insert(std::pair<char, Character>(character, characterResult));
 
         return characterResult;
+    }
+
+    void FontSource::updateCharacterTexture()
+    {
     }
 
 

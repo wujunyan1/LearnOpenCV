@@ -2,21 +2,10 @@
 
 #include <map>
 #include "../math/Math.h"
+#include "../opengl/GLShader.h"
 
 namespace Render
 {
-	// 支持的着色器参数类型
-	enum class ShaderParamType
-	{
-		SPT_UNKNOWN = 0,
-		SPT_INT,
-		SPT_FLOAT,
-		SPT_VEC2,
-		SPT_VEC3,
-		SPT_VEC4,
-		SPT_MAT4,
-		SPT_TEXTURE,
-	};
 
 	class Material;
 
@@ -53,7 +42,7 @@ namespace Render
 
 		ShaderProgram(unsigned int shaderId): shader(shaderId) {};
 
-		virtual void RenderMaterial(Material* material) {};
+		virtual void RenderMaterial(Material* material);
 
 		bool operator == (const ShaderProgram& rhs)
 		{
@@ -70,16 +59,33 @@ namespace Render
 			return shader;
 		}
 
-		virtual void SetVSAndPS(std::string vs, std::string ps) {};
+		virtual void SetVSAndPS(std::string vs, std::string ps);
 
-		virtual void Use() {};
+		virtual void Use();
 
-		virtual void setMat4(const std::string& name, Math::Matrix4& mat) {};
+		virtual void setMat4(const std::string& name, Math::Matrix4& mat);
+
+		GLShader* GetShaderObj();
+
+		static ShaderProgram* GetShaderProgram(const std::string& shaderName);
+
+	private:
+		bool checkSameParams(std::string& name, const void* data);
 
 	protected:
 
 		// 绑定的shader
 		unsigned int shader;
+
+	private:
+
+		std::string shaderName;
+
+		// 当前的 shader参数
+		std::map<std::string, const void*> m_currParams;
+
+	private:
+		static std::map<std::string, ShaderProgram*>* programs;
 	};
 
 }

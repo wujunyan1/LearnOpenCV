@@ -6,8 +6,6 @@
 #include "../math/Vector4.h"
 #include "../math/Vector3.h"
 
-// #include "../opengl/MaterialGL.h"
-
 using namespace Core;
 
 Model::Model()

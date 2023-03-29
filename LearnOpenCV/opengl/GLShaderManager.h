@@ -3,7 +3,7 @@
 #include <map>
 #include "GLShader.h"
 
-namespace OpenGL
+namespace Render
 {
 	// Ä³¸öShaderäÖÈ¾
 	class GLShaderManager

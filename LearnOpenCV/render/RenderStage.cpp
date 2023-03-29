@@ -1,6 +1,5 @@
 #include "RenderStage.h"
 #include "RenderQueue.h"
-#include "../opengl/OpenGLMain.h"
 #include "../Core/Object.h"
 #include "../Core/SkyBox.h"
 #include "RenderSkyBox.h"

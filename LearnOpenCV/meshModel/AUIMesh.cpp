@@ -1,9 +1,10 @@
 #include "AUIMesh.h"
 #include "../render/RenderMain.h"
+#include "../render/RenderUIMesh.h"
 
 using namespace Core;
 
-std::map<std::string, AUIMesh> AUIMesh::baseAUIMesh = std::map<std::string, AUIMesh>();
+std::map<std::string, AUIMesh*> AUIMesh::baseAUIMesh = std::map<std::string, AUIMesh*>();
 
 Core::AUIMesh::AUIMesh(std::string uid) : ABaseMesh(uid)
 {
@@ -17,8 +18,36 @@ Core::AUIMesh::AUIMesh(std::string uid, std::vector<Vertex> vertices, std::vecto
 	this->vertices = vertices;
 	this->indices = indices;
 
-	mesh = Render::CreateRenderMesh(id);
+	mesh = new Render::RenderUIMesh(uid);
 	bindRender();
+}
+
+Core::AUIMesh::~AUIMesh()
+{
+	if (mesh)
+	{
+		delete mesh;
+		mesh = nullptr;
+	}
+}
+
+void Core::AUIMesh::updateMesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices)
+{
+	this->vertices = vertices;
+	this->indices = indices;
+	if (mesh)
+	{
+		delete mesh;
+		mesh = nullptr;
+	}
+	mesh = new Render::RenderUIMesh(id);
+	bindRender();
+}
+
+AUIMesh* Core::AUIMesh::clone()
+{
+	AUIMesh* clone = new AUIMesh(id, vertices, indices);
+	return clone;
 }
 
 void Core::AUIMesh::bindRender()
@@ -69,5 +98,5 @@ void Core::AUIMesh::initEngine()
 	indices.push_back(1);
 	indices.push_back(3);
 
-	baseAUIMesh.insert(std::pair<std::string, AUIMesh>("base", AUIMesh("texture2d", vertices, indices)));
+	baseAUIMesh.insert(std::pair<std::string, AUIMesh*>("base", new AUIMesh("texture2d", vertices, indices)));
 }

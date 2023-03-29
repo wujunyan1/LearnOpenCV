@@ -1,7 +1,7 @@
 #include "RenderSkyBox.h"
 #include "../opengl/GLShaderManager.h"
 
-#include "../opengl/OpenGLMain.h"
+#include "../opengl/OpenGLCore.h"
 
 using namespace Render;
 
@@ -9,7 +9,7 @@ using namespace Render;
 
 Render::RenderSkyBox::RenderSkyBox()
 {
-	skyboxShader = OpenGL::GLShaderManager::Instance()->GetShaderObj("skyBoxShader");
+	skyboxShader = Render::GLShaderManager::Instance()->GetShaderObj("skyBoxShader");
 
 	GL_GET_ERROR(glGenVertexArrays(1, &skyboxVAO));
 	GL_GET_ERROR(glGenBuffers(1, &skyboxVBO));
@@ -23,7 +23,7 @@ Render::RenderSkyBox::RenderSkyBox()
 	GL_GET_ERROR(glBufferData(GL_ELEMENT_ARRAY_BUFFER, 36 * sizeof(unsigned int), skyboxIndices, GL_STATIC_DRAW));
 
 	GL_GET_ERROR(glEnableVertexAttribArray(0));
-	GL_GET_ERROR(glVertexAttribPointer(0, 3, OpenGL::GET_OPENGL_TYPE(Render::ShaderParamType::SPT_VEC3), GL_FALSE, 3 * sizeof(float), (void*)0));
+	GL_GET_ERROR(glVertexAttribPointer(0, 3, Render::GET_OPENGL_TYPE(Render::ShaderParamType::SPT_VEC3), GL_FALSE, 3 * sizeof(float), (void*)0));
 }
 
 RenderSkyBox::~RenderSkyBox()

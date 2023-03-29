@@ -1,6 +1,5 @@
 #include "RenderBaseMesh.h"
-#include "../opengl/ShaderGLProgram.h"
-#include "../opengl/MaterialGL.h"
+#include "../render/Material.h"
 
 namespace Render
 {
@@ -31,7 +30,7 @@ namespace Render
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 		GLboolean bl = b ? GL_TRUE : GL_FALSE;
 		glEnableVertexAttribArray(passageway);
-		glVertexAttribPointer(passageway, dataSize, OpenGL::GET_OPENGL_TYPE(dataType), bl, delaySize, (void*)startIndex);
+		glVertexAttribPointer(passageway, dataSize, Render::GET_OPENGL_TYPE(dataType), bl, delaySize, (void*)startIndex);
 	}
 
 	void RenderBaseMesh::BindElementBufferData(size_t dataSize, void* data)
@@ -50,18 +49,15 @@ namespace Render
 
 		glBindVertexArray(tvao);
 
-		OpenGL::ShaderGLProgram* p = (OpenGL::ShaderGLProgram*)program;
-
 		unsigned int diffuseIndex = 0;
 		unsigned int ambientIndex = 0;
 		unsigned int specularIndex = 0;
 		unsigned int normalIndex = 0;
 		unsigned int heightIndex = 0;
 
-		GLShader* shader = p->GetShaderObj();
+		GLShader* shader = program->GetShaderObj();
 
-		OpenGL::MaterialGL* materialGl = (OpenGL::MaterialGL*)material;
-		std::vector<Render::Texture>& textures = materialGl->getShaderTextures();
+		std::vector<Render::Texture>& textures = material->getShaderTextures();
 		int index = 0;
 		for (Render::Texture texture : textures)
 		{

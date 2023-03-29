@@ -6,38 +6,56 @@ AModel::AModel()
 {
 	modelId = Math::getUid();
 	gammaCorrection = false;
-
 }
 
-AMesh& Core::AModel::addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
+Core::AModel::~AModel()
 {
-	return (AMesh&)addMesh(Math::stringFormat("%d|%d", modelId, meshes.size()), vertices, indices, textures);
+	for (auto it : meshes)
+	{
+		ABaseMesh* mesh = it;
+		delete mesh;
+	}
+
+	meshes.clear();
 }
 
-ABaseMesh& Core::AModel::addMesh(std::string name, std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
+AMesh* Core::AModel::addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
 {
-	meshes.push_back(AMesh(name, vertices, indices, textures));
+	return (AMesh*)addMesh(Math::stringFormat("%d|%d", modelId, meshes.size()), vertices, indices, textures);
+}
+
+ABaseMesh* Core::AModel::addMesh(std::string name, std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
+{
+	AMesh* mesh = new AMesh(name, vertices, indices, textures);
+	meshes.push_back(mesh);
 
 	updateObb();
-	return *(--meshes.end());
+	return mesh;
 }
 
-ABaseMesh& Core::AModel::addMesh(ABaseMesh mesh)
+AUIMesh* Core::AModel::createNewUIMesh()
 {
+	return nullptr;
+}
+
+AUIMesh* Core::AModel::addBaseUIMesh(std::string name)
+{
+	AUIMesh* mesh = AUIMesh::getBaseAUIMesh(name);
+	mesh = mesh->clone();
 	meshes.push_back(mesh);
-	return *(--meshes.end());
+	return mesh;
 }
 
 void Core::AModel::updateObb()
 {
 	std::vector<Math::Vector3> points;
 
-	std::vector<Core::ABaseMesh>& ameshs = getMeshs();
+	std::vector<Core::ABaseMesh*> ameshs = getMeshs();
 
 	for (size_t i = 0; i < ameshs.size(); i++)
 	{
-		Core::ABaseMesh& mesh = ameshs[i];
-		if (mesh.getMeshType() == AMesh::MeshType)
+		Core::ABaseMesh* mesh = ameshs[i];
+		if (mesh->getMeshType() == AMesh::MeshType)
 		{
 			Core::AMesh& amesh = (Core::AMesh&)mesh;
 			for (size_t j = 0; j < amesh.vertices.size(); j++)

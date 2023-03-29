@@ -8,6 +8,7 @@
 #include "../math/Math.h"
 #include "AMesh.h"
 #include "ABaseMesh.h"
+#include "AUIMesh.h"
 #include "../file/ImageLoad.h"
 #include "../file/FilePathManager.h"
 
@@ -27,18 +28,21 @@ namespace Core
 			loadModel(path);
 		}
 
-        std::vector<ABaseMesh>& getMeshs() { return meshes; };
-        AMesh& addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
-        ABaseMesh& addMesh(std::string meshName, std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
-        ABaseMesh& addMesh(ABaseMesh mesh);
+        ~AModel();
+
+        std::vector<ABaseMesh*> getMeshs() { return meshes; };
+        AMesh* addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
+        ABaseMesh* addMesh(std::string meshName, std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
+        AUIMesh* createNewUIMesh();
+        AUIMesh* addBaseUIMesh(std::string name);
 
         ABaseMesh* getMesh(std::string meshName)
         {
             for (auto mesh : meshes)
             {
-                if (mesh.id == meshName)
+                if (mesh->id == meshName)
                 {
-                    return &mesh;
+                    return mesh;
                 }
             }
             return nullptr;
@@ -95,7 +99,7 @@ namespace Core
 
         }
 
-        AMesh processMesh(unsigned int index, aiMesh* mesh, const aiScene* scene, std::vector<Math::Vector3>& points)
+        AMesh* processMesh(unsigned int index, aiMesh* mesh, const aiScene* scene, std::vector<Math::Vector3>& points)
         {
             // data to fill
             std::vector<AMesh::Vertex> vertices;
@@ -186,7 +190,7 @@ namespace Core
                 meshName = std::to_string(index);
             }
             // return a mesh object created from the extracted mesh data
-            return AMesh( Math::stringFormat("%d|%s", modelId, meshName.C_Str()), vertices, indices, textures);
+            return new AMesh( Math::stringFormat("%d|%s", modelId, meshName.C_Str()), vertices, indices, textures);
         }
 
         // checks all material textures of a given type and loads the textures if they're not loaded yet.
@@ -233,7 +237,7 @@ namespace Core
         void updateObb();
 
 	private:
-		std::vector<ABaseMesh>    meshes;
+		std::vector<ABaseMesh*>    meshes;
 		std::string directory;
         unsigned int modelId;
 		bool gammaCorrection;

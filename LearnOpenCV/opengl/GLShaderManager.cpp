@@ -2,7 +2,7 @@
 
 #include "../file/FilePathManager.h"
 
-namespace OpenGL
+namespace Render
 {
     GLShaderManager* GLShaderManager::ms_pSingleton_impl = NULL;
 

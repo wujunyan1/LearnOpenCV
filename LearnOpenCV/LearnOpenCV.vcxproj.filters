@@ -126,20 +126,11 @@
     <ClInclude Include="render\ShaderProgram.h">
       <Filter>render</Filter>
     </ClInclude>
-    <ClInclude Include="opengl\OpenGLMain.h">
-      <Filter>opengl</Filter>
-    </ClInclude>
     <ClInclude Include="opengl\OpenGLCore.h">
       <Filter>opengl</Filter>
     </ClInclude>
     <ClInclude Include="render\RenderMesh.h">
       <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="opengl\RenderGLQueue.h">
-      <Filter>opengl</Filter>
-    </ClInclude>
-    <ClInclude Include="opengl\MaterialGL.h">
-      <Filter>opengl</Filter>
     </ClInclude>
     <ClInclude Include="file\FilePathManager.h">
       <Filter>file</Filter>
@@ -160,9 +151,6 @@
       <Filter>core</Filter>
     </ClInclude>
     <ClInclude Include="opengl\GLShader.h">
-      <Filter>opengl</Filter>
-    </ClInclude>
-    <ClInclude Include="opengl\ShaderGLProgram.h">
       <Filter>opengl</Filter>
     </ClInclude>
     <ClInclude Include="opengl\GLShaderManager.h">
@@ -312,6 +300,12 @@
     <ClInclude Include="render\font\FontManager.h">
       <Filter>render\font</Filter>
     </ClInclude>
+    <ClInclude Include="render\RenderFontMesh.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\UIFont.h">
+      <Filter>ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -383,20 +377,11 @@
     <ClCompile Include="render\ShaderProgram.cpp">
       <Filter>render</Filter>
     </ClCompile>
-    <ClCompile Include="opengl\OpenGLMain.cpp">
-      <Filter>opengl</Filter>
-    </ClCompile>
     <ClCompile Include="opengl\OpenGLCore.cpp">
       <Filter>opengl</Filter>
     </ClCompile>
     <ClCompile Include="render\RenderMesh.cpp">
       <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="opengl\RenderGLQueue.cpp">
-      <Filter>opengl</Filter>
-    </ClCompile>
-    <ClCompile Include="opengl\MaterialGL.cpp">
-      <Filter>opengl</Filter>
     </ClCompile>
     <ClCompile Include="file\FilePathManager.cpp">
       <Filter>file</Filter>
@@ -414,9 +399,6 @@
       <Filter>core</Filter>
     </ClCompile>
     <ClCompile Include="opengl\GLShader.cpp">
-      <Filter>opengl</Filter>
-    </ClCompile>
-    <ClCompile Include="opengl\ShaderGLProgram.cpp">
       <Filter>opengl</Filter>
     </ClCompile>
     <ClCompile Include="opengl\GLShaderManager.cpp">
@@ -562,6 +544,12 @@
     </ClCompile>
     <ClCompile Include="render\font\FontManager.cpp">
       <Filter>render\font</Filter>
+    </ClCompile>
+    <ClCompile Include="render\RenderFontMesh.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\UIFont.cpp">
+      <Filter>ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

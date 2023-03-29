@@ -1,7 +1,7 @@
 #pragma once
 #include "../math/Math.h"
 #include "../file/Image.h"
-#include "../render/RenderMesh.h"
+#include "../render/RenderUIMesh.h"
 #include "../render/Texture.h"
 #include "ABaseMesh.h"
 
@@ -21,21 +21,27 @@ namespace Core
 	public:
 		AUIMesh(std::string uid = "");
 		AUIMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices);
+		~AUIMesh();
 
 		virtual int getMeshType() { return AUIMesh::MeshType; };
 
-		Render::RenderMesh* getRenderMesh() 
+		virtual Render::RenderBaseMesh* getRenderMesh()
 		{
 			return mesh;
 		};
 
-		static AUIMesh getBaseAUIMesh(std::string name) {
+		void updateMesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
+
+		AUIMesh* clone();
+
+		static AUIMesh* getBaseAUIMesh(std::string name) {
 			auto it = baseAUIMesh.find(name);
 			if (it != baseAUIMesh.end())
 			{
 				return it->second;
 			}
-			AUIMesh base = AUIMesh();
+			AUIMesh* base = new AUIMesh(name);
+			baseAUIMesh.insert(std::pair<std::string, AUIMesh*>(name, base));
 			return base;
 		};
 
@@ -51,12 +57,12 @@ namespace Core
 		std::vector<Vertex>       vertices;
 		std::vector<unsigned int> indices;
 
-		Render::RenderMesh* mesh;
+		Render::RenderUIMesh* mesh;
 
 	public:
 		const static int MeshType = 2;
 
 	private:
-		static std::map<std::string, AUIMesh> baseAUIMesh;
+		static std::map<std::string, AUIMesh*> baseAUIMesh;
 	};
 }

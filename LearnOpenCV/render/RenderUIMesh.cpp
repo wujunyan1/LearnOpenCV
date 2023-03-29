@@ -1,6 +1,5 @@
 #include "RenderUIMesh.h"
-#include "../opengl/ShaderGLProgram.h"
-#include "../opengl/MaterialGL.h"
+#include "../render/Material.h"
 
 namespace Render
 {
@@ -18,18 +17,9 @@ namespace Render
 
 		glBindVertexArray(tvao);
 
-		OpenGL::ShaderGLProgram* p = (OpenGL::ShaderGLProgram*)program;
+		GLShader* shader = program->GetShaderObj();
 
-		unsigned int diffuseIndex = 0;
-		unsigned int ambientIndex = 0;
-		unsigned int specularIndex = 0;
-		unsigned int normalIndex = 0;
-		unsigned int heightIndex = 0;
-
-		GLShader* shader = p->GetShaderObj();
-
-		OpenGL::MaterialGL* materialGl = (OpenGL::MaterialGL*)material;
-		std::vector<Render::Texture>& textures = materialGl->getShaderTextures();
+		std::vector<Render::Texture>& textures = material->getShaderTextures();
 		int index = 0;
 		for (Render::Texture texture : textures)
 		{
@@ -43,20 +33,6 @@ namespace Render
 		for (unsigned int i = 0; i < images.size(); i++)
 		{
 			Render::Texture& texture = images[i];
-
-			//glActiveTexture(Core::Image::textureIndex[i]);
-			int num = 0;
-			if (texture.uniformName == "material.diffuse")
-				num = diffuseIndex++;
-			else if (texture.uniformName == "material.ambient")
-				num = ambientIndex++;
-			else if (texture.uniformName == "material.specular")
-				num = specularIndex++;
-			else if (texture.uniformName == "material.normal")
-				num = normalIndex++;
-			else if (texture.uniformName == "material.height")
-				num = heightIndex++;
-
 			std::string uniformName = texture.uniformName; // Math::stringFormat(texture.uniformName, num);
 			//printf("RenderGLMesh::Render %d %s %s \n", i, uniformName.c_str(), texture.image->getName().c_str());
 

@@ -16,7 +16,7 @@ namespace Core
 
 		virtual int getMeshType() { return 0; };
 
-		Render::RenderMesh* getRenderMesh() 
+		virtual Render::RenderBaseMesh* getRenderMesh()
 		{
 			return mesh;
 		};
@@ -29,6 +29,6 @@ namespace Core
 		std::vector<unsigned int> indices;
 		std::vector<Render::Texture> textures;*/
 
-		Render::RenderMesh* mesh;
+		Render::RenderBaseMesh* mesh;
 	};
 }

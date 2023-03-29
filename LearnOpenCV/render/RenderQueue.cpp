@@ -1,5 +1,8 @@
 #include "RenderQueue.h"
 
+#include "RenderMain.h"
+#include "ShaderProgram.h"
+
 namespace Render
 {
 	std::map<unsigned int, Render::RenderQueue*>* RenderQueueManager::queues = new std::map<unsigned int, Render::RenderQueue*>();
@@ -16,8 +19,54 @@ namespace Render
 
 	RenderProgram::RenderProgram()
 	{
-		material = NULL;
+		material = new Render::Material();
 		shaderProgram = NULL;
+	}
+
+	RenderMesh* RenderProgram::createNewRenderMesh(std::string name)
+	{
+		Render::RenderMesh* mesh = Render::RenderMesh::createNewRenderMesh(name);
+		return mesh;
+	}
+
+	RenderMesh* RenderProgram::loadRenderMesh(std::string name, std::string path)
+	{
+		Render::RenderMesh* mesh = Render::RenderMesh::loadMeshFile(name, path);
+		return mesh;
+	}
+
+	void RenderProgram::setShader(const std::string& shaderName)
+	{
+		shaderProgram = ShaderProgram::GetShaderProgram(shaderName);
+	}
+
+	void RenderProgram::Render()
+	{
+		if (_model == nullptr)
+		{
+			return;
+		}
+
+		GL_GET_ERROR(glDepthMask(depthTest ? GL_TRUE : GL_FALSE));                                                       //关掉深度测试
+
+		if (blend) {
+			GL_GET_ERROR(glEnable(GL_BLEND));	//开混合模式贴图 
+		}
+		else {
+			GL_GET_ERROR(glDisable(GL_BLEND));
+		}
+		GL_GET_ERROR(glBlendFunc((int)srcBlendFunc, (int)targetBlendFunc));                           //设置混合方式 
+
+		// 设置shader 属性
+		shaderProgram->RenderMaterial(material);
+		// 渲染vao
+		std::vector<Core::ABaseMesh*> ameshs = _model->getMeshs();
+
+		for (size_t i = 0; i < ameshs.size(); i++)
+		{
+			Core::ABaseMesh* mesh = ameshs[i];
+			mesh->getRenderMesh()->Render(shaderProgram, material);
+		}
 	}
 
 	RenderQueue::RenderQueue()

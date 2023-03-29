@@ -16,6 +16,8 @@ namespace Render
 	public:
 		RenderFont();
 	private:
+
+		std::string text;
 	};
 
 

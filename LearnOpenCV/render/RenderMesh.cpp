@@ -1,6 +1,5 @@
 #include "RenderMesh.h"
-#include "../opengl/ShaderGLProgram.h"
-#include "../opengl/MaterialGL.h"
+#include "../render/Material.h"
 
 namespace Render
 {

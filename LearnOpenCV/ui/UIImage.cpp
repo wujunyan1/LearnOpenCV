@@ -100,38 +100,38 @@ namespace UI
 
 	void UIImage::initModel()
 	{
-		std::vector<AUIMesh::Vertex> vertices;
-		std::vector<unsigned int> indices;
+		//std::vector<AUIMesh::Vertex> vertices;
+		//std::vector<unsigned int> indices;
 
-		AUIMesh::Vertex vertex1;
-		//vertex1.Position = Math::Vector3(-0.5f, -0.5f, 0);
-		vertex1.Position = Math::Vector3(0.0f, 0.0f, 0);
-		vertex1.TexCoords = Math::Vector2(0, 0);
-		vertices.push_back(vertex1);
+		//AUIMesh::Vertex vertex1;
+		////vertex1.Position = Math::Vector3(-0.5f, -0.5f, 0);
+		//vertex1.Position = Math::Vector3(0.0f, 0.0f, 0);
+		//vertex1.TexCoords = Math::Vector2(0, 0);
+		//vertices.push_back(vertex1);
 
-		AUIMesh::Vertex vertex2;
-		vertex2.Position = Math::Vector3(1.0f, 0.0f, 0);
-		vertex2.TexCoords = Math::Vector2(1, 0);
-		vertices.push_back(vertex2);
+		//AUIMesh::Vertex vertex2;
+		//vertex2.Position = Math::Vector3(1.0f, 0.0f, 0);
+		//vertex2.TexCoords = Math::Vector2(1, 0);
+		//vertices.push_back(vertex2);
 
-		AUIMesh::Vertex vertex3;
-		vertex3.Position = Math::Vector3(0.0f, 1.0f, 0);
-		vertex3.TexCoords = Math::Vector2(0, 1);
-		vertices.push_back(vertex3);
+		//AUIMesh::Vertex vertex3;
+		//vertex3.Position = Math::Vector3(0.0f, 1.0f, 0);
+		//vertex3.TexCoords = Math::Vector2(0, 1);
+		//vertices.push_back(vertex3);
 
-		AUIMesh::Vertex vertex4;
-		vertex4.Position = Math::Vector3(1.0f, 1.0f, 0);
-		vertex4.TexCoords = Math::Vector2(1, 1);
-		vertices.push_back(vertex4);
+		//AUIMesh::Vertex vertex4;
+		//vertex4.Position = Math::Vector3(1.0f, 1.0f, 0);
+		//vertex4.TexCoords = Math::Vector2(1, 1);
+		//vertices.push_back(vertex4);
 
-		indices.push_back(0);
-		indices.push_back(1);
-		indices.push_back(2);
-		indices.push_back(2);
-		indices.push_back(1);
-		indices.push_back(3);
+		//indices.push_back(0);
+		//indices.push_back(1);
+		//indices.push_back(2);
+		//indices.push_back(2);
+		//indices.push_back(1);
+		//indices.push_back(3);
 
-		AUIMesh mesh = AUIMesh::getBaseAUIMesh("base"); // AUIMesh("texture2d", vertices, indices);
+		//AUIMesh& mesh = AUIMesh::getBaseAUIMesh("base"); // AUIMesh("texture2d", vertices, indices);
 
 		texture.image = ImageLoad::LoadImage("/asserts/images/blending_transparent_window.png");
 		texture.imageName = "blending_transparent_window.png";
@@ -139,7 +139,7 @@ namespace UI
 		renderProgram->getMaterial()->setTexture("texture2d", texture);
 
 		model = AModelFactory::createCustomModel();
-		model->addMesh(mesh);
+		model->addBaseUIMesh("base");
 
 		renderProgram->setModel(model);
 	}

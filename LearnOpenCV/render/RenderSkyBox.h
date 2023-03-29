@@ -1,9 +1,10 @@
 #pragma once
 
 #include "../math/Math.h"
-#include "../opengl/ShaderGLProgram.h"
 #include "../Core/Camera.h"
 #include "../file/Image.h"
+
+#include "../opengl/GLShader.h"
 
 namespace Render
 {
