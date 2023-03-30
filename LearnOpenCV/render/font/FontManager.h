@@ -13,12 +13,15 @@ namespace Render
 
 	class FontSource
 	{
+		friend class FontManager;
 
 		struct Character {
 			unsigned int     TextureID;  // 字形纹理的ID
 			Math::Vector2T<unsigned int> Size;       // 字形大小
 			Math::Vector2T<int> Bearing;    // 从基准线到字形左部/顶部的偏移值
 			long     Advance;    // 原点距下一个字形原点的距离
+
+			unsigned int uv;
 		};
 
 	public:
@@ -36,19 +39,44 @@ namespace Render
 		FT_Library ft;
 		FT_Face face;
 
+		unsigned int fontSize = 48;
+
 		unsigned char* textureBuff;
+
+		GLuint texture;
+		unsigned int characterNum = 0;
+
+		unsigned int texturesCharacterNum = 0;
+		std::vector<char> needAddTextures;
 	};
 
 
 	class FontManager
 	{
+		FontManager();
 	public:
 
 		FontSource* getFontSource(std::string font);
 
+		static FontManager* GetInstance() {
+			if (instance == nullptr) {
+				instance = new FontManager();
+			}
+
+			return instance;
+		}
+
+
+		void updateCharacterTexture(FontSource* source);
+	private:
+
 	private:
 
 		static std::map<std::string, FontSource*> sources;
+		static FontManager* instance;
+
+	private:
+		unsigned int fbo;
 	};
 
 }
