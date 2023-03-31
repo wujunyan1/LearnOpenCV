@@ -45,6 +45,8 @@ int main(int argc, char* argv[])
 		float delay = currTime - time;
 
 		game->Tick(delay);
+
+		Render::updateTextures(delay);
 		game->Render(delay);
 		/*transform->PreUpdate();
 		transform->Update();

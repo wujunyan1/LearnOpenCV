@@ -20,6 +20,7 @@
 
 #include "../ui/UICanvas.h"
 #include "../ui/UIImage.h"
+#include "../ui/UIFont.h"
 #include "../ui/UITransform.h"
 #include "../render/RenderUIQueue.h"
 
@@ -290,8 +291,17 @@ void Game::LoadMainScene()
 
 	uiTransform->SetPosition({ {1, -100} ,{1, 0} });
 	uiTransform->SetSize({ {0, 200}, {0, 100} });
-
 	uiBase->AddChild(showUI);
+
+	Object* showFont = ObjectManager::createNewObject();
+	UI::UITransform* uiFontTransform = showFont->AddComponent<UI::UITransform>();
+	UI::UIFont* uiFont = showFont->AddComponent<UI::UIFont>();
+	uiFont->setText("fps : 60");
+
+	uiFontTransform->SetPosition({ {0, 0} ,{0, 0} });
+	uiFontTransform->SetPivot({ 0, 0 });
+	uiFontTransform->SetSize({ {0, 200}, {0, 100} });
+	uiBase->AddChild(showFont);
 }
 
 void Core::Game::InitEngine()

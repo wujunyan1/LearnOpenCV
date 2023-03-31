@@ -56,6 +56,7 @@ namespace Render
 	unsigned int CreateNewFramebuffer();
 	void BindFramebuffer(unsigned int fbo);
 
+	void updateTextures(float delay);
 	void BeforeRender(float delay);
 	void Render(float delay);
 	void RenderEnd();

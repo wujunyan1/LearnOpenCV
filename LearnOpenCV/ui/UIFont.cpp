@@ -1,6 +1,7 @@
 #include "UIFont.h"
 #include "UITransform.h"
 #include "../meshModel/AUIMesh.h"
+#include "../render/font/FontManager.h"
 
 using namespace Core;
 namespace UI
@@ -15,9 +16,18 @@ namespace UI
 		initModel();
 	}
 
-	void UI::UIFont::setText(std::string& text)
+	void UI::UIFont::setText(std::string text)
 	{
 		m_text = text;
+
+		Render::FontSource* source = Render::FontManager::getFontSource(m_font);
+
+		for (size_t i = 0; i < m_text.size(); ++i)
+		{
+			char c = m_text[i];
+			source->getChar(c);
+		}
+
 		needUpdateMesh = true;
 	}
 
@@ -42,9 +52,20 @@ namespace UI
 
 		Math::Vector3 color = Math::Vector3(0.0f, 0.3f, 0.6f);
 
-		Math::Matrix4& mat4 = transform->GetRenderModelMat4();
+		// 字体 默认 不受uisize影响
+		Math::Matrix4& mat4 = transform->GetLocalToWorldMat4();
 		//renderProgram->setLocalToWorldMat4(mat4);
 		material->setMat4("model", mat4);
+
+		Render::FontSource* source = Render::FontManager::getFontSource(m_font);
+
+		material->clearTexture();
+		Render::Texture texture;
+		texture.image = source->getImage();
+		texture.imageName = m_font;
+		texture.uniformName = "screenTexture";
+		material->setTexture("screenTexture", texture);
+
 		Render::AddRender(renderProgram);
 	}
 

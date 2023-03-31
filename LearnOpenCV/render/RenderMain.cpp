@@ -10,6 +10,8 @@
 
 #include "../Core/GlobalDictionary.h"
 
+#include "font/FontManager.h"
+
 namespace Render 
 {
 
@@ -221,6 +223,11 @@ namespace Render
 	void BindFramebuffer(unsigned int fbo)
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+	}
+
+	void updateTextures(float delay)
+	{
+		FontManager::GetInstance()->checkCharacterTexture();
 	}
 
 	void BeforeRender(float delay)

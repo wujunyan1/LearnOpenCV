@@ -22,7 +22,7 @@ void Core::AMesh::bindRender()
 	mesh->VertexAttribPointer(0, 3, Render::ShaderParamType::SPT_VEC3, false, sizeof(Vertex), offsetof(Vertex, Position));
 	mesh->VertexAttribPointer(1, 3, Render::ShaderParamType::SPT_VEC3, false, sizeof(Vertex), offsetof(Vertex, Normal));
 	// vertex texture coords
-	mesh->VertexAttribPointer(2, 2, Render::ShaderParamType::SPT_VEC3, false, sizeof(Vertex), offsetof(Vertex, TexCoords));
+	mesh->VertexAttribPointer(2, 2, Render::ShaderParamType::SPT_VEC2, false, sizeof(Vertex), offsetof(Vertex, TexCoords));
 	// vertex tangent
 	mesh->VertexAttribPointer(3, 3, Render::ShaderParamType::SPT_VEC3, false, sizeof(Vertex), offsetof(Vertex, Tangent));
 	// vertex bitangent

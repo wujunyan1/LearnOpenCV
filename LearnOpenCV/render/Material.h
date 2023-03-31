@@ -20,6 +20,7 @@ namespace Render
 		virtual void setVec3(const std::string& name, float x, float y, float z);
 		virtual void setMat4(const std::string& name, Math::Matrix4& mat);
 		virtual void setTexture(const std::string& name, Texture& texture);
+		void clearTexture() { m_shaderTextures.clear(); };
 
 		virtual const void* getData(const std::string& name);
 

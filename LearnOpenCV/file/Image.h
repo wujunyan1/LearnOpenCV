@@ -21,6 +21,11 @@ namespace Core
 			m_type = type;
 		}
 
+		~Image()
+		{
+			glDeleteTextures(1, &textureID);
+		}
+
 
 		virtual void use(int textureIndex)
 		{
@@ -127,6 +132,20 @@ namespace Core
 		{
 
 			glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+			glActiveTexture(Image::textureIndex[textureIndex]);
+		}
+
+	private:
+	};
+
+	class ImageFont : public Image
+	{
+	public:
+		ImageFont(std::string& name, unsigned int textureID);
+
+		virtual void use(int textureIndex)
+		{
+			glBindTexture(GL_TEXTURE_2D, textureID);
 			glActiveTexture(Image::textureIndex[textureIndex]);
 		}
 

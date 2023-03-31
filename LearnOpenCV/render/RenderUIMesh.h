@@ -16,8 +16,10 @@ namespace Render
 		mesh 数据，对应一个vbo
 		顶点，uv，光照贴图 等等
 	*/
+
 	class RenderUIMesh : public RenderBaseMesh
 	{
+		friend class FontManager;
 	public:
 		RenderUIMesh(std::string name);
 	

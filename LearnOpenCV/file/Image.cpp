@@ -73,3 +73,8 @@ ImageCubeMap::ImageCubeMap(std::string & name, std::vector<std::string>&faces) :
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
 }
+
+Core::ImageFont::ImageFont(std::string& name, unsigned int textureID) :Image(name, Image::IMAGE_TYPE::TEXTURE_2D)
+{
+	this->textureID = textureID;
+}

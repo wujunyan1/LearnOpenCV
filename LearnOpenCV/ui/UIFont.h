@@ -17,7 +17,7 @@ namespace UI
 
 		UIFont();
 
-		void setText(std::string& text);
+		void setText(std::string text);
 
 		// 目标是深度缓存里的， src是ps输出的
 		void setBlendFunc(Render::BlendFunc src, Render::BlendFunc target);
@@ -38,7 +38,7 @@ namespace UI
 		Vector3 m_color = { 1,1,1 };
 
 		unsigned int m_fontSize = 48;
-		std::string m_font = "fonts/DroidSans.ttf";
+		std::string m_font = "/asserts/fonts/DroidSans.ttf";
 
 		Render::BlendFunc srcBlendFunc = Render::BlendFunc::SRC_ALPHA;
 		Render::BlendFunc targetBlendFunc = Render::BlendFunc::ONE_MINUS_SRC_ALPHA;

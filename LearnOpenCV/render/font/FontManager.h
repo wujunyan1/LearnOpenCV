@@ -29,6 +29,11 @@ namespace Render
 		~FontSource();
 
 		Character getChar(char character);
+
+		Core::Image* getImage() {
+			return image;
+		};
+
 	private:
 		void updateCharacterTexture();
 
@@ -43,7 +48,7 @@ namespace Render
 
 		unsigned char* textureBuff;
 
-		GLuint texture;
+		Core::Image* image;
 		unsigned int characterNum = 0;
 
 		unsigned int texturesCharacterNum = 0;
@@ -56,7 +61,7 @@ namespace Render
 		FontManager();
 	public:
 
-		FontSource* getFontSource(std::string font);
+		static FontSource* getFontSource(std::string font);
 
 		static FontManager* GetInstance() {
 			if (instance == nullptr) {
@@ -67,9 +72,10 @@ namespace Render
 		}
 
 
-		void updateCharacterTexture(FontSource* source);
+		void checkCharacterTexture();
 	private:
 
+		void updateCharacterTexture(FontSource* source);
 	private:
 
 		static std::map<std::string, FontSource*> sources;
