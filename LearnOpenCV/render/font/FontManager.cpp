@@ -148,25 +148,25 @@ namespace Render
 
     void FontManager::updateCharacterTexture(FontSource* source)
     {
-        GL_GET_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, fbo));
+        //GL_GET_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, fbo));
 
-        unsigned int texture;
-        GL_GET_ERROR(glGenTextures(1, &texture));
-        GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, texture));
+        //unsigned int texture;
+        //GL_GET_ERROR(glGenTextures(1, &texture));
+        //GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, texture));
 
-        GL_GET_ERROR(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL));
+        //GL_GET_ERROR(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL));
 
-        GL_GET_ERROR(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-        GL_GET_ERROR(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-        GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, 0));
+        //GL_GET_ERROR(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+        //GL_GET_ERROR(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+        //GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, 0));
 
-        // 将它附加到当前绑定的帧缓冲对象
-        GL_GET_ERROR(glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0));
+        //// 将它附加到当前绑定的帧缓冲对象
+        //GL_GET_ERROR(glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0));
 
-        if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        {
-            printf("error");
-        }
+        //if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+        //{
+        //    printf("error");
+        //}
 
         GLShader* shader = GLShaderManager::Instance()->GetShaderObj("fontScourceShader");
         shader->use();
@@ -259,7 +259,7 @@ namespace Render
         ortho.m22 = -(2.0f) / (far - near);
 
         //glm::mat4 model = glm::ortho(0, (int)(source->characterNum * source->fontSize), 0, (int)source->fontSize);
-        shader->setMat4("model", ortho);
+        shader->setVec2("scale", { 1.0f / (source->characterNum * source->fontSize), 1.0f / source->fontSize });
         /*int modelLoc = glGetUniformLocation(shader->getID(), "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (GLfloat*)&model);*/
 
@@ -352,11 +352,11 @@ namespace Render
             width += 1.0f * source->fontSize;
         }
 
-        delete source->image;
+        /*delete source->image;
 
         source->image = new Core::ImageFont(source->fontName, texture);
         source->needAddTextures.clear();
-        source->texturesCharacterNum = source->characterNum;
+        source->texturesCharacterNum = source->characterNum;*/
 
         // glDrawArrays(GL_TRIANGLES, 0, 3);
         glBindVertexArray(0);
