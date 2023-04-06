@@ -23,6 +23,7 @@ namespace Render
 		this->verticesNum = verticesNum;
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 		glBufferData(GL_ARRAY_BUFFER, dataSize, data, GL_STATIC_DRAW);
+		//glBufferData(GL_ARRAY_BUFFER, dataSize, data, GL_DYNAMIC_DRAW);
 	}
 	void RenderBaseMesh::VertexAttribPointer(unsigned int passageway, size_t dataSize, Render::ShaderParamType dataType, bool b, size_t delaySize, size_t startIndex)
 	{

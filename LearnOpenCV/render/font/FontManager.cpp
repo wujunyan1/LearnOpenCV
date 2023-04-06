@@ -148,31 +148,39 @@ namespace Render
 
     void FontManager::updateCharacterTexture(FontSource* source)
     {
-        //GL_GET_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, fbo));
 
-        //unsigned int texture;
-        //GL_GET_ERROR(glGenTextures(1, &texture));
-        //GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, texture));
+        int maxWidth = source->characterNum * source->fontSize;
+        int maxHeight = source->fontSize;
 
-        //GL_GET_ERROR(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL));
+        GL_GET_ERROR(glBindFramebuffer(GL_FRAMEBUFFER, fbo));
 
-        //GL_GET_ERROR(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-        //GL_GET_ERROR(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-        //GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, 0));
+        unsigned int texture;
+        GL_GET_ERROR(glGenTextures(1, &texture));
+        GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, texture));
 
-        //// 将它附加到当前绑定的帧缓冲对象
-        //GL_GET_ERROR(glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0));
+        GL_GET_ERROR(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, maxWidth, maxHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL));
 
-        //if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        //{
-        //    printf("error");
-        //}
+        GL_GET_ERROR(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+        GL_GET_ERROR(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+        GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, 0));
+
+        // 将它附加到当前绑定的帧缓冲对象
+        GL_GET_ERROR(glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0));
+
+        if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+        {
+            printf("error");
+        }
 
         GLShader* shader = GLShaderManager::Instance()->GetShaderObj("fontScourceShader");
-        shader->use();
 
         float width = 1.0f * source->texturesCharacterNum * source->fontSize;
         float height = 1.0f * source->fontSize;
+
+        /*width = width / (source->characterNum * source->fontSize);
+        height = 1.0f ;*/
+
+        printf("width == %f %f", width, height);
 
         RenderUIMesh* mesh = new RenderUIMesh("");
 
@@ -182,22 +190,22 @@ namespace Render
         Core::AUIMesh::Vertex vertex1;
         //vertex1.Position = Math::Vector3(-0.5f, -0.5f, 0);
         vertex1.Position = Math::Vector3(0.0f, 0.0f, 0);
-        vertex1.TexCoords = Math::Vector2(0, 0);
+        vertex1.TexCoords = Math::Vector2(0, 1);
         vertices.push_back(vertex1);
 
         Core::AUIMesh::Vertex vertex2;
         vertex2.Position = Math::Vector3(width, 0.0f, 0);
-        vertex2.TexCoords = Math::Vector2(1, 0);
+        vertex2.TexCoords = Math::Vector2(1, 1);
         vertices.push_back(vertex2);
 
         Core::AUIMesh::Vertex vertex3;
         vertex3.Position = Math::Vector3(0.0f, height, 0);
-        vertex3.TexCoords = Math::Vector2(0, 1);
+        vertex3.TexCoords = Math::Vector2(0, 0);
         vertices.push_back(vertex3);
 
         Core::AUIMesh::Vertex vertex4;
         vertex4.Position = Math::Vector3(width, height, 0);
-        vertex4.TexCoords = Math::Vector2(1, 1);
+        vertex4.TexCoords = Math::Vector2(1, 0);
         vertices.push_back(vertex4);
 
         indices.push_back(0);
@@ -239,12 +247,21 @@ namespace Render
         /*glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, source->texture);*/
 
+        shader->use();
+        GL_GET_ERROR(glDepthMask(GL_FALSE));
         GL_GET_ERROR(glBindVertexArray(mesh->tvao));
         //GL_GET_ERROR(glBindVertexArray(planeVAO));
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        GL_GET_ERROR(source->image->use(0));
-        GL_GET_ERROR(shader->setTexture("screenTexture", 0));
+        //GL_GET_ERROR(source->image->use(0));
+        /*GL_GET_ERROR(image->use(0));
+        GL_GET_ERROR(shader->setTexture("screenTexture", 0));*/
 
+        glActiveTexture(Core::Image::textureIndex[0]);
+        glBindTexture(GL_TEXTURE_2D, source->image->getTextureId());
+        shader->setTexture("screenTexture", 0);
+        shader->setVec3("textColor", { 1.0f, 1.0f, 1.0f });
 
         float left = 0.0f;
         float right = 1.0f * (source->characterNum * source->fontSize);
@@ -253,27 +270,25 @@ namespace Render
         float near = -1.0f;
         float far = 1.0f;
 
-        Core::Mat4 ortho = Core::Mat4(1);
-        ortho.m00 = (1.0f) / (right - left);
-        ortho.m11 = (1.0f) / (top - bottom);
-        ortho.m22 = -(2.0f) / (far - near);
 
         //glm::mat4 model = glm::ortho(0, (int)(source->characterNum * source->fontSize), 0, (int)source->fontSize);
-        shader->setVec2("scale", { 1.0f / (source->characterNum * source->fontSize), 1.0f / source->fontSize });
+        Math::Vector2 scale = { 1.0f / (source->characterNum * source->fontSize), 1.0f / source->fontSize };
+        shader->setVec2("scale", scale);
         /*int modelLoc = glGetUniformLocation(shader->getID(), "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (GLfloat*)&model);*/
 
-        GL_GET_ERROR(glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, &indices));
+        GL_GET_ERROR(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
 
-
+        printf("update char num %d \n ", source->needAddTextures.size());
         for (auto ch : source->needAddTextures)
         {
+            printf("add char num %c \n ", ch);
 
             GL_GET_ERROR(glPixelStorei(GL_UNPACK_ALIGNMENT, 1)); //禁用字节对齐限制
             GLubyte c = 0;
 
             // 加载字符的字形 
-            if (FT_Load_Char(source->face, c, FT_LOAD_RENDER))
+            if (FT_Load_Char(source->face, ch, FT_LOAD_RENDER))
             {
                 std::cout << "ERROR::FREETYTPE: Failed to load Glyph" << std::endl;
             }
@@ -340,23 +355,25 @@ namespace Render
             mesh->VertexAttribPointer(1, 2, Render::ShaderParamType::SPT_VEC2, false, sizeof(Core::AUIMesh::Vertex), offsetof(Core::AUIMesh::Vertex, TexCoords));
 
 
-
-            GL_GET_ERROR(glActiveTexture(GL_TEXTURE0));
-            GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, charTexture));
             GLShader* shader = GLShaderManager::Instance()->GetShaderObj("fontScourceShader");
             shader->use();
             shader->setTexture("screenTexture", 0);
+            shader->setVec3("textColor", { 1.0f, 1.0f, 1.0f });
+            shader->setVec2("scale", scale);
 
-            GL_GET_ERROR(glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0));
+            GL_GET_ERROR(glBindVertexArray(mesh->tvao));
+            GL_GET_ERROR(glActiveTexture(GL_TEXTURE0));
+            GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, charTexture));
+            GL_GET_ERROR(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
 
             width += 1.0f * source->fontSize;
         }
 
-        /*delete source->image;
+        delete source->image;
 
         source->image = new Core::ImageFont(source->fontName, texture);
         source->needAddTextures.clear();
-        source->texturesCharacterNum = source->characterNum;*/
+        source->texturesCharacterNum = source->characterNum;
 
         // glDrawArrays(GL_TRIANGLES, 0, 3);
         glBindVertexArray(0);

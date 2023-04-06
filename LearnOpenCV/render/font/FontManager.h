@@ -15,6 +15,7 @@ namespace Render
 	{
 		friend class FontManager;
 
+	public:
 		struct Character {
 			unsigned int     TextureID;  // 字形纹理的ID
 			Math::Vector2T<unsigned int> Size;       // 字形大小
