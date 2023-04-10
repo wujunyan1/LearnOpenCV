@@ -8,7 +8,7 @@ uniform vec3 textColor;
 
 void main()
 {
-    vec4 sampled = vec4(1.0, 1.0, 1.0, texture(screenTexture, TexCoords).r);
+    vec4 sampled = texture(screenTexture, TexCoords);
     //FragColor = vec4(textColor, 1.0) * sampled;
     FragColor = sampled;
 }

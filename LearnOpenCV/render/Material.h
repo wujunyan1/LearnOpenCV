@@ -16,6 +16,8 @@ namespace Render
 		virtual void setInt(const std::string& name, int value);
 		virtual void setFloat(const std::string& name, float value);
 		virtual void setFloat4(const std::string& name, float r, float g, float b, float a);
+		virtual void setVec2(const std::string& name, Math::Vector2& value);
+		virtual void setVec2(const std::string& name, float x, float y);
 		virtual void setVec3(const std::string& name, Math::Vector3& value);
 		virtual void setVec3(const std::string& name, float x, float y, float z);
 		virtual void setMat4(const std::string& name, Math::Matrix4& mat);

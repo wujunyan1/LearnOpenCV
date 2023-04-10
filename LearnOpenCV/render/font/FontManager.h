@@ -30,10 +30,18 @@ namespace Render
 		~FontSource();
 
 		Character getChar(char character);
+		unsigned int getFontSize() {
+			return fontSize;
+		};
 
 		Core::Image* getImage() {
 			return image;
 		};
+
+		unsigned int getImageWidth()
+		{
+			return characterNum * fontSize;
+		}
 
 	private:
 		void updateCharacterTexture();

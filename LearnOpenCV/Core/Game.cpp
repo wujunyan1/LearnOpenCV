@@ -69,6 +69,7 @@ void Game::LoadMainScene()
 	Render::CreateShader("testBlendShader", "/asserts/shaders/testBlendShader.vert", "/asserts/shaders/testBlendShader.frag");
 	Render::CreateShader("skyBoxShader", "/asserts/shaders/skyBoxShader.vert", "/asserts/shaders/skyBoxShader.frag");
 	Render::CreateShader("uiShader", "/asserts/shaders/uiShader.vert", "/asserts/shaders/uiShader.frag");
+	Render::CreateShader("fontShader", "/asserts/shaders/fontShader.vert", "/asserts/shaders/fontShader.frag");
 
 	Render::AddCustomRenderQueue("RenderOpaqueQueue", Core::new_class<Logic::RenderOpaqueQueue>());
 	Render::AddCustomRenderQueue("DefaultRenderQueue", Core::new_class<Render::RenderQueue>());

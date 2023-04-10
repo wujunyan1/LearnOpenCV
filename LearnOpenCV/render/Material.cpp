@@ -68,6 +68,17 @@ namespace Render
         tryModifyShaderParam(name, &value, Render::ShaderParamType::SPT_FLOAT, sizeof(value));
     }
 
+    void Material::setVec2(const std::string& name, Math::Vector2& value)
+    {
+        tryModifyShaderParam(name, &value, Render::ShaderParamType::SPT_VEC2, sizeof(Math::Vector2));
+    }
+
+    void Material::setVec2(const std::string& name, float x, float y)
+    {
+        Math::Vector2 v = Math::Vector2(x, y);
+        tryModifyShaderParam(name, &v, Render::ShaderParamType::SPT_VEC2, sizeof(v));
+    }
+
     void Material::setVec3(const std::string& name, Math::Vector3& value)
     {
         tryModifyShaderParam(name, &value, Render::ShaderParamType::SPT_VEC3, sizeof(Math::Vector3));

@@ -34,7 +34,6 @@ namespace Render
 		// Ê¹ÓÃÄ³Shader
 		shaderProgram->Use();
 		shaderProgram->setMat4("VP", ortho); //camera->getOrthogonalMat4()
-
 		//Mat4 VP = camera->getOrthogonalMat4();
 
 		for (size_t i = 0; i < index; i++)
