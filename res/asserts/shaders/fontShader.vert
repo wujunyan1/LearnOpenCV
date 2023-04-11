@@ -7,11 +7,13 @@ uniform mat4 model;
 uniform mat4 VP;
 
 
-out vec2 TexCoords;
+out vec2 uv;
 
 void main()
 {
+    uv = aTexCoords; // imageUV * 
+
     gl_Position = VP * model * vec4((vec2(aPos.x, aPos.y)), 0.0, 1.0);
+    gl_Position = vec4(gl_Position.xy, -1.0, 1.0);
     //gl_Position = vec4(vec2(aPos.x, aPos.y), 0.0, 1.0);
-    TexCoords = imageUV * aTexCoords;
 }

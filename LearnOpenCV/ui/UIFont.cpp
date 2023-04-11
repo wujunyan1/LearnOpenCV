@@ -13,6 +13,7 @@ namespace UI
 		renderProgram->setRenderQueueName("RenderUIQueue");
 		renderProgram->setRenderStage(2000);
 
+		renderProgram->setDepthTest(true);
 		renderProgram->setBlend(true);
 		renderProgram->setBlendFunc(Render::BlendFunc::SRC_ALPHA, Render::BlendFunc::ONE_MINUS_SRC_ALPHA);
 
@@ -59,18 +60,18 @@ namespace UI
 		Math::Matrix4& mat4 = transform->GetLocalToWorldMat4();
 		//renderProgram->setLocalToWorldMat4(mat4);
 		material->setMat4("model", mat4);
+		material->setVec3("textColor", m_color);
 
 		Render::FontSource* source = Render::FontManager::getFontSource(m_font);
 		unsigned int uvx = source->getImageWidth();
-		unsigned int uvy = source->getFontSize();
+		unsigned int uvy = 3 * source->getFontSize();
 
 		material->clearTexture();
-		Render::Texture texture;
 		texture.image = source->getImage();
-		texture.imageName = m_font;
+		texture.imageName = "screenTexture";
 		texture.uniformName = "screenTexture";
 		material->setTexture("screenTexture", texture);
-		material->setVec2("imageUV", 1.0f / uvx, 1.0f / uvy);
+		material->setVec2("imageUV", 1.0f, 1.0f);
 
 		Render::AddRender(renderProgram);
 	}
@@ -96,6 +97,9 @@ namespace UI
 		float scale = m_fontSize / 48.0f;
 		float x = 0;
 
+		float uvx = 1.0f / source->getImageWidth();
+		float uvy = 1.0f / (3 * source->getFontSize());
+
 		for (size_t i = 0; i < m_text.size(); ++i)
 		{
 			char c = m_text[i];
@@ -105,27 +109,32 @@ namespace UI
 			float xpos = x + ch.Bearing.x * scale;
 			float ypos = (ch.Size.y - ch.Bearing.y) * scale;
 
+			float uvw = 0; // ch.uv - 48.0f;
+			float uvwx = 200; // (ch.uv + ch.Size.x + 48.0f);
+
+			printf("char mesh %c uv %f y %f \n", c, ch.uv * uvx, (ch.uv + ch.Size.x) * uvx);
+
 			float w = ch.Size.x * scale;
 			float h = ch.Size.y * scale;
 			// 对每个字符更新VBO
 			Core::AUIMesh::Vertex vertex1;
 			vertex1.Position = Math::Vector3(xpos, ypos + h, 0);
-			vertex1.TexCoords = Math::Vector2(ch.uv, 0);
+			vertex1.TexCoords = Math::Vector2(uvw * uvx, 0);
 			vertices.push_back(vertex1);
 
 			Core::AUIMesh::Vertex vertex2;
 			vertex2.Position = Math::Vector3(xpos, ypos, 0);
-			vertex2.TexCoords = Math::Vector2(ch.uv, charInterval);
+			vertex2.TexCoords = Math::Vector2(uvw * uvx, 1);
 			vertices.push_back(vertex2);
 
 			Core::AUIMesh::Vertex vertex3;
 			vertex3.Position = Math::Vector3(xpos + w, ypos, 0);
-			vertex3.TexCoords = Math::Vector2(ch.uv + charInterval, charInterval);
+			vertex3.TexCoords = Math::Vector2(uvwx * uvx, 1);
 			vertices.push_back(vertex3);
 
 			Core::AUIMesh::Vertex vertex4;
 			vertex4.Position = Math::Vector3(xpos + w, ypos + h, 0);
-			vertex4.TexCoords = Math::Vector2(ch.uv + charInterval, 0);
+			vertex4.TexCoords = Math::Vector2(uvwx * uvx, 0);
 			vertices.push_back(vertex4);
 
 			int index = i * 4;

@@ -14,4 +14,5 @@ void main()
     uv = aTexCoords;
     //pos = VP * model * vec4(aPos, 1.0);
     gl_Position = VP * model * vec4(aPos.xy, 0.0, 1.0); // VP * model * 
+    gl_Position = vec4(gl_Position.xy, -1.0, 1.0);
 }

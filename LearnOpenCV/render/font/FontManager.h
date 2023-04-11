@@ -40,7 +40,7 @@ namespace Render
 
 		unsigned int getImageWidth()
 		{
-			return characterNum * fontSize;
+			return 10 * fontSize;
 		}
 
 	private:

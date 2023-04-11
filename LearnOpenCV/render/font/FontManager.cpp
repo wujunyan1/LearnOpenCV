@@ -37,9 +37,25 @@ namespace Render
         }
         // 生成纹理
         unsigned int texture;
-        glGenTextures(1, &texture);
-        glBindTexture(GL_TEXTURE_2D, texture);
-        glTexImage2D(
+        GL_GET_ERROR(glGenTextures(1, &texture));
+        GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, texture));
+
+        GL_GET_ERROR(glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, 10 * fontSize, 3 * fontSize, 0, GL_RED, GL_UNSIGNED_BYTE, NULL));
+
+
+        glTexSubImage2D(
+            GL_TEXTURE_2D, 
+            0, 
+            0, 
+            0, 
+            face->glyph->bitmap.width, 
+            face->glyph->bitmap.rows, 
+            GL_RED, 
+            GL_UNSIGNED_BYTE, 
+            face->glyph->bitmap.buffer
+        );
+
+        /*glTexImage2D(
             GL_TEXTURE_2D,
             0,
             GL_RED,
@@ -49,12 +65,13 @@ namespace Render
             GL_RED,
             GL_UNSIGNED_BYTE,
             face->glyph->bitmap.buffer
-        );
+        );*/
         // 设置纹理选项
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
         // 储存字符供之后使用
         Character character = {
             texture,
@@ -98,9 +115,22 @@ namespace Render
             face->glyph->advance.x,
             characterNum * fontSize,
         };
+
+        glTexSubImage2D(
+            GL_TEXTURE_2D,
+            0,
+            characterNum * fontSize,
+            0,
+            face->glyph->bitmap.width,
+            face->glyph->bitmap.rows,
+            GL_RED,
+            GL_UNSIGNED_BYTE,
+            face->glyph->bitmap.buffer
+        );
+
         Characters.insert(std::pair<char, Character>(character, characterResult));
         characterNum++;
-        needAddTextures.push_back(character);
+        //needAddTextures.push_back(character);
         return characterResult;
     }
 
@@ -141,14 +171,14 @@ namespace Render
         {
             if (it.second->needAddTextures.size() > 0)
             {
-                updateCharacterTexture(it.second);
+                // updateCharacterTexture(it.second);
             }
         }
     }
 
     void FontManager::updateCharacterTexture(FontSource* source)
     {
-
+        
         int maxWidth = source->characterNum * source->fontSize;
         int maxHeight = source->fontSize;
 
@@ -158,14 +188,20 @@ namespace Render
         GL_GET_ERROR(glGenTextures(1, &texture));
         GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, texture));
 
-        GL_GET_ERROR(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, maxWidth, maxHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL));
+        GL_GET_ERROR(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, maxWidth, maxHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL));
 
         GL_GET_ERROR(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
         GL_GET_ERROR(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
         GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, 0));
 
         // 将它附加到当前绑定的帧缓冲对象
-        GL_GET_ERROR(glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0));
+        GL_GET_ERROR(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0));
+
+        unsigned int rbo;
+        glGenRenderbuffers(1, &rbo);
+        glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, maxWidth, maxHeight); // use a single renderbuffer object for both a depth AND stencil buffer.
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo); // now actually attach it
 
         if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         {

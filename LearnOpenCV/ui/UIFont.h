@@ -50,5 +50,6 @@ namespace UI
 		AUIMesh* mesh = nullptr;
 
 		bool needUpdateMesh = true;
+		Render::Texture texture;
 	};
 }

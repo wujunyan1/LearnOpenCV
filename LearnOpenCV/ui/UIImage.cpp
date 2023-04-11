@@ -1,6 +1,7 @@
 #include "UIImage.h"
 #include "UITransform.h"
 #include "../meshModel/AUIMesh.h"
+#include "../render/font/FontManager.h"
 
 using namespace Core;
 namespace UI
@@ -11,6 +12,10 @@ namespace UI
 		renderProgram->setShader("uiShader");
 		renderProgram->setRenderQueueName("RenderUIQueue");
 		renderProgram->setRenderStage(2000);
+
+		renderProgram->setDepthTest(true);
+		renderProgram->setBlend(true);
+		renderProgram->setBlendFunc(Render::BlendFunc::SRC_ALPHA, Render::BlendFunc::ONE_MINUS_SRC_ALPHA);
 
 		initModel();
 	}
@@ -133,7 +138,9 @@ namespace UI
 
 		//AUIMesh& mesh = AUIMesh::getBaseAUIMesh("base"); // AUIMesh("texture2d", vertices, indices);
 
-		texture.image = ImageLoad::LoadImage("/asserts/images/blending_transparent_window.png");
+		Render::FontSource* source = Render::FontManager::getFontSource("/asserts/fonts/DroidSans.ttf");
+
+		texture.image = source->getImage(); // ImageLoad::LoadImage("/asserts/images/blending_transparent_window.png");
 		texture.imageName = "blending_transparent_window.png";
 		texture.uniformName = "texture2d";
 		renderProgram->getMaterial()->setTexture("texture2d", texture);
