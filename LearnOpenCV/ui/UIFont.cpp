@@ -66,11 +66,6 @@ namespace UI
 		unsigned int uvx = source->getImageWidth();
 		unsigned int uvy = 3 * source->getFontSize();
 
-		material->clearTexture();
-		texture.image = source->getImage();
-		texture.imageName = "screenTexture";
-		texture.uniformName = "screenTexture";
-		material->setTexture("screenTexture", texture);
 		material->setVec2("imageUV", 1.0f, 1.0f);
 
 		Render::AddRender(renderProgram);
@@ -83,6 +78,15 @@ namespace UI
 		mesh = model->addBaseUIMesh("base");
 
 		renderProgram->setModel(model);
+
+		Render::Material* material = renderProgram->getMaterial();
+
+		Render::FontSource* source = Render::FontManager::getFontSource(m_font);
+		material->clearTexture();
+		texture.image = source->getImage();  //ImageLoad::LoadImage("/asserts/images/blending_transparent_window.png"); // source->getImage();
+		texture.imageName = "screenTexture";
+		texture.uniformName = "screenTexture";
+		material->setTexture("screenTexture", texture);
 	}
 
 	void UIFont::updateMesh()
@@ -109,8 +113,9 @@ namespace UI
 			float xpos = x + ch.Bearing.x * scale;
 			float ypos = (ch.Size.y - ch.Bearing.y) * scale;
 
-			float uvw = 0; // ch.uv - 48.0f;
-			float uvwx = 200; // (ch.uv + ch.Size.x + 48.0f);
+			float uvw = ch.uv;
+			float uvwx = (ch.uv + ch.Size.x );
+			float uvwy = ch.Size.y;
 
 			printf("char mesh %c uv %f y %f \n", c, ch.uv * uvx, (ch.uv + ch.Size.x) * uvx);
 
@@ -118,22 +123,22 @@ namespace UI
 			float h = ch.Size.y * scale;
 			// 对每个字符更新VBO
 			Core::AUIMesh::Vertex vertex1;
-			vertex1.Position = Math::Vector3(xpos, ypos + h, 0);
+			vertex1.Position = Math::Vector3(xpos, -ypos + h, 0);
 			vertex1.TexCoords = Math::Vector2(uvw * uvx, 0);
 			vertices.push_back(vertex1);
 
 			Core::AUIMesh::Vertex vertex2;
-			vertex2.Position = Math::Vector3(xpos, ypos, 0);
-			vertex2.TexCoords = Math::Vector2(uvw * uvx, 1);
+			vertex2.Position = Math::Vector3(xpos, -ypos, 0);
+			vertex2.TexCoords = Math::Vector2(uvw * uvx, uvwy * uvy);
 			vertices.push_back(vertex2);
 
 			Core::AUIMesh::Vertex vertex3;
-			vertex3.Position = Math::Vector3(xpos + w, ypos, 0);
-			vertex3.TexCoords = Math::Vector2(uvwx * uvx, 1);
+			vertex3.Position = Math::Vector3(xpos + w, -ypos, 0);
+			vertex3.TexCoords = Math::Vector2(uvwx * uvx, uvwy * uvy);
 			vertices.push_back(vertex3);
 
 			Core::AUIMesh::Vertex vertex4;
-			vertex4.Position = Math::Vector3(xpos + w, ypos + h, 0);
+			vertex4.Position = Math::Vector3(xpos + w, -ypos + h, 0);
 			vertex4.TexCoords = Math::Vector2(uvwx * uvx, 0);
 			vertices.push_back(vertex4);
 

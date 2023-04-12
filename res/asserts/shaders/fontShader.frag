@@ -10,5 +10,6 @@ void main()
 {
     vec4 sampled = vec4(textColor.rgb, texture(screenTexture, uv).r);
     //FragColor = vec4(textColor, 1.0);
-    FragColor = texture(screenTexture, uv);
+    //FragColor = texture(screenTexture, uv);
+    FragColor = sampled;
 }
