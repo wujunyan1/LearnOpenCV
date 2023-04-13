@@ -11,7 +11,7 @@ namespace UI
 		renderProgram = Render::CreateRenderProgram("test");
 		renderProgram->setShader("uiShader");
 		renderProgram->setRenderQueueName("RenderUIQueue");
-		renderProgram->setRenderStage(2000);
+		renderProgram->setRenderStage(20000);
 
 		renderProgram->setDepthTest(true);
 		renderProgram->setBlend(true);

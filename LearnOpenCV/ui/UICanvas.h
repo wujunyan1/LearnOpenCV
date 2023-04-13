@@ -17,9 +17,15 @@ namespace UI
 		virtual void Bind();
 
 		virtual void Render();
+
+		void setMainUI(bool b) { m_isMainUI = b; };
+		bool getMainUI() { return m_isMainUI; };
+
 	private:
 
 		void updateUITransform(Vector2 size);
 
+	private:
+		bool m_isMainUI = false;
 	};
 }
