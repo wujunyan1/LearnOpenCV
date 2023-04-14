@@ -11,6 +11,13 @@ namespace UI
 	class UICanvas : public Component
 	{
 	public:
+		enum RenderMode
+		{
+			Overlay,
+			world,
+		};
+
+	public:
 
 		UICanvas();
 
@@ -27,5 +34,7 @@ namespace UI
 
 	private:
 		bool m_isMainUI = false;
+
+		RenderMode m_renderMode = RenderMode::Overlay;
 	};
 }

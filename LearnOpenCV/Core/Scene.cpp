@@ -15,10 +15,11 @@ using namespace Core;
 
 Scene* Scene::currScene = nullptr;
 
-Scene::Scene() 
+Scene::Scene() : Object()
 {
 	currScene = this;
 	cameras = std::vector<Camera*>();
+	models = std::map<ui64, Model*>();
 }
 
 void Scene::Bind()
@@ -56,4 +57,14 @@ void Scene::Bind()
 	
 
 	//o2->AddComponent<TestComponent>();
+}
+
+void Core::Scene::addRenderModel(Model* model)
+{
+	models.insert(std::pair<ui64, Model*>(model->getId(), model));
+}
+
+void Core::Scene::removeRenderModel(ui64 id)
+{
+	models.erase(id);
 }

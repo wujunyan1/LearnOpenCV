@@ -33,6 +33,7 @@ namespace Core {
 		T* AddComponent()
 		{
 			T* t = new T();
+			t->init();
 			componentList->push_back(t);
 			t->setObject(this);
 			t->Bind();

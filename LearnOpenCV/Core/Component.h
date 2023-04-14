@@ -1,12 +1,15 @@
 #pragma once
+#include "Ref.h"
 
 namespace Core 
 {
 	class Object;
 
-	class Component
+	class Component : public Ref
 	{
 	public:
+		Component() :Ref() {};
+
 		virtual void Init();
 		virtual void OnDestroy();
 

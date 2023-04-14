@@ -100,11 +100,18 @@ namespace Core
          */
         virtual ~Ref();
 
+        ui64 getId() { return id; };
+
     protected:
         /// count of references
         unsigned int _referenceCount;
 
+        ui64 id;
+
         friend class AutoreleasePool;
+
+    private:
+        static ui64 _id;
 
 #if ENABLE_SCRIPT_BINDING
     public:

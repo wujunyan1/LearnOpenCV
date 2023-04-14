@@ -10,9 +10,12 @@
 
 namespace Core
 {
+    unsigned long long Ref::_id = 0;
+
     Ref::Ref()
         : _referenceCount(1) // when the Ref is created, the reference count of it is 1
     {
+        id = _id++;
     }
 
     Ref::~Ref()

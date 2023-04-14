@@ -6,6 +6,8 @@
 
 namespace Core
 {
+	class Model;
+
 	class Scene : public Object
 	{
 	public:
@@ -42,9 +44,15 @@ namespace Core
 			return cameras;
 		}
 
+		void addRenderModel(Model* model);
+		void removeRenderModel(ui64 id);
+
+
 	private:
 		Camera* mainCamera;
 		std::vector<Camera*> cameras;
+
+		std::map<ui64, Model*> models;
 
 		static Scene* currScene;
 	};

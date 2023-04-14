@@ -213,6 +213,7 @@
     <ClInclude Include="opengl\GLShader.h" />
     <ClInclude Include="opengl\GLShaderManager.h" />
     <ClInclude Include="opengl\OpenGLCore.h" />
+    <ClInclude Include="RenderInterface.h" />
     <ClInclude Include="render\BlendFunc.h" />
     <ClInclude Include="render\font\FontManager.h" />
     <ClInclude Include="render\Material.h" />
@@ -296,6 +297,7 @@
     <ClCompile Include="opengl\GLShader.cpp" />
     <ClCompile Include="opengl\GLShaderManager.cpp" />
     <ClCompile Include="opengl\OpenGLCore.cpp" />
+    <ClCompile Include="RenderInterface.cpp" />
     <ClCompile Include="render\BlendFunc.cpp" />
     <ClCompile Include="render\font\FontManager.cpp" />
     <ClCompile Include="render\Material.cpp" />

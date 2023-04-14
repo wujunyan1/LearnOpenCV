@@ -12,6 +12,7 @@ namespace Core
 	{
 	public:
 		Model();
+		~Model();
 
 		void setModel(AModel* model);
 		
@@ -41,5 +42,7 @@ namespace Core
 		bool b_isShow = true;
 
 		float f_alpha = 1.0f;
+
+	private:
 	};
 }

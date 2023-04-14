@@ -306,6 +306,9 @@
     <ClInclude Include="ui\UIFont.h">
       <Filter>ui</Filter>
     </ClInclude>
+    <ClInclude Include="RenderInterface.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -550,6 +553,9 @@
     </ClCompile>
     <ClCompile Include="ui\UIFont.cpp">
       <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderInterface.cpp">
+      <Filter>core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
