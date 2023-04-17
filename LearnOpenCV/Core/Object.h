@@ -4,7 +4,7 @@
 #include "Component.h"
 #include "Core.h"
 #include "TreeNode.h"
-
+#include "RenderInterface.h"
 
 namespace Core {
 	class Object : public TreeNode
@@ -33,7 +33,7 @@ namespace Core {
 		T* AddComponent()
 		{
 			T* t = new T();
-			t->init();
+			t->Init();
 			componentList->push_back(t);
 			t->setObject(this);
 			t->Bind();
@@ -102,16 +102,28 @@ namespace Core {
 			for (auto i : *componentList)
 			{
 				if (i->isActive())
-					i->Render();
+				{
+					RenderInterface* renderModel = dynamic_cast<RenderInterface*>(i);
+					if (renderModel)
+					{
+						renderModel->Render();
+					}
+				}
 			}
 
 			TreeNode::Render();
 		}
 
+
+		ui64 getLayer() { return m_layer; };
+		void setLayer(ui64 layer) { m_layer = layer; };
+
 	private:
 		std::vector<Component*>* componentList;
 		String name;
 		unsigned int id = 0;
+
+		ui64 m_layer = 1;
 	};
 
 

@@ -24,6 +24,7 @@ namespace Core {
 		void Render(long time);
 
 		float GetCurrUpdateDelay() { return delay / 1000; }
+		float GetCurrFPS() { return 1000.0f / delay; }
 
 		void LoadMainScene();
 

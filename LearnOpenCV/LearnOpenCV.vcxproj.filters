@@ -16,9 +16,6 @@
     <Filter Include="math">
       <UniqueIdentifier>{ac8fa5be-58d6-4400-9c99-acacbcb264af}</UniqueIdentifier>
     </Filter>
-    <Filter Include="core">
-      <UniqueIdentifier>{ff9be8cb-c535-4657-a2ab-4002f5e0d5cb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="render">
       <UniqueIdentifier>{b35c5ed8-e75f-43e5-8b2d-f095af605cc1}</UniqueIdentifier>
     </Filter>
@@ -49,6 +46,12 @@
     <Filter Include="render\font">
       <UniqueIdentifier>{f5d15bc3-d674-4187-8cf7-d41ccd3d8950}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{ff9be8cb-c535-4657-a2ab-4002f5e0d5cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{c437d23c-0485-4d36-bab8-f61d2af256dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LearnOpenCV.h">
@@ -58,25 +61,25 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Core\Component.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\Object.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\ObjectManager.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\Transform.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\Core.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\CoreDef.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\TypeDef.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="math\Math.h">
       <Filter>math</Filter>
@@ -88,22 +91,22 @@
       <Filter>math</Filter>
     </ClInclude>
     <ClInclude Include="Core\Scene.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\Camera.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="math\Triangle.h">
       <Filter>math</Filter>
     </ClInclude>
     <ClInclude Include="Core\Model.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="math\Base.h">
       <Filter>math</Filter>
     </ClInclude>
     <ClInclude Include="Core\TestComponent.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="math\Vector4.h">
       <Filter>math</Filter>
@@ -145,10 +148,10 @@
       <Filter>file</Filter>
     </ClInclude>
     <ClInclude Include="Core\Game.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\SceneManager.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="opengl\GLShader.h">
       <Filter>opengl</Filter>
@@ -172,7 +175,7 @@
       <Filter>input</Filter>
     </ClInclude>
     <ClInclude Include="Core\CameraMoveComponent.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="render\BlendFunc.h">
       <Filter>render</Filter>
@@ -184,7 +187,7 @@
       <Filter>math</Filter>
     </ClInclude>
     <ClInclude Include="Core\CameraManager.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="render\RenderStage.h">
       <Filter>render</Filter>
@@ -202,7 +205,7 @@
       <Filter>math</Filter>
     </ClInclude>
     <ClInclude Include="Core\DirLight.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="render\RenderLight.h">
       <Filter>render</Filter>
@@ -214,7 +217,7 @@
       <Filter>ui</Filter>
     </ClInclude>
     <ClInclude Include="Core\SkyBox.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="render\RenderSkyBox.h">
       <Filter>render</Filter>
@@ -259,19 +262,19 @@
       <Filter>event</Filter>
     </ClInclude>
     <ClInclude Include="Core\Ref.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\AutoreleasePool.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\TreeNode.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="ui\UICanvas.h">
       <Filter>ui</Filter>
     </ClInclude>
     <ClInclude Include="Core\GlobalDictionary.h">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="math\UVector2.h">
       <Filter>math</Filter>
@@ -306,8 +309,14 @@
     <ClInclude Include="ui\UIFont.h">
       <Filter>ui</Filter>
     </ClInclude>
-    <ClInclude Include="RenderInterface.h">
-      <Filter>core</Filter>
+    <ClInclude Include="Core\RenderInterface.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ShowFpsComponent.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\StringUtil.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -318,19 +327,19 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Core\Component.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\Object.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\ObjectManager.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\Transform.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\Core.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="math\Math.cpp">
       <Filter>math</Filter>
@@ -342,22 +351,22 @@
       <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="Core\Scene.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\Camera.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="math\Triangle.cpp">
       <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="Core\Model.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="math\Base.cpp">
       <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="Core\TestComponent.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="math\Vector4.cpp">
       <Filter>math</Filter>
@@ -396,10 +405,10 @@
       <Filter>file</Filter>
     </ClCompile>
     <ClCompile Include="Core\Game.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\SceneManager.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="opengl\GLShader.cpp">
       <Filter>opengl</Filter>
@@ -423,7 +432,7 @@
       <Filter>input</Filter>
     </ClCompile>
     <ClCompile Include="Core\CameraMoveComponent.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="render\BlendFunc.cpp">
       <Filter>render</Filter>
@@ -435,7 +444,7 @@
       <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="Core\CameraManager.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="render\RenderStage.cpp">
       <Filter>render</Filter>
@@ -453,7 +462,7 @@
       <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="Core\DirLight.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="render\RenderLight.cpp">
       <Filter>render</Filter>
@@ -462,7 +471,7 @@
       <Filter>ui</Filter>
     </ClCompile>
     <ClCompile Include="Core\SkyBox.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="render\RenderSkyBox.cpp">
       <Filter>render</Filter>
@@ -507,19 +516,19 @@
       <Filter>event</Filter>
     </ClCompile>
     <ClCompile Include="Core\Ref.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\AutoreleasePool.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\TreeNode.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="ui\UICanvas.cpp">
       <Filter>ui</Filter>
     </ClCompile>
     <ClCompile Include="Core\GlobalDictionary.cpp">
-      <Filter>core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="math\UVector2.cpp">
       <Filter>math</Filter>
@@ -554,8 +563,14 @@
     <ClCompile Include="ui\UIFont.cpp">
       <Filter>ui</Filter>
     </ClCompile>
-    <ClCompile Include="RenderInterface.cpp">
-      <Filter>core</Filter>
+    <ClCompile Include="Core\RenderInterface.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ShowFpsComponent.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\StringUtil.cpp">
+      <Filter>Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

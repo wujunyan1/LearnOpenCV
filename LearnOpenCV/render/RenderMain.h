@@ -8,6 +8,7 @@
 #include "RenderQueue.h"
 #include "../file/Image.h"
 #include "RenderSkyBox.h"
+#include "../ui/UICanvas.h"
 
 #include "../opengl/OpenGLCore.h"
 
@@ -40,7 +41,7 @@ namespace Render
 
 	// 添加到渲染队列
 	void AddRender(RenderProgram* renderProgram);
-	void AddSkyBox(RenderSkyBox* skybox);
+	void AddUICanvas(UI::UICanvas* canvas);
 	void AddLight();
 
 	long getCurrentRenderTime();

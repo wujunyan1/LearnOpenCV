@@ -121,6 +121,7 @@ namespace UI
 			updateWorldToLocalMat4();
 
 			renderModelMat4 = localToWorldMat4 * Mat4::scale(Vector3(m_realSize.x, m_realSize.y, 1));
+			renderModelMat4.printMat4();
 		}
 
 		void updateLocalToWorldMat4()

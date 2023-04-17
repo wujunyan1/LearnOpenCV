@@ -19,8 +19,6 @@ namespace Core
 		virtual void Update() {}
 		virtual void LaterUpdate() {}
 
-		virtual void Render(){}
-
 		void setObject(Object* o);
 
 		Object* getObject();

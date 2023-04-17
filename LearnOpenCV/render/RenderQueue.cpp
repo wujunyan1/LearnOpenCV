@@ -95,6 +95,7 @@ namespace Render
 		shaderProgram->setMat4("proj", camera->getPerspectiveMat4());
 
 		Math::AABB& perspectiveAABB = camera->getPerspectiveAABB();
+		ui64 mask = camera->getCullingMask();
 
 		std::vector<RenderProgram*> renderProgram;
 		bool blend = false;

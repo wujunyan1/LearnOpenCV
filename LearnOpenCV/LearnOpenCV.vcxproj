@@ -163,8 +163,10 @@
     <ClInclude Include="Core\Object.h" />
     <ClInclude Include="Core\ObjectManager.h" />
     <ClInclude Include="Core\Ref.h" />
+    <ClInclude Include="Core\RenderInterface.h" />
     <ClInclude Include="Core\Scene.h" />
     <ClInclude Include="Core\SceneManager.h" />
+    <ClInclude Include="Core\ShowFpsComponent.h" />
     <ClInclude Include="Core\SkyBox.h" />
     <ClInclude Include="Core\TestComponent.h" />
     <ClInclude Include="Core\Transform.h" />
@@ -213,7 +215,6 @@
     <ClInclude Include="opengl\GLShader.h" />
     <ClInclude Include="opengl\GLShaderManager.h" />
     <ClInclude Include="opengl\OpenGLCore.h" />
-    <ClInclude Include="RenderInterface.h" />
     <ClInclude Include="render\BlendFunc.h" />
     <ClInclude Include="render\font\FontManager.h" />
     <ClInclude Include="render\Material.h" />
@@ -235,6 +236,7 @@
     <ClInclude Include="ui\UIFont.h" />
     <ClInclude Include="ui\UIImage.h" />
     <ClInclude Include="ui\UITransform.h" />
+    <ClInclude Include="Util\StringUtil.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\AutoreleasePool.cpp" />
@@ -250,8 +252,10 @@
     <ClCompile Include="Core\Object.cpp" />
     <ClCompile Include="Core\ObjectManager.cpp" />
     <ClCompile Include="Core\Ref.cpp" />
+    <ClCompile Include="Core\RenderInterface.cpp" />
     <ClCompile Include="Core\Scene.cpp" />
     <ClCompile Include="Core\SceneManager.cpp" />
+    <ClCompile Include="Core\ShowFpsComponent.cpp" />
     <ClCompile Include="Core\SkyBox.cpp" />
     <ClCompile Include="Core\TestComponent.cpp" />
     <ClCompile Include="Core\Transform.cpp" />
@@ -297,7 +301,6 @@
     <ClCompile Include="opengl\GLShader.cpp" />
     <ClCompile Include="opengl\GLShaderManager.cpp" />
     <ClCompile Include="opengl\OpenGLCore.cpp" />
-    <ClCompile Include="RenderInterface.cpp" />
     <ClCompile Include="render\BlendFunc.cpp" />
     <ClCompile Include="render\font\FontManager.cpp" />
     <ClCompile Include="render\Material.cpp" />
@@ -319,6 +322,7 @@
     <ClCompile Include="ui\UIFont.cpp" />
     <ClCompile Include="ui\UIImage.cpp" />
     <ClCompile Include="ui\UITransform.cpp" />
+    <ClCompile Include="Util\StringUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

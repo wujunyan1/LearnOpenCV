@@ -117,7 +117,7 @@ namespace UI
 			float uvwx = (ch.uv + ch.Size.x );
 			float uvwy = ch.Size.y;
 
-			printf("char mesh %c uv %f y %f \n", c, ch.uv * uvx, (ch.uv + ch.Size.x) * uvx);
+			//printf("char mesh %c uv %f y %f \n", c, ch.uv * uvx, (ch.uv + ch.Size.x) * uvx);
 
 			float w = ch.Size.x * scale;
 			float h = ch.Size.y * scale;

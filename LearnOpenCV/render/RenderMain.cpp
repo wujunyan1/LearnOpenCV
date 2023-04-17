@@ -128,10 +128,9 @@ namespace Render
 	void AddRender(RenderProgram* renderProgram)
 	{
 		RenderStageManager::AddRenderProgram(renderProgram);
-		// RenderQueueManager::AddRenderQueue(renderProgram);
 	}
 
-	void AddSkyBox(RenderSkyBox* skybox)
+	void AddUICanvas(UI::UICanvas* canvas)
 	{
 
 	}

@@ -15,8 +15,8 @@ namespace Render
 		float far = 1.0f;
 
 		ortho = Mat4(1);
-		ortho.m00 = (1.0f) / (right - left);
-		ortho.m11 = (1.0f) / (top - bottom);
+		ortho.m00 = (2.0f) / (right - left);
+		ortho.m11 = (2.0f) / (top - bottom);
 		ortho.m22 = -(2.0f) / (far - near);
 		/*ortho.m30 = -(right + left) / (right - left);
 		ortho.m31 = -(top + bottom) / (top - bottom);
@@ -35,7 +35,6 @@ namespace Render
 		shaderProgram->Use();
 		shaderProgram->setMat4("VP", ortho); //camera->getOrthogonalMat4()
 		//Mat4 VP = camera->getOrthogonalMat4();
-
 		for (size_t i = 0; i < index; i++)
 		{
 			Render::RenderProgram* program = activeRenderProgram->at(i);

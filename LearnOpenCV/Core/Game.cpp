@@ -9,6 +9,8 @@
 #include <stdio.h>
 
 #include "TestComponent.h"
+#include "ShowFpsComponent.h"
+
 #include "../render/RenderMain.h"
 #include "../meshModel/AModel.h"
 #include "../logic/renderQueue/RenderOpaqueQueue.h"
@@ -282,9 +284,10 @@ void Game::LoadMainScene()
 
 
 	Object* uiBase = ObjectManager::createNewObject();
-	uiBase->AddComponent<UI::UITransform>();
+	UI::UITransform* baseTransform = uiBase->AddComponent<UI::UITransform>();
 	uiBase->AddComponent<UI::UICanvas>();
 	root->AddChild(uiBase);
+	//uiBase->AddComponent<UI::UIImage>();
 
 	Object* showUI = ObjectManager::createNewObject();
 	UI::UITransform* uiTransform = showUI->AddComponent<UI::UITransform>();
@@ -298,10 +301,14 @@ void Game::LoadMainScene()
 	UI::UITransform* uiFontTransform = showFont->AddComponent<UI::UITransform>();
 	UI::UIFont* uiFont = showFont->AddComponent<UI::UIFont>();
 	uiFont->setText("fps : 60");
+	uiFont->setColor({ 1.0, 0.0, 0.0 });
 
 	uiFontTransform->SetPosition({ {0, 0} ,{0, 0} });
 	uiFontTransform->SetPivot({ 0, 0 });
 	uiFontTransform->SetSize({ {0, 200}, {0, 100} });
+
+	showFont->AddComponent<Core::ShowFpsComponent>();
+
 	uiBase->AddChild(showFont);
 }
 

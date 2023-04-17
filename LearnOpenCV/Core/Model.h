@@ -5,10 +5,11 @@
 #include "../render/RenderMain.h"
 #include "../meshModel/AModel.h"
 #include "../render/BlendFunc.h"
+#include "RenderInterface.h"
 
 namespace Core
 {
-	class Model : public Component
+	class Model : public Component, public RenderInterface
 	{
 	public:
 		Model();
@@ -19,7 +20,7 @@ namespace Core
 
 		void bindRender();
 
-		void Render();
+		virtual void Render();
 
 		void setShader(std::string shaderName);
 

@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
 		Render::Render(delay);
 		time = currTime;
 
-		printf("fps : %f \n", 1000.0f / delay);
+		// printf("fps : %f \n", 1000.0f / delay);
 
 		Render::RenderEnd();
 	}

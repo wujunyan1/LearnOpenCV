@@ -40,10 +40,10 @@ namespace Render
         GL_GET_ERROR(glGenTextures(1, &texture));
         GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, texture));
 
-        GL_GET_ERROR(glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, 10 * fontSize, 3 * fontSize, 0, GL_RED, GL_UNSIGNED_BYTE, NULL));
+        GL_GET_ERROR(glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, 256 * fontSize, 3 * fontSize, 0, GL_RED, GL_UNSIGNED_BYTE, NULL));
 
 
-        glTexSubImage2D(
+        GL_GET_ERROR(glTexSubImage2D(
             GL_TEXTURE_2D, 
             0, 
             0, 
@@ -53,7 +53,7 @@ namespace Render
             GL_RED, 
             GL_UNSIGNED_BYTE, 
             face->glyph->bitmap.buffer
-        );
+        ));
 
         /*glTexImage2D(
             GL_TEXTURE_2D,

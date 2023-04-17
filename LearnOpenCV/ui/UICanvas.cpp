@@ -17,11 +17,11 @@ namespace UI
 	void UICanvas::Bind()
 	{
 		UITransform* transform = getObject()->GetComponent<UITransform>();
-		/*Math::Vector2T<int> windowSize = GlobalDictionary::getRealWindowSize();
-		transform->m_realSize = { (float)windowSize.x, (float)windowSize.y };*/
-		transform->SetPosition({ { 0, 0 }, { 0, 0 } });
+		Math::Vector2T<int> windowSize = GlobalDictionary::getRealWindowSize();
+		//transform->m_realSize = { (float)windowSize.x, (float)windowSize.y };
+		transform->SetPosition({ { 0, -0.5f * windowSize.x }, { 0, -0.5f * windowSize.y } });
 		transform->SetPivot({ 0, 0 });
-		transform->SetSize({ {1, 0}, {1, 0} });
+		transform->SetSize({ {0, 1.0f * windowSize.x}, {0, 1.0f * windowSize.y} });
 		transform->UpdateLocalMat4();
 	}
 

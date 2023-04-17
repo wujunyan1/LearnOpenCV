@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.h"
 #include "Component.h"
+#include "RenderInterface.h"
 
 namespace Core
 {
@@ -8,7 +9,7 @@ namespace Core
 	class Scene;
 	class EventListenerCustom;
 
-	class Camera : public Component
+	class Camera : public Component, public RenderInterface
 	{
 	public:
 		Camera();
@@ -25,10 +26,13 @@ namespace Core
 
 		void SetMainCamera(bool isMain);
 		bool GetMainCamera() { return m_isMainCamera; };
-		void Render();
+		virtual void Render();
 
 		Math::AABB& getPerspectiveAABB() { return perspectiveAabb; };
 		Math::Vector3& getWorldPosition() { return worldPosition; };
+
+		ui64 getCullingMask() { return m_cullingMask; }
+		void setCullingMask(ui64 mask) { m_cullingMask = mask; }
 
 		void beginRender();
 
@@ -48,6 +52,8 @@ namespace Core
 		Math::Vector3 worldPosition;
 
 		bool m_isMainCamera = false;
+
+		ui64 m_cullingMask = std::numeric_limits<ui64>::max();
 
 	private:
 		unsigned int fbo = 0;

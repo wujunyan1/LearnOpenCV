@@ -6,12 +6,13 @@
 #include "../file/ImageLoad.h"
 #include "../render/RenderMain.h"
 #include "../meshModel/AUIMesh.h"
+#include "../Core/RenderInterface.h"
 #include <vector>
 
 using namespace Core;
 namespace UI 
 {
-	class UIImage : public Component
+	class UIImage : public Component, public RenderInterface
 	{
 	public:
 
