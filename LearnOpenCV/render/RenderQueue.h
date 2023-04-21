@@ -96,7 +96,7 @@ namespace Render
 
 		Math::AABB renderAABB;
 
-		ui64 renderLayer = 1;
+		Core::ui64 renderLayer = 1;
 	public:
 		float cameraDistance = 999999.9f;
 	};

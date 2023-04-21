@@ -58,12 +58,6 @@ void Game::Tick(long time)
 }
 
 
-void Game::Render(long time)
-{
-	Scene* currScene = SceneManager::GetInstance()->GetCurrScene();
-	currScene->Render();
-}
-
 void Game::LoadMainScene()
 {
 	Render::CreateShader("defaultShader", "/asserts/shaders/shader.vert", "/asserts/shaders/shader.frag");

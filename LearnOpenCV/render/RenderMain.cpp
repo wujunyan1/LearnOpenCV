@@ -124,6 +124,11 @@ namespace Render
 		Render::RenderQueueManager::registerRenderQueueCreator(type, creator);
 	}
 
+	void RenderScene(Core::Scene* scene)
+	{
+		RenderStageManager::RenderScene(scene);
+	}
+
 	// 添加到渲染队列
 	void AddRender(RenderProgram* renderProgram)
 	{
@@ -229,12 +234,12 @@ namespace Render
 		FontManager::GetInstance()->checkCharacterTexture();
 	}
 
-	void BeforeRender(float delay)
+	void BeforeRender()
 	{
 		return Render::RenderStageManager::beforeRender();
 	}
 
-	void Render(float delay)
+	void Render()
 	{
 		Core::Scene* scene = Core::Scene::getCurrScene();
 

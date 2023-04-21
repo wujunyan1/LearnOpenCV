@@ -21,7 +21,7 @@ namespace Core {
 		}
 
 		void Tick(long time);
-		void Render(long time);
+		//void Render(long time);
 
 		float GetCurrUpdateDelay() { return delay / 1000; }
 		float GetCurrFPS() { return 1000.0f / delay; }

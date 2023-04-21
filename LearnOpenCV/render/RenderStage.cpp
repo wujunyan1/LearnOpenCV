@@ -3,6 +3,7 @@
 #include "../Core/Object.h"
 #include "../Core/SkyBox.h"
 #include "RenderSkyBox.h"
+#include "../Core/Scene.h"
 
 using namespace Render;
 
@@ -124,6 +125,22 @@ void RenderStageManager::AddRenderProgram(RenderProgram* renderProgram)
 	}
 	
 	stage->AddRenderProgram(renderProgram);
+}
+
+void Render::RenderStageManager::RenderScene(Core::Scene* scene)
+{
+	scene->Render();
+	beforeRender();
+
+	std::vector<Core::Camera*>& cameras = scene->getRenderCameras();
+
+	// 先渲染其他摄像机，在渲染主摄像机
+	for (auto it = cameras.begin(); it != cameras.end(); it++)
+	{
+		render(*it);
+	}
+
+	render(scene->getMainCamera());
 }
 
 void RenderStageManager::beforeRender()

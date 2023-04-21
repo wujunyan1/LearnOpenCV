@@ -40,6 +40,7 @@ namespace Render
 	void AddCustomRenderQueue(const std::string& type, Render::RenderQueueManager::RenderCreator creator);
 
 	// 添加到渲染队列
+	void RenderScene(Core::Scene* scene);
 	void AddRender(RenderProgram* renderProgram);
 	void AddUICanvas(UI::UICanvas* canvas);
 	void AddLight();
@@ -58,8 +59,8 @@ namespace Render
 	void BindFramebuffer(unsigned int fbo);
 
 	void updateTextures(float delay);
-	void BeforeRender(float delay);
-	void Render(float delay);
+	void BeforeRender();
+	void Render();
 	void RenderEnd();
 
 	template<typename T>

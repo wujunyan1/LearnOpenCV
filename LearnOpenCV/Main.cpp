@@ -11,6 +11,7 @@
 
 #include <direct.h>
 #include "file/FilePathManager.h"
+#include "Core/SceneManager.h"
 
 int main(int argc, char* argv[])
 {
@@ -47,15 +48,10 @@ int main(int argc, char* argv[])
 		game->Tick(delay);
 
 		Render::updateTextures(delay);
-		game->Render(delay);
-		/*transform->PreUpdate();
-		transform->Update();
-		transform->LaterUpdate();
-		transform->Render();*/
 
+		Scene* currScene = SceneManager::GetInstance()->GetCurrScene();
+		Render::RenderScene(currScene);
 
-		Render::BeforeRender(delay);
-		Render::Render(delay);
 		time = currTime;
 
 		// printf("fps : %f \n", 1000.0f / delay);

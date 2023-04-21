@@ -27,7 +27,7 @@ namespace UI
 
 	void UICanvas::Render()
 	{
-
+		Render::AddUICanvas(this);
 	}
 
 	void UICanvas::updateUITransform(Vector2 size)

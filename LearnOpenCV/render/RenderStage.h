@@ -6,6 +6,11 @@
 
 #include "../render/RenderQueue.h"
 
+namespace Core
+{
+	class Scene;
+}
+
 namespace Render
 {
 	class RenderStage
@@ -50,6 +55,9 @@ namespace Render
 		static void renderEnd();
 
 		static void AddRenderProgram(RenderProgram* renderProgram);
+
+		static void RenderScene(Core::Scene* scene);
+
 	private:
 		static std::map<unsigned int, RenderStage*> stages;
 		static std::vector<RenderStage*> renderStages;
