@@ -11,6 +11,11 @@ namespace Core
 	class Scene;
 }
 
+namespace UI
+{
+	class UICanvas;
+}
+
 namespace Render
 {
 	class RenderStage
@@ -55,11 +60,13 @@ namespace Render
 		static void renderEnd();
 
 		static void AddRenderProgram(RenderProgram* renderProgram);
+		static void AddRenderUI(UI::UICanvas* canvas);
 
 		static void RenderScene(Core::Scene* scene);
 
 	private:
 		static std::map<unsigned int, RenderStage*> stages;
 		static std::vector<RenderStage*> renderStages;
+		static std::vector<RenderStage*> renderWindows;
 	};
 }

@@ -137,7 +137,7 @@ namespace Render
 
 	void AddUICanvas(UI::UICanvas* canvas)
 	{
-
+		RenderStageManager::AddRenderUI(canvas);
 	}
 
 	void InitEngine()

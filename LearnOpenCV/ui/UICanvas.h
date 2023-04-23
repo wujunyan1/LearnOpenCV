@@ -13,8 +13,9 @@ namespace UI
 	public:
 		enum RenderMode
 		{
-			Overlay,
-			world,
+			world = 0,
+			Camera = 1,
+			Overlay = 2,
 		};
 
 	public:
@@ -27,7 +28,7 @@ namespace UI
 
 		void setMainUI(bool b) { m_isMainUI = b; };
 		bool getMainUI() { return m_isMainUI; };
-
+		RenderMode getRenderMode() { return m_renderMode; };
 	private:
 
 		void updateUITransform(Vector2 size);

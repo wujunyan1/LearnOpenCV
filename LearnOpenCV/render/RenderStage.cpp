@@ -127,6 +127,11 @@ void RenderStageManager::AddRenderProgram(RenderProgram* renderProgram)
 	stage->AddRenderProgram(renderProgram);
 }
 
+void Render::RenderStageManager::AddRenderUI(UI::UICanvas* canvas)
+{
+	renderWindows.push_back(canvas);
+}
+
 void Render::RenderStageManager::RenderScene(Core::Scene* scene)
 {
 	scene->Render();
@@ -169,12 +174,16 @@ void RenderStageManager::render(Core::Camera* renderCamera)
 {
 	renderCamera->beginRender();
 
+	// ÏÈäÖÈ¾³¡¾°
 	std::vector<RenderStage*>::iterator it;
 	for (it = renderStages.begin(); it != renderStages.end(); it++)
 	{
 		RenderStage* stage = *it;
 		stage->render(renderCamera);
 	}
+
+	// ÔÙäÖÈ¾UI
+
 }
 
 void RenderStageManager::renderEnd()
