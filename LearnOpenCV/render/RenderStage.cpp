@@ -4,6 +4,7 @@
 #include "../Core/SkyBox.h"
 #include "RenderSkyBox.h"
 #include "../Core/Scene.h"
+#include "../ui/UICanvas.h"
 
 using namespace Render;
 
@@ -129,7 +130,17 @@ void RenderStageManager::AddRenderProgram(RenderProgram* renderProgram)
 
 void Render::RenderStageManager::AddRenderUI(UI::UICanvas* canvas)
 {
-	renderWindows.push_back(canvas);
+	if (renderWindows.size() == 0)
+	{
+		
+	}
+
+	UI::UICanvas::RenderMode mode = canvas->getRenderMode();
+
+	RenderStage* stage = renderWindows.at(mode);
+	
+
+
 }
 
 void Render::RenderStageManager::RenderScene(Core::Scene* scene)

@@ -34,10 +34,10 @@ namespace Render
 		void renderEnd();
 
 		unsigned int getRenderStage() { return renderStage; };
-	private:
+	protected:
 		Render::RenderQueue* createRenderQueue(const std::string& type);
 
-	private:
+	protected:
 		unsigned int renderStage = 0;
 		std::map<unsigned int, Render::RenderQueue*>* queues;
 	};

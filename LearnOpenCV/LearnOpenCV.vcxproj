@@ -230,6 +230,7 @@
     <ClInclude Include="render\RenderStage.h" />
     <ClInclude Include="render\RenderUIMesh.h" />
     <ClInclude Include="render\RenderUIQueue.h" />
+    <ClInclude Include="render\RenderUIStage.h" />
     <ClInclude Include="render\ShaderProgram.h" />
     <ClInclude Include="render\Texture.h" />
     <ClInclude Include="ui\UICanvas.h" />
@@ -316,6 +317,7 @@
     <ClCompile Include="render\RenderStage.cpp" />
     <ClCompile Include="render\RenderUIMesh.cpp" />
     <ClCompile Include="render\RenderUIQueue.cpp" />
+    <ClCompile Include="render\RenderUIStage.cpp" />
     <ClCompile Include="render\ShaderProgram.cpp" />
     <ClCompile Include="render\Texture.cpp" />
     <ClCompile Include="ui\UICanvas.cpp" />

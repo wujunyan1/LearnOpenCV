@@ -127,7 +127,7 @@ namespace Core
 		}
 
 	protected:
-		std::vector<TreeNode*> children;
+		std::vector<T*> children;
 		TreeNode* parent;
 		unsigned int m_order = 50;
 		unsigned int _orderOfArrival = 0;
