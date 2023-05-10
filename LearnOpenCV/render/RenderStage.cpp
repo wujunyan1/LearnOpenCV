@@ -5,6 +5,7 @@
 #include "RenderSkyBox.h"
 #include "../Core/Scene.h"
 #include "../ui/UICanvas.h"
+#include "RenderUIStage.h"
 
 using namespace Render;
 
@@ -98,6 +99,7 @@ void Render::SkyBoxRenderStage::render(Core::Camera* renderCamera)
 
 std::map<unsigned int, RenderStage*> RenderStageManager::stages = std::map<unsigned int, RenderStage*>();
 std::vector<RenderStage*> RenderStageManager::renderStages = std::vector<RenderStage*>();
+std::vector<RenderUIStage*> RenderStageManager::renderWindows = std::vector<RenderUIStage*>();
 
 
 inline int compare(const void* p1, const void* p2)
@@ -137,10 +139,8 @@ void Render::RenderStageManager::AddRenderUI(UI::UICanvas* canvas)
 
 	UI::UICanvas::RenderMode mode = canvas->getRenderMode();
 
-	RenderStage* stage = renderWindows.at(mode);
-	
-
-
+	RenderUIStage* stage = renderWindows.at(mode);
+	stage->AddRenderCanvas(canvas);
 }
 
 void Render::RenderStageManager::RenderScene(Core::Scene* scene)

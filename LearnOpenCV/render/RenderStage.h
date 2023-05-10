@@ -18,6 +18,8 @@ namespace UI
 
 namespace Render
 {
+	class RenderUIStage;
+
 	class RenderStage
 	{
 		friend class RenderStageManager;
@@ -67,6 +69,6 @@ namespace Render
 	private:
 		static std::map<unsigned int, RenderStage*> stages;
 		static std::vector<RenderStage*> renderStages;
-		static std::vector<RenderStage*> renderWindows;
+		static std::vector<RenderUIStage*> renderWindows;
 	};
 }
