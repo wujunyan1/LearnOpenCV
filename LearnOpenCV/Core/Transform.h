@@ -1,7 +1,7 @@
 #pragma once
 #include "Core.h"
 #include "Component.h"
-#include "Object.h"
+#include "GameObject.h"
 #include <vector>
 
 namespace Core 
@@ -19,7 +19,7 @@ namespace Core
 		World,
 	};
 
-	class Transform : public Component
+	class Transform : public GameComponent
 	{
 	public:
 

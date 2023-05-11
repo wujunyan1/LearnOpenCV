@@ -3,12 +3,13 @@
 #include "Component.h"
 #include "Transform.h"
 #include "Camera.h"
+#include "GameObject.h"
 
 namespace Core
 {
 	class Model;
 
-	class Scene : public Object
+	class Scene : public GameObject
 	{
 	public:
 		Scene();
@@ -18,7 +19,7 @@ namespace Core
 		void Render()
 		{
 			cameras.clear();
-			Object::Render();
+			GameObject::Render();
 		};
 
 		Camera* getMainCamera() { 

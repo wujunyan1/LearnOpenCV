@@ -158,6 +158,7 @@
     <ClInclude Include="Core\CoreDef.h" />
     <ClInclude Include="Core\DirLight.h" />
     <ClInclude Include="Core\Game.h" />
+    <ClInclude Include="Core\GameObject.h" />
     <ClInclude Include="Core\GlobalDictionary.h" />
     <ClInclude Include="Core\Model.h" />
     <ClInclude Include="Core\Object.h" />
@@ -248,6 +249,7 @@
     <ClCompile Include="Core\Core.cpp" />
     <ClCompile Include="Core\DirLight.cpp" />
     <ClCompile Include="Core\Game.cpp" />
+    <ClCompile Include="Core\GameObject.cpp" />
     <ClCompile Include="Core\GlobalDictionary.cpp" />
     <ClCompile Include="Core\Model.cpp" />
     <ClCompile Include="Core\Object.cpp" />

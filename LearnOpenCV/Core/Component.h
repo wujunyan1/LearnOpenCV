@@ -31,5 +31,17 @@ namespace Core
 
 		bool b_isActive = true;
 	};
+
+	class GameObject;
+	class GameComponent : public Component
+	{
+	public:
+		GameObject* getObject();
+
+		bool isActive() { return b_isActive; };
+		void setActive(bool active) { b_isActive = active; };
+
+	protected:
+	};
 }
 

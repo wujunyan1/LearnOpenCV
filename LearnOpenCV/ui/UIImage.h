@@ -12,7 +12,7 @@
 using namespace Core;
 namespace UI 
 {
-	class UIImage : public Component, public RenderInterface
+	class UIImage : public GameComponent, public RenderInterface
 	{
 	public:
 

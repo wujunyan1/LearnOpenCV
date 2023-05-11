@@ -5,7 +5,7 @@
 
 namespace Core
 {
-	class CameraMoveComponent : public Component
+	class CameraMoveComponent : public GameComponent
 	{
 	public:
 		CameraMoveComponent();

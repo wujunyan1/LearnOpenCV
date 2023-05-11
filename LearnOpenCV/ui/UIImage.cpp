@@ -6,7 +6,7 @@
 using namespace Core;
 namespace UI
 {
-	UIImage::UIImage() : Component() {
+	UIImage::UIImage() : GameComponent() {
 
 		renderProgram = Render::CreateRenderProgram("test");
 		renderProgram->setShader("uiShader");

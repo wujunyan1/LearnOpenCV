@@ -321,6 +321,9 @@
     <ClInclude Include="render\RenderUIStage.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="Core\GameObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -577,6 +580,9 @@
     </ClCompile>
     <ClCompile Include="render\RenderUIStage.cpp">
       <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\GameObject.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

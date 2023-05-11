@@ -9,7 +9,7 @@
 
 namespace Core
 {
-	class Model : public Component, public RenderInterface
+	class Model : public GameComponent, public RenderInterface
 	{
 	public:
 		Model();

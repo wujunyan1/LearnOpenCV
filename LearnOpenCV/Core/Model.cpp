@@ -9,7 +9,7 @@
 
 using namespace Core;
 
-Model::Model() : Component()
+Model::Model() : GameComponent()
 {
 	renderProgram = Render::CreateRenderProgram("test");
 	renderProgram->setShader("testShader");

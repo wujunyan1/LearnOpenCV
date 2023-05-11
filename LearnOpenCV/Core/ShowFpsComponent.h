@@ -5,7 +5,7 @@
 
 namespace Core
 {
-	class ShowFpsComponent : public Component
+	class ShowFpsComponent : public GameComponent
 	{
 	public:
 		ShowFpsComponent();

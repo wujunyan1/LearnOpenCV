@@ -5,7 +5,7 @@
 
 namespace Core
 {
-	class TestComponent : public Component
+	class TestComponent : public GameComponent
 	{
 	public:
 		TestComponent();

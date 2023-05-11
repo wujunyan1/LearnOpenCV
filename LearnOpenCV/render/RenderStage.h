@@ -20,7 +20,7 @@ namespace Render
 {
 	class RenderUIStage;
 
-	class RenderStage
+	class RenderStage : public Core::Object
 	{
 		friend class RenderStageManager;
 	public:

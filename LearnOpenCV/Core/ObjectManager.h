@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.h"
 #include "Object.h"
+#include "GameObject.h"
 
 namespace Core 
 {
@@ -14,6 +15,7 @@ namespace Core
 			return instance;
 		}
 
+		static GameObject* createNewGameObject();
 		static Object* createNewObject();
 		static Object* createRootObject();
 

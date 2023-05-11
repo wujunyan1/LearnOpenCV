@@ -1,5 +1,5 @@
 #include "Scene.h"
-#include "Object.h"
+#include "GameObject.h"
 #include "ObjectManager.h"
 #include "Transform.h"
 #include "Camera.h"
@@ -15,7 +15,7 @@ using namespace Core;
 
 Scene* Scene::currScene = nullptr;
 
-Scene::Scene() : Object()
+Scene::Scene() : GameObject()
 {
 	currScene = this;
 	cameras = std::vector<Camera*>();
@@ -25,7 +25,7 @@ Scene::Scene() : Object()
 void Scene::Bind()
 {
 	
-	Object* cameraObj = ObjectManager::createNewObject();
+	GameObject* cameraObj = ObjectManager::createNewGameObject();
 	this->AddChild(cameraObj);
 
 	Transform* cameraT = cameraObj->AddComponent<Transform>();

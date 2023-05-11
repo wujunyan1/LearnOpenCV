@@ -8,7 +8,7 @@
 using namespace Core;
 namespace UI 
 {
-	class UICanvas : public Component
+	class UICanvas : public GameComponent
 	{
 	public:
 		enum RenderMode

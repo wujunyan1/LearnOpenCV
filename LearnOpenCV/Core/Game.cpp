@@ -77,7 +77,7 @@ void Game::LoadMainScene()
 	scene->LaterUpdate();*/
 
 
-	Object* o = ObjectManager::createNewObject();
+	GameObject* o = ObjectManager::createNewGameObject();
 	root->AddChild(o);
 	Transform* t = o->AddComponent<Transform>();
 	Model* model = o->AddComponent<Model>();
@@ -88,7 +88,7 @@ void Game::LoadMainScene()
 	model->setBlend(false);
 
 
-	Object* eggObj = ObjectManager::createNewObject();
+	GameObject* eggObj = ObjectManager::createNewGameObject();
 	root->AddChild(eggObj);
 
 	Transform* eggTransform = eggObj->AddComponent<Transform>();
@@ -103,7 +103,7 @@ void Game::LoadMainScene()
 
 	for (size_t i = 0; i < 0; i++)
 	{
-		Object* o2 = ObjectManager::createNewObject();
+		GameObject* o2 = ObjectManager::createNewGameObject();
 		Transform* t2 = o2->AddComponent<Transform>();
 		Model* mesh2 = o2->AddComponent<Model>();
 
@@ -190,7 +190,7 @@ void Game::LoadMainScene()
 
 	for (size_t i = 0; i < 0; i++)
 	{
-		Object* o2 = ObjectManager::createNewObject();
+		GameObject* o2 = ObjectManager::createNewGameObject();
 		Transform* t2 = o2->AddComponent<Transform>();
 		Model* mesh2 = o2->AddComponent<Model>();
 
@@ -277,13 +277,13 @@ void Game::LoadMainScene()
 	}
 
 
-	Object* uiBase = ObjectManager::createNewObject();
+	GameObject* uiBase = ObjectManager::createNewGameObject();
 	UI::UITransform* baseTransform = uiBase->AddComponent<UI::UITransform>();
 	uiBase->AddComponent<UI::UICanvas>();
 	root->AddChild(uiBase);
 	//uiBase->AddComponent<UI::UIImage>();
 
-	Object* showUI = ObjectManager::createNewObject();
+	GameObject* showUI = ObjectManager::createNewGameObject();
 	UI::UITransform* uiTransform = showUI->AddComponent<UI::UITransform>();
 	UI::UIImage* uiImage = showUI->AddComponent<UI::UIImage>();
 
@@ -291,7 +291,7 @@ void Game::LoadMainScene()
 	uiTransform->SetSize({ {0, 800}, {0, 100} });
 	uiBase->AddChild(showUI);
 
-	Object* showFont = ObjectManager::createNewObject();
+	GameObject* showFont = ObjectManager::createNewGameObject();
 	UI::UITransform* uiFontTransform = showFont->AddComponent<UI::UITransform>();
 	UI::UIFont* uiFont = showFont->AddComponent<UI::UIFont>();
 	uiFont->setText("fps : 60");

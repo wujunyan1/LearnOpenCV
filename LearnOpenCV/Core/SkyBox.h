@@ -7,7 +7,7 @@
 
 namespace Core
 {
-	class SkyBox : public Component
+	class SkyBox : public GameComponent
 	{
 	public:
 		SkyBox();

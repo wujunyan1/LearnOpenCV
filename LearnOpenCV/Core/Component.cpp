@@ -1,5 +1,6 @@
 #include "Component.h"
 #include "Object.h"
+#include "GameObject.h"
 
 using namespace Core;
 
@@ -18,4 +19,8 @@ void Component::setObject(Object* o) {
 
 Object* Component::getObject() {
 	return object;
+}
+
+GameObject* GameComponent::getObject() {
+	return dynamic_cast<GameObject*>(object);
 }

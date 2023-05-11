@@ -1,11 +1,12 @@
 #pragma once
 #include "Core.h"
 #include "Ref.h"
+#include "Object.h"
 #include <vector>
 
 namespace Core 
 {
-	class TreeNode : public Ref
+	class TreeNode : public Object
 	{
 	public:
 

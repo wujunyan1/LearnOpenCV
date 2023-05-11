@@ -13,7 +13,7 @@ namespace UI
 {
 	class UICanvas;
 
-	class UITransform : public Component
+	class UITransform : public GameComponent
 	{
 	public:
 		friend class UICanvas;

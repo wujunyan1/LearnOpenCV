@@ -9,7 +9,7 @@ namespace Core
 	class Scene;
 	class EventListenerCustom;
 
-	class Camera : public Component, public RenderInterface
+	class Camera : public GameComponent, public RenderInterface
 	{
 	public:
 		Camera();

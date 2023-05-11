@@ -1,19 +1,20 @@
 #pragma once
 
 #include <vector>
-#include "Component.h"
+#include "Ref.h"
 #include "Core.h"
-#include "TreeNode.h"
-#include "RenderInterface.h"
+#include "Component.h"
 
 namespace Core {
-	class Object : public TreeNode
+	class Component;
+
+	class Object : public Ref
 	{
 	public:
 		friend class ObjectManager;
 
 	public:
-		Object() : TreeNode()
+		Object() : Ref()
 		{
 			componentList = new std::vector<Component*>();
 		}
@@ -69,56 +70,10 @@ namespace Core {
 			return nullptr;
 		}
 
-
-		virtual void PreUpdate() {
-			for (auto i : *componentList)
-			{
-				if (i->isActive())
-					i->PreUpdate();
-			}
-
-			TreeNode::PreUpdate();
-		}
-		virtual void Update() {
-			for (auto i : *componentList)
-			{
-				if (i->isActive())
-					i->Update();
-			}
-
-			TreeNode::Update();
-		}
-		virtual void LaterUpdate() {
-			for (auto i : *componentList)
-			{
-				if (i->isActive())
-					i->LaterUpdate();
-			}
-
-			TreeNode::LaterUpdate();
-		}
-
-		virtual void Render() {
-			for (auto i : *componentList)
-			{
-				if (i->isActive())
-				{
-					RenderInterface* renderModel = dynamic_cast<RenderInterface*>(i);
-					if (renderModel)
-					{
-						renderModel->Render();
-					}
-				}
-			}
-
-			TreeNode::Render();
-		}
-
-
 		ui64 getLayer() { return m_layer; };
 		void setLayer(ui64 layer) { m_layer = layer; };
 
-	private:
+	protected:
 		std::vector<Component*>* componentList;
 		String name;
 		unsigned int id = 0;

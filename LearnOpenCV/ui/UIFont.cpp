@@ -6,7 +6,7 @@
 using namespace Core;
 namespace UI
 {
-	UIFont::UIFont() : Component() {
+	UIFont::UIFont() : GameComponent() {
 
 		renderProgram = Render::CreateRenderProgram("test");
 		renderProgram->setShader("fontShader");
