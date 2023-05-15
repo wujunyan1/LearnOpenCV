@@ -31,9 +31,24 @@ namespace Render
 		void setRenderMode(UI::UICanvas::RenderMode mode) 
 		{ 
 			m_mode = mode;
+
+			switch (m_mode)
+			{
+			case UI::UICanvas::RenderMode::Camera:
+
+				break;
+			case UI::UICanvas::RenderMode::Overlay:
+
+				break;
+			case UI::UICanvas::RenderMode::world:
+
+				break;
+			default:
+				break;
+			}
+
 		};
 	private:
 		UI::UICanvas::RenderMode m_mode;
-		RenderUIModeComponent* render_mode_change;
 	};
 }

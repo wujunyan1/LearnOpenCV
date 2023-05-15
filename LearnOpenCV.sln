@@ -4,8 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LearnOpenCV", "LearnOpenCV\LearnOpenCV.vcxproj", "{63935650-BF34-45FF-A89F-C891E2E775BA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63} = {BA1C145E-2C91-48BA-83D7-53A7BD523C63}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "freetype", "LearnOpenCV\libraries\freetype-2.13.0\builds\windows\vc2010\freetype.vcxproj", "{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "liblua", "liblua\liblua.vcxproj", "{BA1C145E-2C91-48BA-83D7-53A7BD523C63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +106,42 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.RelWithDebInfo|x64.Build.0 = Release Static|x64
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.RelWithDebInfo|x86.ActiveCfg = Release Static|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.RelWithDebInfo|x86.Build.0 = Release Static|Win32
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Debug Static|ARM64.ActiveCfg = Debug|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Debug Static|ARM64.Build.0 = Debug|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Debug Static|x64.ActiveCfg = Debug|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Debug Static|x64.Build.0 = Debug|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Debug Static|x86.ActiveCfg = Debug|Win32
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Debug Static|x86.Build.0 = Debug|Win32
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Debug|ARM64.ActiveCfg = Debug|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Debug|ARM64.Build.0 = Debug|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Debug|x64.ActiveCfg = Debug|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Debug|x64.Build.0 = Debug|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Debug|x86.ActiveCfg = Debug|Win32
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Debug|x86.Build.0 = Debug|Win32
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.MinSizeRel|ARM64.ActiveCfg = Debug|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.MinSizeRel|ARM64.Build.0 = Debug|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.MinSizeRel|x64.ActiveCfg = Debug|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.MinSizeRel|x64.Build.0 = Debug|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.MinSizeRel|x86.ActiveCfg = Debug|Win32
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.MinSizeRel|x86.Build.0 = Debug|Win32
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Release Static|ARM64.ActiveCfg = Release|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Release Static|ARM64.Build.0 = Release|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Release Static|x64.ActiveCfg = Release|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Release Static|x64.Build.0 = Release|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Release Static|x86.ActiveCfg = Release|Win32
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Release Static|x86.Build.0 = Release|Win32
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Release|ARM64.ActiveCfg = Release|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Release|ARM64.Build.0 = Release|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Release|x64.ActiveCfg = Release|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Release|x64.Build.0 = Release|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Release|x86.ActiveCfg = Release|Win32
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.Release|x86.Build.0 = Release|Win32
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.RelWithDebInfo|ARM64.ActiveCfg = Release|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.RelWithDebInfo|ARM64.Build.0 = Release|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.RelWithDebInfo|x64.ActiveCfg = Release|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.RelWithDebInfo|x64.Build.0 = Release|x64
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.RelWithDebInfo|x86.ActiveCfg = Release|Win32
+		{BA1C145E-2C91-48BA-83D7-53A7BD523C63}.RelWithDebInfo|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

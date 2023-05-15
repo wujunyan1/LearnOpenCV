@@ -28,6 +28,8 @@
 
 #include "../meshModel/AUIMesh.h"
 
+#include "../lua/LuaRegister.h"
+
 using namespace Core;
 
 Game* Game::instance = nullptr;
@@ -36,12 +38,14 @@ Game::Game()
 {
 	delay = 0.0f;
 	GlobalDictionary::initGame();
+	LuaRegister::GetInstance();
 }
 
 Game::~Game()
 {
 	ImageLoad::Destroy();
 	GlobalDictionary::destroyGame();
+	LuaRegister::DestroyInstance();
 }
 
 void Game::Tick(long time)

@@ -80,8 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>../opencv/build/include;../LearnOpenCV/libraries/freetype-2.13.0/include;$(IncludePath)</IncludePath>
-    <LibraryPath>../packages/glfw.3.3.6/build/native/include/GLFW;../packages/glew.1.9.0.1/build/native/lib;../opencv/build/x64/vc14/lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>../opencv/build/include;../LearnOpenCV/libraries/freetype-2.13.0/include;../res;../ext;../ext/lua/src;$(IncludePath)</IncludePath>
+    <LibraryPath>../packages/glfw.3.3.6/build/native/include/GLFW;../packages/glew.1.9.0.1/build/native/lib;../opencv/build/x64/vc14/lib;../res;$(LibraryPath)</LibraryPath>
     <OutDir>../res</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -123,13 +123,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../packages/glm.0.9.9.800/build/native/include/glm;../LearnOpenCV/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../packages/glm.0.9.9.800/build/native/include/glm;../LearnOpenCV/include;../ext;../res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>assimp-vc143-mtd.lib;zlibstaticd.lib;glew.lib;opengl32.lib;opencv_world454d.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../packages/glew.1.9.0.1/build/native/lib/v110/x64/Debug/static;../LearnOpenCV/assimp/lib/Debug;../LearnOpenCV/contrib/zlib/Debug;../LearnOpenCV/include/freetype;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc143-mtd.lib;zlibstaticd.lib;glew.lib;opengl32.lib;opencv_world454d.lib;freetype.lib;liblua.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../packages/glew.1.9.0.1/build/native/lib/v110/x64/Debug/static;../LearnOpenCV/assimp/lib/Debug;../LearnOpenCV/contrib/zlib/Debug;../LearnOpenCV/include/freetype;../res;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -194,6 +194,7 @@
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="LearnOpenCV.h" />
     <ClInclude Include="logic\renderQueue\RenderOpaqueQueue.h" />
+    <ClInclude Include="lua\LuaRegister.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="math\AABB.h" />
     <ClInclude Include="math\Base.h" />
@@ -282,6 +283,7 @@
     <ClCompile Include="input\Input.cpp" />
     <ClCompile Include="LearnOpenCV.cpp" />
     <ClCompile Include="logic\renderQueue\RenderOpaqueQueue.cpp" />
+    <ClCompile Include="lua\LuaRegister.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="math\AABB.cpp" />
     <ClCompile Include="math\Base.cpp" />

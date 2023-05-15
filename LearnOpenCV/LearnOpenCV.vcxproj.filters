@@ -324,6 +324,9 @@
     <ClInclude Include="Core\GameObject.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="lua\LuaRegister.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -582,6 +585,9 @@
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="Core\GameObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\LuaRegister.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
