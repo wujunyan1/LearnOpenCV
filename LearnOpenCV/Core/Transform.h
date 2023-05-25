@@ -138,7 +138,7 @@ namespace Core
 		{
 			localToWorldMat4 = localMat4;
 
-			Object* parent = dynamic_cast<Object*>(getObject()->GetParent());
+			Object* parent = dynamic_cast<Object*>(getGameObject()->GetParent());
 			if (parent) {
 				Transform* parentTransform = parent->GetComponent<Transform>();
 				if (parentTransform)
@@ -147,7 +147,7 @@ namespace Core
 				}
 			}
 
-			std::vector<TreeNode*>& children = getObject()->getChildren();
+			std::vector<TreeNode*>& children = getGameObject()->getChildren();
 			for (auto i : children)
 			{
 				Object* obj = dynamic_cast<Object*>(i);
@@ -167,7 +167,7 @@ namespace Core
 			worldToLocalMat4 = worldToLocalMat4 * Mat4::translate(-position);
 			worldToLocalMat4 = Mat4::scale(Vector3(1.0f / scale.x, 1.0f / scale.y, 1.0f / scale.z)) * worldToLocalMat4;
 
-			Object* parent = dynamic_cast<Object*>(getObject()->GetParent());
+			Object* parent = dynamic_cast<Object*>(getGameObject()->GetParent());
 			if (parent) {
 				Transform* parentTransform = parent->GetComponent<Transform>();
 				if (parentTransform)
@@ -176,7 +176,7 @@ namespace Core
 				}
 			}
 
-			std::vector<TreeNode*>& children = getObject()->getChildren();
+			std::vector<TreeNode*>& children = getGameObject()->getChildren();
 			for (auto i : children)
 			{
 				Object* obj = dynamic_cast<Object*>(i);

@@ -327,6 +327,15 @@
     <ClInclude Include="lua\LuaRegister.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="war\map\MapBlock.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="war\map\Map.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="war\map\MapCell.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -588,6 +597,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="lua\LuaRegister.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="war\map\MapBlock.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="war\map\Map.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="war\map\MapCell.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

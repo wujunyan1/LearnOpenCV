@@ -21,6 +21,6 @@ Object* Component::getObject() {
 	return object;
 }
 
-GameObject* GameComponent::getObject() {
+GameObject* GameComponent::getGameObject() {
 	return dynamic_cast<GameObject*>(object);
 }

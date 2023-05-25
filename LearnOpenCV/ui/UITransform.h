@@ -128,7 +128,7 @@ namespace UI
 		{
 			localToWorldMat4 = localMat4;
 
-			Object* parent = dynamic_cast<Object*>(getObject()->GetParent());
+			Object* parent = dynamic_cast<Object*>(getGameObject()->GetParent());
 			if (parent) {
 				UITransform* parentTransform = parent->GetComponent<UITransform>();
 				if (parentTransform)
@@ -137,7 +137,7 @@ namespace UI
 				}
 			}
 
-			std::vector<TreeNode*>& children = getObject()->getChildren();
+			std::vector<TreeNode*>& children = getGameObject()->getChildren();
 			for (auto i : children)
 			{
 				Object* obj = dynamic_cast<Object*>(i);
@@ -158,7 +158,7 @@ namespace UI
 			worldToLocalMat4 = Mat4::translate(-m_realSize * pivot) * worldToLocalMat4;
 			worldToLocalMat4 = Mat4::scale(Vector3(1.0f / m_scale.x, 1.0f / m_scale.y, 1.0f)) * worldToLocalMat4;
 
-			Object* parent = dynamic_cast<Object*>(getObject()->GetParent());
+			Object* parent = dynamic_cast<Object*>(getGameObject()->GetParent());
 			if (parent) {
 				UITransform* parentTransform = parent->GetComponent<UITransform>();
 				if (parentTransform)
@@ -167,7 +167,7 @@ namespace UI
 				}
 			}
 
-			std::vector<TreeNode*>& children = getObject()->getChildren();
+			std::vector<TreeNode*>& children = getGameObject()->getChildren();
 			for (auto i : children)
 			{
 				Object* obj = dynamic_cast<Object*>(i);

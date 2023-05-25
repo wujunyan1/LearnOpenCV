@@ -36,7 +36,7 @@ namespace Core
 	class GameComponent : public Component
 	{
 	public:
-		GameObject* getObject();
+		GameObject* getGameObject();
 
 		bool isActive() { return b_isActive; };
 		void setActive(bool active) { b_isActive = active; };

@@ -32,10 +32,7 @@ namespace Core {
 		template<typename ...Args>
 		bool call(const char* funcName, Args&&... args)
 		{
-			if (m_loadSuc)
-				return LUA_CALL::call(m_L, 0, funcName, std::forward<Args>(args)...);
-			else
-				return false;
+			
 		}
 
 

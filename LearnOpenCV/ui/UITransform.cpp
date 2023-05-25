@@ -27,7 +27,7 @@ void UI::UITransform::UpdateRealPosition()
 	Math::Vector2T<int> windowSize = GlobalDictionary::getRealWindowSize();
 	Vector2 parentSize = { (float)windowSize.x, (float)windowSize.y };
 
-	Object* parent = dynamic_cast<Object*>(getObject()->GetParent());
+	Object* parent = dynamic_cast<Object*>(getGameObject()->GetParent());
 	if (parent) {
 		UITransform* parentTransform = parent->GetComponent<UITransform>();
 		if (parentTransform)

@@ -88,7 +88,7 @@ void Core::Camera::SetMainCamera(bool isMain)
 {
 	m_isMainCamera = isMain;
 
-	Scene* scene = dynamic_cast<Scene*>(getObject()->GetRoot());
+	Scene* scene = dynamic_cast<Scene*>(getGameObject()->GetRoot());
 	if (!scene)
 	{
 		return;
@@ -106,7 +106,7 @@ void Core::Camera::Render()
 		return;
 	}
 
-	Scene* scene = dynamic_cast<Scene*>(getObject()->GetRoot());
+	Scene* scene = dynamic_cast<Scene*>(getGameObject()->GetRoot());
 	if (!scene)
 	{
 		return;
