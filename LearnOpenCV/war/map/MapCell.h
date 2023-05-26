@@ -3,30 +3,42 @@
 #include "../../Core/Core.h"
 #include "../../Core/Component.h"
 
+#include "HexCoordinates.h"
+
 using namespace Core;
 
 namespace War
 {
-	enum HexagonDirection
+	enum HexDirection
 	{
-
+		NE, E, SE, SW, W, NW
 	};
+
+	static class HexDirectionExtensions {
+
+	public:
+		static HexDirection Opposite(HexDirection direction) {
+			return (HexDirection)((int)direction < 3 ? (direction + 3) : (direction - 3));
+		}
+	};
+
 
 	class MapCell
 	{
 	public:
-		const float radius = 1;
-		const float width = radius * 1.732;
-		const float height = radius;
 
 	public:
 		MapCell();
 
-	private:
-		ui16 row;
-		ui16 col;
+		void init(ui16 row, ui16 col);
 
-		Vector3 position;
+		void setNear(HexDirection dir, MapCell* cell);
+		
+		MapCell* GetNeighbor(HexDirection direction) {
+			return nears[(int)direction];
+		}
+	private:
+		HexCoordinates corrdinates = HexCoordinates(0, 0);
 
 		MapCell* nears[6];
 	};

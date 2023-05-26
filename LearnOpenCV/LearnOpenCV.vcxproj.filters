@@ -336,6 +336,12 @@
     <ClInclude Include="war\map\MapCell.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="war\map\HexCoordinates.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="war\map\HexMetrics.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -606,6 +612,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="war\map\MapCell.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="war\map\HexCoordinates.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="war\map\HexMetrics.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

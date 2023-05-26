@@ -47,15 +47,29 @@ namespace War
 
 		MapCell* getMapCell(ui16 x, ui16 y)
 		{
-			return &cells[x][y];
+			ui16 index = m_setting.col * y + x;
+			return cells[index];
 		};
 	private:
 		Map();
 
+		MapCell* createMapCell(int x, int z, int i);
+
 	private:
 		static Map* instance;
 
-		vector<vector<MapCell>> cells;
+
+		/*
+		*	y row
+			 |
+			 |
+			 |---------> x col
+		
+		*/
+		vector<MapCell*> cells;
+
+		MapSetting m_setting;
+
 		EventDispatcher* dispatcher = new EventDispatcher();
 	};
 }
