@@ -41,6 +41,19 @@ namespace Core {
 			return t;
 		}
 
+		void AddComponent(Component* component)
+		{
+			if (component->getObject())
+			{
+				component->UnBind();
+			}
+
+			componentList->push_back(component);
+			component->setObject(this);
+			component->Bind();
+			return ;
+		}
+
 		void RemoveComponent(Component * component)
 		{
 			std::vector<Component*>::iterator it;
@@ -72,6 +85,8 @@ namespace Core {
 
 		ui64 getLayer() { return m_layer; };
 		void setLayer(ui64 layer) { m_layer = layer; };
+
+		Object* clone();
 
 	protected:
 		std::vector<Component*>* componentList;

@@ -240,6 +240,7 @@
     <ClInclude Include="ui\UIImage.h" />
     <ClInclude Include="ui\UITransform.h" />
     <ClInclude Include="Util\StringUtil.h" />
+    <ClInclude Include="war\client\MapClient.h" />
     <ClInclude Include="war\map\HexCoordinates.h" />
     <ClInclude Include="war\map\HexMetrics.h" />
     <ClInclude Include="war\map\Map.h" />
@@ -334,6 +335,7 @@
     <ClCompile Include="ui\UIImage.cpp" />
     <ClCompile Include="ui\UITransform.cpp" />
     <ClCompile Include="Util\StringUtil.cpp" />
+    <ClCompile Include="war\client\MapClient.cpp" />
     <ClCompile Include="war\map\HexCoordinates.cpp" />
     <ClCompile Include="war\map\HexMetrics.cpp" />
     <ClCompile Include="war\map\Map.cpp" />

@@ -26,6 +26,8 @@ namespace Core
 		bool isActive() { return b_isActive; };
 		void setActive(bool active) { b_isActive = active; };
 
+		virtual Component* clone();
+
 	protected:
 		Object* object = nullptr;
 
@@ -38,9 +40,7 @@ namespace Core
 	public:
 		GameObject* getGameObject();
 
-		bool isActive() { return b_isActive; };
-		void setActive(bool active) { b_isActive = active; };
-
+		virtual Component* clone();
 	protected:
 	};
 }

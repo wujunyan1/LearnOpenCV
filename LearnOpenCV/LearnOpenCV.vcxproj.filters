@@ -342,6 +342,9 @@
     <ClInclude Include="war\map\HexMetrics.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="war\client\MapClient.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -618,6 +621,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="war\map\HexMetrics.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="war\client\MapClient.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
