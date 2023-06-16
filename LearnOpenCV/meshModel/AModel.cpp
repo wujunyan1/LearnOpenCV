@@ -57,10 +57,11 @@ void Core::AModel::updateObb()
 		Core::ABaseMesh* mesh = ameshs[i];
 		if (mesh->getMeshType() == AMesh::MeshType)
 		{
-			Core::AMesh& amesh = (Core::AMesh&)mesh;
-			for (size_t j = 0; j < amesh.vertices.size(); j++)
+			AMesh* amesh = (AMesh*)mesh;
+			std::vector<AMesh::Vertex>& vertices = amesh->getVertices();
+			for (size_t j = 0; j < vertices.size(); j++)
 			{
-				Core::AMesh::Vertex& vertice = amesh.vertices[j];
+				Core::AMesh::Vertex& vertice = vertices[j];
 				points.push_back(vertice.Position);
 			}
 		}

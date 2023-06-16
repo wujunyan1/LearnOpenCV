@@ -10,7 +10,4 @@ namespace War
 		static const float outerRadius;
 		static const float innerRadius;
 	};
-
-	const float HexMetrics::outerRadius = 10.0f;
-	const float HexMetrics::innerRadius = HexMetrics::outerRadius * 0.866025404f;
 }

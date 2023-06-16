@@ -25,6 +25,8 @@ namespace Core
 
 		static ImageCubeMap* CreateImageCubeMap(std::string& name, std::vector<std::string>& faces);
 
+		static Image* LoadImageAtlas(std::string path, float plotWidth, float plotHeight);
+
 		static void DestroyImage(Image* image);
 
 		static void Destroy();

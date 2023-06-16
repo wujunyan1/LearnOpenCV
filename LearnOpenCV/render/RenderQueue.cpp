@@ -58,14 +58,14 @@ namespace Render
 		GL_GET_ERROR(glBlendFunc((int)srcBlendFunc, (int)targetBlendFunc));                           //设置混合方式 
 
 		// 设置shader 属性
-		shaderProgram->RenderMaterial(material);
+		GL_GET_ERROR(shaderProgram->RenderMaterial(material));
 		// 渲染vao
 		std::vector<Core::ABaseMesh*> ameshs = _model->getMeshs();
 
 		for (size_t i = 0; i < ameshs.size(); i++)
 		{
 			Core::ABaseMesh* mesh = ameshs[i];
-			mesh->getRenderMesh()->Render(shaderProgram, material);
+			GL_GET_ERROR(mesh->getRenderMesh()->Render(shaderProgram, material));
 		}
 	}
 

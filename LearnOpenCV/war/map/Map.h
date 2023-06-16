@@ -21,8 +21,6 @@ namespace War
 		ui16 row;
 		ui16 col;
 
-
-
 	};
 
 	class Map
@@ -50,6 +48,12 @@ namespace War
 			ui16 index = m_setting.col * y + x;
 			return cells[index];
 		};
+
+		MapSetting getMapSetting()
+		{
+			return m_setting;
+		}
+
 	private:
 		Map();
 

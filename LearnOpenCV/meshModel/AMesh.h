@@ -35,6 +35,8 @@ namespace Core
 			bindRender();
 		}
 
+		std::vector<Vertex>& getVertices() { return vertices; };
+
 	private:
 
 		virtual void bindRender();

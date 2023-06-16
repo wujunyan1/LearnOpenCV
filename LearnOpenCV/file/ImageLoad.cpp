@@ -5,6 +5,7 @@
 #include "stb_image_write.h"
 
 #include "../render/RenderMain.h"
+#include "../Util/StringUtil.h"
 
 using namespace Core;
 
@@ -88,6 +89,46 @@ ImageCubeMap* ImageLoad::CreateImageCubeMap(std::string& name, std::vector<std::
 	ImageCubeMap* map = new ImageCubeMap(name, faces);
 	image_ids->insert(std::pair<std::string, Image*>(name, map));
 	return map;
+}
+
+Image* Core::ImageLoad::LoadImageAtlas(std::string path, float plotWidth, float plotHeight)
+{
+	auto it = image_ids->find(path);
+	if (it != image_ids->end())
+	{
+		return it->second;
+	}
+
+	stbi_set_flip_vertically_on_load(true);
+
+	std::string s = std::string(FilePathManager::getRootPath());
+
+	int width, height, nrChannels;
+	unsigned char* data = stbi_load((s + path).c_str(), &width, &height, &nrChannels, 0);
+
+	Image* image = NULL;
+	if (data)
+	{
+		image = new Image2D(path, width, height, nrChannels, data);
+
+		int col = width / plotWidth;
+		int row = height / plotHeight;
+		int index = 0;
+		for (size_t i = 0; i < col; i++)
+		{
+			for (size_t j = 0; j < row; j++)
+			{
+				String name = StringUtil::Format("%s:%d", path.c_str(), index++);
+				ImageAtlasPlot* plot = new ImageAtlasPlot(name, image, i * plotWidth, j * plotHeight, plotWidth, plotHeight);
+				image_ids->insert(std::pair<std::string, Image*>(name, plot));
+			}
+		}
+
+	}
+	stbi_image_free(data);
+
+	image_ids->insert(std::pair<std::string, Image*>(path, image));
+	return image;
 }
 
 void ImageLoad::DestroyImage(Image* image)

@@ -2,6 +2,8 @@
 
 using namespace War;
 
+Map* Map::instance = nullptr;
+
 Map::Map()
 {
 	cells = vector<MapCell*>();
@@ -37,7 +39,7 @@ void Map::initMap(MapSetting& setting)
 {
 	m_setting = setting;
 	cells.clear();
-	cells.reserve(setting.row * setting.col);
+	cells.resize(setting.row * setting.col);
 
 	for (size_t y = 0; y < setting.row; y++)
 	{

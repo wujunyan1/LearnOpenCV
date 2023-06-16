@@ -78,3 +78,18 @@ Core::ImageFont::ImageFont(std::string& name, unsigned int textureID) :Image(nam
 {
 	this->textureID = textureID;
 }
+
+
+Core::ImageAtlasPlot::ImageAtlasPlot(std::string name, Image* atlas, float x, float y, float width, float height, bool isNormal) :Image(name, Image::IMAGE_TYPE::TEXTURE_2D)
+{
+	m_atlas = atlas;
+	m_x = x;
+	m_y = y;
+	m_w = width;
+	m_h = height;
+	if (!isNormal)
+	{
+		m_w = height;
+		m_h = width;
+	}
+}

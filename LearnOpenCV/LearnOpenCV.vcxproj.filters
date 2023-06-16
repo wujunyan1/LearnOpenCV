@@ -345,6 +345,12 @@
     <ClInclude Include="war\client\MapClient.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="war\client\MapCellClient.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="war\WarGame.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -624,6 +630,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="war\client\MapClient.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="war\client\MapCellClient.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="war\WarGame.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -23,7 +23,11 @@ namespace Core
 
 		~Image()
 		{
-			glDeleteTextures(1, &textureID);
+			if (textureID != 0)
+			{
+				glDeleteTextures(1, &textureID);
+				textureID = 0;
+			}
 		}
 
 
@@ -150,5 +154,20 @@ namespace Core
 		}
 
 	private:
+	};
+
+	class ImageAtlasPlot : public Image
+	{
+	public:
+		ImageAtlasPlot(std::string name, Image* atlas, float x, float y, float width, float height, bool isNormal = true);
+
+		virtual void use(int textureIndex)
+		{
+			m_atlas->use(textureIndex);
+		}
+
+	private:
+		float m_x, m_y, m_w, m_h;
+		Image* m_atlas;
 	};
 }
