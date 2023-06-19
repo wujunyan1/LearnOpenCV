@@ -1,7 +1,7 @@
 #pragma once
 #include "../math/Math.h"
 #include "../file/Image.h"
-#include "../render/RenderUIMesh.h"
+#include "../render/renderMesh/RenderUIMesh.h"
 #include "../render/Texture.h"
 #include "ABaseMesh.h"
 
@@ -23,7 +23,7 @@ namespace Core
 		AUIMesh(std::string uid, std::vector<Vertex> vertices, std::vector<unsigned int> indices);
 		~AUIMesh();
 
-		virtual int getMeshType() { return AUIMesh::MeshType; };
+		virtual int getMeshType() { return ABaseMesh::MeshType::UIMesh; };
 
 		virtual Render::RenderBaseMesh* getRenderMesh()
 		{

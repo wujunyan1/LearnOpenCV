@@ -109,6 +109,11 @@ namespace Render
 		return RenderMesh::createNewRenderMesh(name);
 	}
 
+	RenderCustomMesh* CreateRenderCustomMesh(std::string name)
+	{
+		return new RenderCustomMesh(name);
+	}
+
 	RenderMesh* GetRenderMesh(std::string name)
 	{
 		return RenderMesh::getRenderMesh(name);

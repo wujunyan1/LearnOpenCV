@@ -2,9 +2,9 @@
 
 #include <map>
 #include "../math/Math.h"
-#include "ShaderProgram.h"
+#include "../ShaderProgram.h"
 #include "../file/Image.h"
-#include "Texture.h"
+#include "../Texture.h"
 #include "../opengl/OpenGLCore.h"
 #include "../opengl/GLShader.h"
 #include "../render/Material.h"

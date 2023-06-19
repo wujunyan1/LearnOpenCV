@@ -10,9 +10,19 @@ namespace War
 	class MapCellClient
 	{
 	public:
+		struct Vertex
+		{
+			// position
+			Math::Vector3 Position;
+			// texCoords
+			Math::Vector2 TexCoords;
+			// cell position
+			Math::Vector3 CellPosition;
+		};
+	public:
 		static void createMapCellObject(
 			MapCell* cell,
-			std::vector<AMesh::Vertex>& vertices,
+			std::vector<Vertex>& vertices,
 			std::vector<unsigned int>& indices,
 			std::vector<Render::Texture>& textures
 		);

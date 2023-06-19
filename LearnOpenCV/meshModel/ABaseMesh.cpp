@@ -6,5 +6,5 @@ using namespace Core;
 Core::ABaseMesh::ABaseMesh(std::string uid)
 {
 	id = uid;
-	mesh = Render::CreateRenderMesh(id);
+	//mesh = Render::CreateRenderMesh(id);
 }

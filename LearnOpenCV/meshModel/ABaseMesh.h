@@ -1,7 +1,7 @@
 #pragma once
 #include "../math/Math.h"
 #include "../file/Image.h"
-#include "../render/RenderMesh.h"
+#include "../render/renderMesh/RenderMesh.h"
 #include "../render/Texture.h"
 
 namespace Core
@@ -11,8 +11,20 @@ namespace Core
 		friend class AModel;
 	public:
 
+		enum MeshType
+		{
+			Mesh,
+			UIMesh,
+			CustomMesh,
+		};
+
 	public:
 		ABaseMesh(std::string uid);
+
+		std::string getId()
+		{
+			return id;
+		};
 
 		virtual int getMeshType() { return 0; };
 

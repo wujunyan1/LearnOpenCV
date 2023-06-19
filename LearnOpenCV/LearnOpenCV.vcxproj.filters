@@ -132,7 +132,7 @@
     <ClInclude Include="opengl\OpenGLCore.h">
       <Filter>opengl</Filter>
     </ClInclude>
-    <ClInclude Include="render\RenderMesh.h">
+    <ClInclude Include="render\renderMesh\RenderMesh.h">
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="file\FilePathManager.h">
@@ -291,10 +291,10 @@
     <ClInclude Include="meshModel\AUIMesh.h">
       <Filter>meshModel</Filter>
     </ClInclude>
-    <ClInclude Include="render\RenderBaseMesh.h">
+    <ClInclude Include="render\renderMesh\RenderBaseMesh.h">
       <Filter>render</Filter>
     </ClInclude>
-    <ClInclude Include="render\RenderUIMesh.h">
+    <ClInclude Include="render\renderMesh\RenderUIMesh.h">
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="render\RenderFont.h">
@@ -303,7 +303,7 @@
     <ClInclude Include="render\font\FontManager.h">
       <Filter>render\font</Filter>
     </ClInclude>
-    <ClInclude Include="render\RenderFontMesh.h">
+    <ClInclude Include="render\renderMesh\RenderFontMesh.h">
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="ui\UIFont.h">
@@ -349,6 +349,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="war\WarGame.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\renderMesh\RenderObjMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="meshModel\ACustomMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\renderMesh\RenderCustomMesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -425,7 +434,7 @@
     <ClCompile Include="opengl\OpenGLCore.cpp">
       <Filter>opengl</Filter>
     </ClCompile>
-    <ClCompile Include="render\RenderMesh.cpp">
+    <ClCompile Include="render\renderMesh\RenderMesh.cpp">
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="file\FilePathManager.cpp">
@@ -578,10 +587,10 @@
     <ClCompile Include="meshModel\AUIMesh.cpp">
       <Filter>meshModel</Filter>
     </ClCompile>
-    <ClCompile Include="render\RenderBaseMesh.cpp">
+    <ClCompile Include="render\renderMesh\RenderBaseMesh.cpp">
       <Filter>render</Filter>
     </ClCompile>
-    <ClCompile Include="render\RenderUIMesh.cpp">
+    <ClCompile Include="render\renderMesh\RenderUIMesh.cpp">
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="render\RenderFont.cpp">
@@ -590,7 +599,7 @@
     <ClCompile Include="render\font\FontManager.cpp">
       <Filter>render\font</Filter>
     </ClCompile>
-    <ClCompile Include="render\RenderFontMesh.cpp">
+    <ClCompile Include="render\renderMesh\RenderFontMesh.cpp">
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="ui\UIFont.cpp">
@@ -636,6 +645,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="war\WarGame.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\renderMesh\RenderObjMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="meshModel\ACustomMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\renderMesh\RenderCustomMesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

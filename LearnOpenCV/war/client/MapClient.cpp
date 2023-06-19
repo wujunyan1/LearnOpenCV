@@ -3,6 +3,8 @@
 #include "../../Core/Model.h"
 #include "../../file/ImageLoad.h"
 
+#include "../../meshModel/ACustomMesh.h"
+
 #include "MapCellClient.h"
 
 using namespace Core;
@@ -23,7 +25,7 @@ void War::MapClient::setMap(Map* map)
 
 	ImageLoad::LoadImageAtlas("/asserts/map/fantasyhextiles_v3.png", 32, 48);
 
-	std::vector<AMesh::Vertex> vertices;
+	std::vector<MapCellClient::Vertex> vertices;
 	std::vector<unsigned int> indices;
 	std::vector<Render::Texture> textures;
 
@@ -41,7 +43,16 @@ void War::MapClient::setMap(Map* map)
 	//MapCellClient::createMapCellObject();
 
 	Core::AModel* acustommodel = AModelFactory::createCustomModel();
-	acustommodel->addMesh(vertices, indices, textures);
+
+	ACustomMesh* customMesh = new ACustomMesh("map");
+
+	customMesh->BindArrayBufferData(indices.size(), vertices.size() * sizeof(MapCellClient::Vertex), &vertices[0]);
+	customMesh->BindElementBufferData(indices);
+	customMesh->VertexAttribPointer(0, 3, Render::ShaderParamType::SPT_VEC3, false, sizeof(MapCellClient::Vertex), offsetof(MapCellClient::Vertex, Position));
+	customMesh->VertexAttribPointer(1, 2, Render::ShaderParamType::SPT_VEC2, false, sizeof(MapCellClient::Vertex), offsetof(MapCellClient::Vertex, TexCoords));
+	customMesh->VertexAttribPointer(2, 3, Render::ShaderParamType::SPT_VEC3, false, sizeof(MapCellClient::Vertex), offsetof(MapCellClient::Vertex, CellPosition));
+
+	acustommodel->addBaseMesh(customMesh);
 
 	m_model->setShader("warMapShader");  //testBlendShader
 	m_model->setRenderQueue("DefaultRenderQueue");

@@ -11,6 +11,7 @@
 #include "../ui/UICanvas.h"
 
 #include "../opengl/OpenGLCore.h"
+#include "../render/renderMesh/RenderCustomMesh.h"
 
 #define SHADER_PLAFORM_GL 1
 #define SHADER_PLAFORM SHADER_PLAFORM_GL
@@ -33,6 +34,7 @@ namespace Render
 
 	Material* CreateMaterial(std::string materialName);
 	RenderMesh* CreateRenderMesh(std::string name = Math::stringFormat("renderMesh|%d", Math::getUid()));
+	RenderCustomMesh* CreateRenderCustomMesh(std::string name = Math::stringFormat("renderCustomMesh|%d", Math::getUid()));
 	RenderMesh* GetRenderMesh(std::string name);
 
 	unsigned int CreateShader(const std::string& shaderName, const std::string& vsPath, const std::string& fsPath);

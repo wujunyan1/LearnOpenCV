@@ -31,6 +31,7 @@ namespace Core
         ~AModel();
 
         std::vector<ABaseMesh*> getMeshs() { return meshes; };
+        void addBaseMesh(ABaseMesh* mesh);
         AMesh* addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
         ABaseMesh* addMesh(std::string meshName, std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures);
         AUIMesh* createNewUIMesh();

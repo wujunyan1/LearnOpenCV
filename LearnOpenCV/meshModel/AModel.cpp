@@ -19,6 +19,13 @@ Core::AModel::~AModel()
 	meshes.clear();
 }
 
+void Core::AModel::addBaseMesh(ABaseMesh* mesh)
+{
+	meshes.push_back(mesh);
+
+	updateObb();
+}
+
 AMesh* Core::AModel::addMesh(std::vector<AMesh::Vertex> vertices, std::vector<unsigned int> indices, std::vector<Render::Texture> textures)
 {
 	return (AMesh*)addMesh(Math::stringFormat("%d|%d", modelId, meshes.size()), vertices, indices, textures);
@@ -55,7 +62,7 @@ void Core::AModel::updateObb()
 	for (size_t i = 0; i < ameshs.size(); i++)
 	{
 		Core::ABaseMesh* mesh = ameshs[i];
-		if (mesh->getMeshType() == AMesh::MeshType)
+		if (mesh->getMeshType() == ABaseMesh::MeshType::Mesh)
 		{
 			AMesh* amesh = (AMesh*)mesh;
 			std::vector<AMesh::Vertex>& vertices = amesh->getVertices();

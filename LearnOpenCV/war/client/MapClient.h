@@ -13,6 +13,8 @@ namespace War
 	class MapClient : public Core::GameComponent
 	{
 	public:
+
+	public:
 		virtual void Init();
 		virtual void Bind();
 
