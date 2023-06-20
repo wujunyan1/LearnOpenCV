@@ -123,7 +123,7 @@
     <ClInclude Include="render\Material.h">
       <Filter>render</Filter>
     </ClInclude>
-    <ClInclude Include="render\RenderQueue.h">
+    <ClInclude Include="render\renderQueue\RenderQueue.h">
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="render\ShaderProgram.h">
@@ -189,7 +189,7 @@
     <ClInclude Include="Core\CameraManager.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="render\RenderStage.h">
+    <ClInclude Include="render\renderQueue\RenderStage.h">
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="render\RenderScene.h">
@@ -282,7 +282,7 @@
     <ClInclude Include="ui\UIImage.h">
       <Filter>ui</Filter>
     </ClInclude>
-    <ClInclude Include="render\RenderUIQueue.h">
+    <ClInclude Include="render\renderQueue\RenderUIQueue.h">
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="meshModel\ABaseMesh.h">
@@ -318,7 +318,7 @@
     <ClInclude Include="Util\StringUtil.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="render\RenderUIStage.h">
+    <ClInclude Include="render\renderQueue\RenderUIStage.h">
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="Core\GameObject.h">
@@ -425,7 +425,7 @@
     <ClCompile Include="render\Material.cpp">
       <Filter>render</Filter>
     </ClCompile>
-    <ClCompile Include="render\RenderQueue.cpp">
+    <ClCompile Include="render\renderQueue\RenderQueue.cpp">
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="render\ShaderProgram.cpp">
@@ -488,7 +488,7 @@
     <ClCompile Include="Core\CameraManager.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="render\RenderStage.cpp">
+    <ClCompile Include="render\renderQueue\RenderStage.cpp">
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="render\RenderScene.cpp">
@@ -578,7 +578,7 @@
     <ClCompile Include="ui\UIImage.cpp">
       <Filter>ui</Filter>
     </ClCompile>
-    <ClCompile Include="render\RenderUIQueue.cpp">
+    <ClCompile Include="render\renderQueue\RenderUIQueue.cpp">
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="meshModel\ABaseMesh.cpp">
@@ -614,7 +614,7 @@
     <ClCompile Include="Util\StringUtil.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="render\RenderUIStage.cpp">
+    <ClCompile Include="render\renderQueue\RenderUIStage.cpp">
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="Core\GameObject.cpp">

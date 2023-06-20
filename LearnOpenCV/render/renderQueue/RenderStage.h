@@ -4,7 +4,7 @@
 
 #include "../Core/Camera.h"
 
-#include "../render/RenderQueue.h"
+#include "RenderQueue.h"
 #include "../Core/Object.h"
 
 namespace Core

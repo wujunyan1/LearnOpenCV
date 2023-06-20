@@ -1,7 +1,7 @@
 #include "RenderQueue.h"
 
-#include "RenderMain.h"
-#include "ShaderProgram.h"
+#include "../RenderMain.h"
+#include "../ShaderProgram.h"
 
 namespace Render
 {

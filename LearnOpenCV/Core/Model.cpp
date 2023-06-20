@@ -87,3 +87,8 @@ void Core::Model::setDepthTest(bool enable)
 {
 	renderProgram->setDepthTest(enable);
 }
+
+Render::RenderProgram* Core::Model::getRenderProgram()
+{
+	return renderProgram;
+}

@@ -27,6 +27,8 @@ namespace Core
 
 		static Image* LoadImageAtlas(std::string path, float plotWidth, float plotHeight);
 
+		static ImageCustom* CreateCustomImage(std::string name, int width, int height);
+
 		static void DestroyImage(Image* image);
 
 		static void Destroy();

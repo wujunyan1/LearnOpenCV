@@ -57,6 +57,11 @@ void GLShader::setVec2(const std::string& name, Math::Vector2 value) const
     glUniform2f(glGetUniformLocation(ID, name.c_str()), value.x, value.y);
 }
 
+void GLShader::setVec2Array(const std::string& name, int arrayNum, float* value) const
+{
+    glUniform2fv(glGetUniformLocation(ID, name.c_str()), arrayNum, value);
+}
+
 void GLShader::setVec3(const std::string& name, Math::Vector3 value) const
 {
     glUniform3f(glGetUniformLocation(ID, name.c_str()), value.x, value.y, value.z);

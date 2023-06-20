@@ -36,6 +36,8 @@ namespace Core
 
 		// 是否开启深度测试，默认开启
 		void setDepthTest(bool enable);
+
+		Render::RenderProgram* getRenderProgram();
 	private:
 		// 材质
 		Render::RenderProgram* renderProgram = NULL;

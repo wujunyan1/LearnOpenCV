@@ -54,6 +54,8 @@ namespace Core
 		const std::string& getName() { return name; };
 
 		void setBlendFunc();
+		int getWidth() { return width; };
+		int getHeight() { return height; };
 
 	public:
 		static const int textureIndex[32];
@@ -109,6 +111,7 @@ namespace Core
 				break;
 			}
 			glGenerateMipmap(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, 0);
 		}
 
 		virtual void use(int textureIndex)
@@ -169,5 +172,15 @@ namespace Core
 	private:
 		float m_x, m_y, m_w, m_h;
 		Image* m_atlas;
+	};
+
+	class ImageCustom : public Image
+	{
+	public:
+		ImageCustom(std::string name, int width, int height);
+
+		void setTextureData(int x, int y, int w, int h, void* data);
+
+	private:
 	};
 }

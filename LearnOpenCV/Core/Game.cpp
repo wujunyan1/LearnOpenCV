@@ -24,7 +24,7 @@
 #include "../ui/UIImage.h"
 #include "../ui/UIFont.h"
 #include "../ui/UITransform.h"
-#include "../render/RenderUIQueue.h"
+#include "../render/renderQueue/RenderUIQueue.h"
 
 #include "../meshModel/AUIMesh.h"
 

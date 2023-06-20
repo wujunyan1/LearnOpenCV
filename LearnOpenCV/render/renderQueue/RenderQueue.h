@@ -3,10 +3,10 @@
 #include "../Core/Core.h"
 #include <map>
 #include "../math/Math.h"
-#include "ShaderProgram.h"
-#include "Material.h"
-#include "renderMesh/RenderMesh.h"
-#include "BlendFunc.h"
+#include "../ShaderProgram.h"
+#include "../Material.h"
+#include "../renderMesh/RenderMesh.h"
+#include "../BlendFunc.h"
 
 #include "../Core/Camera.h"
 #include "../meshModel/AModel.h"

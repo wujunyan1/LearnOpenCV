@@ -21,6 +21,8 @@ namespace Core
 		void BindElementBufferData(std::vector<unsigned int> indices);
 		void VertexAttribPointer(unsigned int passageway, size_t dataSize, Render::ShaderParamType dataType, bool b, size_t delaySize, size_t startIndex);
 
+		void setImage(std::vector<Render::Texture> textures);
+
 	private:
 
 

@@ -17,12 +17,15 @@
 #include "../war/map/Map.h"
 #include "../war/client/MapClient.h"
 
+
+
 using namespace Core;
 
 
 void War::WarGame::NewGame()
 {
 	Render::CreateShader("warMapShader", "/asserts/shaders/warMapShader.vert", "/asserts/shaders/warMapShader.frag");
+	Render::AddCustomRenderQueue("RenderWarMapQueue", Core::new_class<Render::RenderUIQueue>());
 
 	Scene* root = SceneManager::GetInstance()->GetCurrScene();
 	/*scene->PreUpdate();

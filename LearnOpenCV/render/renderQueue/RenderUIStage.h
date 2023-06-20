@@ -4,7 +4,7 @@
 
 #include "../Core/Camera.h"
 
-#include "../render/RenderStage.h"
+#include "RenderStage.h"
 #include "../ui/UICanvas.h"
 
 namespace Render

@@ -50,11 +50,4 @@ void War::MapCellClient::createMapCellObject(
 
 	// TextureFromFile(str.C_Str(), this->directory);
 
-	String imagePath = StringUtil::Format("/asserts/map/fantasyhextiles_v3.png:%d", cell->getMapCellType());
-	Render::Texture texture;
-	texture.image = ImageLoad::GetImage(imagePath);
-	texture.imageName = "imagePath";
-	texture.uniformName = "diffuse";
-	textures.push_back(texture);
-
 }

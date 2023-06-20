@@ -93,3 +93,36 @@ Core::ImageAtlasPlot::ImageAtlasPlot(std::string name, Image* atlas, float x, fl
 		m_h = width;
 	}
 }
+
+Core::ImageCustom::ImageCustom(std::string name, int width, int height):Image(name, Image::IMAGE_TYPE::TEXTURE_2D)
+{
+	this->name = name;
+	this->width = width;
+	this->height = height;
+	this->nrChannels = 4;
+
+	printf("%x\n", nrChannels);
+	glGenTextures(1, &textureID); // ¥¥Ω®Œ∆¿Ì
+
+	glBindTexture(GL_TEXTURE_2D, textureID);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void Core::ImageCustom::setTextureData(int x, int y, int w, int h, void* data)
+{
+	glBindTexture(GL_TEXTURE_2D, textureID);
+	glTexSubImage2D(
+		GL_TEXTURE_2D,
+		0,
+		x,
+		y,
+		w,
+		h,
+		GL_RGBA,
+		GL_UNSIGNED_BYTE,
+		data
+	);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}

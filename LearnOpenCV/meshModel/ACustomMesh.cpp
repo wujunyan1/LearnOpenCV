@@ -23,3 +23,8 @@ void Core::ACustomMesh::VertexAttribPointer(unsigned int passageway, size_t data
 {
 	mesh->VertexAttribPointer(passageway, dataSize, dataType, b, delaySize, startIndex);
 }
+
+void Core::ACustomMesh::setImage(std::vector<Render::Texture> textures)
+{
+	mesh->SetImage(textures);
+}

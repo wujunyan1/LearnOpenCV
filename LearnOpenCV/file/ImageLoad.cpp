@@ -131,6 +131,13 @@ Image* Core::ImageLoad::LoadImageAtlas(std::string path, float plotWidth, float 
 	return image;
 }
 
+ImageCustom* Core::ImageLoad::CreateCustomImage(std::string name, int width, int height)
+{
+	ImageCustom* image = new ImageCustom(name, width, height);
+	image_ids->insert(std::pair<std::string, Image*>(name, image));
+	return image;
+}
+
 void ImageLoad::DestroyImage(Image* image)
 {
 	auto it = image_ids->find(image->getName());
