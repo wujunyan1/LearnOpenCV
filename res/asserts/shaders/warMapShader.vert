@@ -3,8 +3,6 @@ layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec2 aTexCoord;
 layout (location = 2) in vec3 aCellCoord;
 
-out vec4 vertexColor;
-uniform vec4 ourColor;
 
 //uniform mat4 model;
 //uniform mat4 modelInverse;
@@ -12,16 +10,16 @@ uniform vec4 ourColor;
 //uniform mat4 projection;
 //uniform vec3 viewPos;
 uniform mat4 model;
-uniform mat4 VP;
-uniform mat4 view;
-uniform mat4 proj;
+uniform mat4 OP;
+//uniform mat4 view;
+//uniform mat4 ortho;
 
-uniform vec2 mapSize;
+//uniform vec2 mapSize;
 uniform vec2 cellSize;
 uniform sampler2D cellDatas;
 
-uniform vec2[] texCoords;
-
+//uniform float v[4];
+uniform vec2 textureCoords[2];
 
 out vec2 TexCoord;
 out vec4 WorldPos;
@@ -29,10 +27,11 @@ out vec4 WorldPos;
 void main()
 {
     WorldPos = model * vec4(aPos, 1.0);
-    gl_Position = VP * WorldPos;
+    gl_Position = OP * WorldPos;
     // TexCoord = aTexCoord; //aTexCoord;
     vec4 cellData = texture(cellDatas, vec2(aCellCoord));
-    vec2 coord = texCoords[int(cellData.a * 255)];
+    vec2 coord = textureCoords[int(cellData.a * 255)];
 
+    gl_Position.z = aCellCoord.y * gl_Position.w;
     TexCoord = aTexCoord * cellSize + coord;
 }

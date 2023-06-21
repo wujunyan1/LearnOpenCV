@@ -19,26 +19,26 @@ namespace Render
 
 	void RenderBaseMesh::BindArrayBufferData(size_t verticesNum, size_t dataSize, void* data)
 	{
-		glBindVertexArray(tvao);
+		GL_GET_ERROR(glBindVertexArray(tvao));
 		this->verticesNum = verticesNum;
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, dataSize, data, GL_STATIC_DRAW);
+		GL_GET_ERROR(glBindBuffer(GL_ARRAY_BUFFER, vbo));
+		GL_GET_ERROR(glBufferData(GL_ARRAY_BUFFER, dataSize, data, GL_STATIC_DRAW));
 		//glBufferData(GL_ARRAY_BUFFER, dataSize, data, GL_DYNAMIC_DRAW);
 	}
 	void RenderBaseMesh::VertexAttribPointer(unsigned int passageway, size_t dataSize, Render::ShaderParamType dataType, bool b, size_t delaySize, size_t startIndex)
 	{
-		glBindVertexArray(tvao);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		GL_GET_ERROR(glBindVertexArray(tvao));
+		GL_GET_ERROR(glBindBuffer(GL_ARRAY_BUFFER, vbo));
 		GLboolean bl = b ? GL_TRUE : GL_FALSE;
-		glEnableVertexAttribArray(passageway);
-		glVertexAttribPointer(passageway, dataSize, Render::GET_OPENGL_TYPE(dataType), bl, delaySize, (void*)startIndex);
+		GL_GET_ERROR(glEnableVertexAttribArray(passageway));
+		GL_GET_ERROR(glVertexAttribPointer(passageway, dataSize, Render::GET_OPENGL_TYPE(dataType), bl, delaySize, (void*)startIndex));
 	}
 
 	void RenderBaseMesh::BindElementBufferData(size_t dataSize, void* data)
 	{
-		glBindVertexArray(tvao);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, dataSize, data, GL_STATIC_DRAW);
+		GL_GET_ERROR(glBindVertexArray(tvao));
+		GL_GET_ERROR(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo));
+		GL_GET_ERROR(glBufferData(GL_ELEMENT_ARRAY_BUFFER, dataSize, data, GL_STATIC_DRAW));
 	}
 
 	void RenderBaseMesh::Render(Render::ShaderProgram* program, Render::Material* material)

@@ -360,6 +360,12 @@
     <ClInclude Include="render\renderMesh\RenderCustomMesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="render\renderQueue\RenderWarMapQueue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\renderQueue\RenderWarMapStage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -654,6 +660,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="render\renderMesh\RenderCustomMesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\renderQueue\RenderWarMapQueue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\renderQueue\RenderWarMapStage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

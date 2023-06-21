@@ -39,11 +39,11 @@ namespace Render
         char infoLog[512];
 
         // 顶点着色器
-        vertex = glCreateShader(GL_VERTEX_SHADER);
+        GL_GET_ERROR(vertex = glCreateShader(GL_VERTEX_SHADER));
         glShaderSource(vertex, 1, &vShaderCode, NULL);
-        glCompileShader(vertex);
+        GL_GET_ERROR(glCompileShader(vertex));
         // 打印编译错误（如果有的话）
-        glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
+        GL_GET_ERROR(glGetShaderiv(vertex, GL_COMPILE_STATUS, &success));
         if (!success)
         {
             glGetShaderInfoLog(vertex, 512, NULL, infoLog);

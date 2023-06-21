@@ -57,6 +57,18 @@ void Camera::init(float fov, float aspect, float near, float far)
 		0, 0, -(near + far) / (far - near), -2.0f * near * far / (far - near),
 		0, 0, -1.0f, 0
 	);
+
+	orthogonal = Mat4(
+		2.0f / (right - left), 0, 0, 0,
+		0, 2.0f / (top - bottom), 0, 0,
+		0, 0, 2.0f / (near - far), 0,
+		0, 0, 0, 1.0f
+	) * Mat4(
+		1, 0, 0, -(left + right) / 2.0f,
+		0, 1, 0, -(bottom + top) / 2.0f,
+		0, 0, 1, -(near + far) / 2.0f,
+		0, 0, 0, 1
+	);
 }
 
 Mat4& Camera::getViewMat4()
@@ -79,9 +91,15 @@ Mat4& Camera::getVPMat4()
 	return vp;
 }
 
+Mat4& Camera::getOPMat4()
+{
+	return op;
+}
+
 void Camera::LaterUpdate()
 {
 	vp = perspective * getViewMat4();
+	op = orthogonal * getViewMat4();
 }
 
 void Core::Camera::SetMainCamera(bool isMain)

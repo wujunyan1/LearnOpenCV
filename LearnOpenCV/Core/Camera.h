@@ -21,6 +21,7 @@ namespace Core
 		Mat4& getPerspectiveMat4();
 		Mat4& getOrthogonalMat4();
 		Mat4& getVPMat4();
+		Mat4& getOPMat4();
 
 		virtual void LaterUpdate() override;
 
@@ -44,6 +45,7 @@ namespace Core
 		Math::Matrix4 orthogonal;
 		Math::Matrix4 perspective;
 		Math::Matrix4 vp;
+		Math::Matrix4 op;
 
 		float n_top, n_bottom, n_left, n_right;
 		float f_top, f_bottom, f_left, f_right;

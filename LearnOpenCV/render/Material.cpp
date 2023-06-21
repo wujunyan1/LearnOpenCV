@@ -16,13 +16,13 @@ namespace Render
         return -1;
     }
 
-    void Material::insertData(const std::string& name, void* data, Render::ShaderParamType stype, int copySize)
+    void Material::insertData(const std::string& name, int count, void* data, Render::ShaderParamType stype, int copySize)
     {
         Render::ShaderParam shaderParam;
         shaderParam.name = name;
         shaderParam.data.setData(data, copySize);
         shaderParam.stype = stype;
-        shaderParam.paramsLength = 1;
+        shaderParam.paramsLength = count;
         shaderParam.physicsIndex = m_ShaderParams.size();
 
         m_ShaderParams.push_back(shaderParam);
@@ -35,13 +35,13 @@ namespace Render
         shaderParam.stype = stype;
     }
 
-    int Material::tryModifyShaderParam(const std::string& name, void* data, Render::ShaderParamType stype, int copySize)
+    int Material::tryModifyShaderParam(const std::string& name, int count, void* data, Render::ShaderParamType stype, int copySize)
     {
         int index = getParamPhysicsIndex(name);
 
         if (index == -1)
         {
-            insertData(name, data, stype, copySize);
+            insertData(name, count, data, stype, copySize);
         }
         else
         {
@@ -55,51 +55,56 @@ namespace Render
     void Material::setBool(const std::string& name, bool value)
     {
         int v = value ? 1 : 0;
-        tryModifyShaderParam(name, &v, Render::ShaderParamType::SPT_INT, sizeof(int));
+        tryModifyShaderParam(name, 1, &v, Render::ShaderParamType::SPT_INT, sizeof(int));
     }
 
     void Material::setInt(const std::string& name, int value)
     {
-        tryModifyShaderParam(name, &value, Render::ShaderParamType::SPT_INT, sizeof(value));
+        tryModifyShaderParam(name, 1, &value, Render::ShaderParamType::SPT_INT, sizeof(value));
     }
 
     void Material::setFloat(const std::string& name, float value)
     {
-        tryModifyShaderParam(name, &value, Render::ShaderParamType::SPT_FLOAT, sizeof(value));
+        tryModifyShaderParam(name, 1, &value, Render::ShaderParamType::SPT_FLOAT, sizeof(value));
     }
 
     void Material::setVec2(const std::string& name, Math::Vector2& value)
     {
-        tryModifyShaderParam(name, &value, Render::ShaderParamType::SPT_VEC2, sizeof(Math::Vector2));
+        tryModifyShaderParam(name, 1, &value, Render::ShaderParamType::SPT_VEC2, sizeof(Math::Vector2));
     }
 
     void Material::setVec2(const std::string& name, float x, float y)
     {
         Math::Vector2 v = Math::Vector2(x, y);
-        tryModifyShaderParam(name, &v, Render::ShaderParamType::SPT_VEC2, sizeof(v));
+        tryModifyShaderParam(name, 1, &v, Render::ShaderParamType::SPT_VEC2, sizeof(v));
+    }
+
+    void Material::setVec2Array(std::string name, int arrayNum, float* value)
+    {
+        tryModifyShaderParam(name, arrayNum, value, Render::ShaderParamType::SPT_VEC2);
     }
 
     void Material::setVec3(const std::string& name, Math::Vector3& value)
     {
-        tryModifyShaderParam(name, &value, Render::ShaderParamType::SPT_VEC3, sizeof(Math::Vector3));
+        tryModifyShaderParam(name, 1, &value, Render::ShaderParamType::SPT_VEC3, sizeof(Math::Vector3));
     }
 
     void Material::setVec3(const std::string& name, float x, float y, float z)
     {
         Math::Vector3 v = Math::Vector3(x, y, z);
-        tryModifyShaderParam(name, &v, Render::ShaderParamType::SPT_VEC3, sizeof(v));
+        tryModifyShaderParam(name, 1, &v, Render::ShaderParamType::SPT_VEC3, sizeof(v));
     }
 
 
     void Material::setFloat4(const std::string& name, float r, float g, float b, float a)
     {
         Math::Vector4 v = Math::Vector4(r, g, b, a);
-        tryModifyShaderParam(name, &v, Render::ShaderParamType::SPT_VEC4, sizeof(v));
+        tryModifyShaderParam(name, 1, &v, Render::ShaderParamType::SPT_VEC4, sizeof(v));
     }
 
     void Material::setMat4(const std::string& name, Math::Matrix4& mat)
     {
-        tryModifyShaderParam(name, (void*)&mat, Render::ShaderParamType::SPT_MAT4);
+        tryModifyShaderParam(name, 1, (void*)&mat, Render::ShaderParamType::SPT_MAT4);
     }
 
     void Material::setTexture(const std::string& name, Render::Texture& texture)

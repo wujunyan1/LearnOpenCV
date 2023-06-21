@@ -4,6 +4,7 @@
 #include "../../file/ImageLoad.h"
 
 #include "../../meshModel/ACustomMesh.h"
+#include "../../render/Material.h"
 
 #include "MapCellClient.h"
 
@@ -73,15 +74,16 @@ void War::MapClient::setMap(Map* map)
 	acustommodel->addBaseMesh(customMesh);
 
 	m_model->setShader("warMapShader");  //testBlendShader
-	m_model->setRenderQueue("DefaultRenderQueue");
+	m_model->setRenderQueue("RenderWarMapQueue");
 	m_model->setModel(acustommodel);
-	m_model->setDepthTest(false);
-	m_model->setBlend(true);
-	m_model->setBlendFunc(Render::BlendFunc::SRC_ALPHA, Render::BlendFunc::ONE_MINUS_SRC_ALPHA);
+	m_model->setDepthTest(true);
+	m_model->setBlend(false);
+	//m_model->setBlendFunc(Render::BlendFunc::SRC_ALPHA, Render::BlendFunc::ONE_MINUS_SRC_ALPHA);
 
 	Render::RenderProgram* program = m_model->getRenderProgram();
 
-	float texCoords[82];
+	float texCoords[96];
+	//Vector2 texCoords[48];
 	int width = cellTextureImage->getWidth();
 	int height = cellTextureImage->getHeight();
 
@@ -93,12 +95,18 @@ void War::MapClient::setMap(Map* map)
 	{
 		for (size_t j = 0; j < row; j++)
 		{
+			//texCoords[index++] = { i * 32.0f / width, j * 48.0f / height };
 			texCoords[index++] = i * 32.0f / width;
-			texCoords[index++] = j * 48.0f / row;
+			texCoords[index++] = j * 48.0f / height;
 		}
 	}
 
-	GLShader* shader = program->getShaderProgram()->GetShaderObj();
-	shader->setVec2Array("texCoords", 41, texCoords);
-	shader->setVec2("cellSize", { 32.0f / width, 48.0f / row });
+	Render::Material* material = program->getMaterial();
+	material->setVec2Array("textureCoords", 48, texCoords);
+	material->setVec2("cellSize", 32.0f / width, 48.0f / row );
+
+	/*GLShader* shader = program->getShaderProgram()->GetShaderObj();
+	shader->use();
+	shader->setVec2Array("textureCoords", 48, texCoords);
+	shader->setVec2("cellSize", { 32.0f / width, 48.0f / row });*/
 }

@@ -17,6 +17,7 @@
 #include "../war/map/Map.h"
 #include "../war/client/MapClient.h"
 
+#include "../render/renderQueue/RenderWarMapQueue.h"
 
 
 using namespace Core;
@@ -25,7 +26,7 @@ using namespace Core;
 void War::WarGame::NewGame()
 {
 	Render::CreateShader("warMapShader", "/asserts/shaders/warMapShader.vert", "/asserts/shaders/warMapShader.frag");
-	Render::AddCustomRenderQueue("RenderWarMapQueue", Core::new_class<Render::RenderUIQueue>());
+	Render::AddCustomRenderQueue("RenderWarMapQueue", Core::new_class<Render::RenderWarMapQueue>());
 
 	Scene* root = SceneManager::GetInstance()->GetCurrScene();
 	/*scene->PreUpdate();

@@ -15,7 +15,7 @@ GLShader::GLShader(unsigned int vertex, unsigned int  fragment)
     ID = glCreateProgram();
     glAttachShader(ID, vertex);
     glAttachShader(ID, fragment);
-    glLinkProgram(ID);
+    GL_GET_ERROR(glLinkProgram(ID));
     // 打印连接错误（如果有的话）
     glGetProgramiv(ID, GL_LINK_STATUS, &success);
     if (!success)
@@ -36,7 +36,7 @@ GLShader::~GLShader()
 
 void GLShader::use()
 {
-    glUseProgram(ID);
+    GL_GET_ERROR(glUseProgram(ID));
 }
 
 void GLShader::setBool(const std::string& name, bool value) const
@@ -59,7 +59,31 @@ void GLShader::setVec2(const std::string& name, Math::Vector2 value) const
 
 void GLShader::setVec2Array(const std::string& name, int arrayNum, float* value) const
 {
-    glUniform2fv(glGetUniformLocation(ID, name.c_str()), arrayNum, value);
+    //GL_GET_ERROR(location = glGetUniformLocation(ID, name.c_str()));
+    //GL_GET_ERROR(glUniform2fv(location, arrayNum, value));
+
+    /*int activeUniformLength;
+    glGetProgramiv(ID, GL_ACTIVE_UNIFORMS, &activeUniformLength);
+
+    for (size_t i = 0; i < activeUniformLength; i++)
+    {
+        int uniformLength;
+        GLint uniformSize;
+        GLenum uniformType;
+        GLchar unname;
+        char* c = &unname;
+
+        glGetActiveUniform(ID, i, 512, &uniformLength, &uniformSize, &uniformType, c);
+
+        for (size_t j = 0; j < uniformLength; j++)
+        {
+            printf("%c", *c);
+            c++;
+        }
+        printf("\n");
+    }*/
+
+    GL_GET_ERROR(glUniform2fv(glGetUniformLocation(ID, name.c_str()), 2, value));
 }
 
 void GLShader::setVec3(const std::string& name, Math::Vector3 value) const

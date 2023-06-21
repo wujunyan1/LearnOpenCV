@@ -18,6 +18,7 @@ namespace Render
 		virtual void setFloat4(const std::string& name, float r, float g, float b, float a);
 		virtual void setVec2(const std::string& name, Math::Vector2& value);
 		virtual void setVec2(const std::string& name, float x, float y);
+		virtual void setVec2Array(std::string name, int arrayNum, float* value);
 		virtual void setVec3(const std::string& name, Math::Vector3& value);
 		virtual void setVec3(const std::string& name, float x, float y, float z);
 		virtual void setMat4(const std::string& name, Math::Matrix4& mat);
@@ -33,8 +34,8 @@ namespace Render
 
 	private:
 		int getParamPhysicsIndex(const std::string& name);
-		int tryModifyShaderParam(const std::string& name, void* data, Render::ShaderParamType stype, int copySize = 0);
-		void insertData(const std::string& name, void* data, Render::ShaderParamType stype, int copySize);
+		int tryModifyShaderParam(const std::string& name, int count, void* data, Render::ShaderParamType stype, int copySize = 0);
+		void insertData(const std::string& name, int count, void* data, Render::ShaderParamType stype, int copySize);
 		void setData(const std::string& name, const int index, void* data, Render::ShaderParamType stype, int copySize);
 
 	protected:

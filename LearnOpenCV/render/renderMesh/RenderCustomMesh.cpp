@@ -32,14 +32,14 @@ namespace Render
 		{
 			int textureIndex = index++;
 			//texture.image->use(textureIndex);
-			glActiveTexture(Core::Image::textureIndex[textureIndex]);
-			glBindTexture(GL_TEXTURE_2D, texture.image->getTextureId());
-			shader->setTexture(texture.uniformName, textureIndex);
+			GL_GET_ERROR(glActiveTexture(Core::Image::textureIndex[textureIndex]));
+			GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, texture.image->getTextureId()));
+			GL_GET_ERROR(shader->setTexture(texture.uniformName, textureIndex));
 		}
 
 		
 		//printf(" draw mesh %s \n", m_name.c_str());
-		glDrawElements(GL_TRIANGLES, verticesNum, GL_UNSIGNED_INT, 0);
+		GL_GET_ERROR(glDrawElements(GL_TRIANGLES, verticesNum, GL_UNSIGNED_INT, 0));
 		// glDrawArrays(GL_TRIANGLES, 0, 3);
 		glBindVertexArray(0);
 	}

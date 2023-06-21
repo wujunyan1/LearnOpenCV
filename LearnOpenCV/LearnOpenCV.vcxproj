@@ -230,6 +230,8 @@
     <ClInclude Include="render\renderMesh\RenderMesh.h" />
     <ClInclude Include="render\renderMesh\RenderObjMesh.h" />
     <ClInclude Include="render\renderQueue\RenderQueue.h" />
+    <ClInclude Include="render\renderQueue\RenderWarMapQueue.h" />
+    <ClInclude Include="render\renderQueue\RenderWarMapStage.h" />
     <ClInclude Include="render\RenderScene.h" />
     <ClInclude Include="render\RenderSkyBox.h" />
     <ClInclude Include="render\renderQueue\RenderStage.h" />
@@ -330,6 +332,8 @@
     <ClCompile Include="render\renderMesh\RenderMesh.cpp" />
     <ClCompile Include="render\renderMesh\RenderObjMesh.cpp" />
     <ClCompile Include="render\renderQueue\RenderQueue.cpp" />
+    <ClCompile Include="render\renderQueue\RenderWarMapQueue.cpp" />
+    <ClCompile Include="render\renderQueue\RenderWarMapStage.cpp" />
     <ClCompile Include="render\RenderScene.cpp" />
     <ClCompile Include="render\RenderSkyBox.cpp" />
     <ClCompile Include="render\renderQueue\RenderStage.cpp" />

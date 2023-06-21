@@ -138,6 +138,9 @@ namespace Render
 				}
 				break;
 			case Render::ShaderParamType::SPT_VEC2:
+				if (!checkSameParams(param.name, param.data.getDataPtr())) {
+					shader->setVec2Array(param.name, param.paramsLength, (float*)param.data.getDataPtr());
+				}
 				break;
 			case Render::ShaderParamType::SPT_VEC3:
 				if (!checkSameParams(param.name, param.data.getDataPtr())) {

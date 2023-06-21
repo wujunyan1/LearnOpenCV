@@ -1,11 +1,10 @@
 #include "RenderMain.h"
-#include "RenderStage.h"
+#include "../render/renderQueue/RenderStage.h"
 #include "../file/Image.h"
 
 #include "../Core/Scene.h"
 #include "../opengl/GLShaderManager.h"
 
-#include "../render/RenderStage.h"
 #include "../input/Input.h"
 
 #include "../Core/GlobalDictionary.h"
