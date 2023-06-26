@@ -58,6 +58,7 @@ void Game::Tick(long time)
 
 	Scene* currScene = SceneManager::GetInstance()->GetCurrScene();
 
+
 	currScene->PreUpdate();
 	currScene->Update();
 	currScene->LaterUpdate();

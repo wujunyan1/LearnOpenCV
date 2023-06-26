@@ -25,7 +25,7 @@ namespace Core
 
 		static ImageCubeMap* CreateImageCubeMap(std::string& name, std::vector<std::string>& faces);
 
-		static Image* LoadImageAtlas(std::string path, float plotWidth, float plotHeight);
+		static Image* LoadImageAtlas(std::string path, int plotWidth, int plotHeight);
 
 		static ImageCustom* CreateCustomImage(std::string name, int width, int height);
 

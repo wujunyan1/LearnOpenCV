@@ -38,6 +38,7 @@ namespace Render
         int success;
         char infoLog[512];
 
+
         // 顶点着色器
         GL_GET_ERROR(vertex = glCreateShader(GL_VERTEX_SHADER));
         glShaderSource(vertex, 1, &vShaderCode, NULL);
@@ -90,12 +91,12 @@ namespace Render
         char infoLog[512];
 
         // 片源着色器
-        fragment = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fragment, 1, &fShaderCode, NULL);
-        glCompileShader(fragment);
+        GL_GET_ERROR(fragment = glCreateShader(GL_FRAGMENT_SHADER));
+        GL_GET_ERROR(glShaderSource(fragment, 1, &fShaderCode, NULL));
+        GL_GET_ERROR(glCompileShader(fragment));
 
         // 打印编译错误（如果有的话）
-        glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
+        GL_GET_ERROR(glGetShaderiv(fragment, GL_COMPILE_STATUS, &success));
         if (!success)
         {
             glGetShaderInfoLog(fragment, 512, NULL, infoLog);

@@ -29,6 +29,11 @@ void War::WarGame::NewGame()
 	Render::AddCustomRenderQueue("RenderWarMapQueue", Core::new_class<Render::RenderWarMapQueue>());
 
 	Scene* root = SceneManager::GetInstance()->GetCurrScene();
+
+	Transform* cameraTransForm = root->getMainCamera()->getGameObject()->GetComponent<Transform>();
+	cameraTransForm->SetPosition({0, 200, 50});
+	cameraTransForm->SetRotate({ 0, 180.0f * Math::DEG2RAD, 0 });
+
 	/*scene->PreUpdate();
 	scene->Update();
 	scene->LaterUpdate();*/
@@ -59,6 +64,7 @@ void War::WarGame::NewGame()
 
 	GameObject* o2 = ObjectManager::createNewGameObject();
 	Transform* t2 = o2->AddComponent<Transform>();
+	t2->SetPosition({0, 0, 0});
 	Model* mesh2 = o2->AddComponent<Model>();
 	MapClient* mapClient = o2->AddComponent<MapClient>();
 	mapClient->setMap(Map::GetInstance());

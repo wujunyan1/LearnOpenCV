@@ -9,6 +9,12 @@ Core::ACustomMesh::ACustomMesh(std::string uid) : ABaseMesh(uid)
 	mesh = Render::CreateRenderCustomMesh();
 }
 
+Core::ACustomMesh::~ACustomMesh()
+{
+	delete mesh;
+	mesh = nullptr;
+}
+
 void Core::ACustomMesh::BindArrayBufferData(size_t verticesNum, size_t dataSize, void* data)
 {
 	mesh->BindArrayBufferData(verticesNum, dataSize, data);

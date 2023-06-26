@@ -29,15 +29,8 @@ namespace Core {
 
 			TreeNode::PreUpdate();
 		}
-		virtual void Update() {
-			for (auto i : *componentList)
-			{
-				if (i->isActive())
-					i->Update();
-			}
+		virtual void Update();
 
-			TreeNode::Update();
-		}
 		virtual void LaterUpdate() {
 			for (auto i : *componentList)
 			{

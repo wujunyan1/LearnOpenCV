@@ -25,9 +25,9 @@ namespace War
 
 			position = Vector3();
 
-			position.x = (x + z * 0.5f - z / 2) * (HexMetrics::innerRadius * 2.0f);
+			position.x = x * 1.5 * HexMetrics::outerRadius;
 			position.y = 0.0f;
-			position.z = z * (HexMetrics::outerRadius * 1.5f);
+			position.z = (2 * z + x % 2) * HexMetrics::innerRadius;
 		}
 
 		string toString() {

@@ -29,7 +29,8 @@ namespace Render
 		// Ê¹ÓÃÄ³Shader
 		shaderProgram->Use();
 		
-		GL_GET_ERROR(shaderProgram->setMat4("OP", camera->getOPMat4()));
+		//GL_GET_ERROR(shaderProgram->setMat4("OP", camera->getOPMat4()));
+		GL_GET_ERROR(shaderProgram->setMat4("OP", camera->getVPMat4()));
 		GL_GET_ERROR(shaderProgram->setMat4("view", camera->getViewMat4()));
 		GL_GET_ERROR(shaderProgram->setMat4("ortho", camera->getOrthogonalMat4()));
 

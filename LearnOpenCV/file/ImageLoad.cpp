@@ -91,7 +91,7 @@ ImageCubeMap* ImageLoad::CreateImageCubeMap(std::string& name, std::vector<std::
 	return map;
 }
 
-Image* Core::ImageLoad::LoadImageAtlas(std::string path, float plotWidth, float plotHeight)
+Image* Core::ImageLoad::LoadImageAtlas(std::string path, int plotWidth, int plotHeight)
 {
 	auto it = image_ids->find(path);
 	if (it != image_ids->end())
@@ -116,7 +116,7 @@ Image* Core::ImageLoad::LoadImageAtlas(std::string path, float plotWidth, float 
 		int index = 0;
 		for (size_t i = 0; i < col; i++)
 		{
-			for (size_t j = 0; j < row; j++)
+			for (int j = row - 1; j >= 0; j--)
 			{
 				String name = StringUtil::Format("%s:%d", path.c_str(), index++);
 				ImageAtlasPlot* plot = new ImageAtlasPlot(name, image, i * plotWidth, j * plotHeight, plotWidth, plotHeight);

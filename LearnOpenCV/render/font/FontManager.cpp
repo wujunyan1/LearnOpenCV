@@ -107,6 +107,7 @@ namespace Render
             return FontSource::Character();
         }
 
+        GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, image->getTextureId()));
         // 储存字符供之后使用
         Character characterResult = {
             image->getTextureId(),
@@ -116,7 +117,7 @@ namespace Render
             characterNum * fontSize,
         };
 
-        glTexSubImage2D(
+        GL_GET_ERROR(glTexSubImage2D(
             GL_TEXTURE_2D,
             0,
             characterNum * fontSize,
@@ -126,11 +127,12 @@ namespace Render
             GL_RED,
             GL_UNSIGNED_BYTE,
             face->glyph->bitmap.buffer
-        );
+        ));
 
         Characters.insert(std::pair<char, Character>(character, characterResult));
         characterNum++;
         //needAddTextures.push_back(character);
+        GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, 0));
         return characterResult;
     }
 

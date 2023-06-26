@@ -40,23 +40,10 @@ void War::MapClient::setMap(Map* map)
 			MapCell* cell = map->getMapCell(i, j);
 			MapCellClient::createMapCellObject(cell, vertices, indices, textures);
 
-			Vector4 cellData = Vector4(0, 0, 0, cell->getMapCellType() / 255.0);
+			Vector4 cellData = Vector4(0, 0, 0, cell->getMapCellType() / 255.0); //
 			mapDataImage->setTextureData(i, j, 1, 1, &cellData);
 		}
 	}
-
-	Render::Texture mapTexture;
-	mapTexture.image = cellTextureImage;
-	mapTexture.imageName = "mapTexture";
-	mapTexture.uniformName = "mapTexture";
-	textures.push_back(mapTexture);
-
-
-	Render::Texture mapDataTexture;
-	mapDataTexture.image = mapDataImage;
-	mapDataTexture.imageName = "cellDatas";
-	mapDataTexture.uniformName = "cellDatas";
-	textures.push_back(mapDataTexture);
 
 	//MapCellClient::createMapCellObject();
 
@@ -93,7 +80,7 @@ void War::MapClient::setMap(Map* map)
 	int index = 0;
 	for (size_t i = 0; i < col; i++)
 	{
-		for (size_t j = 0; j < row; j++)
+		for (int j = row-1; j >= 0; j--)
 		{
 			//texCoords[index++] = { i * 32.0f / width, j * 48.0f / height };
 			texCoords[index++] = i * 32.0f / width;
@@ -103,7 +90,25 @@ void War::MapClient::setMap(Map* map)
 
 	Render::Material* material = program->getMaterial();
 	material->setVec2Array("textureCoords", 48, texCoords);
-	material->setVec2("cellSize", 32.0f / width, 48.0f / row );
+	material->setVec2("cellSize", 32.0f / width, 48.0f / height);
+
+	MapCell* maxCell = map->getMapCell(col, row);
+	War::HexCoordinates coord = maxCell->getCorrdinates();
+	Vector3 pos = coord.position;
+	material->setVec2("mapSize", pos.x + HexMetrics::outerRadius, pos.z + 48.0f);
+
+	Render::Texture mapTexture;
+	mapTexture.image = cellTextureImage;
+	mapTexture.imageName = "mapTexture";
+	mapTexture.uniformName = "mapTexture";
+	material->setTexture("mapTexture", mapTexture);
+
+
+	Render::Texture mapDataTexture;
+	mapDataTexture.image = mapDataImage;
+	mapDataTexture.imageName = "cellDatas";
+	mapDataTexture.uniformName = "cellDatas";
+	material->setTexture("cellDatas", mapDataTexture);
 
 	/*GLShader* shader = program->getShaderProgram()->GetShaderObj();
 	shader->use();

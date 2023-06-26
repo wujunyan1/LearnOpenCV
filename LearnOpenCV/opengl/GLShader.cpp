@@ -41,20 +41,21 @@ void GLShader::use()
 
 void GLShader::setBool(const std::string& name, bool value) const
 {
-    glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
+    
+	GL_GET_ERROR(glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value));
 }
 void GLShader::setInt(const std::string& name, int value) const
 {
-    glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
+    GL_GET_ERROR(glUniform1i(glGetUniformLocation(ID, name.c_str()), value));
 }
 void GLShader::setFloat(const std::string& name, float value) const
 {
-    glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
+    GL_GET_ERROR(glUniform1f(glGetUniformLocation(ID, name.c_str()), value));
 }
 
 void GLShader::setVec2(const std::string& name, Math::Vector2 value) const
 {
-    glUniform2f(glGetUniformLocation(ID, name.c_str()), value.x, value.y);
+    GL_GET_ERROR(glUniform2f(glGetUniformLocation(ID, name.c_str()), value.x, value.y));
 }
 
 void GLShader::setVec2Array(const std::string& name, int arrayNum, float* value) const
@@ -83,51 +84,51 @@ void GLShader::setVec2Array(const std::string& name, int arrayNum, float* value)
         printf("\n");
     }*/
 
-    GL_GET_ERROR(glUniform2fv(glGetUniformLocation(ID, name.c_str()), 2, value));
+    GL_GET_ERROR(glUniform2fv(glGetUniformLocation(ID, name.c_str()), arrayNum, value));
 }
 
 void GLShader::setVec3(const std::string& name, Math::Vector3 value) const
 {
-    glUniform3f(glGetUniformLocation(ID, name.c_str()), value.x, value.y, value.z);
+    GL_GET_ERROR(glUniform3f(glGetUniformLocation(ID, name.c_str()), value.x, value.y, value.z));
 }
 
 void GLShader::setVec3(const std::string& name, float x, float y, float z) const
 {
-    glUniform3f(glGetUniformLocation(ID, name.c_str()), x, y, z);
+    GL_GET_ERROR(glUniform3f(glGetUniformLocation(ID, name.c_str()), x, y, z));
 }
 
 
 void GLShader::setFloat4(const std::string& name, float r, float g, float b, float a) const
 {
     int vertexColorLocation = glGetUniformLocation(ID, name.c_str());
-    glUniform4f(vertexColorLocation, r , g, b, a);
+    GL_GET_ERROR(glUniform4f(vertexColorLocation, r , g, b, a));
 }
 
 void GLShader::setMat4(const std::string& name, Math::Matrix4 mat) const
 {
     int modelLoc = glGetUniformLocation(ID, name.c_str());
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (GLfloat*)&mat);
+    GL_GET_ERROR(glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (GLfloat*)&mat));
 }
 
 void GLShader::setTexture(const std::string& name, unsigned int index) const
 {
-    glUniform1i(glGetUniformLocation(ID, name.c_str()), index);
+    GL_GET_ERROR(glUniform1i(glGetUniformLocation(ID, name.c_str()), index));
 }
 
 void GLShader::setBool(const std::string& name, const void* value) const
 {
-    glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
+    GL_GET_ERROR(glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value));
 }
 
 void GLShader::setInt(const std::string& name, const void* value) const
 {
-    glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
+    GL_GET_ERROR(glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value));
 }
 
 void GLShader::setFloat(const std::string& name, const void* value) const
 {
     GLfloat f = *(GLfloat*)(&value);
-    glUniform1f(glGetUniformLocation(ID, name.c_str()), f);
+    GL_GET_ERROR(glUniform1f(glGetUniformLocation(ID, name.c_str()), f));
 }
 
 void GLShader::setFloat4(const std::string& name, const void* value) const

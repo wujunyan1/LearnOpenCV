@@ -14,6 +14,7 @@ namespace Core
 
 	public:
 		ACustomMesh(std::string uid);
+		~ACustomMesh();
 
 		virtual int getMeshType() { return ABaseMesh::MeshType::CustomMesh; };
 
@@ -27,7 +28,7 @@ namespace Core
 
 
 	private:
-		Render::RenderCustomMesh* mesh;
+		// Render::RenderCustomMesh* mesh;
 
 	public:
 	};
