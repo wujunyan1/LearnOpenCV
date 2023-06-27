@@ -40,8 +40,9 @@ void War::MapClient::setMap(Map* map)
 			MapCell* cell = map->getMapCell(i, j);
 			MapCellClient::createMapCellObject(cell, vertices, indices, textures);
 
-			Vector4 cellData = Vector4(0, 0, 0, cell->getMapCellType() / 255.0); //
-			mapDataImage->setTextureData(i, j, 1, 1, &cellData);
+			//Vector4 cellData = Vector4(1.0f, 0, 0, 1.0f); // cell->getMapCellType()
+			unsigned char cellData[4] = { 255, 0, 0, cell->getMapCellType() };
+			mapDataImage->setTextureData(i, j, 1, 1, cellData);
 		}
 	}
 
@@ -78,13 +79,14 @@ void War::MapClient::setMap(Map* map)
 	int row = height / 48;
 
 	int index = 0;
-	for (size_t i = 0; i < col; i++)
+	for (int j = row - 1; j >= 0; j--)
 	{
-		for (int j = row-1; j >= 0; j--)
+		for (size_t i = 0; i < col; i++)
 		{
 			//texCoords[index++] = { i * 32.0f / width, j * 48.0f / height };
 			texCoords[index++] = i * 32.0f / width;
-			texCoords[index++] = j * 48.0f / height;
+			texCoords[index++] = (j * 48.0f - 2.0f) / height;
+			//texCoords[index++] = Math::Max((j * 48.0f - 2.0f) / height, 0.0f);
 		}
 	}
 

@@ -18,7 +18,7 @@ namespace UI
 
 		UIImage();
 
-		void setImage(std::string& name);
+		void setImage(std::string name);
 
 		// 目标是深度缓存里的， src是ps输出的
 		void setBlendFunc(Render::BlendFunc src, Render::BlendFunc target);

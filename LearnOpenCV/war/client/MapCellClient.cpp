@@ -14,11 +14,9 @@ void War::MapCellClient::createMapCellObject(
 )
 {
 	unsigned int count = vertices.size();
-	printf("count = %u \n", count);
 
 	War::HexCoordinates Corrdinates = cell->getCorrdinates();
 	Vector3 position = Corrdinates.position;
-	printf("position = %s \n", position.toString().c_str());
 	Vector3 cellPosition = Vector3(Corrdinates.X, Corrdinates.Z, 0);
 
 	Vertex vertex1;

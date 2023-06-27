@@ -20,7 +20,7 @@ namespace UI
 		initModel();
 	}
 
-	void UI::UIImage::setImage(std::string& name)
+	void UI::UIImage::setImage(std::string name)
 	{
 		imageName = name;
 

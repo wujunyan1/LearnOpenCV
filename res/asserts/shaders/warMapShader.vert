@@ -23,14 +23,16 @@ uniform vec2 textureCoords[48];
 
 out vec2 TexCoord;
 out vec4 WorldPos;
+out float ap;
 
 void main()
 {
     WorldPos = model * vec4(aPos, 1.0);
     gl_Position = OP * WorldPos;
     // TexCoord = aTexCoord; //aTexCoord;
-    vec4 cellData = texture(cellDatas, vec2(aCellCoord));
-    vec2 coord = textureCoords[int(cellData.a * 255)];
+    vec4 cellData = texture(cellDatas, vec2(aCellCoord) / vec2(10, 10) );
+    vec2 coord = textureCoords[int(cellData.a * 255)]; // textureCoords[int(cellData.a * 255)];
+    ap = cellData.a;
 
     gl_Position.z = (mod(aCellCoord.x / mapSize.x, 2) + aCellCoord.y / mapSize.y) * gl_Position.w;
     TexCoord = aTexCoord * cellSize + coord;

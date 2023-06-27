@@ -110,6 +110,9 @@ Image* Core::ImageLoad::LoadImageAtlas(std::string path, int plotWidth, int plot
 	if (data)
 	{
 		image = new Image2D(path, width, height, nrChannels, data);
+		image->setTexParameteri(GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		image->setTexParameteri(GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		image->useMipMap();
 
 		int col = width / plotWidth;
 		int row = height / plotHeight;
@@ -143,8 +146,8 @@ void ImageLoad::DestroyImage(Image* image)
 	auto it = image_ids->find(image->getName());
 	if (it != image_ids->end())
 	{
-		delete it->second;
 		image_ids->erase(image->getName());
+		delete it->second;
 	}
 	else
 	{

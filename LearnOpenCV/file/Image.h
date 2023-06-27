@@ -57,6 +57,20 @@ namespace Core
 		int getWidth() { return width; };
 		int getHeight() { return height; };
 
+		void setTexParameteri(GLenum pname, GLint param)
+		{
+			glBindTexture(GL_TEXTURE_2D, textureID);
+			glTexParameteri(GL_TEXTURE_2D, pname, param);
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
+
+		void useMipMap()
+		{
+			glBindTexture(GL_TEXTURE_2D, textureID);
+			glGenerateMipmap(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
+
 	public:
 		static const int textureIndex[32];
 
@@ -110,7 +124,7 @@ namespace Core
 			default:
 				break;
 			}
-			glGenerateMipmap(GL_TEXTURE_2D);
+			// glGenerateMipmap(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, 0);
 		}
 

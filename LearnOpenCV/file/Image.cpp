@@ -5,6 +5,8 @@
 
 #include "FilePathManager.h"
 
+#include "../opengl/OpenGLCore.h"
+
 using namespace Core;
 
 const int Image::textureIndex[32] = {
@@ -101,10 +103,13 @@ Core::ImageCustom::ImageCustom(std::string name, int width, int height):Image(na
 	this->height = height;
 	this->nrChannels = 4;
 
-	printf("%x\n", nrChannels);
 	glGenTextures(1, &textureID); // ¥¥Ω®Œ∆¿Ì
+	printf("ImageCustom %x %d \n", nrChannels, textureID);
 
 	glBindTexture(GL_TEXTURE_2D, textureID);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -112,8 +117,9 @@ Core::ImageCustom::ImageCustom(std::string name, int width, int height):Image(na
 
 void Core::ImageCustom::setTextureData(int x, int y, int w, int h, void* data)
 {
+	printf("setTextureData %d %d %d %d \n", x, y, w, textureID);
 	glBindTexture(GL_TEXTURE_2D, textureID);
-	glTexSubImage2D(
+	GL_GET_ERROR(glTexSubImage2D(
 		GL_TEXTURE_2D,
 		0,
 		x,
@@ -123,6 +129,6 @@ void Core::ImageCustom::setTextureData(int x, int y, int w, int h, void* data)
 		GL_RGBA,
 		GL_UNSIGNED_BYTE,
 		data
-	);
+	));
 	glBindTexture(GL_TEXTURE_2D, 0);
 }

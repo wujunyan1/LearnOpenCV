@@ -13,6 +13,7 @@ MapCell* Map::createMapCell(int x, int z, int i)
 {
 	MapCell* cell = new MapCell();
 	cell->init(x, z);
+	cell->setMapCellType( (MapCellType)Math::Random(0, 40) );
 
 	if (x > 0) {
 		cell->setNear(HexDirection::W, cells[i - 1]);

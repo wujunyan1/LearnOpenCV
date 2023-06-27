@@ -152,6 +152,11 @@ namespace Math {
 		return f == MAX_FLOAT;
 	}
 
+	inline int Random(int min, int max)
+	{
+		return (rand() % (max - min)) + min;
+	}
+
 	std::string stringFormat(std::string fmt, ...);
 
 	unsigned int getUid();

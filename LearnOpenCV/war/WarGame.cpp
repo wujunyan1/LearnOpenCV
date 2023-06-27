@@ -54,7 +54,6 @@ void War::WarGame::NewGame()
 	uiFontTransform->SetSize({ {0, 200}, {0, 100} });
 
 	showFont->AddComponent<Core::ShowFpsComponent>();
-
 	uiBase->AddChild(showFont);
 
 	MapSetting setting;
@@ -70,4 +69,18 @@ void War::WarGame::NewGame()
 	mapClient->setMap(Map::GetInstance());
 
 	root->AddChild(o2);
+
+
+	GameObject* showImage = ObjectManager::createNewGameObject();
+	UI::UITransform* uiImageTransform = showImage->AddComponent<UI::UITransform>();
+	UI::UIImage* testImage = showImage->AddComponent<UI::UIImage>();
+	testImage->setImage("warMapData");
+
+	// testImage->setImage("/asserts/map/fantasyhextiles_v3.png");
+
+	uiImageTransform->SetPosition({ {1, -200} ,{1, -200} });
+	uiImageTransform->SetPivot({ 0, 0 });
+	uiImageTransform->SetSize({ {0, 200}, {0, 200} });
+
+	uiBase->AddChild(showImage);
 }
