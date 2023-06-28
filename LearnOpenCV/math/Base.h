@@ -136,13 +136,13 @@ namespace Math {
 	template <>
 	inline bool IsEqual<float>(const float& lhs, const float& rhs, const float epsilon)
 	{
-		return std::abs(lhs - rhs) <= epsilon * std::max({ 1.0f, std::abs(lhs), std::abs(rhs) });
+		return std::abs(lhs - rhs) <= epsilon;
 	}
 
 	template <>
 	inline bool IsEqual<double>(const double& lhs, const double& rhs, const double epsilon)
 	{
-		return Abs(lhs - rhs) <= epsilon * std::max({ 1.0, std::abs(lhs), std::abs(rhs) });
+		return Abs(lhs - rhs) <= epsilon;
 	}
 
 	inline bool IsInvalid(float f)

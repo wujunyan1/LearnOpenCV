@@ -151,7 +151,7 @@ namespace Core
 		static void PressKey(Key key);
 		static void ReleaseKey(Key key);
 		static void UpdateMousePosition(Math::Vector2 pos);
-
+		static void UpdateMouseScroll(Math::Vector2 scrollPos);
 
 		static bool isKeyDown(Key key)
 		{
@@ -188,8 +188,15 @@ namespace Core
 			return mousePos;
 		}
 
+		static Math::Vector2 GetMouseScrollPos() {
+			return mouseScrollPos;
+		}
+
+		static void ClearTickInput();
+
 	private:
 		static bool keys[1024];
 		static Math::Vector2 mousePos;
+		static Math::Vector2 mouseScrollPos;
 	};
 }

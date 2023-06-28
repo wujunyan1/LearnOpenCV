@@ -59,6 +59,10 @@ namespace Render
 			Core::Input::ReleaseKey((Core::Input::Key)button);
 	}
 
+	void mouse_scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+	{
+		Core::Input::UpdateMouseScroll({ (float)xoffset, (float)yoffset });
+	}
 
 	long getCurrentRenderTime() {
 		return clock();
@@ -185,6 +189,8 @@ namespace Render
 		glfwSetCursorEnterCallback(window, mouse_enter_callback);
 		glfwSetCursorPosCallback(window, mouse_pos_callback);
 		glfwSetMouseButtonCallback(window, mouse_button_callback);
+		glfwSetScrollCallback(window, mouse_scroll_callback);
+
 		glfwSetKeyCallback(window, key_callback);
 
 		glfwSetWindowSizeCallback(window, window_size_callback);

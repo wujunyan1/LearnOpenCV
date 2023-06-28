@@ -8,6 +8,11 @@
 
 using namespace Core;
 
+namespace Core
+{
+	class ACustomMesh;
+}
+
 namespace War
 {
 	class MapClient : public Core::GameComponent
@@ -17,12 +22,21 @@ namespace War
 	public:
 		virtual void Init();
 		virtual void Bind();
+		virtual void Update();
 
 		void setMap(Map* map);
 
 	private:
+		
+		ACustomMesh* getColMapMesh(int col, int rowStartIndex);
+
+	private:
+		Image* cellTextureImage;
+		ImageCustom* mapDataImage;
 		Map* m_map;
 
 		Model* m_model;
+
+		float m_mapScale = 100.0f;
 	};
 }

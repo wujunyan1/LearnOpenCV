@@ -59,13 +59,13 @@ void Camera::init(float fov, float aspect, float near, float far)
 	);
 
 	orthogonal = Mat4(
-		2.0f / (right - left), 0, 0, 0,
-		0, 2.0f / (top - bottom), 0, 0,
-		0, 0, 2.0f / (near - far), 0,
+		1.0f / (f_right - f_left), 0, 0, 0,
+		0, 1.0f / (f_top - f_bottom), 0, 0,
+		0, 0, 1.0f / (near - far), 0,
 		0, 0, 0, 1.0f
 	) * Mat4(
-		1, 0, 0, -(left + right) / 2.0f,
-		0, 1, 0, -(bottom + top) / 2.0f,
+		1, 0, 0, -(f_left + f_right) / 2.0f,
+		0, 1, 0, -(f_bottom + f_top) / 2.0f,
 		0, 0, 1, -(near + far) / 2.0f,
 		0, 0, 0, 1
 	);

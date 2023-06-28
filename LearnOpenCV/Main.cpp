@@ -12,6 +12,7 @@
 #include <direct.h>
 #include "file/FilePathManager.h"
 #include "Core/SceneManager.h"
+#include "input/Input.h"
 
 int main(int argc, char* argv[])
 {
@@ -47,6 +48,7 @@ int main(int argc, char* argv[])
 
 		game->Tick(delay);
 
+		Core::Input::ClearTickInput();
 		Render::updateTextures(delay);
 
 		Scene* currScene = SceneManager::GetInstance()->GetCurrScene();

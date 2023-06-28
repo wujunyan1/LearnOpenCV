@@ -7,11 +7,13 @@
 #include "../../render/Material.h"
 
 #include "MapCellClient.h"
+#include "../../input/Input.h"
 
 using namespace Core;
 
 void War::MapClient::Init()
 {
+	m_mapScale = 400.0f;
 }
 
 void War::MapClient::Bind()
@@ -20,53 +22,48 @@ void War::MapClient::Bind()
 	m_model = object->GetComponent<Model>();
 }
 
+void War::MapClient::Update()
+{
+	Vector2 scrollPos = Core::Input::GetMouseScrollPos();
+
+	float oldMapScale = m_mapScale;
+	m_mapScale += scrollPos.y;
+	m_mapScale = Math::Min(m_mapScale, 1000.0f);
+	m_mapScale = Math::Max(m_mapScale, 1.0f);
+
+	if (!Math::IsEqual(oldMapScale, m_mapScale, 0.01f))
+	{
+		Render::RenderProgram* program = m_model->getRenderProgram();
+		Render::Material* material = program->getMaterial();
+		material->setFloat("mapScale", m_mapScale / 100.0f);
+	}
+}
+
 void War::MapClient::setMap(Map* map)
 {
 	m_map = map;
 
-	Image* cellTextureImage = ImageLoad::LoadImageAtlas("/asserts/map/fantasyhextiles_v3.png", 32, 48);
-
-	std::vector<MapCellClient::Vertex> vertices;
-	std::vector<unsigned int> indices;
-	std::vector<Render::Texture> textures;
+	cellTextureImage = ImageLoad::LoadImageAtlas("/asserts/map/fantasyhextiles_v3.png", 32, 48);
 
 	MapSetting setting = map->getMapSetting();
-	ImageCustom* mapDataImage = ImageLoad::CreateCustomImage("warMapData", setting.col, setting.row);
+	mapDataImage = ImageLoad::CreateCustomImage("warMapData", setting.width, setting.height);
 
-	for (size_t i = 0; i < setting.col; i++)
-	{
-		for (size_t j = 0; j < setting.row; j++)
-		{
-			MapCell* cell = map->getMapCell(i, j);
-			MapCellClient::createMapCellObject(cell, vertices, indices, textures);
-
-			//Vector4 cellData = Vector4(1.0f, 0, 0, 1.0f); // cell->getMapCellType()
-			unsigned char cellData[4] = { 255, 0, 0, cell->getMapCellType() };
-			mapDataImage->setTextureData(i, j, 1, 1, cellData);
-		}
-	}
-
-	//MapCellClient::createMapCellObject();
 
 	Core::AModel* acustommodel = AModelFactory::createCustomModel();
-
-	ACustomMesh* customMesh = new ACustomMesh("map");
-
-	customMesh->BindArrayBufferData(indices.size(), vertices.size() * sizeof(MapCellClient::Vertex), &vertices[0]);
-	customMesh->BindElementBufferData(indices);
-	customMesh->VertexAttribPointer(0, 3, Render::ShaderParamType::SPT_VEC3, false, sizeof(MapCellClient::Vertex), offsetof(MapCellClient::Vertex, Position));
-	customMesh->VertexAttribPointer(1, 2, Render::ShaderParamType::SPT_VEC2, false, sizeof(MapCellClient::Vertex), offsetof(MapCellClient::Vertex, TexCoords));
-	customMesh->VertexAttribPointer(2, 3, Render::ShaderParamType::SPT_VEC3, false, sizeof(MapCellClient::Vertex), offsetof(MapCellClient::Vertex, CellPosition));
-	customMesh->setImage(textures);
-
-	acustommodel->addBaseMesh(customMesh);
+	for (int i = setting.height - 1; i >= 0; i--)
+	{
+		ACustomMesh* customMesh = getColMapMesh(i, 1);
+		acustommodel->addBaseMesh(customMesh);
+		ACustomMesh* customMesh2 = getColMapMesh(i, 0);
+		acustommodel->addBaseMesh(customMesh2);
+	}
 
 	m_model->setShader("warMapShader");  //testBlendShader
 	m_model->setRenderQueue("RenderWarMapQueue");
 	m_model->setModel(acustommodel);
 	m_model->setDepthTest(true);
-	m_model->setBlend(false);
-	//m_model->setBlendFunc(Render::BlendFunc::SRC_ALPHA, Render::BlendFunc::ONE_MINUS_SRC_ALPHA);
+	m_model->setBlend(true);
+	m_model->setBlendFunc(Render::BlendFunc::SRC_ALPHA, Render::BlendFunc::ONE_MINUS_SRC_ALPHA);
 
 	Render::RenderProgram* program = m_model->getRenderProgram();
 
@@ -91,10 +88,11 @@ void War::MapClient::setMap(Map* map)
 	}
 
 	Render::Material* material = program->getMaterial();
+	material->setFloat("mapScale", m_mapScale / 100.0f);
 	material->setVec2Array("textureCoords", 48, texCoords);
 	material->setVec2("cellSize", 32.0f / width, 48.0f / height);
 
-	MapCell* maxCell = map->getMapCell(col, row);
+	MapCell* maxCell = map->getMapCell(setting.width - 1, setting.height - 1);
 	War::HexCoordinates coord = maxCell->getCorrdinates();
 	Vector3 pos = coord.position;
 	material->setVec2("mapSize", pos.x + HexMetrics::outerRadius, pos.z + 48.0f);
@@ -116,4 +114,37 @@ void War::MapClient::setMap(Map* map)
 	shader->use();
 	shader->setVec2Array("textureCoords", 48, texCoords);
 	shader->setVec2("cellSize", { 32.0f / width, 48.0f / row });*/
+}
+
+ACustomMesh* War::MapClient::getColMapMesh(int row, int rowStartIndex)
+{
+
+	std::vector<MapCellClient::Vertex> vertices;
+	std::vector<unsigned int> indices;
+	std::vector<Render::Texture> textures;
+
+	MapSetting setting = m_map->getMapSetting();
+
+	for (size_t j = rowStartIndex; j < setting.width; j+=2)
+	{
+		MapCell* cell = m_map->getMapCell(j, row);
+		MapCellClient::createMapCellObject(cell, vertices, indices, textures);
+
+		//Vector4 cellData = Vector4(1.0f, 0, 0, 1.0f); // cell->getMapCellType()
+		unsigned char cellData[4] = { 255, 0, 0, cell->getMapCellType() };
+		mapDataImage->setTextureData(j, row, 1, 1, cellData);
+	}
+
+	//MapCellClient::createMapCellObject();
+
+	ACustomMesh* customMesh = new ACustomMesh("map");
+
+	customMesh->BindArrayBufferData(indices.size(), vertices.size() * sizeof(MapCellClient::Vertex), &vertices[0]);
+	customMesh->BindElementBufferData(indices);
+	customMesh->VertexAttribPointer(0, 3, Render::ShaderParamType::SPT_VEC3, false, sizeof(MapCellClient::Vertex), offsetof(MapCellClient::Vertex, Position));
+	customMesh->VertexAttribPointer(1, 2, Render::ShaderParamType::SPT_VEC2, false, sizeof(MapCellClient::Vertex), offsetof(MapCellClient::Vertex, TexCoords));
+	customMesh->VertexAttribPointer(2, 3, Render::ShaderParamType::SPT_VEC3, false, sizeof(MapCellClient::Vertex), offsetof(MapCellClient::Vertex, CellPosition));
+	customMesh->setImage(textures);
+
+	return customMesh;
 }

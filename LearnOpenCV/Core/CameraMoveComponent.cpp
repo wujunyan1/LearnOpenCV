@@ -25,6 +25,7 @@ void CameraMoveComponent::Update()
     Vector3 cameraPos = transform->GetPosition();
     Vector3 cameraFront = transform->getForword();
     Vector3 cameraRight = transform->getRight();
+    Vector3 cameraTop = transform->getUp();
 
 
 
@@ -32,9 +33,11 @@ void CameraMoveComponent::Update()
     float cameraSpeed = delay * moveSpeed;
     if (Core::Input::isKeyDown(Input::Key::W)) {
         cameraPos -= cameraFront * cameraSpeed;
+
     }
     if (Core::Input::isKeyDown(Input::Key::S)) {
         cameraPos += cameraSpeed * cameraFront;
+
     }
     if (Core::Input::isKeyDown(Input::Key::A)) {
         cameraPos -= cameraRight * cameraSpeed;
@@ -57,15 +60,17 @@ void CameraMoveComponent::Update()
         float yoffset = currMousePos.y - preMousePos.y; // 注意这里是相反的，因为y坐标的范围是从下往上的
         preMousePos = currMousePos;
 
-        float sensitivity = 0.01f;
-        xoffset *= sensitivity;
-        yoffset *= sensitivity;
+        //float sensitivity = 0.01f;
+        //xoffset *= sensitivity;
+        //yoffset *= sensitivity;
 
-        //transform->SetRotate(rotate);
-        transform->Rotate(Vector3(yoffset, xoffset, 0), Space::Self);
+        ////transform->SetRotate(rotate);
+        //transform->Rotate(Vector3(yoffset, xoffset, 0), Space::Self);
+        cameraPos -= cameraRight * xoffset;
+        cameraPos += cameraTop * yoffset;
+        transform->SetPosition(cameraPos);
     }
     if (Core::Input::isMouseLeftUp(Input::Key::MOUSE_BUTTON_LEFT)) {
         isTouchDown = false;
     }
-
 }

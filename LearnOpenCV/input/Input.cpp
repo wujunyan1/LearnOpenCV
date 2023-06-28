@@ -4,6 +4,7 @@ using namespace Core;
 
 bool Input::keys[1024] = { false };
 Math::Vector2 Input::mousePos = Math::Vector2();
+Math::Vector2 Input::mouseScrollPos = Math::Vector2();
 
 void Input::PressKey(Key key)
 {
@@ -20,4 +21,15 @@ void Input::ReleaseKey(Key key)
 void Input::UpdateMousePosition(Math::Vector2 pos)
 {
 	mousePos = pos;
+}
+
+void Core::Input::UpdateMouseScroll(Math::Vector2 scrollPos)
+{
+	mouseScrollPos = scrollPos;
+}
+
+void Core::Input::ClearTickInput()
+{
+	mouseScrollPos.x = 0;
+	mouseScrollPos.y = 0;
 }

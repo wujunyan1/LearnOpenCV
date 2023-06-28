@@ -29,8 +29,13 @@ namespace Render
 		// Ê¹ÓÃÄ³Shader
 		shaderProgram->Use();
 		
-		//GL_GET_ERROR(shaderProgram->setMat4("OP", camera->getOPMat4()));
-		GL_GET_ERROR(shaderProgram->setMat4("OP", camera->getVPMat4()));
+		/*Mat4 op = camera->getOPMat4();
+		Mat4 view = camera->getViewMat4();
+		Vector4 pos = op * Vector4(0, 0, 0, 1);
+		printf("pos %s \n", pos.toString().c_str());*/
+
+		GL_GET_ERROR(shaderProgram->setMat4("OP", camera->getOPMat4()));
+		//GL_GET_ERROR(shaderProgram->setMat4("OP", camera->getVPMat4()));
 		GL_GET_ERROR(shaderProgram->setMat4("view", camera->getViewMat4()));
 		GL_GET_ERROR(shaderProgram->setMat4("ortho", camera->getOrthogonalMat4()));
 
@@ -41,17 +46,18 @@ namespace Render
 		for (size_t i = 0; i < index; i++)
 		{
 			RenderProgram* program = activeRenderProgram->at(i);
-			Math::AABB& renderAABB = program->getRenderAABB();
+			/*Math::AABB& renderAABB = program->getRenderAABB();
 			if (perspectiveAABB.isOverlap(renderAABB)) {
 				renderProgram.push_back(program);
 				program->cameraDistance = (perspectiveAABB._center - renderAABB._center).lenSqr();
-			}
+			}*/
+			program->Render();
 		}
 
-		for (size_t i = 0; i < renderProgram.size(); i++)
+		/*for (size_t i = 0; i < renderProgram.size(); i++)
 		{
 			renderProgram[i]->Render();
-		}
+		}*/
 	}
 
 	void RenderWarMapQueue::clear()

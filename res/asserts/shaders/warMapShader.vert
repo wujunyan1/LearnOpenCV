@@ -14,6 +14,7 @@ uniform mat4 OP;
 //uniform mat4 view;
 //uniform mat4 ortho;
 
+uniform float mapScale;
 uniform vec2 mapSize;
 uniform vec2 cellSize;
 uniform sampler2D cellDatas;
@@ -24,18 +25,21 @@ uniform vec2 textureCoords[48];
 out vec2 TexCoord;
 out vec4 WorldPos;
 out float ap;
+out vec3 cellCoord;
 
 void main()
 {
-    WorldPos = model * vec4(aPos, 1.0);
+    vec3 pos = vec3(aPos.x * mapScale, aPos.y / mapSize.y  * mapScale , aPos.z * mapScale);
+    WorldPos = model * vec4(pos, 1.0);
     gl_Position = OP * WorldPos;
     // TexCoord = aTexCoord; //aTexCoord;
     vec4 cellData = texture(cellDatas, vec2(aCellCoord) / vec2(10, 10) );
     vec2 coord = textureCoords[int(cellData.a * 255)]; // textureCoords[int(cellData.a * 255)];
     ap = cellData.a;
+    cellCoord = aCellCoord;
 
-    gl_Position.z = (mod(aCellCoord.x / mapSize.x, 2) + aCellCoord.y / mapSize.y) * gl_Position.w;
+    // gl_Position.z = (mod(aCellCoord.x / mapSize.x, 2) + aCellCoord.y / mapSize.y) * gl_Position.w;
     TexCoord = aTexCoord * cellSize + coord;
 
-    gl_Position.z = aPos.z / mapSize.y;
+    // gl_Position.z = (aPos.z - (aCellCoord.y * 48)) / (mapSize.y * 4) * gl_Position.w;
 }

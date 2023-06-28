@@ -65,7 +65,7 @@ namespace Render
 
     void Material::setFloat(const std::string& name, float value)
     {
-        tryModifyShaderParam(name, 1, &value, Render::ShaderParamType::SPT_FLOAT, sizeof(value));
+        tryModifyShaderParam(name, 1, &value, Render::ShaderParamType::SPT_FLOAT, sizeof(float));
     }
 
     void Material::setVec2(const std::string& name, Math::Vector2& value)

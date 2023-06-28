@@ -32,7 +32,7 @@ void War::WarGame::NewGame()
 
 	Transform* cameraTransForm = root->getMainCamera()->getGameObject()->GetComponent<Transform>();
 	cameraTransForm->SetPosition({0, 200, 50});
-	cameraTransForm->SetRotate({ 0, 180.0f * Math::DEG2RAD, 0 });
+	cameraTransForm->SetRotate({ 90.0f * Math::DEG2RAD, 180.0f * Math::DEG2RAD, 0 });
 
 	/*scene->PreUpdate();
 	scene->Update();
@@ -57,8 +57,8 @@ void War::WarGame::NewGame()
 	uiBase->AddChild(showFont);
 
 	MapSetting setting;
-	setting.col = 10;
-	setting.row = 10;
+	setting.width = 10000;
+	setting.height = 8;
 	Map::GetInstance()->initMap(setting);
 
 	GameObject* o2 = ObjectManager::createNewGameObject();

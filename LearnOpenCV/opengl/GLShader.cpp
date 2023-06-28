@@ -127,7 +127,7 @@ void GLShader::setInt(const std::string& name, const void* value) const
 
 void GLShader::setFloat(const std::string& name, const void* value) const
 {
-    GLfloat f = *(GLfloat*)(&value);
+    GLfloat f = *(GLfloat*)(value);
     GL_GET_ERROR(glUniform1f(glGetUniformLocation(ID, name.c_str()), f));
 }
 
