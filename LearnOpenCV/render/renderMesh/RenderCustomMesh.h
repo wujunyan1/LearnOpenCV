@@ -17,6 +17,7 @@ namespace Render
 		~RenderCustomMesh();
 
 		virtual void Render(Render::ShaderProgram* program, Render::Material* material);
+		virtual void RenderInstances(Render::ShaderProgram* program, Render::Material* material, unsigned int count);
 
 	protected:
 

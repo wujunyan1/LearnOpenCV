@@ -34,6 +34,15 @@ namespace Render
 		GL_GET_ERROR(glVertexAttribPointer(passageway, dataSize, Render::GET_OPENGL_TYPE(dataType), bl, delaySize, (void*)startIndex));
 	}
 
+	void RenderBaseMesh::VertexAttribDivisor(unsigned int passageway, size_t dataSize, Render::ShaderParamType dataType, bool b, size_t delaySize, size_t startIndex, size_t addIndex)
+	{
+		GL_GET_ERROR(glBindVertexArray(tvao));
+		GLboolean bl = b ? GL_TRUE : GL_FALSE;
+		GL_GET_ERROR(glEnableVertexAttribArray(passageway));
+		GL_GET_ERROR(glVertexAttribPointer(passageway, dataSize, Render::GET_OPENGL_TYPE(dataType), bl, delaySize, (void*)startIndex));
+		GL_GET_ERROR(glVertexAttribDivisor(passageway, addIndex));
+	}
+
 	void RenderBaseMesh::BindElementBufferData(size_t dataSize, void* data)
 	{
 		GL_GET_ERROR(glBindVertexArray(tvao));

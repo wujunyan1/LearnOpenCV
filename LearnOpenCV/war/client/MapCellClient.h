@@ -19,6 +19,15 @@ namespace War
 			// cell position
 			Math::Vector3 CellPosition;
 		};
+
+		struct InstanceData
+		{
+			// texCoords
+			Math::Vector2T<int> CellCoords;
+			// texCoords
+			Math::Vector2 CellPosition;
+		};
+
 	public:
 		static void createMapCellObject(
 			MapCell* cell,

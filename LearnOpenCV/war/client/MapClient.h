@@ -33,7 +33,7 @@ namespace War
 
 	private:
 		
-		void initCustomRenderMesh();
+		void initCustomRenderMesh(Core::AModel* acustommodel);
 		AWarMapMesh* getColMapMesh(int col, int rowStartIndex);
 
 	private:

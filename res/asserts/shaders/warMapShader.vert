@@ -2,6 +2,7 @@
 layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec2 aTexCoord;
 layout (location = 2) in vec3 aCellCoord;
+layout (location = 3) in vec4 aCellData;
 
 
 //uniform mat4 model;
@@ -19,8 +20,8 @@ uniform vec2 mapSize;
 uniform vec2 cellSize;
 uniform sampler2D cellDatas;
 
-uniform vec2 startIndex;
-uniform vec2 startPos;
+//uniform vec2 startIndex;
+//uniform vec2 startPos;
 
 //uniform float v[4];
 uniform vec2 textureCoords[48];
@@ -32,11 +33,11 @@ out vec3 cellCoord;
 
 void main()
 {
-    vec3 pos = vec3((aPos.x + startPos.x) * mapScale, (aPos.y - startPos.y) / mapSize.y  * mapScale , (aPos.z + startPos.y ) * mapScale);
+    vec3 pos = vec3((aPos.x + aCellData.z) * mapScale, (aPos.y - aCellData.w) / mapSize.y  * mapScale , (aPos.z + aCellData.w ) * mapScale);
     WorldPos = model * vec4(pos, 1.0);
     gl_Position = OP * WorldPos;
     // TexCoord = aTexCoord; //aTexCoord;
-    vec4 cellData = texture(cellDatas, (vec2(aCellCoord) + startIndex) / vec2(10, 10) );
+    vec4 cellData = texture(cellDatas, (vec2(aCellCoord) + vec2(aCellData)) / vec2(10, 10) );
     vec2 coord = textureCoords[int(cellData.a * 255)]; // textureCoords[int(cellData.a * 255)];
     ap = cellData.a;
     cellCoord = aCellCoord;

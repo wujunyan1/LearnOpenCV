@@ -49,16 +49,9 @@ void War::MapClient::setMap(Map* map)
 	MapSetting setting = map->getMapSetting();
 	mapDataImage = ImageLoad::CreateCustomImage("warMapData", setting.width, setting.height);
 
-	initCustomRenderMesh();
 
 	Core::AModel* acustommodel = AModelFactory::createCustomModel();
-	for (int i = setting.height - 1; i >= 0; i--)
-	{
-		AWarMapMesh* customMesh = getColMapMesh(i, 1);
-		acustommodel->addBaseMesh(customMesh);
-		AWarMapMesh* customMesh2 = getColMapMesh(i, 0);
-		acustommodel->addBaseMesh(customMesh2);
-	}
+	initCustomRenderMesh(acustommodel);
 
 	m_model->setShader("warMapShader");  //testBlendShader
 	m_model->setRenderQueue("RenderWarMapQueue");
@@ -118,7 +111,7 @@ void War::MapClient::setMap(Map* map)
 	shader->setVec2("cellSize", { 32.0f / width, 48.0f / row });*/
 }
 
-void War::MapClient::initCustomRenderMesh()
+void War::MapClient::initCustomRenderMesh(Core::AModel* acustommodel)
 {
 	if (customRenderMesh)
 	{
@@ -132,12 +125,45 @@ void War::MapClient::initCustomRenderMesh()
 	std::vector<Render::Texture> textures;
 
 	MapSetting setting = m_map->getMapSetting();
-	int height = 0;
+
+	Vector4* meshData = new Vector4[setting.height * 2];
 
 	for (size_t j = 0; j < setting.width; j += 2)
 	{
-		MapCell* cell = m_map->getMapCell(j, height);
+		MapCell* cell = m_map->getMapCell(j, 0);
 		MapCellClient::createMapCellObject(cell, vertices, indices, textures);
+	}
+
+
+	AWarMapMesh* customMesh = new AWarMapMesh("map");
+	customMesh->SetRenderMesh(customRenderMesh);
+	acustommodel->addBaseMesh(customMesh);
+
+	int meshDataIndex = 0;
+	for (int i = setting.height - 1; i >= 0; i--)
+	{
+		for (size_t j = 0; j < setting.width; j++)
+		{
+			MapCell* cell = m_map->getMapCell(j, i);
+
+			//Vector4 cellData = Vector4(1.0f, 0, 0, 1.0f); // cell->getMapCellType()
+			unsigned char cellData[4] = { 255, 0, 0, cell->getMapCellType() };
+			mapDataImage->setTextureData(j, i, 1, 1, cellData);
+		}
+
+		MapCell* startCell = m_map->getMapCell(1, i);
+		War::HexCoordinates Corrdinates = startCell->getCorrdinates();
+		Vector3 position1 = Corrdinates.position;
+		meshData[meshDataIndex++] = { 1, 1.0f * i, position1.x, position1.z };
+
+
+		//AWarMapMesh* customMesh2 = getColMapMesh(i, 0);
+
+		startCell = m_map->getMapCell(0, i);
+		Corrdinates = startCell->getCorrdinates();
+		Vector3 position0 = Corrdinates.position;
+		meshData[meshDataIndex++] = { 0, 1.0f * i, position0.x, position0.z };
+		//acustommodel->addBaseMesh(customMesh2);
 	}
 
 	//MapCellClient::createMapCellObject();
@@ -148,6 +174,13 @@ void War::MapClient::initCustomRenderMesh()
 	customRenderMesh->VertexAttribPointer(1, 2, Render::ShaderParamType::SPT_VEC2, false, sizeof(MapCellClient::Vertex), offsetof(MapCellClient::Vertex, TexCoords));
 	customRenderMesh->VertexAttribPointer(2, 3, Render::ShaderParamType::SPT_VEC3, false, sizeof(MapCellClient::Vertex), offsetof(MapCellClient::Vertex, CellPosition));
 	customRenderMesh->SetImage(textures);
+
+	unsigned int buffer;
+	glGenBuffers(1, &buffer);
+	glBindBuffer(GL_ARRAY_BUFFER, buffer);
+	glBufferData(GL_ARRAY_BUFFER, setting.height * 2 * sizeof(Vector4), &meshData[0], GL_STATIC_DRAW);
+
+	customRenderMesh->VertexAttribDivisor(3, 4, Render::ShaderParamType::SPT_VEC4, false, sizeof(Vector4), 0, 1);
 }
 
 AWarMapMesh* War::MapClient::getColMapMesh(int row, int rowStartIndex)
@@ -157,7 +190,7 @@ AWarMapMesh* War::MapClient::getColMapMesh(int row, int rowStartIndex)
 	AWarMapMesh* customMesh = new AWarMapMesh("map");
 	customMesh->SetRenderMesh(customRenderMesh);
 
-	for (size_t j = rowStartIndex; j < setting.width; j+=2)
+	for (size_t j = 0; j < setting.width; j++)
 	{
 		MapCell* cell = m_map->getMapCell(j, row);
 
@@ -165,15 +198,6 @@ AWarMapMesh* War::MapClient::getColMapMesh(int row, int rowStartIndex)
 		unsigned char cellData[4] = { 255, 0, 0, cell->getMapCellType() };
 		mapDataImage->setTextureData(j, row, 1, 1, cellData);
 	}
-
-	MapCell* startCell = m_map->getMapCell(rowStartIndex, row);
-
-	War::HexCoordinates Corrdinates = startCell->getCorrdinates();
-	Vector3 position = Corrdinates.position;
-
-	Render::Material* customMaterial = customMesh->getCustomMaterial();
-	customMaterial->setVec2("startIndex", rowStartIndex, row);
-	customMaterial->setVec2("startPos", position.x, position.z);
 
 	return customMesh;
 }
