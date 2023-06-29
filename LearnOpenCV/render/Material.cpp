@@ -76,7 +76,7 @@ namespace Render
     void Material::setVec2(const std::string& name, float x, float y)
     {
         Math::Vector2 v = Math::Vector2(x, y);
-        tryModifyShaderParam(name, 1, &v, Render::ShaderParamType::SPT_VEC2, sizeof(v));
+        tryModifyShaderParam(name, 1, &v, Render::ShaderParamType::SPT_VEC2, sizeof(Math::Vector2));
     }
 
     void Material::setVec2Array(std::string name, int arrayNum, float* value)

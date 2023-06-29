@@ -215,6 +215,7 @@
     <ClInclude Include="meshModel\AMesh.h" />
     <ClInclude Include="meshModel\AModel.h" />
     <ClInclude Include="meshModel\AUIMesh.h" />
+    <ClInclude Include="meshModel\AWarMapMesh.h" />
     <ClInclude Include="opengl\GLShader.h" />
     <ClInclude Include="opengl\GLShaderManager.h" />
     <ClInclude Include="opengl\OpenGLCore.h" />
@@ -317,6 +318,7 @@
     <ClCompile Include="meshModel\AMesh.cpp" />
     <ClCompile Include="meshModel\AModel.cpp" />
     <ClCompile Include="meshModel\AUIMesh.cpp" />
+    <ClCompile Include="meshModel\AWarMapMesh.cpp" />
     <ClCompile Include="opengl\GLShader.cpp" />
     <ClCompile Include="opengl\GLShaderManager.cpp" />
     <ClCompile Include="opengl\OpenGLCore.cpp" />

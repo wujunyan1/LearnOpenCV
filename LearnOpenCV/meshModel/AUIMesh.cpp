@@ -31,6 +31,14 @@ Core::AUIMesh::~AUIMesh()
 	}
 }
 
+void Core::AUIMesh::render(Render::ShaderProgram* program, Render::Material* material)
+{
+	if (mesh)
+	{
+		mesh->Render(program, material);
+	}
+}
+
 void Core::AUIMesh::updateMesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices)
 {
 	this->vertices = vertices;

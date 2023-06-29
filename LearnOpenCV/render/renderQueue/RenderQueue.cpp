@@ -23,6 +23,12 @@ namespace Render
 		shaderProgram = NULL;
 	}
 
+	RenderProgram::~RenderProgram()
+	{
+		delete material;
+		material = NULL;
+	}
+
 	RenderMesh* RenderProgram::createNewRenderMesh(std::string name)
 	{
 		Render::RenderMesh* mesh = Render::RenderMesh::createNewRenderMesh(name);
@@ -59,13 +65,14 @@ namespace Render
 
 		// …Ë÷√shader  Ù–‘
 		GL_GET_ERROR(shaderProgram->RenderMaterial(material));
+
 		// ‰÷»ævao
 		std::vector<Core::ABaseMesh*> ameshs = _model->getMeshs();
 
 		for (size_t i = 0; i < ameshs.size(); i++)
 		{
 			Core::ABaseMesh* mesh = ameshs[i];
-			GL_GET_ERROR(mesh->getRenderMesh()->Render(shaderProgram, material));
+			GL_GET_ERROR(mesh->render(shaderProgram, material));
 		}
 	}
 

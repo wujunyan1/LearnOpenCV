@@ -30,6 +30,9 @@ namespace Core
 			return mesh;
 		};
 
+
+		virtual void render(Render::ShaderProgram* program, Render::Material* material);
+
 		void updateMesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
 
 		AUIMesh* clone();

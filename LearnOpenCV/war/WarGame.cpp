@@ -57,8 +57,8 @@ void War::WarGame::NewGame()
 	uiBase->AddChild(showFont);
 
 	MapSetting setting;
-	setting.width = 10000;
-	setting.height = 8;
+	setting.width = 10;
+	setting.height = 10;
 	Map::GetInstance()->initMap(setting);
 
 	GameObject* o2 = ObjectManager::createNewGameObject();

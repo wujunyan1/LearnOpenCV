@@ -18,6 +18,7 @@ namespace Render
 		friend class RenderQueue;
 	public:
 		RenderProgram();
+		~RenderProgram();
 
 		virtual RenderMesh* createNewRenderMesh(std::string name = Math::stringFormat("renderMesh|%d", Math::getUid()));
 		virtual RenderMesh* loadRenderMesh(std::string name, std::string path = "");

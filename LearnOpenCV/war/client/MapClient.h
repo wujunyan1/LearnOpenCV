@@ -10,7 +10,12 @@ using namespace Core;
 
 namespace Core
 {
-	class ACustomMesh;
+	class AWarMapMesh;
+}
+
+namespace Render
+{
+	class RenderCustomMesh;
 }
 
 namespace War
@@ -28,7 +33,8 @@ namespace War
 
 	private:
 		
-		ACustomMesh* getColMapMesh(int col, int rowStartIndex);
+		void initCustomRenderMesh();
+		AWarMapMesh* getColMapMesh(int col, int rowStartIndex);
 
 	private:
 		Image* cellTextureImage;
@@ -36,6 +42,8 @@ namespace War
 		Map* m_map;
 
 		Model* m_model;
+
+		Render::RenderCustomMesh* customRenderMesh;
 
 		float m_mapScale = 100.0f;
 	};

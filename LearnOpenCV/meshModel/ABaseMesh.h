@@ -16,6 +16,7 @@ namespace Core
 			Mesh,
 			UIMesh,
 			CustomMesh,
+			WarMapMesh,
 		};
 
 	public:
@@ -32,6 +33,8 @@ namespace Core
 		{
 			return mesh;
 		};
+
+		virtual void render(Render::ShaderProgram* program, Render::Material* material);
 
 	protected:
 		std::string id;

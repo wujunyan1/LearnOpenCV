@@ -18,8 +18,8 @@ namespace War
 {
 	struct MapSetting
 	{
-		ui16 height;
-		ui16 width;
+		ui64 height;
+		ui64 width;
 
 	};
 
@@ -43,9 +43,9 @@ namespace War
 
 		void initMap(MapSetting& setting);
 
-		MapCell* getMapCell(ui16 x, ui16 y)
+		MapCell* getMapCell(ui64 x, ui64 y)
 		{
-			ui16 index = m_setting.width * y + x;
+			ui64 index = m_setting.width * y + x;
 			return cells[index];
 		};
 

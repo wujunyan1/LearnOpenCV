@@ -366,6 +366,9 @@
     <ClInclude Include="render\renderQueue\RenderWarMapStage.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="meshModel\AWarMapMesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearnOpenCV.cpp">
@@ -666,6 +669,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="render\renderQueue\RenderWarMapStage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="meshModel\AWarMapMesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

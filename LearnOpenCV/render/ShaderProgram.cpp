@@ -120,7 +120,7 @@ namespace Render
 		GLShader* shader = GetShaderObj();
 
 		std::vector<Render::ShaderParam>& params = material->getShaderParams();
-		for (Render::ShaderParam param : params)
+		for (Render::ShaderParam& param : params)
 		{
 			Render::ShaderParamType stype = param.stype;
 			switch (stype)
@@ -162,6 +162,17 @@ namespace Render
 			default:
 				break;
 			}
+		}
+
+		std::vector<Render::Texture>& textures = material->getShaderTextures();
+		int index = 0;
+		for (Render::Texture texture : textures)
+		{
+			int textureIndex = index++;
+			//texture.image->use(textureIndex);
+			GL_GET_ERROR(glActiveTexture(Core::Image::textureIndex[textureIndex]));
+			GL_GET_ERROR(glBindTexture(GL_TEXTURE_2D, texture.image->getTextureId()));
+			GL_GET_ERROR(shader->setTexture(texture.uniformName, textureIndex));
 		}
 	}
 

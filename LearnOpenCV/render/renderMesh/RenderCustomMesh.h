@@ -19,7 +19,7 @@ namespace Render
 		virtual void Render(Render::ShaderProgram* program, Render::Material* material);
 
 	protected:
-		
+
 	};
 
 }
